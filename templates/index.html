@@ -162,7 +162,27 @@
             object-fit: cover;
             background-color: #fff;
         }
+/* মোবাইল স্ক্রিনের জন্য বিশেষ সেটিংস */
+@media (max-width: 768px) {
+    .hero {
+        background-position: center right; /* ছবিটিকে একটু ডানদিকে সরিয়ে আনবে */
+        padding: 80px 20px 120px 20px;
+    }
+    
+    .hero h1 {
+        font-size: 32px; /* মোবাইলে লেখা ছোট করে দেবে */
+    }
 
+    .bottom-section {
+        flex-direction: column; /* তিনটি বক্স নিচে নিচে চলে আসবে */
+        margin-top: -50px;
+    }
+    
+    .info-box {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
     </style>
 </head>
 <body>
