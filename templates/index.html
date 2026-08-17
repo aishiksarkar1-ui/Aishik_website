@@ -3,71 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aishik Sarkar | CV & Portfolio</title>
+    <title>Finance with Aishik | Wealth Management</title>
+    <!-- গিটহাব থেকে সুন্দর ফন্ট ইমপোর্ট করছি -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* কালার এবং বেসিক সেটআপ */
+        :root {
+            --navy-blue: #0A192F;
+            --gold: #C5A059;
+            --light-cream: #F4F1EA;
+            --text-light: #E0E0E0;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--navy-blue);
+            color: var(--text-light);
         }
-        .header {
-            background-color: #2c3e50;
-            color: #ffffff;
-            text-align: center;
-            padding: 4rem 1rem;
+
+        /* হেডার / নেভিগেশন বার */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: var(--navy-blue);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
         }
-        .header h1 {
-            margin: 0;
-            font-size: 3rem;
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--gold);
+            text-transform: uppercase;
             letter-spacing: 2px;
         }
-        .header p {
-            font-size: 1.2rem;
-            font-weight: 300;
-            margin-top: 10px;
-            color: #bdc3c7;
+
+        .tagline {
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
-        .container {
-            max-width: 800px;
-            margin: -40px auto 2rem auto;
-            background: #ffffff;
-            padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+
+        /* হিরো সেকশন (বড় ছবি এবং টেক্সট) */
+        .hero {
+            position: relative;
+            /* আপাতত একটি ডেমো ছবি দেওয়া হলো, পরে আপনি নিজের ছবি দেবেন */
+            background-image: linear-gradient(to right, rgba(10, 25, 47, 0.9) 30%, rgba(10, 25, 47, 0.4) 100%), url('https://images.unsplash.com/photo-1565514020179-026b92b84bb6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 50px 180px 50px;
         }
-        h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 8px;
-            margin-top: 30px;
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 55px;
+            color: white;
+            max-width: 600px;
+            line-height: 1.2;
+            margin-bottom: 20px;
         }
-        p {
-            line-height: 1.6;
+
+        .hero p {
+            font-size: 20px;
+            max-width: 500px;
+            margin-bottom: 40px;
+            line-height: 1.5;
         }
+
+        .cta-btn {
+            background-color: var(--gold);
+            color: var(--navy-blue);
+            padding: 15px 35px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: #d4af37;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4);
+        }
+
+        /* তিনটি কলামের ডিজাইন এবং প্রোফাইল ছবির ওভারল্যাপ */
+        .bottom-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 50px 50px 50px;
+            margin-top: -80px; /* এই মাইনাস মার্জিনটি ওপরের সেকশনের সাথে জোড়া লাগাবে */
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-box {
+            width: 30%;
+        }
+
+        .info-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .info-box p, .info-box li {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #b0b0b0;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 10px 0;
+        }
+
+        /* মাঝখানের ক্রিম রঙের বক্সটি */
+        .center-box {
+            background-color: var(--light-cream);
+            color: var(--navy-blue);
+            padding: 80px 40px 40px 40px;
+            text-align: center;
+            border-radius: 5px;
+            position: relative;
+            margin-top: -60px; /* ছবিটিকে আরও ওপরে তোলার জন্য */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .center-box h3 {
+            color: var(--navy-blue);
+        }
+
+        .center-box p {
+            color: #333;
+            font-style: italic;
+        }
+
+        /* গোলাকার প্রোফাইল ছবি */
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 5px solid var(--gold);
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            transform: translateX(-50%);
+            object-fit: cover;
+            background-color: #fff;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>INVEST WITH \n Aishik Sarkar</h1>
-        <p>Mutual Fund Distributor | Web Enthusiast</p>
+    <div class="top-bar">
+        <div class="logo">FINANCE WITH<br>AISHIK</div>
+        <div class="tagline">FINANCE WITH AISHIK - EMPOWERING YOUR WEALTH JOURNEY</div>
     </div>
 
-    <div class="container">
-        <h2>About Me</h2>
-        <p>Welcome to my digital portfolio. I specialize in wealth management, mutual fund distribution, and leveraging modern web technologies like Python, HTML, and CSS to build functional and aesthetic digital solutions.</p>
+    <div class="hero">
+        <h1>ACHIEVE FINANCIAL FREEDOM & BUILD LASTING WEALTH</h1>
+        <p>Personalized Guidance to Master Your Money Mindset, SIPs, & Investments</p>
+        <button class="cta-btn">BOOK A FREE CONSULTATION</button>
+    </div>
 
-        <h2>Experience & Skills</h2>
-        <ul>
-            <li>Financial Portfolio & Wealth Management</li>
-            <li>Python, Flask & Data Analysis</li>
-            <li>Web Design (HTML & CSS)</li>
-        </ul>
+    <div class="bottom-section">
+        
+        <!-- বাম দিকের কলাম -->
+        <div class="info-box">
+            <h3>My Approach</h3>
+            <p>We combine deep market research with a systematic approach to ensure you achieve your financial goals. By focusing on calculated portfolio allocation and risk management, we send your money mindset in the right direction.</p>
+        </div>
 
-        <h2>Contact</h2>
-        <p>📍 West Bengal, India</p>
+        <!-- মাঝখানের ক্রিম রঙের কলাম -->
+        <div class="info-box center-box">
+            <!-- আপনার নিজের ছবি দেওয়ার জন্য এখানে লিংকটি বদলাতে হবে -->
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=80" alt="Aishik Sarkar" class="profile-img">
+            <h3>Success Stories</h3>
+            <p>"Aishik's systematic investment plans and clear financial logic completely revolutionized my wealth-building strategy. Highly recommended for long-term growth."</p>
+            <p style="font-weight: bold; font-style: normal; margin-top: 20px;">- Happy Client</p>
+        </div>
+
+        <!-- ডান দিকের কলাম -->
+        <div class="info-box">
+            <h3>Services</h3>
+            <ul>
+                <li>• Mutual Fund Distribution</li>
+                <li>• SIP Planning & Setup</li>
+                <li>• Wealth Building Strategy</li>
+                <li>• Portfolio Risk Management</li>
+            </ul>
+        </div>
+
     </div>
 
 </body>
