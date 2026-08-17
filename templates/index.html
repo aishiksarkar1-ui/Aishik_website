@@ -51,10 +51,9 @@
         /* হিরো সেকশন (বড় ছবি এবং টেক্সট) */
         .hero {
             position: relative;
-            /* আপাতত একটি ডেমো ছবি দেওয়া হলো, পরে আপনি নিজের ছবি দেবেন */
             background-image: linear-gradient(to right, rgba(10, 25, 47, 0.9) 30%, rgba(10, 25, 47, 0.4) 100%), url('{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}');
             background-size: cover;
-            background-position: center;
+            background-position: top center; /* এটি ছবির মাথা কাটা যাওয়া ঠিক করবে */
             padding: 120px 50px 180px 50px;
         }
 
