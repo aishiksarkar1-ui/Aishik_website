@@ -48,12 +48,12 @@
             text-transform: uppercase;
         }
 
-        /* হিরো সেকশন (বড় ছবি এবং টেক্সট) */
+        /* হিরো সেকশন (বড় ছবি এবং টেক্সট) */
         .hero {
             position: relative;
             background-image: linear-gradient(to right, rgba(10, 25, 47, 0.9) 30%, rgba(10, 25, 47, 0.4) 100%), url('{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}');
             background-size: cover;
-            background-position: top center; /* এটি ছবির মাথা কাটা যাওয়া ঠিক করবে */
+            background-position: top center;
             padding: 120px 50px 180px 50px;
         }
 
@@ -96,7 +96,7 @@
             display: flex;
             justify-content: space-between;
             padding: 0 50px 50px 50px;
-            margin-top: -80px; /* এই মাইনাস মার্জিনটি ওপরের সেকশনের সাথে জোড়া লাগাবে */
+            margin-top: -80px;
             position: relative;
             z-index: 10;
         }
@@ -136,7 +136,7 @@
             text-align: center;
             border-radius: 5px;
             position: relative;
-            margin-top: -60px; /* ছবিটিকে আরও ওপরে তোলার জন্য */
+            margin-top: -60px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
@@ -160,29 +160,106 @@
             left: 50%;
             transform: translateX(-50%);
             object-fit: cover;
+            object-position: top;
             background-color: #fff;
         }
-/* মোবাইল স্ক্রিনের জন্য বিশেষ সেটিংস */
-@media (max-width: 768px) {
-    .hero {
-        background-position: center right; /* ছবিটিকে একটু ডানদিকে সরিয়ে আনবে */
-        padding: 80px 20px 120px 20px;
-    }
-    
-    .hero h1 {
-        font-size: 32px; /* মোবাইলে লেখা ছোট করে দেবে */
-    }
 
-    .bottom-section {
-        flex-direction: column; /* তিনটি বক্স নিচে নিচে চলে আসবে */
-        margin-top: -50px;
-    }
-    
-    .info-box {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}
+        /* কন্টাক্ট ফর্ম পপ-আপ স্টাইল */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: var(--light-cream);
+            margin: 10% auto;
+            padding: 40px;
+            width: 90%;
+            max-width: 450px;
+            border-radius: 8px;
+            color: var(--navy-blue);
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--navy-blue);
+        }
+        .modal-content h2 {
+            font-family: 'Playfair Display', serif;
+            margin-top: 0;
+            color: var(--navy-blue);
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Lato', sans-serif;
+        }
+        .submit-btn {
+            background-color: var(--navy-blue);
+            color: var(--gold);
+            width: 100%;
+            padding: 14px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #1b365d;
+        }
+        #form-response {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* মোবাইল স্ক্রিনের জন্য বিশেষ সেটিংস */
+        @media (max-width: 768px) {
+            .hero {
+                background-position: center right;
+                padding: 80px 20px 120px 20px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .bottom-section {
+                flex-direction: column;
+                margin-top: -50px;
+            }
+            .info-box {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -195,7 +272,8 @@
     <div class="hero">
         <h1>ACHIEVE FINANCIAL FREEDOM & BUILD LASTING WEALTH</h1>
         <p>Learn the core fundamentals of smart asset allocation and risk management. Master practical investing skills to protect your capital and grow wealth with confidence.</p>
-        <button class="cta-btn">START YOUR LEARNING JOURNEY</button>
+        <!-- বাটনে ক্লিক করলে ফর্ম ওপেন হওয়ার ফাংশন যুক্ত করা হয়েছে -->
+        <button class="cta-btn" onclick="openModal()">START YOUR LEARNING JOURNEY</button>
     </div>
 
     <div class="bottom-section">
@@ -208,16 +286,12 @@
 
         <!-- মাঝখানের ক্রিম রঙের কলাম -->
         <div class="info-box center-box">
-            <!-- আপনার নিজের ছবি দেওয়ার জন্য এখানে লিংকটি বদলাতে হবে -->
             <img src="{{ url_for('static', filename='Aishik Sarkar.png') }}" alt="Aishik Sarkar" class="profile-img">
             <h3>My Investment Core Principles</h3>
-            <p>""I believe that successful investing is a blend of disciplined, education and data-driven strategy. My coaching focuses on three core pillars:
-
-<br>1. Strategic Asset Allocation: Aligning investments with your risk tolerance and long-term goals.
-
-<br>2. Proactive Risk Management: Protecting your capital through smart diversification.
-
-<br>3. Mindset Mastery: Learning to make logical, evidence-based decisions rather than reacting to market noise.""</p>
+            <p>"I believe that successful investing is a blend of disciplined education and data-driven strategy. My coaching focuses on three core pillars:
+            <br>1. Strategic Asset Allocation: Aligning investments with your risk tolerance and long-term goals.
+            <br>2. Proactive Risk Management: Protecting your capital through smart diversification.
+            <br>3. Mindset Mastery: Learning to make logical, evidence-based decisions rather than reacting to market noise."</p>
             <p style="font-weight: bold; font-style: normal; margin-top: 20px;">- Smart Investing</p>
         </div>
 
@@ -233,6 +307,80 @@
         </div>
 
     </div>
+
+    <!-- কন্টাক্ট ফর্ম পপ-আপ মডাল (Modal) -->
+    <div id="consultationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Book a Consultation</h2>
+            <form id="consultationForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message / Requirements</label>
+                    <textarea id="message" name="message" rows="3" placeholder="Tell me about your financial goals..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Details</button>
+                <div id="form-response"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- পপ-আপ ওপেন/ক্লোজ এবং ফর্ম সাবমিট করার জাভাস্ক্রিপ্ট -->
+    <script>
+        function openModal() {
+            document.getElementById('consultationModal').style.display = 'block';
+        }
+        function closeModal() {
+            document.getElementById('consultationModal').style.display = 'none';
+        }
+        window.onclick = function(event) {
+            var modal = document.getElementById('consultationModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // ফর্ম সাবমিট হ্যান্ডলার
+        document.getElementById('consultationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var responseDiv = document.getElementById('form-response');
+            responseDiv.style.color = '#C5A059';
+            responseDiv.innerText = 'Submitting...';
+
+            fetch('/submit_form', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === 'success') {
+                    responseDiv.style.color = 'green';
+                    responseDiv.innerText = data.message;
+                    document.getElementById('consultationForm').reset();
+                    setTimeout(closeModal, 3000);
+                } else {
+                    responseDiv.style.color = 'red';
+                    responseDiv.innerText = 'Error: ' + data.message;
+                }
+            })
+            .catch(error => {
+                responseDiv.style.color = 'red';
+                responseDiv.innerText = 'An error occurred. Please try again.';
+            });
+        });
+    </script>
 
 </body>
 </html>
