@@ -42,7 +42,7 @@ def submit_form():
         if sheet:
             # গুগল শিটের রো-তে ডেটা যুক্ত করা (Name, Email, Phone, Message)
             sheet.append_row([name, email, phone, message])
-            return jsonify({'status': 'success', 'message': 'Thank you! Your details have been recorded.'})
+            return jsonify({'status': 'success', 'message': 'Thank you! Your details have been recorded. \nOur team will get in touch with you shortly.'})
         else:
             return jsonify({'status': 'error', 'message': 'Database connection error.'}), 500
     except Exception as e:
