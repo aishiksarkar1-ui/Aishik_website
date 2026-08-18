@@ -91,10 +91,11 @@
             box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4);
         }
 
-        /* তিনটি কলামের ডিজাইন এবং প্রোফাইল ছবির ওভারল্যাপ */
+        /* তিনটি কলামের ডিজাইন এবং সমান উচ্চতা করার কোড */
         .bottom-section {
             display: flex;
             justify-content: space-between;
+            align-items: stretch; /* এটি তিনটি কলামকে লম্বায় সমান করে দেবে */
             padding: 0 50px 50px 50px;
             margin-top: -80px;
             position: relative;
@@ -103,6 +104,10 @@
 
         .info-box {
             width: 30%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
 
         .info-box h3 {
@@ -128,11 +133,11 @@
             padding: 10px 0;
         }
 
-        /* মাঝখানের ক্রিম রঙের বক্সটি */
+        /* মাঝখানের ক্রিম রঙের বক্সটি আলাদাভাবে তার স্টাইল ও কালার ধরে রাখবে */
         .center-box {
-            background-color: var(--light-cream);
-            color: var(--navy-blue);
-            padding: 80px 40px 40px 40px;
+            background-color: var(--light-cream) !important;
+            color: var(--navy-blue) !important;
+            padding: 80px 40px 40px 40px !important;
             text-align: center;
             border-radius: 5px;
             position: relative;
