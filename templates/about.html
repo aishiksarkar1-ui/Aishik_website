@@ -75,20 +75,35 @@
             color: var(--gold);
         }
 
-        /* ড্রপ-ডাউন মেনু স্টাইল */
+       /* ড্রপ-ডাউন মেনু স্টাইল (স্ক্রল ফিক্স সহ) */
         .dropdown-content {
             display: none;
             position: absolute;
             top: 100%;
             left: 0;
             background-color: var(--navy-blue);
-            min-width: 240px;
+            min-width: 280px; /* বড় লেখার জন্য চওড়া বাড়ানো হয়েছে */
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 4px;
             z-index: 1001;
             padding: 10px 0;
             list-style: none;
+            /* স্ক্রল করার কোড */
+            max-height: 60vh; 
+            overflow-y: auto; 
+        }
+
+        /* সুন্দর স্ক্রলবারের ডিজাইন */
+        .dropdown-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .dropdown-content::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
+        }
+        .dropdown-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .dropdown-content li {
@@ -109,15 +124,6 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
-        /* হ্যামবার্গার মেনু (মোবাইলের জন্য) */
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 24px;
-            color: var(--gold);
-        }
-
        /* হিরো ব্যানার (গ্রেডিয়েন্ট এবং ছবি ডানদিকে) */
         .about-hero {
             position: relative;
