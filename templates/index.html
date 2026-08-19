@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance with Aishik | Wealth Management</title>
-    <!-- গিটহাব থেকে সুন্দর ফন্ট ইমপোর্ট করছি -->
+    <title>Finance with Aishik | Financial Literacy Hub</title>
+    <!-- গিটহাব থেকে ফন্ট ইমপোর্ট -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* কালার এবং বেসিক সেটআপ */
         :root {
             --navy-blue: #0A192F;
             --gold: #C5A059;
@@ -24,31 +23,100 @@
             color: var(--text-light);
         }
 
-        /* হেডার / নেভিগেশন বার */
-        .top-bar {
+        /* স্টিকি নেভিগেশন বার */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            background-color: var(--navy-blue);
+            padding: 15px 50px;
+            background-color: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(197, 160, 89, 0.3);
         }
         
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 24px;
+            font-size: 22px;
             color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 2px;
+            text-decoration: none;
+            line-height: 1.1;
         }
 
-        .tagline {
-            font-size: 12px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+            align-items: center;
         }
 
-        /* হিরো সেকশন (বড় ছবি এবং টেক্সট) */
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            padding: 10px 0;
+            display: block;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--gold);
+        }
+
+        /* ড্রপ-ডাউন মেনু স্টাইল */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--navy-blue);
+            min-width: 240px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 4px;
+            z-index: 1001;
+            padding: 10px 0;
+        }
+
+        .dropdown-content li {
+            width: 100%;
+        }
+
+        .dropdown-content a {
+            padding: 10px 20px;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(197, 160, 89, 0.1);
+            color: var(--gold);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* হ্যামবার্গার মেনু (মোবাইলের জন্য) */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--gold);
+        }
+
+        /* হিরো সেকশন */
         .hero {
             position: relative;
             background-image: linear-gradient(to right, rgba(10, 25, 47, 0.9) 30%, rgba(10, 25, 47, 0.4) 100%), url('{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}');
@@ -59,7 +127,7 @@
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 55px;
+            font-size: 50px;
             color: white;
             max-width: 600px;
             line-height: 1.2;
@@ -67,10 +135,11 @@
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 18px;
             max-width: 500px;
             margin-bottom: 40px;
             line-height: 1.5;
+            color: #b0b0b0;
         }
 
         .cta-btn {
@@ -91,11 +160,11 @@
             box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4);
         }
 
-        /* তিনটি কলামের ডিজাইন এবং সমান উচ্চতা করার কোড */
+        /* তিন কলামের ডিজাইন এবং সমান উচ্চতা করার কোড */
         .bottom-section {
             display: flex;
             justify-content: space-between;
-            align-items: stretch; /* এটি তিনটি কলামকে লম্বায় সমান করে দেবে */
+            align-items: stretch;
             padding: 0 50px 50px 50px;
             margin-top: -80px;
             position: relative;
@@ -113,13 +182,13 @@
         .info-box h3 {
             font-family: 'Playfair Display', serif;
             color: var(--gold);
-            font-size: 32px;
+            font-size: 30px;
             margin-bottom: 15px;
         }
 
         .info-box p, .info-box li {
-            font-size: 15px;
-            line-height: 1.8;
+            font-size: 14px;
+            line-height: 1.7;
             color: #b0b0b0;
         }
 
@@ -130,7 +199,7 @@
 
         .info-box li {
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding: 10px 0;
+            padding: 8px 0;
         }
 
         /* মাঝখানের ক্রিম রঙের বক্সটি আলাদাভাবে তার স্টাইল ও কালার ধরে রাখবে */
@@ -152,6 +221,8 @@
         .center-box p {
             color: #333;
             font-style: italic;
+            font-size: 13px;
+            line-height: 1.6;
         }
 
         /* গোলাকার প্রোফাইল ছবি */
@@ -173,7 +244,7 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 2000;
             left: 0;
             top: 0;
             width: 100%;
@@ -247,8 +318,36 @@
             text-align: center;
         }
 
-        /* মোবাইল স্ক্রিনের জন্য বিশেষ সেটিংস */
-        @media (max-width: 768px) {
+        /* মোবাইল ও রেসপনসিভ ডিজাইন */
+        @media (max-width: 992px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--navy-blue);
+                border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .dropdown-content {
+                position: relative;
+                box-shadow: none;
+                border: none;
+                background-color: rgba(255,255,255,0.05);
+                padding-left: 15px;
+            }
             .hero {
                 background-position: center right;
                 padding: 80px 20px 120px 20px;
@@ -269,28 +368,69 @@
 </head>
 <body>
 
-    <div class="top-bar">
-        <div class="logo">FINANCE WITH<br>AISHIK</div>
-        <div class="tagline">FINANCE WITH AISHIK — MASTER THE SCIENCE OF SMART INVESTING</div>
-    </div>
+    <!-- স্টিকি নেভিগেশন বার -->
+    <nav class="navbar">
+        <a href="#" class="logo">FINANCE WITH<br>AISHIK</a>
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">Learn</a></li>
+            
+            <!-- Domains Dropdown -->
+            <li class="dropdown">
+                <a href="#">Domains &#9662;</a>
+                <ul class="dropdown-content">
+                    <li><a href="#">Mutual Fund</a></li>
+                    <li><a href="#">SIP Planning & Setup</a></li>
+                    <li><a href="#">Specialised Investment Fund (SIF)</a></li>
+                    <li><a href="#">Portfolio Management Services</a></li>
+                    <li><a href="#">Alternative Investment Fund</a></li>
+                    <li><a href="#">Wealth Building Strategy</a></li>
+                    <li><a href="#">Portfolio Risk Management</a></li>
+                    <li><a href="#">Stock Selections</a></li>
+                    <li><a href="#">Fixed Income</a></li>
+                    <li><a href="#">Global Capital Markets and Commodities</a></li>
+                    <li><a href="#">Health Insurance</a></li>
+                    <li><a href="#">Life Insurance</a></li>
+                    <li><a href="#">General Insurance</a></li>
+                </ul>
+            </li>
 
+            <li><a href="#">Self-Risk Profiling</a></li>
+
+            <!-- Tools Dropdown -->
+            <li class="dropdown">
+                <a href="#">Tools &#9662;</a>
+                <ul class="dropdown-content">
+                    <li><a href="#">SIP Calculator</a></li>
+                    <li><a href="#">Goal Planning Calculator</a></li>
+                    <li><a href="#">Inflation Impact Calculator</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">Market Insight</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Letter to Members</a></li>
+            <li><a href="#">Connect</a></li>
+        </ul>
+    </nav>
+
+    <!-- হিরো সেকশন -->
     <div class="hero">
         <h1>ACHIEVE FINANCIAL FREEDOM & BUILD LASTING WEALTH</h1>
         <p>Learn the core fundamentals of smart asset allocation and risk management. Master practical investing skills to protect your capital and grow wealth with confidence.</p>
-        <!-- বাটনে ক্লিক করলে ফর্ম ওপেন হওয়ার ফাংশন যুক্ত করা হয়েছে -->
         <button class="cta-btn" onclick="openModal()">START YOUR LEARNING JOURNEY</button>
     </div>
 
+    <!-- তিন কলামের সেকশন -->
     <div class="bottom-section">
         
         <!-- বাম দিকের কলাম -->
         <div class="info-box">
             <h3>How We Learn Together</h3>
-            <p>We bridge the gap between financial complexity and practical execution through a structured, easy-to-understand mentoring framework designed to help you succeed in the long run. Our journey together begins by securing your financial foundation through comprehensive life, health, and general insurance planning. From there, we focus on growing your assets steadily by exploring various options like Mutual Funds, SIF, PMS, and AIF.
-
-We teach you how to analyze your unique risk profile along with current market conditions, comparing market valuations versus investor sentiment. Based on this, we guide you through goal-based tactical and strategic asset allocation so you know exactly where and how to place your money. We also help you turn your personal dreams into structured, actionable plans—teaching you how to budget effectively, forecast and manage future cash flows, and finance your goals precisely.
-
-We make your dreams accountable and budgetable by estimating future cash flows and making them achievable through systematic investing. Furthermore, we walk you through intelligent stock selection and other reliable investment vehicles, teaching you step-by-step how to create a consistent passive income stream for your future.</p>
+            <p>We bridge the gap between financial complexity and practical execution through a structured, easy-to-understand mentoring framework designed to help you succeed in the long run. Our journey together begins by securing your financial foundation through comprehensive life, health, and general insurance planning. From there, we focus on growing your assets steadily by exploring various options like Mutual Funds, SIF, PMS, and AIF.</p>
+            <p>We teach you how to analyze your unique risk profile along with current market conditions, comparing market valuations versus investor sentiment. Based on this, we guide you through goal-based tactical and strategic asset allocation so you know exactly where and how to place your money. We also help you turn your personal dreams into structured, actionable plans—teaching you how to budget effectively, forecast and manage future cash flows, and finance your goals precisely.</p>
+            <p>We make your dreams accountable and budgetable by estimating future cash flows and making them achievable through systematic investing. Furthermore, we walk you through intelligent stock selection and other reliable investment vehicles, teaching you step-by-step how to create a consistent passive income stream for your future.</p>
         </div>
 
         <!-- মাঝখানের ক্রিম রঙের কলাম -->
@@ -308,14 +448,14 @@ We make your dreams accountable and budgetable by estimating future cash flows a
         <div class="info-box">
             <h3>Areas of Expertise</h3>
             <ul>
-                <li>• Mutual Fund </li>
+                <li>• Mutual Fund</li>
                 <li>• SIP Planning & Setup</li>
                 <li>• Specialised Investment Fund (SIF)</li>
                 <li>• Portfolio Management Services</li>
                 <li>• Alternative Investment Fund</li>
                 <li>• Wealth Building Strategy</li>
                 <li>• Portfolio Risk Management</li>
-                <li>• Stock Seclections</li>
+                <li>• Stock Selections</li>
                 <li>• Fixed Income</li>
                 <li>• Global Capital Markets and Commodities</li>
                 <li>• Health Insurance</li>
@@ -354,8 +494,15 @@ We make your dreams accountable and budgetable by estimating future cash flows a
         </div>
     </div>
 
-    <!-- পপ-আপ ওপেন/ক্লোজ এবং ফর্ম সাবমিট করার জাভাস্ক্রিপ্ট -->
+    <!-- জাভাস্ক্রিপ্ট -->
     <script>
+        // মোবাইল মেনু টগল
+        function toggleMenu() {
+            var navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // পপ-আপ মডাল ফাংশন
         function openModal() {
             document.getElementById('consultationModal').style.display = 'block';
         }
