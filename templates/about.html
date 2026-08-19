@@ -118,12 +118,14 @@
             color: var(--gold);
         }
 
-       /* হিরো ব্যানার (ছবি কেটে যাওয়ার ফিক্স) */
+       /* হিরো ব্যানার (ফুল সাইজ ছবি দেখানোর ফিক্স) */
         .about-hero {
             position: relative;
+            background-color: var(--navy-blue); /* ছবির দুই পাশের ফাঁকা অংশ এই রঙে মিশে যাবে */
             background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), url("{{ url_for('static', filename='Aishik 3.png') }}");
-            background-size: cover;
-            background-position: top center; /* ফোকাস পয়েন্ট ওপরে করা হলো */
+            background-size: contain; /* cover-এর বদলে contain করা হলো যাতে ছবি না কাটে */
+            background-position: center;
+            background-repeat: no-repeat; /* ছবি যেন ডাবল না হয়ে যায় */
             padding: 120px 50px;
             text-align: center;
             border-bottom: 1px solid rgba(197, 160, 89, 0.2);
