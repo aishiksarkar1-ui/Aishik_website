@@ -118,14 +118,15 @@
             color: var(--gold);
         }
 
-       /* হিরো ব্যানার (ফুল সাইজ ছবি দেখানোর ফিক্স) */
+       /* হিরো ব্যানার (গ্রেডিয়েন্ট এবং ছবি ডানদিকে) */
         .about-hero {
             position: relative;
-            background-color: var(--light-cream); /* ছবির দুই পাশের ফাঁকা অংশ এই রঙে মিশে যাবে */
-            background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), url("{{ url_for('static', filename='Aishik 3.png') }}");
-            background-size: contain; /* cover-এর বদলে contain করা হলো যাতে ছবি না কাটে */
-            background-position: right;
-            background-repeat: no-repeat; /* ছবি যেন ডাবল না হয়ে যায় */
+            background-color: white; 
+            /* বাঁ দিক থেকে ডান দিকে গ্রেডিয়েন্ট (30% থেকে 100%) */
+            background-image: linear-gradient(to right, rgba(10, 25, 47, 0.95) 30%, rgba(10, 25, 47, 0.2) 100%), url("{{ url_for('static', filename='Aishik 3.png') }}");
+            background-size: contain; 
+            background-position: right; 
+            background-repeat: no-repeat; 
             padding: 120px 50px;
             text-align: center;
             border-bottom: 1px solid rgba(197, 160, 89, 0.2);
