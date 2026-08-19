@@ -23,7 +23,7 @@
             line-height: 1.6;
         }
 
-        /* স্টিকি নেভিগেশন বার (হোমপেজের মতোই) */
+        /* স্টিকি নেভিগেশন বার (সম্পূর্ণ কোড) */
         .navbar {
             position: sticky;
             top: 0;
@@ -50,10 +50,15 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 22px;
+            gap: 25px;
             margin: 0;
             padding: 0;
             align-items: center;
+        }
+
+        /* এই কোডটি মিসিং ছিল, যা ড্রপ-ডাউনকে ঠিক জায়গায় রাখে */
+        .nav-links li {
+            position: relative;
         }
 
         .nav-links a {
@@ -67,6 +72,49 @@
         }
 
         .nav-links a:hover, .nav-links a.active {
+            color: var(--gold);
+        }
+
+        /* ড্রপ-ডাউন মেনু স্টাইল */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--navy-blue);
+            min-width: 240px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 4px;
+            z-index: 1001;
+            padding: 10px 0;
+            list-style: none;
+        }
+
+        .dropdown-content li {
+            width: 100%;
+        }
+
+        .dropdown-content a {
+            padding: 10px 20px;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(197, 160, 89, 0.1);
+            color: var(--gold);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* হ্যামবার্গার মেনু (মোবাইলের জন্য) */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
             color: var(--gold);
         }
 
@@ -151,6 +199,7 @@
         .sidebar ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .sidebar li {
@@ -164,7 +213,36 @@
             border-bottom: none;
         }
 
-        @media (max-width: 768px) {
+        /* মোবাইল ও রেসপনসিভ ডিজাইন (এটি মিসিং ছিল) */
+        @media (max-width: 992px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--navy-blue);
+                border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .dropdown-content {
+                position: relative;
+                box-shadow: none;
+                border: none;
+                background-color: rgba(255,255,255,0.05);
+                padding-left: 15px;
+            }
             .content-section {
                 flex-direction: column;
                 padding: 40px 20px;
@@ -180,7 +258,7 @@
 </head>
 <body>
 
-   <!-- সম্পূর্ণ স্টিকি নেভিগেশন বার -->
+    <!-- সম্পূর্ণ স্টিকি নেভিগেশন বার -->
     <nav class="navbar">
         <a href="/" class="logo">FINANCE WITH<br>AISHIK</a>
         <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
@@ -266,6 +344,14 @@
         </div>
 
     </div>
+
+    <!-- মোবাইল মেনুর জন্য জাভাস্ক্রিপ্ট -->
+    <script>
+        function toggleMenu() {
+            var navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
