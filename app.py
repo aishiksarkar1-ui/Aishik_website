@@ -32,6 +32,11 @@ def home():
 def about():
     return render_template('about.html')
 
+# নতুন Learn পেজ রুট
+@app.route('/learn')
+def learn():
+    return render_template('learn.html')
+
 @app.route('/submit_form', methods=['POST'])
 def submit_form():
     try:
