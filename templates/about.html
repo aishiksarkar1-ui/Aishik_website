@@ -118,18 +118,16 @@
             color: var(--gold);
         }
 
-        /* হিরো ব্যানার (ছবি সহ) */
+        /* হিরো ব্যানার (নতুন ছবি সহ) */
         .about-hero {
             position: relative;
-            /* পেছনের ছবি এবং টেক্সট স্পষ্ট রাখার জন্য একটি ডার্ক ওভারলে */
-            background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), url("{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}");
+            background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), url("{{ url_for('static', filename='Aishik 3.png') }}");
             background-size: cover;
             background-position: center;
             padding: 120px 50px;
             text-align: center;
             border-bottom: 1px solid rgba(197, 160, 89, 0.2);
         }
-
         .about-hero h1 {
             font-family: 'Playfair Display', serif;
             font-size: 48px;
