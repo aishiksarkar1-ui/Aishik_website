@@ -6,7 +6,6 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-# গুগল শিটের সাথে কানেকশন তৈরি করার ফাংশন
 def get_sheet():
     google_creds_json = os.environ.get('GOOGLE_CREDENTIALS')
     if not google_creds_json:
@@ -23,12 +22,16 @@ def get_sheet():
         print(e)
         return None
 
-# ওয়েবসাইটের মূল পেজ
+# হোমপেজ রুট
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# কন্টাক্ট ফর্ম সাবমিট হলে এই রুটটি কাজ করবে এবং ডেটা গুগল শিটে পাঠাবে
+# নতুন About পেজ রুট
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/submit_form', methods=['POST'])
 def submit_form():
     try:
@@ -40,9 +43,8 @@ def submit_form():
         
         sheet = get_sheet()
         if sheet:
-            # গুগল শিটের রো-তে ডেটা যুক্ত করা (Name, Email, Phone, Message)
             sheet.append_row([name, email, phone, message])
-            return jsonify({'status': 'success', 'message': 'Thank you! Your details have been recorded. \nOur team will get in touch with you shortly.'})
+            return jsonify({'status': 'success', 'message': 'Thank you! Your details have been recorded.'})
         else:
             return jsonify({'status': 'error', 'message': 'Database connection error.'}), 500
     except Exception as e:
