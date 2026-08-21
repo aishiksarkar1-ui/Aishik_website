@@ -111,17 +111,17 @@
         .dropdown:hover .dropdown-content { display: block; }
         .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
 
-        /* হিরো ব্যানার (লেখা বাঁ দিকে সরানো হলো) */
+        /* হিরো ব্যানার (স্মুথ গ্রেডিয়েন্ট এবং এজ ফিক্স) */
         .about-hero {
             position: relative;
-            background-color: white; 
-            background-image: linear-gradient(to right, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.15) 100%), url("{{ url_for('static', filename='Aishik 3.png') }}");
+            background-color: var(--navy-blue); /* সাদা রঙের বদলে নেভি ব্লু করা হলো */
+            /* গ্রেডিয়েন্টটি বাঁ দিকে ১০০% সলিড রেখে ডানদিকে ফেড করা হলো, যাতে ছবির দাগটি ঢেকে যায় */
+            background-image: linear-gradient(to right, rgba(10, 25, 47, 1) 35%, rgba(10, 25, 47, 0.8) 55%, rgba(10, 25, 47, 0) 100%), url("{{ url_for('static', filename='Aishik 3.png') }}");
             background-size: contain; 
             background-position: right; 
             background-repeat: no-repeat; 
-            /* বাঁ দিকে একটু বেশি জায়গা (8%) ছাড়া হলো */
             padding: 120px 50px 120px 8%; 
-            text-align: left; /* লেখাগুলো বাঁ দিকে সরানো হলো */
+            text-align: left; 
             border-bottom: 1px solid var(--teal); 
         }
 
