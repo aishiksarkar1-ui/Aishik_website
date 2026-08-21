@@ -236,9 +236,9 @@
             color: var(--gold);
         }
 
-/* এডুকেটর কমেন্টারি সেকশন (80% Width) */
+/* এডুকেটর কমেন্টারি সেকশন */
         .commentary-section {
-            padding: -20px 20px 20px 20px; /* ওপরে জায়গা রাখা হলো যাতে ছবিটা ওভারল্যাপ করতে পারে */
+            padding: 0 20px 40px 20px; /* ওপরের প্যাডিং ০ করে দেওয়া হলো */
             background-color: var(--navy-blue);
         }
 
@@ -246,12 +246,17 @@
             background-color: var(--light-cream);
             width: 80%; 
             max-width: 1000px;
-            /* margin: 0 auto; এর বদলে শুধু margin: 0; করে দেওয়া হলো */
             margin: 0; 
+            
+            /* ম্যাজিক ট্রিক: ওভারল্যাপ করার জন্য */
+            transform: translateY(-70px); /* বক্সটিকে ৭০ পিক্সেল ওপরে হিরো সেকশনে তুলে দেওয়া হলো */
+            margin-bottom: -70px; /* ওপরে ওঠার ফলে নিচে যে ফাঁকা জায়গা তৈরি হতো, তা ঠিক করা হলো */
+            z-index: 10; /* বক্সটি যেন হিরো ইমেজের ওপরে থাকে তা নিশ্চিত করা হলো */
+            
             border-radius: 12px;
             position: relative;
             display: flex;
-            align-items: center; /* এটি center-ই থাকবে, যাতে ভেতরের ছবি ও লেখা ব্যালেন্সে থাকে */
+            align-items: center; 
             box-shadow: 0 15px 30px rgba(0,0,0,0.4);
             padding: 40px 50px;
             gap: 40px;
@@ -260,7 +265,7 @@
         /* গোল ছবিটির স্টাইল এবং পজিশন */
         .commentary-img-wrapper {
             flex-shrink: 0;
-            margin-top: -200px; /* ছবিটিকে বক্সের একটু ওপরে তুলে দেওয়া হলো (হোম পেজের মতো) */
+            margin-top: -60px; /* বক্সটা যেহেতু নিজেই ওপরে উঠেছে, তাই ছবিটা -৬০ রাখলেই পারফেক্ট ওভারল্যাপ হবে */
         }
 
         .commentary-img-wrapper img {
@@ -268,7 +273,7 @@
             height: 160px;
             border-radius: 50%;
             object-fit: cover;
-            border: 6px solid var(--gold); /* সোনালী বর্ডার */
+            border: 6px solid var(--gold); 
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
