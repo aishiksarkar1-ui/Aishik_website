@@ -244,13 +244,14 @@
 
         .commentary-box {
             background-color: var(--light-cream);
-            width: 80%; /* আপনার কথামতো ৮০% কভার করা হলো */
+            width: 80%; 
             max-width: 1000px;
-            margin: 0 auto;
+            /* margin: 0 auto; এর বদলে শুধু margin: 0; করে দেওয়া হলো */
+            margin: 0; 
             border-radius: 12px;
             position: relative;
             display: flex;
-            align-items: left;
+            align-items: center; /* এটি center-ই থাকবে, যাতে ভেতরের ছবি ও লেখা ব্যালেন্সে থাকে */
             box-shadow: 0 15px 30px rgba(0,0,0,0.4);
             padding: 40px 50px;
             gap: 40px;
