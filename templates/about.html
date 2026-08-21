@@ -111,14 +111,19 @@
         .dropdown:hover .dropdown-content { display: block; }
         .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
 
-       /* হিরো ব্যানার (সাদা ব্যাকগ্রাউন্ড ও স্মুথ ব্লেন্ড ফিক্স) */
+       /* হিরো ব্যানার (মাঝের ১/৩ অংশ জুড়ে স্মুথ গ্রেডিয়েন্ট) */
         .about-hero {
             position: relative;
-            background-color: white; /* আপনার ছবির ব্যাকগ্রাউন্ডের সাথে মেলানোর জন্য সাদা করা হলো */
+            background-color: white; 
             
-            /* গ্রেডিয়েন্টটি বাঁ দিকে ৪৫% পর্যন্ত সলিড নেভি ব্লু থেকে শুরু হয়ে ডানদিকে ট্রান্সপারেন্ট হয়ে মিশে যাবে */
-            background-image: linear-gradient(to right, rgba(10, 25, 47, 1) 45%, rgba(10, 25, 47, 0.7) 55%, rgba(255, 255, 255, 0) 75%), url("{{ url_for('static', filename='Aishik 3.png') }}");
-            
+            /* ট্রানজিশনটি ৩৫% থেকে শুরু হয়ে ৮০% পর্যন্ত লম্বা করা হলো, যাতে হঠাৎ রং পরিবর্তন না হয় */
+            background-image: linear-gradient(to right, 
+                rgba(10, 25, 47, 1) 35%, 
+                rgba(10, 25, 47, 0.85) 50%, 
+                rgba(10, 25, 47, 0.2) 70%, 
+                rgba(255, 255, 255, 0) 85%), 
+                url("{{ url_for('static', filename='Aishik 3.png') }}");
+                
             background-size: contain; 
             background-position: right; 
             background-repeat: no-repeat; 
@@ -126,7 +131,6 @@
             text-align: left; 
             border-bottom: 1px solid var(--teal); 
         }
-
         .about-hero h1 {
             font-family: 'Playfair Display', serif;
             font-size: 48px; /* ফন্ট সাইজ একটু বড় করা হলো */
