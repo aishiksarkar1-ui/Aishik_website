@@ -236,6 +236,49 @@
             color: var(--gold);
         }
 
+
+
+        /* স্পেশাল সাদা কার্ডের ডিজাইন (২ এবং ৫ নম্বর কার্ডের জন্য) */
+        .module-card.white-card {
+            background-color: var(--light-cream); /* চোখের আরামের জন্য সলিড সাদার বদলে ক্রিম সাদা দেওয়া হলো */
+            border-color: rgba(197, 160, 89, 0.5);
+        }
+
+        /* সাদা কার্ডের ভেতরের লেখার রং পরিবর্তন (ডার্ক থিম) */
+        .module-card.white-card h3 {
+            color: var(--navy-blue);
+        }
+
+        .module-card.white-card p {
+            color: #2c3e50; /* ডার্ক গ্রে/ব্লু যাতে সাদা ব্যাকগ্রাউন্ডে স্পষ্ট পড়া যায় */
+            font-weight: 500;
+        }
+
+        .module-card.white-card .module-number {
+            color: rgba(10, 25, 47, 0.1); /* পেছনের বড় নম্বরটিকে হালকা নেভি ব্লু করা হলো */
+        }
+
+        .module-card.white-card .read-more-btn {
+            color: var(--navy-blue);
+            border-bottom-color: var(--navy-blue);
+        }
+
+        .module-card.white-card .read-more-btn:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        /* সাদা কার্ডে হোভার ইফেক্ট */
+        .module-card.white-card:hover {
+            background-color: white;
+            box-shadow: 0 10px 25px rgba(197, 160, 89, 0.25);
+            transform: translateY(-5px);
+        }
+
+
+
+        
+
 /* এডুকেটর কমেন্টারি সেকশন */
         .commentary-section {
             padding: 0 20px 40px 20px; /* ওপরের প্যাডিং ০ করে দেওয়া হলো */
@@ -453,16 +496,16 @@
             </div>
 
             <!-- কার্ড ২ -->
-            <div class="module-card">
-                <div class="module-number">02</div>
+            <div class="module-card white-card">
+                <div class="module-card white-card">02</div>
                 <h3>Mutual Funds & SIP Strategies</h3>
                 <p>Dive deep into Mutual Funds. Learn how to select the right funds, structure your Systematic Investment Plans (SIP), and align them perfectly with your financial goals.</p>
                 <a href="#" class="read-more-btn">Explore Module</a>
             </div>
 
             <!-- কার্ড ৩ -->
-            <div class="module-card">
-                <div class="module-number">03</div>
+            <div class="module-card white-card">
+                <div class="module-card white-card">03</div>
                 <h3>Portfolio Risk Management</h3>
                 <p>Master the art of protecting your capital. Learn strategic asset allocation, downside protection, and how to balance risk against potential returns in volatile markets.</p>
                 <a href="#" class="read-more-btn">Explore Module</a>
