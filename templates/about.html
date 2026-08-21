@@ -111,12 +111,14 @@
         .dropdown:hover .dropdown-content { display: block; }
         .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
 
-        /* হিরো ব্যানার (স্মুথ গ্রেডিয়েন্ট এবং এজ ফিক্স) */
+       /* হিরো ব্যানার (সাদা ব্যাকগ্রাউন্ড ও স্মুথ ব্লেন্ড ফিক্স) */
         .about-hero {
             position: relative;
-            background-color: var(--navy-blue); /* সাদা রঙের বদলে নেভি ব্লু করা হলো */
-            /* গ্রেডিয়েন্টটি বাঁ দিকে ১০০% সলিড রেখে ডানদিকে ফেড করা হলো, যাতে ছবির দাগটি ঢেকে যায় */
-            background-image: linear-gradient(to right, rgba(10, 25, 47, 1) 35%, rgba(10, 25, 47, 0.8) 55%, rgba(10, 25, 47, 0) 100%), url("{{ url_for('static', filename='Aishik 3.png') }}");
+            background-color: white; /* আপনার ছবির ব্যাকগ্রাউন্ডের সাথে মেলানোর জন্য সাদা করা হলো */
+            
+            /* গ্রেডিয়েন্টটি বাঁ দিকে ৪৫% পর্যন্ত সলিড নেভি ব্লু থেকে শুরু হয়ে ডানদিকে ট্রান্সপারেন্ট হয়ে মিশে যাবে */
+            background-image: linear-gradient(to right, rgba(10, 25, 47, 1) 45%, rgba(10, 25, 47, 0.7) 55%, rgba(255, 255, 255, 0) 75%), url("{{ url_for('static', filename='Aishik 3.png') }}");
+            
             background-size: contain; 
             background-position: right; 
             background-repeat: no-repeat; 
