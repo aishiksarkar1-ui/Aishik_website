@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Aishik | Financial Literacy Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- গুগল ফন্টস: মূল লেখার জন্য, এবং সিগনেচারের জন্য Dancing Script -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- ফন্ট অসাম (আইকনের জন্য) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
@@ -12,6 +17,10 @@
             --gold: #C5A059;
             --light-cream: #F4F1EA;
             --text-light: #E0E0E0;
+            /* নতুন রংগুলো */
+            --teal: #2A9D8F;
+            --copper: #D97757;
+            --slate-gray: #15243B;
         }
 
         body {
@@ -23,7 +32,7 @@
             line-height: 1.6;
         }
 
-        /* স্টিকি নেভিগেশন বার (সম্পূর্ণ কোড) */
+        /* স্টিকি নেভিগেশন বার */
         .navbar {
             position: sticky;
             top: 0;
@@ -56,7 +65,6 @@
             align-items: center;
         }
 
-        /* এই কোডটি মিসিং ছিল, যা ড্রপ-ডাউনকে ঠিক জায়গায় রাখে */
         .nav-links li {
             position: relative;
         }
@@ -75,69 +83,47 @@
             color: var(--gold);
         }
 
-       /* ড্রপ-ডাউন মেনু স্টাইল (স্ক্রল ফিক্স সহ) */
+        /* ড্রপ-ডাউন মেনু স্টাইল (স্ক্রল ফিক্স সহ) */
         .dropdown-content {
             display: none;
             position: absolute;
             top: 100%;
             left: 0;
             background-color: var(--navy-blue);
-            min-width: 280px; /* বড় লেখার জন্য চওড়া বাড়ানো হয়েছে */
+            min-width: 280px; 
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 4px;
             z-index: 1001;
             padding: 10px 0;
             list-style: none;
-            /* স্ক্রল করার কোড */
             max-height: 60vh; 
             overflow-y: auto; 
         }
 
-        /* সুন্দর স্ক্রলবারের ডিজাইন */
-        .dropdown-content::-webkit-scrollbar {
-            width: 8px;
-        }
-        .dropdown-content::-webkit-scrollbar-thumb {
-            background: var(--gold);
-            border-radius: 4px;
-        }
-        .dropdown-content::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
+        .dropdown-content::-webkit-scrollbar { width: 8px; }
+        .dropdown-content::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+        .dropdown-content::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
 
-        .dropdown-content li {
-            width: 100%;
-        }
+        .dropdown-content li { width: 100%; }
+        .dropdown-content a { padding: 10px 20px; color: var(--text-light); white-space: nowrap; }
+        .dropdown-content a:hover { background-color: rgba(197, 160, 89, 0.1); color: var(--gold); }
+        .dropdown:hover .dropdown-content { display: block; }
+        .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
 
-        .dropdown-content a {
-            padding: 10px 20px;
-            color: var(--text-light);
-            white-space: nowrap;
-        }
-
-        .dropdown-content a:hover {
-            background-color: rgba(197, 160, 89, 0.1);
-            color: var(--gold);
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-       /* হিরো ব্যানার (গ্রেডিয়েন্ট এবং ছবি ডানদিকে) */
+        /* হিরো ব্যানার */
         .about-hero {
             position: relative;
             background-color: white; 
-            /* বাঁ দিক থেকে ডান দিকে গ্রেডিয়েন্ট (30% থেকে 100%) */
-            background-image: linear-gradient(to right, rgba(10, 25, 47, 0.95) 30%, rgba(10, 25, 47, 0.5) 100%), url("{{ url_for('static', filename='Aishik 3.png') }}");
+            background-image: linear-gradient(to right, rgba(10, 25, 47, 0.95) 30%, rgba(10, 25, 47, 0.2) 100%), url("{{ url_for('static', filename='Aishik 3.png') }}");
             background-size: contain; 
             background-position: right; 
             background-repeat: no-repeat; 
             padding: 120px 50px;
             text-align: center;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            border-bottom: 1px solid var(--teal); /* এখানে টিল রঙের বর্ডার দেওয়া হলো */
         }
-        
+
         .about-hero h1 {
             font-family: 'Playfair Display', serif;
             font-size: 48px;
@@ -159,7 +145,7 @@
             padding: 80px 50px;
             max-width: 1200px;
             margin: 0 auto;
-            gap: 50px;
+            gap: 60px;
         }
 
         .text-content {
@@ -180,32 +166,57 @@
             font-size: 16px;
             color: #cfcfcf;
             text-align: justify;
+            line-height: 1.8;
         }
 
+        /* টেক্সট হাইলাইট করার স্টাইল */
+        .highlight-word {
+            color: var(--teal);
+            font-weight: bold;
+        }
+
+        /* কোটেশন বক্সের নতুন ডিজাইন */
         .highlight-box {
-            background-color: rgba(197, 160, 89, 0.05);
-            border-left: 4px solid var(--gold);
-            padding: 20px;
-            margin: 30px 0;
+            background: linear-gradient(135deg, rgba(42, 157, 143, 0.08), rgba(197, 160, 89, 0.05));
+            border-left: 4px solid var(--teal);
+            padding: 25px 30px;
+            margin: 35px 0;
             font-style: italic;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            font-size: 17px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
+        /* সিগনেচার স্টাইল */
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
+            color: var(--copper);
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* মডার্ন সাইডবার */
         .sidebar {
             flex: 1;
-            background-color: var(--light-cream);
-            color: var(--navy-blue);
+            background-color: var(--slate-gray); /* ডার্ক স্লেট ব্যাকগ্রাউন্ড */
+            color: var(--text-light);
             padding: 40px 30px;
-            border-radius: 5px;
+            border-radius: 8px;
             height: fit-content;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border-top: 4px solid var(--teal); /* ওপরে টিল রঙের বর্ডার */
         }
 
         .sidebar h3 {
             font-family: 'Playfair Display', serif;
             margin-top: 0;
             font-size: 24px;
-            border-bottom: 2px solid var(--gold);
-            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            padding-bottom: 15px;
+            color: var(--gold);
         }
 
         .sidebar ul {
@@ -215,62 +226,58 @@
         }
 
         .sidebar li {
-            padding: 12px 0;
-            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             font-weight: bold;
-            font-size: 14px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        /* আইকনের স্টাইল */
+        .sidebar li i {
+            color: var(--teal);
+            margin-right: 15px;
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+
+        /* হোভার করলে রং বদলাবে এবং একটু ডানদিকে সরবে */
+        .sidebar li:hover {
+            color: var(--copper);
+            transform: translateX(5px);
+        }
+
+        .sidebar li:hover i {
+            color: var(--gold);
         }
 
         .sidebar li:last-child {
             border-bottom: none;
         }
 
-        /* মোবাইল ও রেসপনসিভ ডিজাইন (এটি মিসিং ছিল) */
         @media (max-width: 992px) {
-            .navbar {
-                padding: 15px 20px;
-            }
+            .navbar { padding: 15px 20px; }
             .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--navy-blue);
-                border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-                padding: 20px 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+                display: none; flex-direction: column; position: absolute;
+                top: 100%; left: 0; width: 100%; background-color: var(--navy-blue);
+                border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding: 20px 0;
             }
-            .nav-links.active {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .dropdown-content {
-                position: relative;
-                box-shadow: none;
-                border: none;
-                background-color: rgba(255,255,255,0.05);
-                padding-left: 15px;
-            }
-            .content-section {
-                flex-direction: column;
-                padding: 40px 20px;
-            }
-            .about-hero {
-                padding: 60px 20px;
-            }
-            .about-hero h1 {
-                font-size: 36px;
-            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .dropdown-content { position: relative; box-shadow: none; border: none; background-color: rgba(255,255,255,0.05); padding-left: 15px; }
+            .content-section { flex-direction: column; padding: 40px 20px; }
+            .about-hero { padding: 60px 20px; }
+            .about-hero h1 { font-size: 36px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- সম্পূর্ণ স্টিকি নেভিগেশন বার -->
+    <!-- নেভিগেশন বার -->
     <nav class="navbar">
         <a href="/" class="logo">FINANCE WITH<br>AISHIK</a>
         <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
@@ -279,7 +286,6 @@
             <li><a href="/about" class="active">About</a></li>
             <li><a href="/learn">Learn</a></li>
             
-            <!-- Domains Dropdown -->
             <li class="dropdown">
                 <a href="#">Domains &#9662;</a>
                 <ul class="dropdown-content">
@@ -301,7 +307,6 @@
 
             <li><a href="#">Self-Risk Profiling</a></li>
 
-            <!-- Tools Dropdown -->
             <li class="dropdown">
                 <a href="#">Tools &#9662;</a>
                 <ul class="dropdown-content">
@@ -330,34 +335,38 @@
         <!-- বাঁ দিকের টেক্সট -->
         <div class="text-content">
             <h2>My Philosophy as a Financial Educator</h2>
-            <p>Welcome to Financial Literacy Hub. I am Aishik Sarkar, a passionate financial educator and advocate for structured wealth building. My approach to investing is deeply rooted in logic, empirical evidence, and data-driven analysis rather than conventional market noise or blind belief. I closely study macroeconomics, global geopolitics, and international trade dynamics to understand how the broader financial ecosystem impacts individual portfolios.</p>
+            <p>Welcome to Financial Literacy Hub. I am Aishik Sarkar, a passionate financial educator and advocate for structured wealth building. My approach to investing is deeply rooted in <span class="highlight-word">logic, empirical evidence, and data-driven analysis</span> rather than conventional market noise or blind belief. I closely study macroeconomics, global geopolitics, and international trade dynamics to understand how the broader financial ecosystem impacts individual portfolios.</p>
             
+            <!-- মডার্ন কোটেশন বক্স -->
             <div class="highlight-box">
+                <i class="fa-solid fa-quote-left" style="color: var(--teal); font-size: 24px; margin-bottom: 10px; opacity: 0.5; display: block;"></i>
                 "Financial freedom is not about predicting the market perfectly; it is about building a mathematical and disciplined foundation that can withstand volatility and thrive over time."
             </div>
             
-            <p>I believe that traditional retail investing often lacks a structural framework. Through this platform, my primary objective is to educate individuals on intelligent asset allocation and rigorous portfolio risk management. By mastering these foundational concepts, you can construct a resilient portfolio designed for long-term growth.</p>
+            <p>I believe that traditional retail investing often lacks a structural framework. Through this platform, my primary objective is to educate individuals on <span class="highlight-word">intelligent asset allocation</span> and rigorous portfolio risk management. By mastering these foundational concepts, you can construct a resilient portfolio designed for long-term growth.</p>
             
+            <!-- সিগনেচার -->
+            <div class="signature">Aishik Sarkar</div>
+
             <h2>Professional Ecosystem & Compliance</h2>
-            <p>While this platform strictly operates as a financial literacy and educational hub to spread awareness, I also maintain a robust professional infrastructure to help implement these strategies. I have established a Private Limited Company that holds an official ARN license for Mutual Fund Distribution. This ensures that when my community members require seamless execution and formal wealth management services, they receive the highest standard of regulated, compliant support.</p>
+            <p>While this platform strictly operates as a financial literacy and educational hub to spread awareness, I also maintain a robust professional infrastructure to help implement these strategies. I have established a Private Limited Company that holds an official <span class="highlight-word">ARN license for Mutual Fund Distribution</span>. This ensures that when my community members require seamless execution and formal wealth management services, they receive the highest standard of regulated, compliant support.</p>
         </div>
 
-        <!-- ডান দিকের সাইডবার -->
+        <!-- ডান দিকের সাইডবার (আইকন সহ) -->
         <div class="sidebar">
             <h3>Core Competencies</h3>
             <ul>
-                <li>Empirical & Data-Driven Investing</li>
-                <li>Macroeconomics & Geopolitics</li>
-                <li>Portfolio Risk Management</li>
-                <li>Strategic Asset Allocation</li>
-                <li>Mutual Fund Distribution (ARN)</li>
-                <li>Financial Literacy Coaching</li>
+                <li><i class="fa-solid fa-chart-pie"></i> Empirical & Data-Driven</li>
+                <li><i class="fa-solid fa-globe"></i> Macro & Geopolitics</li>
+                <li><i class="fa-solid fa-shield-halved"></i> Risk Management</li>
+                <li><i class="fa-solid fa-layer-group"></i> Asset Allocation</li>
+                <li><i class="fa-solid fa-building-columns"></i> ARN Registered</li>
+                <li><i class="fa-solid fa-chalkboard-user"></i> Literacy Coaching</li>
             </ul>
         </div>
 
     </div>
 
-    <!-- মোবাইল মেনুর জন্য জাভাস্ক্রিপ্ট -->
     <script>
         function toggleMenu() {
             var navLinks = document.getElementById('navLinks');
