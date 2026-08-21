@@ -111,31 +111,35 @@
         .dropdown:hover .dropdown-content { display: block; }
         .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
 
-        /* হিরো ব্যানার */
+        /* হিরো ব্যানার (লেখা বাঁ দিকে সরানো হলো) */
         .about-hero {
             position: relative;
             background-color: white; 
-            background-image: linear-gradient(to right, rgba(10, 25, 47, 0.95) 30%, rgba(10, 25, 47, 0.2) 100%), url("{{ url_for('static', filename='Aishik 3.png') }}");
+            background-image: linear-gradient(to right, rgba(10, 25, 47, 0.95) 45%, rgba(10, 25, 47, 0.1) 100%), url("{{ url_for('static', filename='Aishik 3.png') }}");
             background-size: contain; 
             background-position: right; 
             background-repeat: no-repeat; 
-            padding: 120px 50px;
-            text-align: center;
-            border-bottom: 1px solid var(--teal); /* এখানে টিল রঙের বর্ডার দেওয়া হলো */
+            /* বাঁ দিকে একটু বেশি জায়গা (8%) ছাড়া হলো */
+            padding: 120px 50px 120px 8%; 
+            text-align: left; /* লেখাগুলো বাঁ দিকে সরানো হলো */
+            border-bottom: 1px solid var(--teal); 
         }
 
         .about-hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 48px;
+            font-size: 55px; /* ফন্ট সাইজ একটু বড় করা হলো */
             color: var(--gold);
             margin: 0 0 20px 0;
+            max-width: 600px; /* লেখা যেন ডানদিকে ছবির ওপর না যায় */
+            line-height: 1.2;
         }
 
         .about-hero p {
             font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto;
+            max-width: 550px; /* প্যারাগ্রাফের চওড়া কমানো হলো */
+            margin: 0; /* '0 auto' সরানো হলো যাতে লেখাগুলো মাঝখানে না থাকে */
             color: #b0b0b0;
+            line-height: 1.6;
         }
 
         /* কন্টেন্ট সেকশন */
