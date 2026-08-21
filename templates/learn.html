@@ -304,6 +304,22 @@
         
         /* রেসপনসিভ ডিজাইন */
         @media (max-width: 992px) {
+
+            .commentary-box {
+                width: 90%;
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+                gap: 20px;
+            }
+            .commentary-content {
+                text-align: center;
+            }
+            .commentary-img-wrapper {
+                margin-top: -80px;
+            }
+
+            
             .navbar {
                 padding: 15px 20px;
             }
@@ -393,6 +409,28 @@
         <h1>Knowledge is Your Best Asset</h1>
         <p>Explore our structured modules designed to transform complex financial concepts into actionable wealth-building strategies.</p>
     </div>
+
+
+
+    <!-- এডুকেটর কমেন্টারি সেকশন -->
+    <div class="commentary-section">
+        <div class="commentary-box">
+            
+            <!-- গোল ছবি -->
+            <div class="commentary-img-wrapper">
+                <img src="{{ url_for('static', filename='Aishik Sarkar.png') }}" alt="Aishik Sarkar">
+            </div>
+            
+            <!-- কমেন্ট বা মেসেজ -->
+            <div class="commentary-content">
+                <h3>A Note Before We Begin</h3>
+                <p>"The journey to financial freedom starts with the right education. In these modules, I have distilled complex market dynamics into structured, actionable insights. Take your time to read, analyze, and build a logical foundation before stepping into the markets."</p>
+                <div class="author-name">— Aishik Sarkar</div>
+            </div>
+
+        </div>
+    </div>
+
 
     <!-- মডিউল গ্রিড সেকশন -->
     <div class="modules-section">
