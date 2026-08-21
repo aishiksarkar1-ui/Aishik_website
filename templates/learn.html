@@ -131,14 +131,17 @@
             color: var(--gold);
         }
 
-        /* হিরো ব্যানার - Learn Page */
+        /* হিরো ব্যানার - Learn Page (Study.png ব্যাকগ্রাউন্ড সহ) */
         .learn-hero {
-            background-color: #071222;
-            padding: 80px 50px;
+            position: relative;
+            /* ছবির ওপর একটি ডার্ক নেভি ব্লু ওভারলে দেওয়া হলো যাতে লেখা স্পষ্ট পড়া যায় */
+            background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), url("{{ url_for('static', filename='Study.png') }}");
+            background-size: cover; /* ছবিটি পুরো সেকশন জুড়ে ফিট হবে */
+            background-position: center;
+            padding: 120px 50px; /* ছবির একটু বেশি অংশ দেখানোর জন্য প্যাডিং বাড়ানো হলো */
             text-align: center;
             border-bottom: 1px solid rgba(197, 160, 89, 0.2);
         }
-
         .learn-hero h1 {
             font-family: 'Playfair Display', serif;
             font-size: 45px;
