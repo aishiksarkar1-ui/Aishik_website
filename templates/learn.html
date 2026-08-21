@@ -195,24 +195,31 @@
             background-color: rgba(197, 160, 89, 0.05);
         }
 
+       /* মডিউল কার্ডের পেছনের বড় নম্বরের স্টাইল */
         .module-number {
             font-family: 'Playfair Display', serif;
-            font-size: 40px;
-            color: rgba(197, 160, 89, 0.2);
-            position: absolute;
+            font-size: 55px; /* নম্বরটা দেখতে আরেকটু প্রিমিয়াম লাগবে */
+            color: rgba(197, 160, 89, 0.15);
+            
+            /* ম্যাজিক ট্রিক: এটিকে আবার ডানদিকে ভাসিয়ে দেওয়া হলো */
+            position: absolute; 
             top: 10px;
             right: 20px;
+            
             font-weight: bold;
+            background: transparent; /* কোনো ব্যাকগ্রাউন্ড কালার থাকবে না */
+            border: none; /* কোনো দাগ বা বর্ডার থাকবে না */
+            margin: 0;
+            padding: 0;
+            z-index: 0;
+            line-height: 1;
         }
 
-        .module-card h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--gold);
-            font-size: 22px;
-            margin-top: 10px;
-            margin-bottom: 15px;
+        /* কার্ডের ভেতরের অন্যান্য লেখা যেন নম্বরের ওপরে থাকে */
+        .module-card h3, .module-card p, .module-card a {
+            position: relative;
+            z-index: 1;
         }
-
         .module-card p {
             font-size: 14px;
             color: #b0b0b0;
