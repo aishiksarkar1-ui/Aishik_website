@@ -111,21 +111,27 @@
         .dropdown:hover .dropdown-content { display: block; }
         .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
 
-       /* হিরো ব্যানার (মাঝের ১/৩ অংশ জুড়ে স্মুথ গ্রেডিয়েন্ট) */
+      /* হিরো ব্যানার (মুখ পরিষ্কার করার ফিক্স) */
         .about-hero {
             position: relative;
             background-color: white; 
             
-            /* ট্রানজিশনটি ৩৫% থেকে শুরু হয়ে ৮০% পর্যন্ত লম্বা করা হলো, যাতে হঠাৎ রং পরিবর্তন না হয় */
-            background-image: linear-gradient(to right, rgba(10, 25, 47, 0.95) 30%, rgba(10, 25, 47, 0.5) 100%), url("{{ url_for('static', filename='Aishik 3.png') }}");
+            /* ট্রানজিশনটি ডানদিকে গিয়ে সম্পূর্ণ ট্রান্সপারেন্ট (0) করে দেওয়া হলো যাতে মুখের ওপর ছায়া না পড়ে */
+            background-image: linear-gradient(to right, 
+                rgba(10, 25, 47, 1) 35%, 
+                rgba(10, 25, 47, 0.8) 55%, 
+                rgba(255, 255, 255, 0) 80%), 
+                url("{{ url_for('static', filename='Aishik 3.png') }}");
                 
             background-size: contain; 
-            background-position: center; 
+            background-position: right; /* center-এর বদলে right করা হলো যাতে ছবি একদম ডানদিকে থাকে */
             background-repeat: no-repeat; 
             padding: 120px 50px 120px 8%; 
             text-align: left; 
             border-bottom: 1px solid var(--teal); 
         }
+
+        
         .about-hero h1 {
             font-family: 'Playfair Display', serif;
             font-size: 48px; /* ফন্ট সাইজ একটু বড় করা হলো */
