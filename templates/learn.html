@@ -223,11 +223,13 @@
             transition: all 0.4s ease;
         }
 
-        /* হোভার করলে পেছনের নম্বরটা একটু ঘুরে যাবে এবং কালার বদলাবে */
+        /* হোভার করলে পেছনের নম্বরটা একটু ঘুরে যাবে এবং কালার বদলাবে (ডার্ক কার্ড) */
         .module-card:hover .module-number {
-            -webkit-text-stroke: 1.5px var(--teal);
+            -webkit-text-stroke: 2px var(--teal); /* বর্ডার মোটা করা হলো যাতে স্পষ্ট বোঝা যায় */
+            color: rgba(42, 157, 143, 0.1); /* ভেতরে খুব হালকা টিল রং দেওয়া হলো যাতে মিশে না যায় */
             transform: scale(1.1) rotate(-5deg);
-            opacity: 0.8;
+            opacity: 1; /* অপাসিটি ফুল করা হলো */
+            text-shadow: 0 0 15px rgba(42, 157, 143, 0.5); /* সুন্দর একটি গ্লো ইফেক্ট */
         }
 
         /* কার্ডের ভেতরের লেখা */
@@ -244,10 +246,10 @@
         }
 
         /* =========================================
-           স্পেশাল সাদা কার্ডের আপডেট ডিজাইন 
+           স্পেশাল লাইট কার্ডের আপডেট ডিজাইন (সলিড সাদার বদলে নরম ক্রিম/শ্যাম্পেন)
            ========================================= */
         .module-card.white-card {
-            background: linear-gradient(135deg, #ffffff 0%, var(--light-cream) 100%);
+            background: linear-gradient(135deg, #FDFBF7 0%, #EAE4D3 100%); /* চোখের আরামের ওয়ার্ম লাইট কালার */
             border-color: rgba(197, 160, 89, 0.4);
         }
 
@@ -260,21 +262,25 @@
             font-weight: 500;
         }
 
-        /* সাদা কার্ডের ফাঁকা নম্বরের আউটলাইন ডার্ক হবে */
+        /* লাইট কার্ডের ফাঁকা নম্বরের আউটলাইন ডার্ক হবে */
         .module-card.white-card .module-number {
             color: transparent;
             -webkit-text-stroke: 1.5px rgba(10, 25, 47, 0.2);
         }
 
-        /* সাদা কার্ডের হোভার ইফেক্ট (গোল্ড গ্লো) */
+        /* লাইট কার্ডের হোভার ইফেক্ট (গোল্ড গ্লো) */
         .module-card.white-card:hover {
             border-color: var(--gold);
             box-shadow: 0 15px 35px rgba(197, 160, 89, 0.25);
             transform: translateY(-8px);
         }
 
+        /* লাইট কার্ডের নম্বর হোভার */
         .module-card.white-card:hover .module-number {
-            -webkit-text-stroke: 1.5px var(--gold);
+            -webkit-text-stroke: 2px var(--gold);
+            color: rgba(197, 160, 89, 0.1);
+            text-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+            transform: scale(1.1) rotate(-5deg);
         }
 
         /* বাটন ডিজাইন */
@@ -285,14 +291,24 @@
             text-decoration: none;
             font-size: 14px;
             font-weight: bold;
-            border-bottom: 2px solid var(--gold); /* বর্ডার একটু মোটা করা হলো */
+            border-bottom: 2px solid var(--gold);
             padding-bottom: 4px;
             transition: all 0.3s ease;
         }
 
         .read-more-btn:hover {
             color: var(--gold);
-            letter-spacing: 1px; /* হোভার করলে লেখাটা একটু ছড়াবে */
+            letter-spacing: 1px;
+        }
+
+        .module-card.white-card .read-more-btn {
+            color: var(--navy-blue);
+            border-bottom-color: var(--navy-blue);
+        }
+
+        .module-card.white-card .read-more-btn:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
         }
 
         .module-card.white-card .read-more-btn {
