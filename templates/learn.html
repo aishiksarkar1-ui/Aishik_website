@@ -236,6 +236,72 @@
             color: var(--gold);
         }
 
+/* এডুকেটর কমেন্টারি সেকশন (80% Width) */
+        .commentary-section {
+            padding: 100px 20px 20px 20px; /* ওপরে জায়গা রাখা হলো যাতে ছবিটা ওভারল্যাপ করতে পারে */
+            background-color: var(--navy-blue);
+        }
+
+        .commentary-box {
+            background-color: var(--light-cream);
+            width: 80%; /* আপনার কথামতো ৮০% কভার করা হলো */
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            padding: 40px 50px;
+            gap: 40px;
+        }
+
+        /* গোল ছবিটির স্টাইল এবং পজিশন */
+        .commentary-img-wrapper {
+            flex-shrink: 0;
+            margin-top: -100px; /* ছবিটিকে বক্সের একটু ওপরে তুলে দেওয়া হলো (হোম পেজের মতো) */
+        }
+
+        .commentary-img-wrapper img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--gold); /* সোনালী বর্ডার */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* বাঁ থেকে ডান দিকে লেখার স্টাইল */
+        .commentary-content {
+            color: var(--navy-blue);
+            text-align: left;
+        }
+
+        .commentary-content h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--navy-blue);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 26px;
+        }
+
+        .commentary-content p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #2c3e50;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .commentary-content .author-name {
+            font-weight: bold;
+            color: var(--gold);
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        
         /* রেসপনসিভ ডিজাইন */
         @media (max-width: 992px) {
             .navbar {
