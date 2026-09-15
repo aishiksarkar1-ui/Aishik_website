@@ -172,15 +172,18 @@
             </div>
 
             <div id="resultContainer">
+                <!-- স্কোর সার্কেল -->
                 <div class="score-circle"><h2 id="finalScore">0%</h2><span>Risk Score</span></div>
                 <h1 class="profile-title" id="profileTitle">Your Profile</h1>
                 <p class="profile-desc" id="profileDesc">Description goes here.</p>
                 
+                <!-- ডাউনলোড এবং রিটেক বাটন -->
                 <div class="action-buttons">
                     <button class="nav-btn next-btn" onclick="showLeadForm()" style="background-color: var(--gold); border-color: var(--gold); color: var(--navy-blue);">Download Detailed Report <i class="fa-solid fa-download"></i></button>
                     <button class="nav-btn" onclick="location.reload()">Retake Assessment <i class="fa-solid fa-rotate-right"></i></button>
                 </div>
 
+                <!-- লিড জেনারেশন ফর্ম -->
                 <div class="lead-form-container" id="leadFormContainer">
                     <h3 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; font-size: 24px;">Enter details to unlock your Report</h3>
                     <p style="color: #7f8c8d; font-size: 14px; margin-bottom: 20px;">Your personalized PDF report with all Q&A will be generated instantly.</p>
@@ -193,6 +196,19 @@
                         <p id="formMessage" style="font-size: 14px; text-align: center; margin-top: 15px; font-weight: bold;"></p>
                     </form>
                 </div>
+
+                <!-- নতুন "Financial Planning" কল-টু-অ্যাকশন (CTA) সেকশন -->
+                <div style="margin-top: 45px; padding-top: 30px; border-top: 1px dashed rgba(197, 160, 89, 0.5);">
+                    <h3 style="color: var(--navy-blue); font-family: 'Playfair Display', serif; margin-bottom: 5px; font-size: 22px;">Ready to build your wealth?</h3>
+                    <p style="color: #7f8c8d; font-size: 15px; margin-bottom: 25px;">Take the next step based on your risk profile and achieve your goals.</p>
+                    
+                    <a href="/financial-planning" style="text-decoration: none;">
+                        <button class="nav-btn" style="width: 100%; padding: 18px; font-size: 16px; background-color: var(--navy-blue); border-color: var(--navy-blue); color: var(--gold); text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(10, 25, 47, 0.15);">
+                            Get Your Personalized Financial Planning <i class="fa-solid fa-arrow-trend-up" style="margin-left: 8px;"></i>
+                        </button>
+                    </a>
+                </div>
+
             </div>
 
         </div>
