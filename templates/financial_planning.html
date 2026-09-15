@@ -5,200 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personalized Financial Planning | Financial Literacy Hub</title>
     
-    <!-- গুগল ফন্টস -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!-- ফন্ট অসাম (আইকনের জন্য) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            --navy-blue: #0A192F;
-            --gold: #C5A059;
-            --light-cream: #FDFBF7;
-            --text-light: #E0E0E0;
-            --teal: #2A9D8F;
-        }
+        :root { --navy-blue: #0A192F; --gold: #C5A059; --light-cream: #FDFBF7; --text-light: #E0E0E0; --teal: #2A9D8F; }
+        body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background-color: var(--navy-blue); color: var(--text-light); line-height: 1.6; }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Lato', sans-serif;
-            background-color: var(--navy-blue);
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* স্টিকি নেভিগেশন বার */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 50px;
-            background-color: rgba(10, 25, 47, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-        }
-        
+        /* Navbar */
+        .navbar { position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background-color: rgba(10, 25, 47, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197, 160, 89, 0.3); }
         .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; text-decoration: none; line-height: 1.1; }
         .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; align-items: center; }
         .nav-links li { position: relative; }
-        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 14px; font-weight: 400; transition: color 0.3s ease; padding: 10px 0; display: block; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 14px; transition: color 0.3s ease; padding: 10px 0; display: block; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-
-        /* ড্রপ-ডাউন মেনু */
-        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background-color: var(--navy-blue); min-width: 280px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 4px; z-index: 1001; padding: 10px 0; list-style: none; max-height: 60vh; overflow-y: auto; }
-        .dropdown-content::-webkit-scrollbar { width: 8px; }
-        .dropdown-content::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
-        .dropdown-content::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background-color: var(--navy-blue); min-width: 280px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 4px; padding: 10px 0; list-style: none; z-index: 1001; }
         .dropdown-content li { width: 100%; }
-        .dropdown-content a { padding: 10px 20px; color: var(--text-light); white-space: nowrap; }
+        .dropdown-content a { padding: 10px 20px; white-space: nowrap; }
         .dropdown-content a:hover { background-color: rgba(197, 160, 89, 0.1); color: var(--gold); }
         .dropdown:hover .dropdown-content { display: block; }
         .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
 
-        /* হিরো ব্যানার */
-        .planning-hero {
-            position: relative;
-            background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)), url("{{ url_for('static', filename='Study.png') }}");
-            background-size: cover;
-            background-position: center;
-            padding: 80px 20px 100px 20px;
-            text-align: center;
-            border-bottom: 1px solid rgba(42, 157, 143, 0.3);
-        }
+        /* Hero */
+        .planning-hero { position: relative; background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)), url("{{ url_for('static', filename='Study.png') }}"); background-size: cover; background-position: center; padding: 60px 20px 80px 20px; text-align: center; border-bottom: 1px solid rgba(42, 157, 143, 0.3); }
+        .planning-hero h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--gold); margin: 0 0 10px 0; }
+        .planning-hero p { font-size: 16px; max-width: 650px; margin: 0 auto; color: #b0b0b0; }
 
-        .planning-hero h1 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--gold); margin: 0 0 15px 0; }
-        .planning-hero p { font-size: 17px; max-width: 650px; margin: 0 auto; color: #b0b0b0; }
-
-        /* ফর্ম কন্টেইনার (লাইট প্রিমিয়াম ডিজাইন) */
+        /* Form Wizard */
         .form-section { padding: 0 20px 80px 20px; display: flex; justify-content: center; }
+        .planning-container { background: linear-gradient(135deg, #ffffff 0%, #FDFBF7 100%); border: 1px solid rgba(197, 160, 89, 0.3); border-top: 4px solid var(--gold); border-radius: 12px; width: 100%; max-width: 900px; padding: 40px; margin-top: -40px; position: relative; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.3); color: #0A192F; }
         
-        .planning-container {
-            background: linear-gradient(135deg, #ffffff 0%, #FDFBF7 100%);
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            border-top: 4px solid var(--gold); 
-            border-radius: 15px;
-            width: 100%;
-            max-width: 850px;
-            padding: 45px 50px;
-            margin-top: -60px;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
+        .step { display: none; animation: fadeIn 0.5s; }
+        .step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .form-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            color: var(--navy-blue);
-            margin-top: 0;
-            margin-bottom: 10px;
-            text-align: center;
-        }
+        .form-title { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--navy-blue); margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid var(--gold); padding-bottom: 10px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 14px; color: var(--navy-blue); font-weight: bold; margin-bottom: 8px; text-transform: uppercase; }
+        .form-group input, .form-group select { width: 100%; padding: 12px 15px; border: 1px solid rgba(10, 25, 47, 0.2); border-radius: 6px; font-family: 'Lato', sans-serif; font-size: 15px; box-sizing: border-box; background: #fff; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 8px rgba(42, 157, 143, 0.2); }
+        
+        .radio-group { display: flex; gap: 15px; flex-wrap: wrap; }
+        .radio-btn { display: flex; align-items: center; gap: 5px; cursor: pointer; font-size: 15px; }
+        .radio-btn input { width: auto; cursor: pointer; }
 
-        .form-subtitle {
-            font-size: 15px;
-            color: #7f8c8d;
-            text-align: center;
-            margin-bottom: 35px;
-        }
+        .checkbox-group { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 15px; cursor: pointer; }
+        .checkbox-group input { width: 18px; height: 18px; cursor: pointer; }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px; }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .btn-wrapper { display: flex; justify-content: space-between; margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; }
+        .nav-btn { background-color: var(--teal); color: white; border: none; padding: 12px 25px; font-size: 14px; font-weight: bold; text-transform: uppercase; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .nav-btn:hover { background-color: #218276; box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3); }
+        .nav-btn.back { background-color: transparent; border: 1px solid var(--navy-blue); color: var(--navy-blue); }
+        .nav-btn.back:hover { background-color: var(--navy-blue); color: white; }
 
-        .form-group.full-width {
-            grid-column: span 2;
-        }
+        .info-box { background: rgba(42, 157, 143, 0.1); border-left: 4px solid var(--teal); padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 15px; color: var(--navy-blue); }
+        .success-box { background: rgba(197, 160, 89, 0.1); border-left: 4px solid var(--gold); padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 15px; font-weight: bold; color: var(--navy-blue); }
 
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            color: var(--navy-blue);
-            font-weight: bold;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid rgba(10, 25, 47, 0.2);
-            border-radius: 8px;
-            font-family: 'Lato', sans-serif;
-            font-size: 15px;
-            background-color: #ffffff;
-            color: #2c3e50;
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--teal);
-            box-shadow: 0 0 10px rgba(42, 157, 143, 0.2);
-        }
-
-        .submit-btn {
-            background-color: var(--teal);
-            color: white;
-            border: 1px solid var(--teal);
-            width: 100%;
-            padding: 16px;
-            font-size: 16px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.2);
-            margin-top: 10px;
-        }
-
-        .submit-btn:hover {
-            background-color: #218276;
-            box-shadow: 0 8px 20px rgba(42, 157, 143, 0.3);
-        }
-
-        #formMessage {
-            font-size: 15px;
-            text-align: center;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-
-        /* রেসপনসিভ ডিজাইন */
-        @media (max-width: 992px) {
-            .navbar { padding: 15px 20px; }
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--navy-blue); border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding: 20px 0; }
-            .nav-links.active { display: flex; }
-            .menu-toggle { display: block; }
-            .dropdown-content { position: relative; box-shadow: none; border: none; background-color: rgba(255,255,255,0.05); padding-left: 15px; }
-            .form-grid { grid-template-columns: 1fr; }
-            .form-group.full-width { grid-column: span 1; }
-        }
+        /* Table Design */
+        .goal-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+        .goal-table th { background-color: var(--navy-blue); color: var(--gold); padding: 12px; text-align: left; }
+        .goal-table td { padding: 10px; border-bottom: 1px solid #ddd; vertical-align: middle; }
+        .goal-table input { padding: 8px; width: 100%; box-sizing: border-box; font-size: 14px; }
+        .fv-box { background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px; font-weight: bold; color: var(--teal); text-align: right; }
+        .pension-text { font-size: 12px; color: var(--teal); font-weight: bold; margin-top: 5px; }
 
         @media (max-width: 768px) {
-            .planning-container { padding: 30px 20px; }
-            .form-title { font-size: 24px; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .goal-table { display: block; overflow-x: auto; }
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
         }
     </style>
 </head>
 <body>
 
-    <!-- সম্পূর্ণ স্টিকি নেভিগেশন বার -->
     <nav class="navbar">
         <a href="/" class="logo">FINANCE WITH<br>AISHIK</a>
         <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
@@ -206,159 +90,565 @@
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/learn">Learn</a></li>
-            
-            <li class="dropdown">
-                <a href="#">Domains &#9662;</a>
-                <ul class="dropdown-content">
-                    <li><a href="#">Mutual Fund</a></li>
-                    <li><a href="#">SIP Planning & Setup</a></li>
-                    <li><a href="#">Specialised Investment Fund (SIF)</a></li>
-                    <li><a href="#">Portfolio Management Services</a></li>
-                    <li><a href="#">Alternative Investment Fund</a></li>
-                    <li><a href="#">Wealth Building Strategy</a></li>
-                    <li><a href="#">Portfolio Risk Management</a></li>
-                    <li><a href="#">Stock Selections</a></li>
-                    <li><a href="#">Fixed Income</a></li>
-                    <li><a href="#">Global Capital Markets and Commodities</a></li>
-                    <li><a href="#">Health Insurance</a></li>
-                    <li><a href="#">Life Insurance</a></li>
-                    <li><a href="#">General Insurance</a></li>
-                </ul>
-            </li>
-
             <li><a href="/risk-profiling">Self-Risk Profiling</a></li>
-
-            <li class="dropdown">
-                <a href="#">Tools &#9662;</a>
-                <ul class="dropdown-content">
-                    <li><a href="#">SIP Calculator</a></li>
-                    <li><a href="#">Goal Planning Calculator</a></li>
-                    <li><a href="#">Inflation Impact Calculator</a></li>
-                </ul>
-            </li>
-
-            <li><a href="#">Market Insight</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Letter to Members</a></li>
-            <li><a href="#">Connect</a></li>
         </ul>
     </nav>
 
-    <!-- হিরো ব্যানার -->
     <div class="planning-hero">
-        <h1>Architect Your Financial Future</h1>
-        <p>Get a custom-crafted asset allocation and disciplined wealth-building strategy tailored precisely to your life goals and risk profile.</p>
+        <h1>Welcome to FINXHORIZON</h1>
+        <p>Architect your financial future with our customized goal planning tool.</p>
     </div>
 
-    <!-- ফর্ম সেকশন -->
     <div class="form-section">
         <div class="planning-container">
-            <h2 class="form-title">Request Your Personalized Financial Roadmap</h2>
-            <p class="form-subtitle">Fill out the details below to schedule an expert consultation and structured asset allocation blueprint.</p>
             
-            <form id="financialPlanningForm" onsubmit="submitPlanningForm(event)">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" id="planName" required placeholder="E.g. Aishik Sarkar">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" id="planEmail" required placeholder="yourmail@example.com">
-                    </div>
-                    
+            <!-- STEP 1: Welcome & Basic Info -->
+            <div id="step-1" class="step active">
+                <h2 class="form-title">Step 1: Basic Information</h2>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="u_name" placeholder="E.g. Aishik Sarkar">
+                </div>
+                <div class="grid-2">
                     <div class="form-group">
                         <label>Phone Number</label>
-                        <input type="tel" id="planPhone" required placeholder="+91 9876543210">
+                        <input type="tel" id="u_phone" placeholder="Your mobile number">
                     </div>
-
                     <div class="form-group">
-                        <label>Primary Financial Goal</label>
-                        <select id="planGoal" required>
-                            <option value="" disabled selected>Select your primary goal</option>
-                            <option value="Retirement Planning">Retirement Planning</option>
-                            <option value="Child Higher Education">Child's Higher Education</option>
-                            <option value="Wealth Accumulation">Long-term Wealth Creation</option>
-                            <option value="Tax & Asset Allocation">Tax-Efficient Asset Allocation</option>
-                            <option value="Portfolio Risk Audit">Portfolio Risk Management & Review</option>
+                        <label>Email Address</label>
+                        <input type="email" id="u_email" placeholder="yourmail@example.com">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Kindly select your gender</label>
+                    <div class="radio-group">
+                        <label class="radio-btn"><input type="radio" name="u_gender" value="MALE" onchange="showWelcomeMsg()"> Male</label>
+                        <label class="radio-btn"><input type="radio" name="u_gender" value="FEMALE" onchange="showWelcomeMsg()"> Female</label>
+                        <label class="radio-btn"><input type="radio" name="u_gender" value="OTHER" onchange="showWelcomeMsg()"> Other</label>
+                    </div>
+                </div>
+                <div id="welcome_msg" class="success-box" style="display: none;"></div>
+                <div class="btn-wrapper" style="justify-content: flex-end;">
+                    <button class="nav-btn" onclick="nextStep(1)">Go to Form <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- STEP 2: Personal Information -->
+            <div id="step-2" class="step">
+                <h2 class="form-title">Step 2: Personal Information</h2>
+                <div class="info-box" id="summary_info"></div>
+                
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" id="p_age" min="18" max="100" value="30">
+                    </div>
+                    <div class="form-group">
+                        <label>Profession</label>
+                        <select id="p_prof" onchange="toggleIncome('p_prof', 'p_inc_group')">
+                            <option value="">Select Profession</option>
+                            <option value="Business">Business</option>
+                            <option value="Service">Service (Govt. / Pvt.)</option>
+                            <option value="Self Employed">Self Employed</option>
+                            <option value="Non Earning">Non Earning member</option>
                         </select>
                     </div>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group" id="p_inc_group" style="display: none;">
+                        <label>Approx. Monthly Income (₹)</label>
+                        <input type="number" id="p_inc" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Approx. Monthly Household Expenses (₹)</label>
+                        <input type="number" id="p_exp" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Are you married?</label>
+                    <div class="radio-group">
+                        <label class="radio-btn"><input type="radio" name="p_married" value="YES"> Yes</label>
+                        <label class="radio-btn"><input type="radio" name="p_married" value="NO"> No</label>
+                    </div>
+                </div>
+                <div class="btn-wrapper">
+                    <button class="nav-btn back" onclick="prevStep(2)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button class="nav-btn" onclick="nextStep(2)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
 
-                    <div class="form-group full-width">
-                        <label>Additional Notes or Current Portfolio Details (Optional)</label>
-                        <textarea id="planNotes" rows="4" placeholder="Share any specific requirements, current investments, or questions you have..."></textarea>
+            <!-- STEP 3: Spouse Details -->
+            <div id="step-3" class="step">
+                <h2 class="form-title">Step 3: Spouse Details</h2>
+                <div id="spouse_section">
+                    <div class="grid-2">
+                        <div class="form-group"><label>Spouse Name</label><input type="text" id="sp_name"></div>
+                        <div class="form-group"><label>Spouse Age</label><input type="number" id="sp_age" min="18" value="30"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Spouse Profession</label>
+                        <select id="sp_prof" onchange="toggleIncome('sp_prof', 'sp_inc_group')">
+                            <option value="">Select Profession</option>
+                            <option value="Business">Business</option>
+                            <option value="Service">Service</option>
+                            <option value="Self Employed">Self Employed</option>
+                            <option value="Non Earning">Non Earning member</option>
+                        </select>
+                    </div>
+                    <div class="grid-2">
+                        <div class="form-group" id="sp_inc_group" style="display: none;"><label>Spouse Monthly Income (₹)</label><input type="number" id="sp_inc" value="0"></div>
+                        <div class="form-group"><label>Spouse Monthly Household Expenses (₹)</label><input type="number" id="sp_exp" value="0"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Do you have children?</label>
+                        <div class="radio-group">
+                            <label class="radio-btn"><input type="radio" name="sp_child" value="YES"> Yes</label>
+                            <label class="radio-btn"><input type="radio" name="sp_child" value="NO"> No</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="no_spouse_msg" class="info-box" style="display: none;">Since you are unmarried, this section is not applicable.</div>
+                
+                <div class="btn-wrapper">
+                    <button class="nav-btn back" onclick="prevStep(3)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button class="nav-btn" onclick="nextStep(3)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- STEP 4: Child & Dependent -->
+            <div id="step-4" class="step">
+                <h2 class="form-title">Step 4: Child & Dependent Details</h2>
+                
+                <div id="child_section" style="display: none;">
+                    <div class="form-group"><label>How many children do you have?</label><input type="number" id="num_child" min="1" max="10" value="1" onchange="generateChildRows()"></div>
+                    <div id="child_rows_container"></div>
+                </div>
+                <div id="no_child_msg" class="info-box" style="display: none;">Child details are not applicable.</div>
+                
+                <hr>
+                <div class="form-group">
+                    <label>Do you have any member in your family who is completely dependent on your income?</label>
+                    <div class="radio-group">
+                        <label class="radio-btn"><input type="radio" name="has_dependent" value="YES"> Yes</label>
+                        <label class="radio-btn"><input type="radio" name="has_dependent" value="NO"> No</label>
                     </div>
                 </div>
 
-                <button type="submit" id="planSubmitBtn" class="submit-btn">
-                    Submit Request <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
-                </button>
+                <div class="btn-wrapper">
+                    <button class="nav-btn back" onclick="prevStep(4)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button class="nav-btn" onclick="nextStep(4)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- STEP 5: Dependent Details -->
+            <div id="step-5" class="step">
+                <h2 class="form-title">Step 5: Dependent Member Details</h2>
+                <div id="dep_section" style="display: none;">
+                    <div class="form-group"><label>How many dependent members?</label><input type="number" id="num_dep" min="1" max="10" value="1" onchange="generateDepRows()"></div>
+                    <div id="dep_rows_container"></div>
+                </div>
+                <div id="no_dep_msg" class="info-box" style="display: none;">Since you do not have any dependent family members, this section is not applicable.</div>
                 
-                <p id="formMessage"></p>
-            </form>
+                <div class="btn-wrapper">
+                    <button class="nav-btn back" onclick="prevStep(5)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button class="nav-btn" onclick="nextStep(5)">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- STEP 6: Future Expenses Projection -->
+            <div id="step-6" class="step">
+                <h2 class="form-title">Step 6: Future Expenses & Goal Selection</h2>
+                
+                <div class="form-group">
+                    <label>Where do you live?</label>
+                    <select id="location_type" onchange="calculateLifestyle()">
+                        <option value="">Select Location</option>
+                        <option value="Village">Village</option>
+                        <option value="Semi-village">Semi-village</option>
+                        <option value="Small City">Small City</option>
+                        <option value="City">City</option>
+                        <option value="Megacity">Megacity</option>
+                    </select>
+                </div>
+
+                <div id="lifestyle_result" style="display: none;">
+                    <div class="info-box" id="calc_summary"></div>
+                    <div class="success-box" id="status_summary"></div>
+                    
+                    <hr>
+                    <h3 style="color: var(--navy-blue); font-family: 'Playfair Display', serif;">🎯 Customized Goal List</h3>
+                    <div id="goals_container"></div>
+                </div>
+
+                <div class="btn-wrapper">
+                    <button class="nav-btn back" onclick="prevStep(6)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button class="nav-btn" onclick="nextStep(6)" id="btn_to_table" style="display:none;">Generate Plan <i class="fa-solid fa-table"></i></button>
+                </div>
+            </div>
+
+            <!-- STEP 7: Goal Table & Final Submission -->
+            <div id="step-7" class="step">
+                <h2 class="form-title">📋 Your Customized Goal Table</h2>
+                <div style="overflow-x: auto;">
+                    <table class="goal-table" id="final_goal_table">
+                        <thead>
+                            <tr>
+                                <th>Goal Name</th>
+                                <th>Present Value (₹)</th>
+                                <th>Duration (Yrs)</th>
+                                <th>Inflation (%)</th>
+                                <th>Future Value (₹)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- JS will inject rows here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="btn-wrapper">
+                    <button class="nav-btn back" onclick="prevStep(7)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button class="nav-btn" onclick="submitFinalPlan(this)" style="background: var(--gold); border-color: var(--gold); color: var(--navy-blue);">Finalize & Save Data <i class="fa-solid fa-check"></i></button>
+                </div>
+                <div id="finalMessage" style="text-align: center; margin-top: 15px; font-weight: bold; font-size: 16px;"></div>
+            </div>
+
         </div>
     </div>
 
-    <!-- జాভাস্ক্রিপ্ট (Google Sheet ইন্টিগ্রেশন) -->
     <script>
-        function toggleMenu() {
-            var navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+
+        // --- Navigation Logic ---
+        function showWelcomeMsg() {
+            let name = document.getElementById("u_name").value.trim().split(" ")[0];
+            let gender = document.querySelector('input[name="u_gender"]:checked')?.value;
+            let box = document.getElementById("welcome_msg");
+            if (name && gender) {
+                box.style.display = "block";
+                let salutation = gender === "MALE" ? "Sir" : (gender === "FEMALE" ? "Mam" : "");
+                box.innerHTML = `Thank You ${name} ${salutation}, it is a pleasure to have you. Kindly fill the form to proceed further.`;
+            }
         }
 
-        async function submitPlanningForm(e) {
-            e.preventDefault();
-            const submitBtn = document.getElementById('planSubmitBtn');
-            const formMessage = document.getElementById('formMessage');
-            
-            const name = document.getElementById('planName').value;
-            const email = document.getElementById('planEmail').value;
-            const phone = document.getElementById('planPhone').value;
-            const goal = document.getElementById('planGoal').value;
-            const notes = document.getElementById('planNotes').value;
-            
-            // ডেটা গুছিয়ে মেসেজ ফিল্ডে পাঠানো যাতে Google Sheet-এ সুন্দরভাবে সেভ হয়
-            const customMessage = `Service: Financial Planning | Goal: ${goal} | Notes: ${notes || 'None'}`;
+        function toggleIncome(profId, groupDivId) {
+            let prof = document.getElementById(profId).value;
+            let group = document.getElementById(groupDivId);
+            if (["Business", "Service", "Self Employed"].includes(prof)) {
+                group.style.display = "block";
+            } else {
+                group.style.display = "none";
+                document.getElementById(profId.replace("_prof", "_inc")).value = 0;
+            }
+        }
 
-            submitBtn.innerText = 'Submitting Request...';
-            submitBtn.disabled = true;
+        function nextStep(current) {
+            // Validation
+            if (current === 1) {
+                if(!document.getElementById("u_name").value || !document.querySelector('input[name="u_gender"]:checked')) {
+                    alert("Please fill Name and Gender."); return;
+                }
+                document.getElementById("summary_info").innerHTML = `<b>Name:</b> ${document.getElementById("u_name").value} | <b>Phone:</b> ${document.getElementById("u_phone").value} | <b>Gender:</b> ${document.querySelector('input[name="u_gender"]:checked').value}`;
+            }
+            if (current === 2) {
+                if(!document.getElementById("p_prof").value || !document.querySelector('input[name="p_married"]:checked')) {
+                    alert("Please select Profession and Marital Status."); return;
+                }
+                // Handle Step 3 visibility based on Marital Status
+                let isMarried = document.querySelector('input[name="p_married"]:checked').value === "YES";
+                document.getElementById("spouse_section").style.display = isMarried ? "block" : "none";
+                document.getElementById("no_spouse_msg").style.display = isMarried ? "none" : "block";
+            }
+            if (current === 3) {
+                let isMarried = document.querySelector('input[name="p_married"]:checked').value === "YES";
+                if(isMarried && !document.querySelector('input[name="sp_child"]:checked')) {
+                    alert("Please select if you have children."); return;
+                }
+                let hasChild = isMarried && document.querySelector('input[name="sp_child"]:checked').value === "YES";
+                document.getElementById("child_section").style.display = hasChild ? "block" : "none";
+                document.getElementById("no_child_msg").style.display = hasChild ? "none" : "block";
+                if(hasChild) generateChildRows();
+            }
+            if (current === 4) {
+                if(!document.querySelector('input[name="has_dependent"]:checked')) {
+                    alert("Please select if you have dependent members."); return;
+                }
+                let hasDep = document.querySelector('input[name="has_dependent"]:checked').value === "YES";
+                document.getElementById("dep_section").style.display = hasDep ? "block" : "none";
+                document.getElementById("no_dep_msg").style.display = hasDep ? "none" : "block";
+                if(hasDep) generateDepRows();
+            }
+            if (current === 5) {
+                // Setup Step 6 Goals logic based on previous answers
+                calculateLifestyle();
+            }
+            if (current === 6) {
+                generateGoalTable();
+            }
+
+            document.getElementById(`step-${current}`).classList.remove("active");
+            document.getElementById(`step-${current + 1}`).classList.add("active");
+        }
+
+        function prevStep(current) {
+            document.getElementById(`step-${current}`).classList.remove("active");
+            document.getElementById(`step-${current - 1}`).classList.add("active");
+        }
+
+        // --- Dynamic Rows Generators ---
+        function generateChildRows() {
+            let num = parseInt(document.getElementById("num_child").value);
+            let html = "";
+            for(let i=1; i<=num; i++) {
+                html += `<div style="background: rgba(42,157,143,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <strong style="color: var(--navy-blue);">Child ${i} Details:</strong>
+                            <div class="grid-3" style="margin-top:10px;">
+                                <div class="form-group"><label>Name</label><input type="text" id="c_name_${i}" placeholder="Name"></div>
+                                <div class="form-group"><label>Gender</label><select id="c_gen_${i}"><option>MALE</option><option>FEMALE</option></select></div>
+                                <div class="form-group"><label>Age</label><input type="number" id="c_age_${i}" value="0" min="0"></div>
+                            </div>
+                         </div>`;
+            }
+            document.getElementById("child_rows_container").innerHTML = html;
+        }
+
+        function generateDepRows() {
+            let num = parseInt(document.getElementById("num_dep").value);
+            let html = "";
+            for(let i=1; i<=num; i++) {
+                html += `<div style="background: rgba(197,160,89,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <strong style="color: var(--navy-blue);">Dependent ${i}:</strong>
+                            <div class="grid-4" style="margin-top:10px;">
+                                <div class="form-group"><label>Name</label><input type="text" id="d_name_${i}"></div>
+                                <div class="form-group"><label>Gender</label><select id="d_gen_${i}"><option>MALE</option><option>FEMALE</option></select></div>
+                                <div class="form-group"><label>Age</label><input type="number" id="d_age_${i}" value="50"></div>
+                                <div class="form-group"><label>Relation</label><select id="d_rel_${i}"><option>FATHER</option><option>MOTHER</option><option>OTHER</option></select></div>
+                            </div>
+                         </div>`;
+            }
+            document.getElementById("dep_rows_container").innerHTML = html;
+        }
+
+        // --- Lifestyle & Goal Calculations ---
+        let globalLifestyle = "Basic";
+
+        function calculateLifestyle() {
+            let loc = document.getElementById("location_type").value;
+            if(!loc) { document.getElementById("btn_to_table").style.display = "none"; return; }
+            document.getElementById("btn_to_table").style.display = "block";
+            document.getElementById("lifestyle_result").style.display = "block";
+
+            let isMarried = document.querySelector('input[name="p_married"]:checked')?.value === "YES";
+            let hasChild = isMarried && document.querySelector('input[name="sp_child"]:checked')?.value === "YES";
+            let hasDep = document.querySelector('input[name="has_dependent"]:checked')?.value === "YES";
+
+            let total_member = 1;
+            if(isMarried) total_member++;
+            if(hasChild) total_member += parseInt(document.getElementById("num_child").value || 0);
+            if(hasDep) total_member += parseInt(document.getElementById("num_dep").value || 0);
+
+            let total_exp = parseFloat(document.getElementById("p_exp").value || 0);
+            if(isMarried) total_exp += parseFloat(document.getElementById("sp_exp").value || 0);
+
+            let eph = total_member > 0 ? total_exp / total_member : 0;
+            let levels = ["Basic", "Modest", "Standard", "Comfortable", "Upper_Middle class", "Affluent", "Luxury", "Elite"];
+            let lvl = 0;
+
+            if (loc === "Village") {
+                if (eph <= 5000) lvl = 0; else if (eph <= 10000) lvl = 1; else if (eph <= 15000) lvl = 2; else if (eph <= 20000) lvl = 3; else if (eph <= 30000) lvl = 4; else if (eph <= 50000) lvl = 5; else if (eph <= 75000) lvl = 6; else lvl = 7;
+            } else if (loc === "Semi-village") {
+                if (eph <= 8000) lvl = 0; else if (eph <= 12000) lvl = 1; else if (eph <= 20000) lvl = 2; else if (eph <= 35000) lvl = 3; else if (eph <= 50000) lvl = 4; else if (eph <= 75000) lvl = 5; else if (eph <= 100000) lvl = 6; else lvl = 7;
+            } else if (loc === "Small City") {
+                if (eph <= 10000) lvl = 0; else if (eph <= 15000) lvl = 1; else if (eph <= 22000) lvl = 2; else if (eph <= 40000) lvl = 3; else if (eph <= 60000) lvl = 4; else if (eph <= 100000) lvl = 5; else if (eph <= 120000) lvl = 6; else lvl = 7;
+            } else if (loc === "City") {
+                if (eph <= 12000) lvl = 0; else if (eph <= 18000) lvl = 1; else if (eph <= 25000) lvl = 2; else if (eph <= 50000) lvl = 3; else if (eph <= 80000) lvl = 4; else if (eph <= 110000) lvl = 5; else if (eph <= 130000) lvl = 6; else lvl = 7;
+            } else if (loc === "Megacity") {
+                if (eph <= 15000) lvl = 0; else if (eph <= 20000) lvl = 1; else if (eph <= 22000) lvl = 2; else if (eph <= 30000) lvl = 3; else if (eph <= 60000) lvl = 4; else if (eph <= 100000) lvl = 5; else if (eph <= 150000) lvl = 6; else lvl = 7;
+            }
+            
+            globalLifestyle = levels[lvl];
+            document.getElementById("calc_summary").innerHTML = `Total Members: <b>${total_member}</b> | Total Expense: <b>₹${total_exp.toLocaleString()}</b> | Per Head: <b>₹${eph.toLocaleString()}</b>`;
+            document.getElementById("status_summary").innerHTML = `Your Lifestyle Status: <b>${globalLifestyle.toUpperCase()}</b>`;
+
+            // Render Goal Checkboxes
+            let goalsHtml = `<div class="grid-2">`;
+            goalsHtml += `<div><h4>📌 Base Goals</h4>
+                          <label class="checkbox-group"><input type="checkbox" id="g_retire" checked> Retirement Fund</label>
+                          <label class="checkbox-group"><input type="checkbox" id="g_med" checked> Medical Emergency Fund</label>
+                          <label class="checkbox-group"><input type="checkbox" id="g_emerg" checked> Contingency/Emergency Fund</label>`;
+            if(!isMarried) goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="g_mar" checked> Marriage</label>`;
+            goalsHtml += `</div><div><h4>👶 Children Goals</h4>`;
+            
+            if(hasChild) {
+                let num_c = parseInt(document.getElementById("num_child").value);
+                for(let i=1; i<=num_c; i++){
+                    let n = document.getElementById(`c_name_${i}`).value || `Child ${i}`;
+                    goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="gc_edu_${i}" checked> ${n} Education</label>
+                                  <label class="checkbox-group"><input type="checkbox" id="gc_mar_${i}" checked> ${n} Marriage</label>`;
+                }
+            } else {
+                goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="g_fut_child" checked> Future Child Planning</label>
+                              <div id="fut_child_qty_div" style="margin-left: 20px;"><label style="font-size:12px;">How many?</label><input type="number" id="fut_child_qty" value="1" min="1" style="width: 60px; padding: 5px;"></div>`;
+            }
+            goalsHtml += `</div></div><hr><h4>➕ Additional Goals</h4><div class="grid-3">`;
+            let add_goals = ["House", "Car", "Vacation", "Lavish Accessories", "Business Fund", "Gadgets"];
+            add_goals.forEach((g, idx) => {
+                goalsHtml += `<div><label class="checkbox-group"><input type="checkbox" id="g_add_${idx}"> ${g}</label>
+                              <input type="number" id="g_qty_${idx}" value="1" min="1" style="width: 60px; padding: 5px; display: none;"></div>`;
+            });
+            goalsHtml += `</div>`;
+            document.getElementById("goals_container").innerHTML = goalsHtml;
+
+            // Add listeners for additional goals qty toggle
+            add_goals.forEach((g, idx) => {
+                document.getElementById(`g_add_${idx}`).addEventListener('change', function() {
+                    document.getElementById(`g_qty_${idx}`).style.display = this.checked ? "block" : "none";
+                });
+            });
+        }
+
+        // --- Dynamic Goal Table Generation ---
+        let selectedGoals = [];
+
+        function generateGoalTable() {
+            selectedGoals = [];
+            let isMarried = document.querySelector('input[name="p_married"]:checked')?.value === "YES";
+            let hasChild = isMarried && document.querySelector('input[name="sp_child"]:checked')?.value === "YES";
+
+            if(document.getElementById("g_retire").checked) selectedGoals.push("Retirement Fund");
+            if(document.getElementById("g_med").checked) selectedGoals.push("Medical Emergency Fund");
+            if(document.getElementById("g_emerg").checked) selectedGoals.push("Contingency/Emergency Fund");
+            if(!isMarried && document.getElementById("g_mar").checked) selectedGoals.push("Marriage");
+
+            if(hasChild) {
+                let num_c = parseInt(document.getElementById("num_child").value);
+                for(let i=1; i<=num_c; i++){
+                    let n = document.getElementById(`c_name_${i}`).value || `Child ${i}`;
+                    if(document.getElementById(`gc_edu_${i}`).checked) selectedGoals.push(`${n} Education`);
+                    if(document.getElementById(`gc_mar_${i}`).checked) selectedGoals.push(`${n} Marriage`);
+                }
+            } else if (document.getElementById("g_fut_child").checked) {
+                let qty = parseInt(document.getElementById("fut_child_qty").value || 1);
+                for(let i=1; i<=qty; i++){
+                    selectedGoals.push(`Future Child ${i} Education`);
+                    selectedGoals.push(`Future Child ${i} Marriage`);
+                }
+            }
+
+            let add_goals = ["House", "Car", "Vacation", "Lavish Accessories", "Business Fund", "Gadgets"];
+            add_goals.forEach((g, idx) => {
+                if(document.getElementById(`g_add_${idx}`).checked) {
+                    let qty = parseInt(document.getElementById(`g_qty_${idx}`).value || 1);
+                    if(qty === 1) selectedGoals.push(g);
+                    else { for(let i=1; i<=qty; i++) selectedGoals.push(`${g} ${i}`); }
+                }
+            });
+
+            let tbody = document.querySelector("#final_goal_table tbody");
+            tbody.innerHTML = "";
+
+            let total_inc = parseFloat(document.getElementById("p_inc").value || 0);
+            if(isMarried) total_inc += parseFloat(document.getElementById("sp_inc").value || 0);
+            let ann_inc = total_inc * 12;
+            
+            let total_exp = parseFloat(document.getElementById("p_exp").value || 0);
+            if(isMarried) total_exp += parseFloat(document.getElementById("sp_exp").value || 0);
+            let ann_exp = total_exp * 12;
+            let user_age = parseInt(document.getElementById("p_age").value || 30);
+
+            selectedGoals.forEach((goal, i) => {
+                let pv = 0; let dur = 0; let inf = 5.0;
+                
+                // --- Complex Logic Ported from Python ---
+                if(goal === "Retirement Fund") {
+                    dur = Math.max(0, 60 - user_age);
+                    if(globalLifestyle==="Basic") pv = (ann_inc*0.40)/0.09; else if(globalLifestyle==="Modest") pv = (ann_inc*0.45)/0.09; else if(globalLifestyle==="Standard") pv = (ann_inc*0.50)/0.09; else if(globalLifestyle==="Comfortable") pv = (ann_inc*0.60)/0.09; else if(globalLifestyle==="Upper_Middle class") pv = (ann_inc*0.70)/0.09; else if(globalLifestyle==="Affluent") pv = (ann_inc*0.80)/0.09; else if(globalLifestyle==="Luxury") pv = (ann_inc*0.90)/0.09; else pv = ann_inc/0.09;
+                } else if(goal === "Medical Emergency Fund") { pv = ann_exp * 5; inf = 8.0; dur = 0;
+                } else if(goal === "Contingency/Emergency Fund") { pv = ann_inc * 3; dur = 0;
+                } else if(goal.includes("Education")) {
+                    inf = 7.0; dur = 17; // Default
+                    if(hasChild && !goal.includes("Future")) {
+                        // Find child age
+                        let c_idx = Array.from({length: parseInt(document.getElementById("num_child").value)}, (_, k) => k+1).find(k => goal.includes(document.getElementById(`c_name_${k}`).value || `Child ${k}`));
+                        if(c_idx) dur = Math.max(0, 17 - parseInt(document.getElementById(`c_age_${c_idx}`).value||0));
+                    }
+                    if(globalLifestyle==="Basic") pv=500000; else if(globalLifestyle==="Modest") pv=1000000; else if(globalLifestyle==="Standard") pv=1500000; else if(globalLifestyle==="Comfortable") pv=2500000; else if(globalLifestyle==="Upper_Middle class") pv=4000000; else if(globalLifestyle==="Affluent") pv=6500000; else if(globalLifestyle==="Luxury") pv=10000000; else pv=20000000;
+                } else if(goal.includes("Marriage") || goal==="Marriage") {
+                    dur = 24; 
+                    if(hasChild && !goal.includes("Future")) {
+                        let c_idx = Array.from({length: parseInt(document.getElementById("num_child").value)}, (_, k) => k+1).find(k => goal.includes(document.getElementById(`c_name_${k}`).value || `Child ${k}`));
+                        if(c_idx) {
+                            let gen = document.getElementById(`c_gen_${c_idx}`).value;
+                            dur = Math.max(0, (gen==="MALE"?28:24) - parseInt(document.getElementById(`c_age_${c_idx}`).value||0));
+                        }
+                    }
+                    if(globalLifestyle==="Basic") pv=1000000; else if(globalLifestyle==="Modest") pv=1500000; else if(globalLifestyle==="Standard") pv=2000000; else if(globalLifestyle==="Comfortable") pv=2500000; else if(globalLifestyle==="Upper_Middle class") pv=4000000; else if(globalLifestyle==="Affluent") pv=6000000; else if(globalLifestyle==="Luxury") pv=10000000; else pv=25000000;
+                } else {
+                    pv = 500000; dur = 5; // Default for others
+                }
+
+                let fv = pv * Math.pow(1 + inf/100, dur);
+                let penHTML = goal === "Retirement Fund" ? `<div class="pension-text" id="pen_${i}">Pension: ₹${((fv*0.09)/12).toLocaleString(undefined,{maximumFractionDigits:2})} /mo</div>` : "";
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td><strong>${goal}</strong></td>
+                        <td><input type="number" id="pv_${i}" value="${pv.toFixed(0)}" oninput="calcRow(${i}, '${goal}')"></td>
+                        <td><input type="number" id="dur_${i}" value="${dur}" oninput="calcRow(${i}, '${goal}')"></td>
+                        <td><input type="number" id="inf_${i}" value="${inf.toFixed(1)}" step="0.5" oninput="calcRow(${i}, '${goal}')"></td>
+                        <td><div class="fv-box" id="fv_${i}">${fv.toLocaleString(undefined, {maximumFractionDigits:2})}</div>${penHTML}</td>
+                    </tr>`;
+            });
+        }
+
+        function calcRow(idx, goalName) {
+            let pv = parseFloat(document.getElementById(`pv_${idx}`).value || 0);
+            let dur = parseFloat(document.getElementById(`dur_${idx}`).value || 0);
+            let inf = parseFloat(document.getElementById(`inf_${idx}`).value || 0);
+            let fv = pv * Math.pow(1 + inf/100, dur);
+            document.getElementById(`fv_${idx}`).innerText = fv.toLocaleString(undefined, {maximumFractionDigits:2});
+            
+            if(goalName === "Retirement Fund") {
+                document.getElementById(`pen_${idx}`).innerText = `Pension: ₹${((fv*0.09)/12).toLocaleString(undefined,{maximumFractionDigits:2})} /mo`;
+            }
+        }
+
+        // --- Final Submission (Google Sheet via Flask Route) ---
+        async function submitFinalPlan(btn) {
+            btn.innerText = "Processing...";
+            btn.disabled = true;
+
+            let name = document.getElementById("u_name").value;
+            let phone = document.getElementById("u_phone").value;
+            let email = document.getElementById("u_email").value;
+            
+            let message = `Service: Full Financial Plan | Goals: ${selectedGoals.join(", ")} | Lifestyle: ${globalLifestyle}`;
 
             const formData = new FormData();
             formData.append('name', name);
             formData.append('email', email);
             formData.append('phone', phone);
-            formData.append('message', customMessage);
+            formData.append('message', message);
 
             try {
-                // আপনার Flask ব্যাকএন্ডের existing '/submit_form' রাউটেই ডেটা জমা হবে
                 const response = await fetch('/submit_form', { method: 'POST', body: formData });
                 const result = await response.json();
-
                 if(result.status === 'success') {
-                    formMessage.style.color = 'green';
-                    formMessage.innerText = 'Thank you! Your request has been received. We will connect with you shortly.';
-                    
-                    setTimeout(() => {
-                        submitBtn.innerHTML = `Submit Request <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>`;
-                        submitBtn.disabled = false;
-                        formMessage.innerText = '';
-                        document.getElementById('financialPlanningForm').reset();
-                    }, 5000);
+                    document.getElementById("finalMessage").style.color = "green";
+                    document.getElementById("finalMessage").innerText = "🎉 Your Financial Plan details have been saved successfully! We will contact you soon.";
                 } else {
-                    formMessage.style.color = 'red';
-                    formMessage.innerText = 'Error connecting to server. Please try again.';
-                    submitBtn.innerHTML = `Submit Request <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>`;
-                    submitBtn.disabled = false;
+                    document.getElementById("finalMessage").style.color = "red";
+                    document.getElementById("finalMessage").innerText = "Error saving data. Please try again.";
+                    btn.innerHTML = `Finalize & Save Data <i class="fa-solid fa-check"></i>`;
+                    btn.disabled = false;
                 }
             } catch (error) {
-                formMessage.style.color = 'red';
-                formMessage.innerText = 'Network error. Please check your internet connection.';
-                submitBtn.innerHTML = `Submit Request <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>`;
-                submitBtn.disabled = false;
+                document.getElementById("finalMessage").style.color = "red";
+                document.getElementById("finalMessage").innerText = "Network Error!";
+                btn.innerHTML = `Finalize & Save Data <i class="fa-solid fa-check"></i>`;
+                btn.disabled = false;
             }
         }
     </script>
-
 </body>
 </html>
