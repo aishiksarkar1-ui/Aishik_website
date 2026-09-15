@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Financial Planning | Financial Literacy Hub</title>
+    
+    <!-- গুগল ফন্টস -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- ফন্ট অসাম (আইকনের জন্য) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --navy-blue: #0A192F;
+            --gold: #C5A059;
+            --light-cream: #FDFBF7;
+            --text-light: #E0E0E0;
+            --teal: #2A9D8F;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--navy-blue);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* স্টিকি নেভিগেশন বার */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+        }
+        
+        .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; text-decoration: none; line-height: 1.1; }
+        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; align-items: center; }
+        .nav-links li { position: relative; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 14px; font-weight: 400; transition: color 0.3s ease; padding: 10px 0; display: block; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+        /* ড্রপ-ডাউন মেনু */
+        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background-color: var(--navy-blue); min-width: 280px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 4px; z-index: 1001; padding: 10px 0; list-style: none; max-height: 60vh; overflow-y: auto; }
+        .dropdown-content::-webkit-scrollbar { width: 8px; }
+        .dropdown-content::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+        .dropdown-content::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+        .dropdown-content li { width: 100%; }
+        .dropdown-content a { padding: 10px 20px; color: var(--text-light); white-space: nowrap; }
+        .dropdown-content a:hover { background-color: rgba(197, 160, 89, 0.1); color: var(--gold); }
+        .dropdown:hover .dropdown-content { display: block; }
+        .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
+
+        /* হিরো ব্যানার */
+        .planning-hero {
+            position: relative;
+            background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)), url("{{ url_for('static', filename='Study.png') }}");
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px 100px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(42, 157, 143, 0.3);
+        }
+
+        .planning-hero h1 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--gold); margin: 0 0 15px 0; }
+        .planning-hero p { font-size: 17px; max-width: 650px; margin: 0 auto; color: #b0b0b0; }
+
+        /* ফর্ম কন্টেইনার (লাইট প্রিমিয়াম ডিজাইন) */
+        .form-section { padding: 0 20px 80px 20px; display: flex; justify-content: center; }
+        
+        .planning-container {
+            background: linear-gradient(135deg, #ffffff 0%, #FDFBF7 100%);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-top: 4px solid var(--gold); 
+            border-radius: 15px;
+            width: 100%;
+            max-width: 850px;
+            padding: 45px 50px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--navy-blue);
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            font-size: 15px;
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: var(--navy-blue);
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid rgba(10, 25, 47, 0.2);
+            border-radius: 8px;
+            font-family: 'Lato', sans-serif;
+            font-size: 15px;
+            background-color: #ffffff;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--teal);
+            box-shadow: 0 0 10px rgba(42, 157, 143, 0.2);
+        }
+
+        .submit-btn {
+            background-color: var(--teal);
+            color: white;
+            border: 1px solid var(--teal);
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.2);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #218276;
+            box-shadow: 0 8px 20px rgba(42, 157, 143, 0.3);
+        }
+
+        #formMessage {
+            font-size: 15px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* রেসপনসিভ ডিজাইন */
+        @media (max-width: 992px) {
+            .navbar { padding: 15px 20px; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--navy-blue); border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding: 20px 0; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .dropdown-content { position: relative; box-shadow: none; border: none; background-color: rgba(255,255,255,0.05); padding-left: 15px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+        }
+
+        @media (max-width: 768px) {
+            .planning-container { padding: 30px 20px; }
+            .form-title { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- সম্পূর্ণ স্টিকি নেভিগেশন বার -->
+    <nav class="navbar">
+        <a href="/" class="logo">FINANCE WITH<br>AISHIK</a>
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/learn">Learn</a></li>
+            
+            <li class="dropdown">
+                <a href="#">Domains &#9662;</a>
+                <ul class="dropdown-content">
+                    <li><a href="#">Mutual Fund</a></li>
+                    <li><a href="#">SIP Planning & Setup</a></li>
+                    <li><a href="#">Specialised Investment Fund (SIF)</a></li>
+                    <li><a href="#">Portfolio Management Services</a></li>
+                    <li><a href="#">Alternative Investment Fund</a></li>
+                    <li><a href="#">Wealth Building Strategy</a></li>
+                    <li><a href="#">Portfolio Risk Management</a></li>
+                    <li><a href="#">Stock Selections</a></li>
+                    <li><a href="#">Fixed Income</a></li>
+                    <li><a href="#">Global Capital Markets and Commodities</a></li>
+                    <li><a href="#">Health Insurance</a></li>
+                    <li><a href="#">Life Insurance</a></li>
+                    <li><a href="#">General Insurance</a></li>
+                </ul>
+            </li>
+
+            <li><a href="/risk-profiling">Self-Risk Profiling</a></li>
+
+            <li class="dropdown">
+                <a href="#">Tools &#9662;</a>
+                <ul class="dropdown-content">
+                    <li><a href="#">SIP Calculator</a></li>
+                    <li><a href="#">Goal Planning Calculator</a></li>
+                    <li><a href="#">Inflation Impact Calculator</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#">Market Insight</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Letter to Members</a></li>
+            <li><a href="#">Connect</a></li>
+        </ul>
+    </nav>
+
+    <!-- হিরো ব্যানার -->
+    <div class="planning-hero">
+        <h1>Architect Your Financial Future</h1>
+        <p>Get a custom-crafted asset allocation and disciplined wealth-building strategy tailored precisely to your life goals and risk profile.</p>
+    </div>
+
+    <!-- ফর্ম সেকশন -->
+    <div class="form-section">
+        <div class="planning-container">
+            <h2 class="form-title">Request Your Personalized Financial Roadmap</h2>
+            <p class="form-subtitle">Fill out the details below to schedule an expert consultation and structured asset allocation blueprint.</p>
+            
+            <form id="financialPlanningForm" onsubmit="submitPlanningForm(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="planName" required placeholder="E.g. Aishik Sarkar">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="planEmail" required placeholder="yourmail@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="planPhone" required placeholder="+91 9876543210">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Primary Financial Goal</label>
+                        <select id="planGoal" required>
+                            <option value="" disabled selected>Select your primary goal</option>
+                            <option value="Retirement Planning">Retirement Planning</option>
+                            <option value="Child Higher Education">Child's Higher Education</option>
+                            <option value="Wealth Accumulation">Long-term Wealth Creation</option>
+                            <option value="Tax & Asset Allocation">Tax-Efficient Asset Allocation</option>
+                            <option value="Portfolio Risk Audit">Portfolio Risk Management & Review</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Additional Notes or Current Portfolio Details (Optional)</label>
+                        <textarea id="planNotes" rows="4" placeholder="Share any specific requirements, current investments, or questions you have..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" id="planSubmitBtn" class="submit-btn">
+                    Submit Request <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+                </button>
+                
+                <p id="formMessage"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- జాভাস্ক্রিপ্ট (Google Sheet ইন্টিগ্রেশন) -->
+    <script>
+        function toggleMenu() {
+            var navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        async function submitPlanningForm(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('planSubmitBtn');
+            const formMessage = document.getElementById('formMessage');
+            
+            const name = document.getElementById('planName').value;
+            const email = document.getElementById('planEmail').value;
+            const phone = document.getElementById('planPhone').value;
+            const goal = document.getElementById('planGoal').value;
+            const notes = document.getElementById('planNotes').value;
+            
+            // ডেটা গুছিয়ে মেসেজ ফিল্ডে পাঠানো যাতে Google Sheet-এ সুন্দরভাবে সেভ হয়
+            const customMessage = `Service: Financial Planning | Goal: ${goal} | Notes: ${notes || 'None'}`;
+
+            submitBtn.innerText = 'Submitting Request...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('phone', phone);
+            formData.append('message', customMessage);
+
+            try {
+                // আপনার Flask ব্যাকএন্ডের existing '/submit_form' রাউটেই ডেটা জমা হবে
+                const response = await fetch('/submit_form', { method: 'POST', body: formData });
+                const result = await response.json();
+
+                if(result.status === 'success') {
+                    formMessage.style.color = 'green';
+                    formMessage.innerText = 'Thank you! Your request has been received. We will connect with you shortly.';
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = `Submit Request <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>`;
+                        submitBtn.disabled = false;
+                        formMessage.innerText = '';
+                        document.getElementById('financialPlanningForm').reset();
+                    }, 5000);
+                } else {
+                    formMessage.style.color = 'red';
+                    formMessage.innerText = 'Error connecting to server. Please try again.';
+                    submitBtn.innerHTML = `Submit Request <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>`;
+                    submitBtn.disabled = false;
+                }
+            } catch (error) {
+                formMessage.style.color = 'red';
+                formMessage.innerText = 'Network error. Please check your internet connection.';
+                submitBtn.innerHTML = `Submit Request <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>`;
+                submitBtn.disabled = false;
+            }
+        }
+    </script>
+
+</body>
+</html>
