@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- PDF জেনারেট করার লাইব্রেরি -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- সরাসরি PDF কোডিং করার অরিজিনাল লাইব্রেরি (No Screenshot) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
         :root {
@@ -172,45 +172,6 @@
         </div>
     </div>
 
-    <!-- PDF টেমপ্লেট: ওপরের ফাঁকা জায়গা (Gap) পুরোপুরি মুছে ফেলা হয়েছে -->
-    <div id="certificateTemplate" style="display: none;">
-        <div id="certContent" style="width: 794px; background: #ffffff; font-family: 'Playfair Display', serif; color: #0A192F; margin: 0 auto;">
-            
-            <!-- পেজ ১: মূল সার্টিফিকেট (Perfect A4 Proportions) -->
-            <div style="height: 1122px; padding: 60px; border: 15px solid #0A192F; text-align: center; position: relative; box-sizing: border-box; background: #FDFBF7;">
-                
-                <!-- লোগো (ওপর থেকে নরমাল গ্যাপ) -->
-                <div style="text-align: left; color: #C5A059; font-size: 22px; font-weight: bold; letter-spacing: 2px; margin-bottom: 60px;">FINANCE WITH AISHIK</div>
-                
-                <h1 style="color: #C5A059; font-size: 50px; margin: 0 0 30px 0; text-transform: uppercase; letter-spacing: 1px;">Certificate of Risk Profiling</h1>
-                
-                <p style="font-family: 'Lato', sans-serif; font-size: 24px; color: #2c3e50; margin: 0 0 40px 0;">This is to proudly certify that</p>
-                
-                <h2 id="certUserName" style="font-size: 45px; border-bottom: 4px solid #2A9D8F; display: inline-block; padding-bottom: 10px; margin: 0 0 50px 0; font-weight: bold; color: #0A192F;">User Name</h2>
-                
-                <p style="font-family: 'Lato', sans-serif; font-size: 20px; color: #2c3e50; margin: 0 auto 50px auto; max-width: 600px; line-height: 1.6;">has successfully completed the Investment Risk Assessment and obtained a</p>
-                
-                <!-- স্কোর সার্কেল -->
-                <div style="margin: 0 auto 40px auto; width: 170px; height: 170px; border-radius: 50%; border: 8px solid #C5A059; text-align: center; background: rgba(197, 160, 89, 0.1); line-height: 170px;">
-                    <span id="certUserScore" style="font-size: 55px; font-weight: bold; color: #C5A059;">0%</span>
-                </div>
-                
-                <h3 id="certUserProfile" style="font-size: 36px; color: #2A9D8F; margin: 0 0 20px 0;">Profile Type</h3>
-                
-                <!-- ফুটার (পেজের একদম নিচে) -->
-                <div style="position: absolute; bottom: 60px; left: 0; width: 100%; text-align: center;">
-                    <p style="font-family: 'Lato', sans-serif; font-size: 18px; color: #7f8c8d; border-top: 2px solid #ccc; display: inline-block; padding-top: 15px; margin: 0;">Issued by <strong>Aishik Sarkar</strong><br>Financial Literacy Hub</p>
-                </div>
-            </div>
-
-            <!-- পেজ ২ এর জন্য ১০০% পারফেক্ট গ্যারান্টিড পেজ ব্রেক -->
-            <div class="html2pdf__page-break"></div>
-
-            <!-- পেজ ২+: প্রশ্নোত্তর -->
-            <div id="qaReport" style="padding: 60px; box-sizing: border-box; background: #ffffff;"></div>
-        </div>
-    </div>
-
     <!-- JavaScript লজিক -->
     <script>
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
@@ -345,7 +306,7 @@
                     formMessage.style.color = 'green';
                     formMessage.innerText = 'Success! Downloading your PDF Report...';
                     
-                    generatePDF(name, score, profile);
+                    generatePDFDirect(name, score, profile);
 
                     setTimeout(() => {
                         document.getElementById('leadFormContainer').style.display = 'none';
@@ -364,41 +325,125 @@
             }
         }
 
-        function generatePDF(name, score, profile) {
-            document.getElementById('certUserName').innerText = name;
-            document.getElementById('certUserScore').innerText = score;
-            document.getElementById('certUserProfile').innerText = profile;
+        // একদম নতুন ফাংশন! কোনো স্ক্রিনশট হবে না। সরাসরি কোড দিয়ে PDF প্রিন্ট হবে।
+        function generatePDFDirect(name, score, profile) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+
+            // ----- প্রথম পেজ: সার্টিফিকেট -----
+            // বর্ডার
+            doc.setDrawColor(10, 25, 47); // নেভি ব্লু
+            doc.setLineWidth(4);
+            doc.rect(10, 10, 190, 277);
+
+            // সাবটাইটেল
+            doc.setTextColor(197, 160, 89); // গোল্ড
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(14);
+            doc.text("FINANCE WITH AISHIK", 105, 30, null, null, "center");
+
+            // টাইটেল
+            doc.setFontSize(26);
+            doc.text("Certificate of Risk Profiling", 105, 45, null, null, "center");
+
+            // বডি টেক্সট
+            doc.setTextColor(44, 62, 80);
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(14);
+            doc.text("This is to proudly certify that", 105, 65, null, null, "center");
+
+            // নাম
+            doc.setTextColor(10, 25, 47);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(26);
+            doc.text(name, 105, 80, null, null, "center");
             
-            let qaHTML = `<h2 style="color: #0A192F; font-size: 28px; border-bottom: 3px solid #C5A059; padding-bottom: 10px; margin-bottom: 40px; font-weight: bold;">Detailed Risk Assessment Report</h2>`;
+            // নামের নিচে দাগ
+            doc.setDrawColor(42, 157, 143);
+            doc.setLineWidth(1);
+            const nameWidth = doc.getTextWidth(name);
+            doc.line(105 - nameWidth/2, 84, 105 + nameWidth/2, 84);
+
+            // বডি ২
+            doc.setTextColor(44, 62, 80);
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(12);
+            doc.text("has successfully completed the Investment Risk Assessment", 105, 100, null, null, "center");
+            doc.text("and obtained a", 105, 108, null, null, "center");
+
+            // স্কোর সার্কেল
+            doc.setDrawColor(197, 160, 89);
+            doc.setFillColor(253, 251, 247);
+            doc.setLineWidth(1.5);
+            doc.circle(105, 140, 18, "FD");
+
+            doc.setTextColor(197, 160, 89);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(20);
+            doc.text(score, 105, 142, null, null, "center");
+
+            // প্রোফাইল
+            doc.setTextColor(42, 157, 143);
+            doc.setFontSize(22);
+            doc.text(profile, 105, 180, null, null, "center");
+
+            // ফুটার
+            doc.setDrawColor(200, 200, 200);
+            doc.setLineWidth(0.5);
+            doc.line(60, 250, 150, 250);
+            doc.setTextColor(127, 140, 141);
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(10);
+            doc.text("Issued by Aishik Sarkar", 105, 260, null, null, "center");
+            doc.text("Financial Literacy Hub & FinXHorizon", 105, 266, null, null, "center");
+
+            // ----- দ্বিতীয় পেজ এবং পরের পেজগুলো: প্রশ্নোত্তর -----
+            doc.addPage();
+            
+            doc.setTextColor(10, 25, 47);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(18);
+            doc.text("Detailed Risk Assessment Report", 15, 20);
+            
+            doc.setDrawColor(197, 160, 89);
+            doc.setLineWidth(0.8);
+            doc.line(15, 24, 195, 24);
+
+            let yPos = 35; // লেখার শুরুর পজিশন
 
             for (let i = 0; i < questions.length; i++) {
                 let q = questions[i];
                 let ansIndex = userAnswers[i];
-                let selectedText = ansIndex !== null ? q.options[ansIndex].text : "Not answered";
+                let ansText = ansIndex !== null ? q.options[ansIndex].text : "Not answered";
 
-                qaHTML += `
-                    <div style="margin-bottom: 25px; font-family: 'Lato', sans-serif; text-align: left;">
-                        <div style="font-weight: bold; color: #0A192F; font-size: 16px; margin-bottom: 8px; line-height: 1.4;">Q${i + 1}. ${q.text}</div>
-                        <div style="color: #2A9D8F; font-size: 15px; background: rgba(42, 157, 143, 0.05); padding: 12px; border-left: 4px solid #2A9D8F; border-radius: 4px;">
-                            <strong style="color: #C5A059;">Your Answer:</strong> ${selectedText}
-                        </div>
-                    </div>
-                `;
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(11);
+                doc.setTextColor(10, 25, 47);
+                
+                // লেখা যদি লাইনের বাইরে যায়, তবে অটোমেটিক ভেঙে দেবে
+                let splitQ = doc.splitTextToSize(`Q${i + 1}. ${q.text}`, 180);
+                let splitA = doc.splitTextToSize(`Your Answer: ${ansText}`, 175);
+
+                // ম্যাপ করা হচ্ছে পেজের নিচে গেলে পরের পেজে নেওয়ার জন্য
+                let blockHeight = (splitQ.length * 5.5) + (splitA.length * 5.5) + 10;
+                if (yPos + blockHeight > 280) {
+                    doc.addPage();
+                    yPos = 20;
+                }
+
+                // প্রশ্ন বসানো
+                doc.text(splitQ, 15, yPos);
+                yPos += splitQ.length * 5.5;
+
+                // উত্তর বসানো
+                doc.setFont("helvetica", "normal");
+                doc.setTextColor(42, 157, 143);
+                doc.text(splitA, 20, yPos);
+                yPos += splitA.length * 5.5 + 8; // গ্যাপ
             }
-            document.getElementById('qaReport').innerHTML = qaHTML;
-            
-            const element = document.getElementById('certContent');
-            
-            const opt = {
-                margin:       0,
-                filename:     `${name}_Detailed_Risk_Report.pdf`,
-                image:        { type: 'jpeg', quality: 1 },
-                html2canvas:  { scale: 2, useCORS: true, windowWidth: 794 }, 
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                pagebreak:    { mode: ['css', 'legacy'] }
-            };
-            
-            html2pdf().set(opt).from(element).save();
+
+            // ম্যাজিক পিডিএফ ডাউনলোড!
+            doc.save(`${name}_Risk_Profile_Report.pdf`);
         }
 
         window.onload = loadQuestion;
