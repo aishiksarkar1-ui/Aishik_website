@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Self-Risk Profiling | Financial Literacy Hub</title>
     
-    <!-- গুগল ফন্টস -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!-- ফন্ট অসাম (আইকনের জন্য) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -115,26 +112,11 @@
             border-bottom: 1px solid rgba(42, 157, 143, 0.3);
         }
 
-        .profiling-hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            color: var(--gold);
-            margin: 0 0 15px 0;
-        }
-
-        .profiling-hero p {
-            font-size: 17px;
-            max-width: 650px;
-            margin: 0 auto;
-            color: #b0b0b0;
-        }
+        .profiling-hero h1 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--gold); margin: 0 0 15px 0; }
+        .profiling-hero p { font-size: 17px; max-width: 650px; margin: 0 auto; color: #b0b0b0; }
 
         /* কুইজ কন্টেইনার (Light Premium Design) */
-        .quiz-section {
-            padding: 0 20px 80px 20px;
-            display: flex;
-            justify-content: center;
-        }
+        .quiz-section { padding: 0 20px 80px 20px; display: flex; justify-content: center; }
 
         .quiz-container {
             background: linear-gradient(135deg, #ffffff 0%, #FDFBF7 100%);
@@ -142,7 +124,7 @@
             border-top: 4px solid var(--gold); 
             border-radius: 15px;
             width: 100%;
-            max-width: 900px;
+            max-width: 850px;
             padding: 40px 50px;
             margin-top: -60px;
             position: relative;
@@ -150,178 +132,94 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
+        .part-indicator {
+            text-align: center; color: var(--teal); font-weight: bold; font-size: 13px;
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;
+        }
+
         /* প্রগ্রেস বার */
         .progress-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: var(--navy-blue); 
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+            font-size: 14px; color: var(--navy-blue); font-weight: bold; text-transform: uppercase;
         }
-
         .progress-bar-bg {
-            width: 100%;
-            height: 6px;
-            background-color: rgba(10, 25, 47, 0.1); 
-            border-radius: 10px;
-            margin-bottom: 40px;
-            overflow: hidden;
+            width: 100%; height: 6px; background-color: rgba(10, 25, 47, 0.1); border-radius: 10px; margin-bottom: 35px; overflow: hidden;
         }
-
         .progress-bar-fill {
-            height: 100%;
-            width: 20%;
-            background: linear-gradient(90deg, var(--teal), var(--gold));
-            border-radius: 10px;
-            transition: width 0.4s ease;
+            height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--gold)); border-radius: 10px; transition: width 0.4s ease;
         }
 
         /* প্রশ্ন এবং অপশন */
-        .question-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            color: var(--navy-blue); 
-            margin-top: 0;
-            margin-bottom: 30px;
-            line-height: 1.4;
-        }
+        .question-text { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--navy-blue); margin-top: 0; margin-bottom: 30px; line-height: 1.4; }
+        .options-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
 
-        .options-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        /* প্রিমিয়াম অপশন বাটন */
         .option-btn {
-            background-color: #ffffff; 
-            border: 1px solid rgba(10, 25, 47, 0.1); 
-            border-radius: 8px;
-            padding: 18px 25px;
-            color: #2c3e50; 
-            font-size: 16px;
-            font-family: 'Lato', sans-serif;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            background-color: #ffffff; border: 1px solid rgba(10, 25, 47, 0.1); border-radius: 8px;
+            padding: 16px 20px; color: #2c3e50; font-size: 16px; font-family: 'Lato', sans-serif;
+            text-align: left; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
+        .option-btn i { margin-right: 15px; font-size: 18px; color: rgba(10, 25, 47, 0.2); transition: all 0.3s ease; flex-shrink: 0; }
 
-        .option-btn i {
-            margin-right: 15px;
-            font-size: 18px;
-            color: rgba(10, 25, 47, 0.2);
-            transition: all 0.3s ease;
-        }
+        .option-btn:hover { background-color: #FDFBF7; border-color: var(--gold); transform: translateX(5px); box-shadow: 0 8px 15px rgba(197, 160, 89, 0.1); }
+        .option-btn:hover i { color: var(--gold); }
 
-        /* হোভার ইফেক্ট */
-        .option-btn:hover {
-            background-color: #FDFBF7;
-            border-color: var(--gold);
-            transform: translateX(5px);
-            box-shadow: 0 8px 15px rgba(197, 160, 89, 0.1);
-        }
-
-        .option-btn:hover i {
-            color: var(--gold);
-        }
-
-        /* সিলেক্ট করা অবস্থার ডিজাইন */
         .option-btn.selected {
             background: linear-gradient(135deg, rgba(197, 160, 89, 0.05), rgba(42, 157, 143, 0.05));
-            border-color: var(--teal);
-            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.15);
-            font-weight: bold;
-            color: var(--navy-blue);
+            border-color: var(--teal); box-shadow: 0 5px 15px rgba(42, 157, 143, 0.15); font-weight: bold; color: var(--navy-blue);
         }
+        .option-btn.selected i { color: var(--teal); }
 
-        .option-btn.selected i {
-            color: var(--teal);
-        }
-
-        /* নেভিগেশন বাটন (Next / Prev) */
-        .quiz-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(10, 25, 47, 0.1);
-            padding-top: 25px;
-        }
-
-        .nav-btn {
-            background-color: transparent;
-            color: var(--navy-blue);
-            border: 1px solid var(--navy-blue);
-            padding: 10px 25px;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-btn:hover {
-            background-color: var(--navy-blue);
-            color: white;
-            box-shadow: 0 5px 15px rgba(10, 25, 47, 0.2);
-        }
-
-        .nav-btn.disabled {
-            border-color: rgba(10, 25, 47, 0.2);
-            color: rgba(10, 25, 47, 0.3);
-            cursor: not-allowed;
-        }
+        /* নেভিগেশন বাটন */
+        .quiz-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(10, 25, 47, 0.1); padding-top: 25px; }
         
-        .nav-btn.disabled:hover {
-            background-color: transparent;
-            box-shadow: none;
-            color: rgba(10, 25, 47, 0.3);
+        .nav-btn {
+            background-color: transparent; color: var(--navy-blue); border: 1px solid var(--navy-blue); padding: 10px 25px;
+            border-radius: 5px; font-size: 14px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
         }
+        .nav-btn:hover:not(:disabled) { background-color: var(--navy-blue); color: white; box-shadow: 0 5px 15px rgba(10, 25, 47, 0.2); }
+        .nav-btn:disabled { border-color: rgba(10, 25, 47, 0.2); color: rgba(10, 25, 47, 0.3); cursor: not-allowed; }
+        
+        .next-btn { background-color: var(--teal); color: white; border-color: var(--teal); }
+        .next-btn:hover:not(:disabled) { background-color: #218276; color: white; box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3); }
 
-        .next-btn {
-            background-color: var(--teal);
-            color: white;
-            border-color: var(--teal);
+        /* রেজাল্ট স্ক্রিন ডিজাইন */
+        #resultContainer { display: none; text-align: center; animation: fadeIn 0.8s ease; }
+        .score-circle {
+            width: 180px; height: 180px; border-radius: 50%; border: 8px solid var(--gold);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            margin: 0 auto 30px auto; background: linear-gradient(135deg, rgba(197, 160, 89, 0.1), rgba(42, 157, 143, 0.1));
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
+        .score-circle h2 { font-size: 45px; color: var(--navy-blue); margin: 0; line-height: 1; }
+        .score-circle span { font-size: 14px; color: var(--teal); font-weight: bold; text-transform: uppercase; margin-top: 5px; }
+        
+        .profile-title { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--navy-blue); margin-bottom: 10px; }
+        .profile-desc { font-size: 16px; color: #2c3e50; max-width: 600px; margin: 0 auto 30px auto; line-height: 1.6; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .next-btn:hover {
-            background-color: #218276;
-            color: white;
-            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3);
-        }
-
-        /* রেসপনসিভ ডিজাইন */
         @media (max-width: 992px) {
             .navbar { padding: 15px 20px; }
             .nav-links {
-                display: none; flex-direction: column; position: absolute;
-                top: 100%; left: 0; width: 100%; background-color: var(--navy-blue);
-                border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding: 20px 0;
+                display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%;
+                background-color: var(--navy-blue); border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding: 20px 0;
             }
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .dropdown-content { position: relative; box-shadow: none; border: none; background-color: rgba(255,255,255,0.05); padding-left: 15px; }
         }
-
         @media (max-width: 768px) {
             .quiz-container { padding: 30px 20px; }
-            .question-text { font-size: 22px; }
-            .option-btn { padding: 15px; font-size: 15px; }
+            .question-text { font-size: 20px; }
+            .option-btn { padding: 12px 15px; font-size: 14px; }
+            .score-circle { width: 150px; height: 150px; }
+            .score-circle h2 { font-size: 35px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- সম্পূর্ণ স্টিকি নেভিগেশন বার -->
+    <!-- নেভিগেশন বার -->
     <nav class="navbar">
         <a href="/" class="logo">FINANCE WITH<br>AISHIK</a>
         <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
@@ -329,7 +227,6 @@
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/learn">Learn</a></li>
-            
             <li class="dropdown">
                 <a href="#">Domains &#9662;</a>
                 <ul class="dropdown-content">
@@ -348,9 +245,7 @@
                     <li><a href="#">General Insurance</a></li>
                 </ul>
             </li>
-
             <li><a href="/risk-profiling" class="active">Self-Risk Profiling</a></li>
-
             <li class="dropdown">
                 <a href="#">Tools &#9662;</a>
                 <ul class="dropdown-content">
@@ -359,7 +254,6 @@
                     <li><a href="#">Inflation Impact Calculator</a></li>
                 </ul>
             </li>
-
             <li><a href="#">Market Insight</a></li>
             <li><a href="#">Gallery</a></li>
             <li><a href="#">Letter to Members</a></li>
@@ -367,58 +261,204 @@
         </ul>
     </nav>
 
-    <!-- হিরো ব্যানার -->
     <div class="profiling-hero">
         <h1>Discover Your Investment DNA</h1>
-        <p>Before you invest a single rupee, it is crucial to understand your emotional capacity for risk. Answer a few logical scenarios to unlock your personalized risk profile.</p>
+        <p>Before you invest a single rupee, it is crucial to understand your emotional capacity for risk. Answer these 20 logical scenarios to unlock your personalized risk profile.</p>
     </div>
 
     <!-- কুইজ সেকশন -->
     <div class="quiz-section">
         <div class="quiz-container">
             
-            <!-- প্রগ্রেস বার -->
-            <div class="progress-header">
-                <span>Question 1 of 5</span>
-                <span>20% Completed</span>
-            </div>
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill"></div>
-            </div>
-
-            <!-- প্রশ্ন -->
-            <h2 class="question-text">If your investment portfolio suddenly dropped by 20% in one month due to market panic, what would be your most likely reaction?</h2>
-
-            <!-- অপশনস -->
-            <div class="options-grid">
-                <button class="option-btn">
-                    <i class="fa-regular fa-circle"></i> Sell everything immediately to prevent further losses.
-                </button>
+            <!-- কুইজ কন্টেইনার (প্রশ্নের সময় দেখাবে) -->
+            <div id="quizBlock">
+                <div class="part-indicator" id="partTitle">Part 1: Psychological & Behavioral</div>
                 
-                <button class="option-btn">
-                    <i class="fa-regular fa-circle"></i> Feel anxious but wait it out and do nothing.
-                </button>
-                
-                <button class="option-btn selected">
-                    <i class="fa-regular fa-circle-check"></i> See it as an opportunity and buy more at lower prices.
-                </button>
+                <div class="progress-header">
+                    <span id="questionCount">Question 1 of 20</span>
+                    <span id="progressPercent">5% Completed</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBar"></div>
+                </div>
+
+                <h2 class="question-text" id="questionText">Loading question...</h2>
+
+                <div class="options-grid" id="optionsGrid">
+                    <!-- Options will be injected by JavaScript -->
+                </div>
+
+                <div class="quiz-footer">
+                    <button class="nav-btn" id="prevBtn" onclick="prevQuestion()"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                    <button class="nav-btn next-btn" id="nextBtn" onclick="nextQuestion()">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
 
-            <!-- নেভিগেশন (Next / Prev) -->
-            <div class="quiz-footer">
-                <button class="nav-btn disabled"><i class="fa-solid fa-arrow-left"></i> Previous</button>
-                <button class="nav-btn next-btn">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+            <!-- রেজাল্ট কন্টেইনার (শেষে দেখাবে) -->
+            <div id="resultContainer">
+                <div class="score-circle">
+                    <h2 id="finalScore">0%</h2>
+                    <span>Risk Score</span>
+                </div>
+                <h1 class="profile-title" id="profileTitle">Your Profile</h1>
+                <p class="profile-desc" id="profileDesc">Description goes here.</p>
+                <button class="nav-btn next-btn" onclick="location.reload()" style="margin-top: 20px;">Retake Assessment <i class="fa-solid fa-rotate-right"></i></button>
             </div>
 
         </div>
     </div>
 
-    <!-- মোবাইল মেনুর জন্য জাভাস্ক্রিপ্ট -->
+    <!-- JavaScript লজিক -->
     <script>
         function toggleMenu() {
             var navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
+
+        // প্রশ্নের ডেটাবেস
+        const questions = [
+            // Part 1: Psychological & Behavioral
+            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "If the market suddenly crashes by 20-25% and your portfolio shows negative returns, what would be your first reaction?", options: [ { text: "Panic immensely and sell everything to withdraw my money.", score: 1 }, { text: "Get worried and sell a portion to minimize further losses.", score: 2 }, { text: "Feel bad, but stay calm knowing the market will recover.", score: 3 }, { text: "Feel happy, seeing it as an opportunity to buy more good funds/shares at cheaper rates.", score: 4 } ] },
+            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "What does the word 'Risk' truly mean to you?", options: [ { text: "The fear of losing my hard-earned money.", score: 1 }, { text: "Temporary uncertainty or fluctuation in money's value.", score: 2 }, { text: "An opportunity to beat inflation.", score: 3 }, { text: "Thrill and a pathway to creating immense wealth.", score: 4 } ] },
+            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "Suppose a good fund you invested in has been giving negative returns for the last 3-6 months. What will you do?", options: [ { text: "Book the loss, withdraw the money, and put it in a Fixed Deposit (FD).", score: 1 }, { text: "Stop my SIP or new investments and just wait.", score: 2 }, { text: "Continue my regular SIPs without interruption.", score: 3 }, { text: "Invest more money as a lumpsum since the market is down.", score: 4 } ] },
+            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "If you were asked to choose a game or scheme, which one would you pick?", options: [ { text: "100% guarantee of getting ₹10,000.", score: 1 }, { text: "75% probability of getting ₹15,000.", score: 2 }, { text: "50% probability of getting ₹25,000.", score: 3 }, { text: "25% probability of getting ₹50,000 (and a 75% chance of getting nothing).", score: 4 } ] },
+            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "Your friends are making huge profits in a scheme or crypto that you don't understand at all. What will you do?", options: [ { text: "I don't understand it, so I won't invest at all.", score: 1 }, { text: "Invest a very small amount just because my friends suggested it.", score: 2 }, { text: "Study and research it first, and invest only if I understand it.", score: 3 }, { text: "Invest a large sum immediately so I don't miss out on the opportunity.", score: 4 } ] },
+            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "How would you feel if you suddenly faced a loss of ₹10,000 from an investment?", options: [ { text: "I couldn't accept it; taking the risk was a mistake.", score: 1 }, { text: "I'd be very upset, and wouldn't feel better until I made a profit of at least ₹20,000 - ₹25,000.", score: 2 }, { text: "I'd feel bad, but I would accept it as a normal market cycle.", score: 3 }, { text: "I would forget it quickly and look for new opportunities; winning and losing is part of the game.", score: 4 } ] },
+            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "How do you generally view your past financial mistakes?", options: [ { text: "I regret them forever and am afraid to try anything new.", score: 1 }, { text: "I feel scared, so I tread very cautiously now.", score: 2 }, { text: "I learn from my mistakes and rebuild my strategy.", score: 3 }, { text: "I forget them quickly and do not hesitate to take new, big risks.", score: 4 } ] },
+            
+            // Part 2: Financial Capacity & Liability
+            { part: "Part 2: Financial Capacity & Liability", text: "What is your current life stage?", options: [ { text: "Retired or nearing retirement (Above 55 years).", score: 1 }, { text: "Late career stage (45 - 55 years).", score: 2 }, { text: "Mid-career stage (30 - 45 years).", score: 3 }, { text: "Early career or young adult (Below 30 years).", score: 4 } ] },
+            { part: "Part 2: Financial Capacity & Liability", text: "How is the stability of your current income?", options: [ { text: "Highly uncertain (e.g., freelancing or small business).", score: 1 }, { text: "Moderately stable, but fluctuates sometimes.", score: 2 }, { text: "Quite stable (private sector job or established business).", score: 3 }, { text: "Highly secure with guaranteed annual increments.", score: 4 } ] },
+            { part: "Part 2: Financial Capacity & Liability", text: "How many people are entirely financially dependent on you?", options: [ { text: "3 or more (elderly parents and children).", score: 1 }, { text: "2 people.", score: 2 }, { text: "1 person.", score: 3 }, { text: "No dependents (or both spouses are earning).", score: 4 } ] },
+            { part: "Part 2: Financial Capacity & Liability", text: "What percentage of your monthly income goes toward paying loans or EMIs?", options: [ { text: "More than 50%.", score: 1 }, { text: "Between 30% and 50%.", score: 2 }, { text: "Between 10% and 30%.", score: 3 }, { text: "Less than 10%, or no loans/EMIs.", score: 4 } ] },
+            { part: "Part 2: Financial Capacity & Liability", text: "Do you have an adequate Emergency Fund built up?", options: [ { text: "No, I hardly have any savings.", score: 1 }, { text: "Yes, enough to cover 1-3 months of expenses.", score: 2 }, { text: "Yes, enough to cover 3-6 months of expenses, kept separately.", score: 3 }, { text: "Yes, enough to cover more than 6 months of expenses, kept securely.", score: 4 } ] },
+            { part: "Part 2: Financial Capacity & Liability", text: "How secure is your Life & Health Insurance coverage?", options: [ { text: "I don't have either.", score: 1 }, { text: "I only have basic coverage provided by my employer.", score: 2 }, { text: "I have both, but the coverage is moderate.", score: 3 }, { text: "I have my own Term and Health policies with adequate coverage.", score: 4 } ] },
+            { part: "Part 2: Financial Capacity & Liability", text: "After deducting all expenses and EMIs, what percentage of your income can you comfortably invest?", options: [ { text: "Less than 10%.", score: 1 }, { text: "10% - 20%.", score: 2 }, { text: "20% - 40%.", score: 3 }, { text: "More than 40%.", score: 4 } ] },
+            { part: "Part 2: Financial Capacity & Liability", text: "How is the ratio of your family's total Assets compared to Liabilities (Loans)?", options: [ { text: "The burden of debt is much higher than assets.", score: 1 }, { text: "Assets and debts are almost equal.", score: 2 }, { text: "Assets are quite a bit higher than debts.", score: 3 }, { text: "I have plenty of assets and zero debt.", score: 4 } ] },
+            
+            // Part 3: Goals & Surplus
+            { part: "Part 3: Goals & Surplus (Efficient Money)", text: "How many years are left to achieve your biggest financial goal?", options: [ { text: "1 - 3 years (very close).", score: 1 }, { text: "3 - 7 years.", score: 2 }, { text: "7 - 10 years.", score: 3 }, { text: "More than 10 years.", score: 4 } ] },
+            { part: "Part 3: Goals & Surplus (Efficient Money)", text: "What percentage of the total amount required for that goal have you already accumulated?", options: [ { text: "75% - 100% (Cannot afford to lose capital now).", score: 1 }, { text: "50% - 75%.", score: 2 }, { text: "25% - 50%.", score: 3 }, { text: "0% - 25% (Just started, plenty of time).", score: 4 } ] },
+            { part: "Part 3: Goals & Surplus (Efficient Money)", text: "If you realize you are falling short of funds as the deadline approaches, what will you do?", options: [ { text: "It would be a disaster! I cannot compromise.", score: 1 }, { text: "I will be forced to take a loan.", score: 2 }, { text: "I am willing to wait another 2-3 years.", score: 3 }, { text: "I am very flexible; I can postpone or modify the goal.", score: 4 } ] },
+            { part: "Part 3: Goals & Surplus (Efficient Money)", text: "After making secure investments (PF, FD), do you have 'Surplus' money for taking risks?", options: [ { text: "Not at all.", score: 1 }, { text: "Very little.", score: 2 }, { text: "A fair amount.", score: 3 }, { text: "Yes, ample surplus money; fluctuations won't affect me.", score: 4 } ] },
+            { part: "Part 3: Goals & Surplus (Efficient Money)", text: "Approximately what percentage of return from your portfolio is sufficient to achieve your goals?", options: [ { text: "7% - 8% (Happy with guaranteed returns).", score: 1 }, { text: "9% - 11% (Just enough to beat inflation).", score: 2 }, { text: "12% - 15% (Standard market returns).", score: 3 }, { text: "15%+ (Absolutely need very high returns).", score: 4 } ] }
+        ];
+
+        let currentQuestion = 0;
+        let userAnswers = new Array(20).fill(null);
+
+        const partTitle = document.getElementById("partTitle");
+        const questionCount = document.getElementById("questionCount");
+        const progressPercent = document.getElementById("progressPercent");
+        const progressBar = document.getElementById("progressBar");
+        const questionText = document.getElementById("questionText");
+        const optionsGrid = document.getElementById("optionsGrid");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const quizBlock = document.getElementById("quizBlock");
+        const resultContainer = document.getElementById("resultContainer");
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            partTitle.innerText = q.part;
+            questionCount.innerText = `Question ${currentQuestion + 1} of 20`;
+            
+            const percent = ((currentQuestion + 1) / 20) * 100;
+            progressPercent.innerText = `${percent}% Completed`;
+            progressBar.style.width = `${percent}%`;
+            
+            questionText.innerText = q.text;
+            optionsGrid.innerHTML = "";
+
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement("button");
+                btn.className = "option-btn";
+                // যদি আগে থেকে সিলেক্ট করা থাকে
+                if (userAnswers[currentQuestion] === index) {
+                    btn.classList.add("selected");
+                    btn.innerHTML = `<i class="fa-regular fa-circle-check"></i> ${opt.text}`;
+                } else {
+                    btn.innerHTML = `<i class="fa-regular fa-circle"></i> ${opt.text}`;
+                }
+                btn.onclick = () => selectOption(index);
+                optionsGrid.appendChild(btn);
+            });
+
+            // বাটন কন্ট্রোল
+            prevBtn.disabled = currentQuestion === 0;
+            
+            if (userAnswers[currentQuestion] === null) {
+                nextBtn.disabled = true;
+                nextBtn.innerHTML = `Next Step <i class="fa-solid fa-arrow-right"></i>`;
+            } else {
+                nextBtn.disabled = false;
+                if (currentQuestion === 19) {
+                    nextBtn.innerHTML = `Submit Profiling <i class="fa-solid fa-check"></i>`;
+                } else {
+                    nextBtn.innerHTML = `Next Step <i class="fa-solid fa-arrow-right"></i>`;
+                }
+            }
+        }
+
+        function selectOption(index) {
+            userAnswers[currentQuestion] = index;
+            loadQuestion(); // UI রিফ্রেশ করার জন্য
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < 19) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                calculateResult();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function calculateResult() {
+            let totalScore = 0;
+            for (let i = 0; i < 20; i++) {
+                totalScore += questions[i].options[userAnswers[i]].score;
+            }
+
+            // পার্সেন্টেজ হিসাব (Max: 80)
+            let percentage = Math.round((totalScore / 80) * 100);
+            
+            quizBlock.style.display = "none";
+            resultContainer.style.display = "block";
+            
+            document.getElementById("finalScore").innerText = `${percentage}%`;
+            
+            const title = document.getElementById("profileTitle");
+            const desc = document.getElementById("profileDesc");
+
+            if (percentage <= 45) {
+                title.innerText = "Conservative Profile";
+                title.style.color = "#D97757"; // Copper
+                desc.innerText = "You prioritize capital preservation over high returns. You prefer stable, guaranteed investments like FDs and Debt Funds. High market volatility makes you uncomfortable.";
+            } else if (percentage <= 65) {
+                title.innerText = "Moderate Profile";
+                title.style.color = "var(--navy-blue)";
+                desc.innerText = "You seek a balance between growth and safety. You are willing to take calculated risks for better returns but still prefer a well-diversified portfolio that protects against severe market downturns.";
+            } else if (percentage <= 80) {
+                title.innerText = "Growth (Moderately Aggressive)";
+                title.style.color = "var(--teal)";
+                desc.innerText = "You have a strong appetite for wealth creation and can handle short-term market volatility. Equity Mutual Funds and growth-oriented assets are best suited for your long-term goals.";
+            } else {
+                title.innerText = "Aggressive Profile";
+                title.style.color = "var(--gold)";
+                desc.innerText = "You are a high-risk taker focused entirely on maximizing wealth. Market crashes represent opportunities for you. Direct equities, small-cap funds, and high-growth assets align perfectly with your mindset.";
+            }
+        }
+
+        // পেজ লোড হলে প্রথম প্রশ্ন দেখাবে
+        window.onload = loadQuestion;
     </script>
 
 </body>
