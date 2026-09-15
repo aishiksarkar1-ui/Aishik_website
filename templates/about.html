@@ -210,25 +210,28 @@
             margin-bottom: 50px;
         }
 
-        /* মডার্ন সাইডবার */
+       /* মডার্ন সাইডবার (Light Premium Update) */
         .sidebar {
             flex: 1;
-            background-color: var(--slate-gray); /* ডার্ক স্লেট ব্যাকগ্রাউন্ড */
-            color: var(--text-light);
+            /* ডার্ক স্লেটের বদলে ওয়ার্ম ক্রিম/সাদা গ্রেডিয়েন্ট দেওয়া হলো */
+            background: linear-gradient(135deg, #ffffff 0%, #FDFBF7 100%); 
+            color: #2c3e50; /* লেখা ডার্ক গ্রে করা হলো যাতে লাইট ব্যাকগ্রাউন্ডে ফুটে ওঠে */
             padding: 40px 30px;
             border-radius: 8px;
             height: fit-content;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            border-top: 4px solid var(--teal); /* ওপরে টিল রঙের বর্ডার */
+            /* লাইট বক্সের জন্য শ্যাডো হালকা করা হলো এবং চারদিকে বর্ডার দেওয়া হলো */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-top: 4px solid var(--gold); /* ওপরে প্রিমিয়াম গোল্ডেন বর্ডার */
         }
 
         .sidebar h3 {
             font-family: 'Playfair Display', serif;
             margin-top: 0;
             font-size: 24px;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            border-bottom: 1px solid rgba(10, 25, 47, 0.1); /* নিচের দাগটি হালকা ডার্ক করা হলো */
             padding-bottom: 15px;
-            color: var(--gold);
+            color: var(--navy-blue); /* টাইটেল নেভি ব্লু করা হলো */
         }
 
         .sidebar ul {
@@ -239,12 +242,13 @@
 
         .sidebar li {
             padding: 15px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(10, 25, 47, 0.05); /* লিস্টের মাঝের দাগগুলো হালকা করা হলো */
             font-weight: bold;
             font-size: 15px;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
+            color: #2c3e50;
         }
 
         /* আইকনের স্টাইল */
@@ -259,18 +263,17 @@
 
         /* হোভার করলে রং বদলাবে এবং একটু ডানদিকে সরবে */
         .sidebar li:hover {
-            color: var(--copper);
+            color: var(--gold); 
             transform: translateX(5px);
         }
 
         .sidebar li:hover i {
-            color: var(--gold);
+            color: var(--gold); /* হোভার করলে আইকনও গোল্ড হবে */
         }
 
         .sidebar li:last-child {
             border-bottom: none;
         }
-
         @media (max-width: 992px) {
             .navbar { padding: 15px 20px; }
             .nav-links {
