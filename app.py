@@ -47,6 +47,10 @@ def learn():
 def risk_profiling():
     return render_template('risk_profile.html')
 
+@app.route('/financial-planning')
+def financial_planning():
+    return render_template('financial_planning.html')
+
 # ==========================================
 # এপিআই এবং ফর্ম সাবমিশন
 # ==========================================
