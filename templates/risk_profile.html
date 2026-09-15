@@ -100,7 +100,6 @@
 </head>
 <body>
 
-    <!-- নেভিগেশন বার -->
     <nav class="navbar">
         <a href="/" class="logo">FINANCE WITH<br>AISHIK</a>
         <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
@@ -173,38 +172,42 @@
         </div>
     </div>
 
-    <!-- PDF টেমপ্লেট: A4 সাইজের পারফেক্ট পিক্সেল (794x1122) ব্যবহার করা হলো -->
+    <!-- PDF টেমপ্লেট: Flexbox বাদ দিয়ে Manual Padding এবং Block লেআউট দেওয়া হলো -->
     <div id="certificateTemplate" style="display: none;">
         <div id="certContent" style="width: 794px; background: #ffffff; font-family: 'Playfair Display', serif; color: #0A192F; margin: 0 auto;">
             
-            <!-- পেজ ১: মূল সার্টিফিকেট (Height 1122px ফিক্সড) -->
-            <div style="height: 1122px; padding: 50px; border: 15px solid #0A192F; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; box-sizing: border-box; background: #FDFBF7;">
+            <!-- পেজ ১: মূল সার্টিফিকেট -->
+            <div style="min-height: 1122px; padding-top: 150px; padding-bottom: 50px; padding-left: 50px; padding-right: 50px; border: 15px solid #0A192F; text-align: center; position: relative; box-sizing: border-box; background: #FDFBF7;">
                 <div style="position: absolute; top: 40px; left: 40px; color: #C5A059; font-size: 20px; font-weight: bold; letter-spacing: 2px;">FINANCE WITH AISHIK</div>
                 
-                <h1 style="color: #C5A059; font-size: 48px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">Certificate of Risk Profiling</h1>
+                <h1 style="color: #C5A059; font-size: 48px; margin-top: 20px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px;">Certificate of Risk Profiling</h1>
+                
                 <p style="font-family: 'Lato', sans-serif; font-size: 22px; color: #2c3e50; margin-bottom: 30px;">This is to proudly certify that</p>
                 
                 <h2 id="certUserName" style="font-size: 45px; border-bottom: 4px solid #2A9D8F; display: inline-block; padding-bottom: 10px; margin-bottom: 30px; font-weight: bold; color: #0A192F;">User Name</h2>
                 
-                <p style="font-family: 'Lato', sans-serif; font-size: 18px; color: #2c3e50; margin-bottom: 40px; max-width: 600px; line-height: 1.6;">has successfully completed the Investment Risk Assessment and obtained a</p>
+                <p style="font-family: 'Lato', sans-serif; font-size: 18px; color: #2c3e50; margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">has successfully completed the Investment Risk Assessment and obtained a</p>
                 
-                <div style="margin: 0 auto 30px auto; width: 160px; height: 160px; border-radius: 50%; border: 8px solid #C5A059; display: flex; align-items: center; justify-content: center; background: rgba(197, 160, 89, 0.1);">
-                    <span id="certUserScore" style="font-size: 50px; font-weight: bold; color: #C5A059;">0%</span>
+                <!-- Flexbox সরানো হলো, Margin Auto দিয়ে মাঝখানে আনা হলো -->
+                <div style="margin: 0 auto 40px auto; width: 160px; height: 160px; border-radius: 50%; border: 8px solid #C5A059; text-align: center; background: rgba(197, 160, 89, 0.1); line-height: 160px;">
+                    <span id="certUserScore" style="font-size: 50px; font-weight: bold; color: #C5A059; vertical-align: middle;">0%</span>
                 </div>
                 
                 <h3 id="certUserProfile" style="font-size: 34px; color: #2A9D8F; margin-bottom: 15px;">Profile Type</h3>
                 
-                <div style="position: absolute; bottom: 50px; width: 100%; text-align: center;">
+                <div style="position: absolute; bottom: 50px; left: 0; width: 100%; text-align: center;">
                     <p style="font-family: 'Lato', sans-serif; font-size: 16px; color: #7f8c8d; border-top: 2px solid #ccc; display: inline-block; padding-top: 15px;">Issued by <strong>Aishik Sarkar</strong><br>Financial Literacy Hub</p>
                 </div>
             </div>
 
-            <!-- পেজ ২+: প্রশ্নোত্তর (page-break-before: always ব্যবহার করা হলো) -->
-            <div id="qaReport" style="padding: 50px; box-sizing: border-box; background: #ffffff; page-break-before: always;"></div>
+            <!-- ম্যাজিক ক্লাস: এটি গ্যারান্টি দেবে যে এর পরের অংশ ২য় পেজে যাবে -->
+            <div class="html2pdf__page-break"></div>
+
+            <!-- পেজ ২+: প্রশ্নোত্তর -->
+            <div id="qaReport" style="padding: 50px; box-sizing: border-box; background: #ffffff;"></div>
         </div>
     </div>
 
-    <!-- JavaScript লজিক -->
     <script>
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
@@ -382,14 +385,12 @@
             
             const element = document.getElementById('certContent');
             
-            // ম্যাজিক ফিক্স: jsPDF এর স্ট্যান্ডার্ড A4 সাইজ ব্যবহার করা হলো
             const opt = {
-                margin:       0, 
+                margin:       0,
                 filename:     `${name}_Detailed_Risk_Report.pdf`,
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }, // Px এর বদলে mm এবং a4 ফরম্যাট
-                pagebreak:    { mode: ['css', 'legacy'] } // এই লাইনের জাদুতে 2nd পেজটি পারফেক্টভাবে আলাদা হবে
+                html2canvas:  { scale: 2, useCORS: true, windowWidth: 800 }, // windowWidth ফিক্স করে দেওয়া হলো
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' } 
             };
             
             html2pdf().set(opt).from(element).save();
