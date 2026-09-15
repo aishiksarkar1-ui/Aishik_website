@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Risk Profiling | Financial Literacy Hub</title>
+    
+    <!-- গুগল ফন্টস -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- ফন্ট অসাম (আইকনের জন্য) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --navy-blue: #0A192F;
+            --gold: #C5A059;
+            --light-cream: #FDFBF7;
+            --text-light: #E0E0E0;
+            --teal: #2A9D8F;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--navy-blue);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* স্টিকি নেভিগেশন বার (আগের মতোই) */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            line-height: 1.1;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-links li { position: relative; }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            padding: 10px 0;
+            display: block;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+        /* হিরো ব্যানার */
+        .profiling-hero {
+            position: relative;
+            background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)), url("{{ url_for('static', filename='Study.png') }}");
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px 100px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(42, 157, 143, 0.3);
+        }
+
+        .profiling-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: var(--gold);
+            margin: 0 0 15px 0;
+        }
+
+        .profiling-hero p {
+            font-size: 17px;
+            max-width: 650px;
+            margin: 0 auto;
+            color: #b0b0b0;
+        }
+
+        /* কুইজ কন্টেইনার (Glassmorphism Design) */
+        .quiz-section {
+            padding: 0 20px 80px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .quiz-container {
+            background: linear-gradient(135deg, rgba(21, 36, 59, 0.85) 0%, rgba(10, 25, 47, 0.95) 100%);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-top: 1px solid rgba(197, 160, 89, 0.6);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 800px;
+            padding: 40px 50px;
+            margin-top: -60px; /* হিরো সেকশনের ওপর ওভারল্যাপ */
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            backdrop-filter: blur(15px);
+        }
+
+        /* প্রগ্রেস বার */
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: var(--gold);
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 20%; /* ডেমোর জন্য ২০% দেওয়া আছে */
+            background: linear-gradient(90deg, var(--teal), var(--gold));
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        /* প্রশ্ন এবং অপশন */
+        .question-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--light-cream);
+            margin-top: 0;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        /* প্রিমিয়াম অপশন বাটন */
+        .option-btn {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 18px 25px;
+            color: var(--text-light);
+            font-size: 16px;
+            font-family: 'Lato', sans-serif;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        /* অপশনের ভেতরের ডামি রেডিও বাটন আইকন */
+        .option-btn i {
+            margin-right: 15px;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        /* হোভার ইফেক্ট */
+        .option-btn:hover {
+            background-color: rgba(197, 160, 89, 0.05);
+            border-color: rgba(197, 160, 89, 0.5);
+            transform: translateX(5px);
+        }
+
+        .option-btn:hover i {
+            color: var(--gold);
+        }
+
+        /* সিলেক্ট করা অবস্থার ডিজাইন (JS দিয়ে পরে এই ক্লাসটি যোগ হবে) */
+        .option-btn.selected {
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.15), rgba(42, 157, 143, 0.15));
+            border-color: var(--gold);
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.2);
+        }
+
+        .option-btn.selected i {
+            color: var(--teal);
+        }
+
+        /* নেভিগেশন বাটন (Next / Prev) */
+        .quiz-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 25px;
+        }
+
+        .nav-btn {
+            background-color: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--gold);
+            color: var(--navy-blue);
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        .nav-btn.disabled {
+            border-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.2);
+            cursor: not-allowed;
+        }
+        
+        .nav-btn.disabled:hover {
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        .next-btn {
+            background-color: var(--teal);
+            color: white;
+            border-color: var(--teal);
+        }
+
+        .next-btn:hover {
+            background-color: #218276;
+            color: white;
+            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.4);
+        }
+
+        /* রেসপনসিভ ডিজাইন */
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 30px 20px;
+            }
+            .question-text {
+                font-size: 22px;
+            }
+            .option-btn {
+                padding: 15px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- নেভিগেশন বার (আপনার আগের পেজগুলোর মতো) -->
+    <nav class="navbar">
+        <a href="/" class="logo">FINANCE WITH<br>AISHIK</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/learn">Learn</a></li>
+            <li><a href="#" class="active">Self-Risk Profiling</a></li>
+            <!-- বাকি মেনু আইটেমগুলো এখানে থাকবে... -->
+        </ul>
+    </nav>
+
+    <!-- হিরো ব্যানার -->
+    <div class="profiling-hero">
+        <h1>Discover Your Investment DNA</h1>
+        <p>Before you invest a single rupee, it is crucial to understand your emotional capacity for risk. Answer a few logical scenarios to unlock your personalized risk profile.</p>
+    </div>
+
+    <!-- কুইজ সেকশন (Glassmorphism Card) -->
+    <div class="quiz-section">
+        <div class="quiz-container">
+            
+            <!-- প্রগ্রেস বার -->
+            <div class="progress-header">
+                <span>Question 1 of 5</span>
+                <span>20% Completed</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill"></div>
+            </div>
+
+            <!-- প্রশ্ন -->
+            <h2 class="question-text">If your investment portfolio suddenly dropped by 20% in one month due to market panic, what would be your most likely reaction?</h2>
+
+            <!-- অপশনস -->
+            <div class="options-grid">
+                <button class="option-btn">
+                    <i class="fa-regular fa-circle"></i> Sell everything immediately to prevent further losses.
+                </button>
+                
+                <button class="option-btn">
+                    <i class="fa-regular fa-circle"></i> Feel anxious but wait it out and do nothing.
+                </button>
+                
+                <!-- ডেমো হিসেবে এটিকে 'selected' ক্লাস দেওয়া হয়েছে ডিজাইন দেখার জন্য -->
+                <button class="option-btn selected">
+                    <i class="fa-regular fa-circle-check"></i> See it as an opportunity and buy more at lower prices.
+                </button>
+            </div>
+
+            <!-- নেভিগেশন (Next / Prev) -->
+            <div class="quiz-footer">
+                <!-- প্রথম প্রশ্নে Prev বাটন Disabled থাকবে -->
+                <button class="nav-btn disabled"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                
+                <button class="nav-btn next-btn">Next Step <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
