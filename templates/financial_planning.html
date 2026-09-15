@@ -562,7 +562,6 @@
             selectedGoals.forEach((goal, i) => {
                 let pv = 0; let dur = 0; let inf = 5.0;
                 
-                // Logic Ported from Python
                 if(goal === "Retirement Fund") {
                     dur = Math.max(0, 60 - user_age);
                     if(globalLifestyle==="Basic") pv = (ann_inc*0.40)/0.09; else if(globalLifestyle==="Modest") pv = (ann_inc*0.45)/0.09; else if(globalLifestyle==="Standard") pv = (ann_inc*0.50)/0.09; else if(globalLifestyle==="Comfortable") pv = (ann_inc*0.60)/0.09; else if(globalLifestyle==="Upper_Middle class") pv = (ann_inc*0.70)/0.09; else if(globalLifestyle==="Affluent") pv = (ann_inc*0.80)/0.09; else if(globalLifestyle==="Luxury") pv = (ann_inc*0.90)/0.09; else pv = ann_inc/0.09;
@@ -594,10 +593,17 @@
                 let penStr = ((fv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 let penHTML = goal === "Retirement Fund" ? `<div class="pension-text" id="pen_${i}">Pension: ₹${penStr} /mo</div>` : "";
 
-                // মেইন ম্যাজিক: Goal Name এখন Editable Text Box!
+                // লজিক: শুধুমাত্র "Gadgets" লেখা থাকলে Editable Text Box হবে, নাহলে Fixed Text
+                let goalNameHTML = "";
+                if (goal.includes("Gadget")) {
+                    goalNameHTML = `<input type="text" id="goalName_${i}" value="${goal}">`;
+                } else {
+                    goalNameHTML = `<strong>${goal}</strong><input type="hidden" id="goalName_${i}" value="${goal}">`;
+                }
+
                 tbody.innerHTML += `
                     <tr>
-                        <td><input type="text" id="goalName_${i}" value="${goal}"></td>
+                        <td>${goalNameHTML}</td>
                         <td><input type="number" id="pv_${i}" value="${pv.toFixed(0)}" oninput="calcRow(${i}, '${goal}')"></td>
                         <td><input type="number" id="dur_${i}" value="${dur}" oninput="calcRow(${i}, '${goal}')"></td>
                         <td><input type="number" id="inf_${i}" value="${inf.toFixed(1)}" step="0.5" oninput="calcRow(${i}, '${goal}')"></td>
@@ -625,7 +631,6 @@
             btn.innerText = "Processing...";
             btn.disabled = true;
 
-            // এডিট করা নতুন নামগুলো ধরে আনা হচ্ছে
             let finalEditedGoals = [];
             selectedGoals.forEach((_, i) => {
                 let newName = document.getElementById(`goalName_${i}`).value;
