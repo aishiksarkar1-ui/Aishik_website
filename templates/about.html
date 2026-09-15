@@ -111,23 +111,25 @@
         .dropdown:hover .dropdown-content { display: block; }
         .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
 
-/* হিরো ব্যানার (নিচের দাগ ফিরিয়ে আনা হলো) */
+/* হিরো ব্যানার (ছবি সম্পূর্ণ বুক পর্যন্ত দেখানোর ফিক্স) */
         .about-hero {
             position: relative;
             background-color: var(--navy-blue); 
             
-            /* শুধু বাঁ-দিকের গ্রেডিয়েন্ট রাখা হলো যাতে মুখের ওপর ছায়া না পড়ে */
+            /* আগের মতোই বাঁ-দিকের গ্রেডিয়েন্ট রাখা হলো */
             background-image: 
                 linear-gradient(to right, rgba(10, 25, 47, 1) 30%, rgba(10, 25, 47, 0.7) 60%, rgba(255, 255, 255, 0) 95%), 
                 url("{{ url_for('static', filename='Aishik 3.png') }}");
                 
-            background-size: cover; /* ছবিটা পুরো স্ক্রিন জুড়ে থাকবে */
-            background-position: top right; 
+            background-size: cover; 
+            /* ম্যাজিক ট্রিক: পজিশন center right করা হলো যাতে মাথা বা বুক কোনোটিই না কাটে */
+            background-position: center right; 
             background-repeat: no-repeat; 
-            padding: 120px 50px 120px 8%; /* প্যাডিং আগের মতো করে দেওয়া হলো */
-            text-align: left; 
             
-            /* আপনার পছন্দের নিচের বর্ডার লাইনটা আবার ফিরিয়ে আনা হলো */
+            /* সেকশনটিকে লম্বা করার জন্য ওপর ও নিচের প্যাডিং 120px থেকে বাড়িয়ে 180px করা হলো */
+            padding: 180px 50px 180px 8%; 
+            
+            text-align: left; 
             border-bottom: 1px solid var(--teal); 
         }
         
