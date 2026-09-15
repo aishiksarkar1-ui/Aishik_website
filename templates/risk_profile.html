@@ -101,7 +101,7 @@
             color: #b0b0b0;
         }
 
-        /* কুইজ কন্টেইনার (Glassmorphism Design) */
+/* কুইজ কন্টেইনার (Light Premium Design) */
         .quiz-section {
             padding: 0 20px 80px 20px;
             display: flex;
@@ -109,18 +109,18 @@
         }
 
         .quiz-container {
-            background: linear-gradient(135deg, rgba(21, 36, 59, 0.85) 0%, rgba(10, 25, 47, 0.95) 100%);
+            /* ডার্ক কালার পাল্টে ওয়ার্ম ক্রিম/সাদা কালার দেওয়া হলো */
+            background: linear-gradient(135deg, #ffffff 0%, #FDFBF7 100%);
             border: 1px solid rgba(197, 160, 89, 0.3);
-            border-top: 1px solid rgba(197, 160, 89, 0.6);
+            border-top: 4px solid var(--gold); /* ওপরে একটু মোটা সোনালী বর্ডার */
             border-radius: 15px;
             width: 100%;
             max-width: 800px;
             padding: 40px 50px;
-            margin-top: -60px; /* হিরো সেকশনের ওপর ওভারল্যাপ */
+            margin-top: -60px;
             position: relative;
             z-index: 10;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         /* প্রগ্রেস বার */
@@ -130,7 +130,7 @@
             align-items: center;
             margin-bottom: 15px;
             font-size: 14px;
-            color: var(--gold);
+            color: var(--navy-blue); /* হালকা ব্যাকগ্রাউন্ডে ডার্ক লেখা */
             font-weight: bold;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -139,7 +139,7 @@
         .progress-bar-bg {
             width: 100%;
             height: 6px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(10, 25, 47, 0.1); /* হালকা গ্রে */
             border-radius: 10px;
             margin-bottom: 40px;
             overflow: hidden;
@@ -147,7 +147,7 @@
 
         .progress-bar-fill {
             height: 100%;
-            width: 20%; /* ডেমোর জন্য ২০% দেওয়া আছে */
+            width: 20%;
             background: linear-gradient(90deg, var(--teal), var(--gold));
             border-radius: 10px;
             transition: width 0.4s ease;
@@ -157,7 +157,7 @@
         .question-text {
             font-family: 'Playfair Display', serif;
             font-size: 28px;
-            color: var(--light-cream);
+            color: var(--navy-blue); /* লাইট ব্যাকগ্রাউন্ডের ওপর ডার্ক ব্লু কালার */
             margin-top: 0;
             margin-bottom: 30px;
             line-height: 1.4;
@@ -170,13 +170,13 @@
             margin-bottom: 40px;
         }
 
-        /* প্রিমিয়াম অপশন বাটন */
+        /* প্রিমিয়াম অপশন বাটন (Light Theme) */
         .option-btn {
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #ffffff; /* সাদা বাটন */
+            border: 1px solid rgba(10, 25, 47, 0.1); /* হালকা বর্ডার */
             border-radius: 8px;
             padding: 18px 25px;
-            color: var(--text-light);
+            color: #2c3e50; /* ডার্ক গ্রে টেক্সট */
             font-size: 16px;
             font-family: 'Lato', sans-serif;
             text-align: left;
@@ -184,32 +184,35 @@
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
 
-        /* অপশনের ভেতরের ডামি রেডিও বাটন আইকন */
         .option-btn i {
             margin-right: 15px;
             font-size: 18px;
-            color: rgba(255, 255, 255, 0.2);
+            color: rgba(10, 25, 47, 0.2);
             transition: all 0.3s ease;
         }
 
         /* হোভার ইফেক্ট */
         .option-btn:hover {
-            background-color: rgba(197, 160, 89, 0.05);
-            border-color: rgba(197, 160, 89, 0.5);
+            background-color: #FDFBF7;
+            border-color: var(--gold);
             transform: translateX(5px);
+            box-shadow: 0 8px 15px rgba(197, 160, 89, 0.1);
         }
 
         .option-btn:hover i {
             color: var(--gold);
         }
 
-        /* সিলেক্ট করা অবস্থার ডিজাইন (JS দিয়ে পরে এই ক্লাসটি যোগ হবে) */
+        /* সিলেক্ট করা অবস্থার ডিজাইন */
         .option-btn.selected {
-            background: linear-gradient(135deg, rgba(197, 160, 89, 0.15), rgba(42, 157, 143, 0.15));
-            border-color: var(--gold);
-            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.2);
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.05), rgba(42, 157, 143, 0.05));
+            border-color: var(--teal);
+            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.15);
+            font-weight: bold;
+            color: var(--navy-blue);
         }
 
         .option-btn.selected i {
@@ -221,14 +224,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(10, 25, 47, 0.1);
             padding-top: 25px;
         }
 
         .nav-btn {
             background-color: transparent;
-            color: var(--gold);
-            border: 1px solid var(--gold);
+            color: var(--navy-blue);
+            border: 1px solid var(--navy-blue);
             padding: 10px 25px;
             border-radius: 5px;
             font-size: 14px;
@@ -240,20 +243,21 @@
         }
 
         .nav-btn:hover {
-            background-color: var(--gold);
-            color: var(--navy-blue);
-            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+            background-color: var(--navy-blue);
+            color: white;
+            box-shadow: 0 5px 15px rgba(10, 25, 47, 0.2);
         }
 
         .nav-btn.disabled {
-            border-color: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(10, 25, 47, 0.2);
+            color: rgba(10, 25, 47, 0.3);
             cursor: not-allowed;
         }
         
         .nav-btn.disabled:hover {
             background-color: transparent;
             box-shadow: none;
+            color: rgba(10, 25, 47, 0.3);
         }
 
         .next-btn {
@@ -265,9 +269,8 @@
         .next-btn:hover {
             background-color: #218276;
             color: white;
-            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.4);
+            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3);
         }
-
         /* রেসপনসিভ ডিজাইন */
         @media (max-width: 768px) {
             .quiz-container {
