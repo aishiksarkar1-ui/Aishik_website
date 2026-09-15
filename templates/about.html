@@ -111,26 +111,27 @@
         .dropdown:hover .dropdown-content { display: block; }
         .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
 
-      /* হিরো ব্যানার (মুখ পরিষ্কার করার ফিক্স) */
+     /* হিরো ব্যানার (নিচের দাগ মুছে স্মুথ ব্লেন্ড করার ফিক্স) */
         .about-hero {
             position: relative;
-            background-color: navy-blue; 
+            background-color: var(--navy-blue); /* কোডের আগের ছোট ভুলটি ঠিক করা হলো */
             
-            /* ট্রানজিশনটি ডানদিকে গিয়ে সম্পূর্ণ ট্রান্সপারেন্ট (0) করে দেওয়া হলো যাতে মুখের ওপর ছায়া না পড়ে */
-            background-image: linear-gradient(to right, 
-                rgba(10, 25, 47, 1) 25%, 
-                rgba(10, 25, 47, 0.7) 65%, 
-                rgba(255, 255, 255, 0.05) 95%), 
+            /* ম্যাজিক ট্রিক: নিচে এবং বাঁ-দিকে ডাবল গ্রেডিয়েন্ট দিয়ে ছবিটিকে ব্যাকগ্রাউন্ডের সাথে মিশিয়ে দেওয়া হলো */
+            background-image: 
+                /* ১. নিচের দিকের স্মুথ ফেড (সোজা দাগ মোছার জন্য) */
+                linear-gradient(to bottom, rgba(10, 25, 47, 0) 65%, rgba(10, 25, 47, 1) 100%),
+                /* ২. বাঁ-দিকের ফেড (মুখের ওপর থেকে ছায়া সরানোর জন্য) */
+                linear-gradient(to right, rgba(10, 25, 47, 1) 30%, rgba(10, 25, 47, 0.7) 60%, rgba(255, 255, 255, 0) 95%), 
+                /* ৩. আসল ছবি */
                 url("{{ url_for('static', filename='Aishik 3.png') }}");
                 
-            background-size: contain; 
-            background-position: right; /* center-এর বদলে right করা হলো যাতে ছবি একদম ডানদিকে থাকে */
+            background-size: cover; /* contain এর বদলে cover দেওয়া হলো যাতে পুরো স্ক্রিন সুন্দরভাবে ভরে যায় */
+            background-position: top right; /* ছবিটা একদম ডানদিকে পারফেক্ট পজিশনে থাকবে */
             background-repeat: no-repeat; 
-            padding: 120px 50px 120px 8%; 
+            padding: 120px 50px 140px 8%; /* নিচের ফেডটা সুন্দর দেখানোর জন্য নিচের প্যাডিং একটু বাড়ানো হলো */
             text-align: left; 
-            border-bottom: 1px solid var(--teal); 
+            /* border-bottom সরিয়ে দেওয়া হলো যাতে কোনো দাগ না থাকে */
         }
-
         
         .about-hero h1 {
             font-family: 'Playfair Display', serif;
