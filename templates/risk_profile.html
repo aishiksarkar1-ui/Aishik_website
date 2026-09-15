@@ -236,12 +236,8 @@
             }
         }
 
-        function nextQuestion() {
-            if (currentQuestion < 19) { currentQuestion++; loadQuestion(); } else { calculateResult(); }
-        }
-        function prevQuestion() {
-            if (currentQuestion > 0) { currentQuestion--; loadQuestion(); }
-        }
+        function nextQuestion() { if (currentQuestion < 19) { currentQuestion++; loadQuestion(); } else { calculateResult(); } }
+        function prevQuestion() { if (currentQuestion > 0) { currentQuestion--; loadQuestion(); } }
 
         function calculateResult() {
             let totalScore = 0;
@@ -304,7 +300,7 @@
 
                 if(result.status === 'success') {
                     formMessage.style.color = 'green';
-                    formMessage.innerText = 'Success! Downloading your PDF Report...';
+                    formMessage.innerText = 'Success! Downloading your Premium PDF Report...';
                     
                     generatePDFDirect(name, score, profile);
 
@@ -325,121 +321,177 @@
             }
         }
 
-        // একদম নতুন ফাংশন! কোনো স্ক্রিনশট হবে না। সরাসরি কোড দিয়ে PDF প্রিন্ট হবে।
+        // ==========================================
+        // রয়্যাল PDF জেনারেটর (JS কোডিং দিয়ে)
+        // ==========================================
         function generatePDFDirect(name, score, profile) {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
 
-            // ----- প্রথম পেজ: সার্টিফিকেট -----
-            // বর্ডার
-            doc.setDrawColor(10, 25, 47); // নেভি ব্লু
-            doc.setLineWidth(4);
+            // ----------------------------------------------------
+            // পেজ ১: রয়্যাল সার্টিফিকেট ডিজাইন
+            // ----------------------------------------------------
+            
+            // ১. রয়্যাল আইভরি ব্যাকগ্রাউন্ড
+            doc.setFillColor(253, 251, 247); // Light Cream (#FDFBF7)
+            doc.rect(0, 0, 210, 297, 'F');
+
+            // ২. আউটার বর্ডার (নেভি ব্লু)
+            doc.setDrawColor(10, 25, 47); // Navy Blue
+            doc.setLineWidth(3);
             doc.rect(10, 10, 190, 277);
 
-            // সাবটাইটেল
-            doc.setTextColor(197, 160, 89); // গোল্ড
-            doc.setFont("helvetica", "bold");
-            doc.setFontSize(14);
-            doc.text("FINANCE WITH AISHIK", 105, 30, null, null, "center");
+            // ৩. ইনার বর্ডার (গোল্ড)
+            doc.setDrawColor(197, 160, 89); // Gold
+            doc.setLineWidth(0.5);
+            doc.rect(14, 14, 182, 269);
 
-            // টাইটেল
-            doc.setFontSize(26);
-            doc.text("Certificate of Risk Profiling", 105, 45, null, null, "center");
-
-            // বডি টেক্সট
-            doc.setTextColor(44, 62, 80);
-            doc.setFont("helvetica", "normal");
-            doc.setFontSize(14);
-            doc.text("This is to proudly certify that", 105, 65, null, null, "center");
-
-            // নাম
-            doc.setTextColor(10, 25, 47);
-            doc.setFont("helvetica", "bold");
-            doc.setFontSize(26);
-            doc.text(name, 105, 80, null, null, "center");
-            
-            // নামের নিচে দাগ
-            doc.setDrawColor(42, 157, 143);
+            // ৪. চারকোণায় গোল্ডেন কর্নার ডিজাইন
+            let m = 18; let L = 15;
             doc.setLineWidth(1);
-            const nameWidth = doc.getTextWidth(name);
-            doc.line(105 - nameWidth/2, 84, 105 + nameWidth/2, 84);
+            // Top Left
+            doc.line(m, m, m+L, m); doc.line(m, m, m, m+L);
+            // Top Right
+            doc.line(210-m, m, 210-m-L, m); doc.line(210-m, m, 210-m, m+L);
+            // Bottom Left
+            doc.line(m, 297-m, m+L, 297-m); doc.line(m, 297-m, m, 297-m-L);
+            // Bottom Right
+            doc.line(210-m, 297-m, 210-m-L, 297-m); doc.line(210-m, 297-m, 210-m, 297-m-L);
 
-            // বডি ২
-            doc.setTextColor(44, 62, 80);
-            doc.setFont("helvetica", "normal");
-            doc.setFontSize(12);
-            doc.text("has successfully completed the Investment Risk Assessment", 105, 100, null, null, "center");
-            doc.text("and obtained a", 105, 108, null, null, "center");
+            // ৫. সাবটাইটেল (Times Font)
+            doc.setFont("times", "bold");
+            doc.setTextColor(197, 160, 89); // Gold
+            doc.setFontSize(16);
+            doc.text("FINANCE WITH AISHIK", 105, 40, null, null, "center");
 
-            // স্কোর সার্কেল
-            doc.setDrawColor(197, 160, 89);
-            doc.setFillColor(253, 251, 247);
+            // ৬. মূল টাইটেল
+            doc.setFontSize(30);
+            doc.setTextColor(10, 25, 47); // Navy Blue
+            doc.text("CERTIFICATE OF RISK PROFILING", 105, 55, null, null, "center");
+
+            // ৭. বডি টেক্সট
+            doc.setFont("times", "italic");
+            doc.setFontSize(16);
+            doc.setTextColor(60, 80, 100);
+            doc.text("This is to proudly certify that", 105, 75, null, null, "center");
+
+            // ৮. ইউজারের নাম
+            doc.setFont("times", "bold");
+            doc.setFontSize(38);
+            doc.setTextColor(10, 25, 47);
+            doc.text(name, 105, 95, null, null, "center");
+            
+            // নামের নিচে গোল্ডেন লাইন
+            doc.setDrawColor(42, 157, 143); // Teal Line
             doc.setLineWidth(1.5);
-            doc.circle(105, 140, 18, "FD");
+            let nameWidth = doc.getTextWidth(name);
+            doc.line(105 - nameWidth/2, 100, 105 + nameWidth/2, 100);
 
-            doc.setTextColor(197, 160, 89);
+            // ৯. সেকেন্ড বডি টেক্সট
+            doc.setFont("times", "italic");
+            doc.setFontSize(14);
+            doc.setTextColor(60, 80, 100);
+            doc.text("has successfully completed the Investment Risk Assessment", 105, 115, null, null, "center");
+            doc.text("and obtained a", 105, 123, null, null, "center");
+
+            // ১০. ডাবল-বর্ডার স্কোর সার্কেল (Seal Effect)
+            doc.setDrawColor(197, 160, 89);
+            doc.setFillColor(255, 255, 255); // White inside
+            doc.setLineWidth(2);
+            doc.circle(105, 155, 22, "FD"); // Outer Thick Circle
+            doc.setLineWidth(0.4);
+            doc.circle(105, 155, 20, "S"); // Inner Thin Circle
+
             doc.setFont("helvetica", "bold");
-            doc.setFontSize(20);
-            doc.text(score, 105, 142, null, null, "center");
-
-            // প্রোফাইল
-            doc.setTextColor(42, 157, 143);
+            doc.setTextColor(197, 160, 89); // Gold
             doc.setFontSize(22);
-            doc.text(profile, 105, 180, null, null, "center");
+            doc.text(score, 105, 158, null, null, "center");
 
-            // ফুটার
+            // ১১. প্রোফাইল টাইপ
+            doc.setFont("times", "bold");
+            doc.setTextColor(42, 157, 143); // Teal
+            doc.setFontSize(24);
+            doc.text(profile, 105, 195, null, null, "center");
+
+            // ১২. ফুটার সেকশন
             doc.setDrawColor(200, 200, 200);
             doc.setLineWidth(0.5);
-            doc.line(60, 250, 150, 250);
-            doc.setTextColor(127, 140, 141);
+            doc.line(65, 250, 145, 250); // Divider Line
+            
             doc.setFont("helvetica", "normal");
+            doc.setTextColor(100, 100, 100);
             doc.setFontSize(10);
             doc.text("Issued by Aishik Sarkar", 105, 260, null, null, "center");
+            doc.setFont("helvetica", "bold");
             doc.text("Financial Literacy Hub & FinXHorizon", 105, 266, null, null, "center");
 
-            // ----- দ্বিতীয় পেজ এবং পরের পেজগুলো: প্রশ্নোত্তর -----
+
+            // ----------------------------------------------------
+            // পেজ ২+: প্রশ্ন-উত্তরের প্রফেশনাল রিপোর্ট
+            // ----------------------------------------------------
             doc.addPage();
             
-            doc.setTextColor(10, 25, 47);
-            doc.setFont("helvetica", "bold");
+            // রয়্যাল হেডার (Navy Blue Background)
+            doc.setFillColor(10, 25, 47);
+            doc.rect(10, 10, 190, 22, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFont("times", "bold");
             doc.setFontSize(18);
-            doc.text("Detailed Risk Assessment Report", 15, 20);
-            
-            doc.setDrawColor(197, 160, 89);
-            doc.setLineWidth(0.8);
-            doc.line(15, 24, 195, 24);
+            doc.text("Detailed Risk Assessment Report", 105, 25, null, null, "center");
 
-            let yPos = 35; // লেখার শুরুর পজিশন
+            let yPos = 45; // প্রথম প্রশ্নের শুরুর পজিশন
 
             for (let i = 0; i < questions.length; i++) {
                 let q = questions[i];
                 let ansIndex = userAnswers[i];
                 let ansText = ansIndex !== null ? q.options[ansIndex].text : "Not answered";
 
+                // প্রশ্ন
                 doc.setFont("helvetica", "bold");
                 doc.setFontSize(11);
-                doc.setTextColor(10, 25, 47);
+                doc.setTextColor(10, 25, 47); // Navy Blue
+                let splitQ = doc.splitTextToSize(`Q${i + 1}. ${q.text}`, 175);
                 
-                // লেখা যদি লাইনের বাইরে যায়, তবে অটোমেটিক ভেঙে দেবে
-                let splitQ = doc.splitTextToSize(`Q${i + 1}. ${q.text}`, 180);
-                let splitA = doc.splitTextToSize(`Your Answer: ${ansText}`, 175);
+                // উত্তর
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(10);
+                let splitA = doc.splitTextToSize(ansText, 170); 
 
-                // ম্যাপ করা হচ্ছে পেজের নিচে গেলে পরের পেজে নেওয়ার জন্য
-                let blockHeight = (splitQ.length * 5.5) + (splitA.length * 5.5) + 10;
-                if (yPos + blockHeight > 280) {
+                // বক্সের হাইট ক্যালকুলেট
+                let qHeight = splitQ.length * 5;
+                let aHeight = splitA.length * 5;
+                let boxHeight = aHeight + 12; // বক্সের ভেতরের প্যাডিং
+
+                // যদি পেজের একদম নিচে চলে যায়, তবে নতুন পেজ তৈরি করবে
+                if (yPos + qHeight + boxHeight > 280) {
                     doc.addPage();
-                    yPos = 20;
+                    yPos = 20; // নতুন পেজের ওপর থেকে শুরু
                 }
 
-                // প্রশ্ন বসানো
+                // প্রশ্ন প্রিন্ট
                 doc.text(splitQ, 15, yPos);
-                yPos += splitQ.length * 5.5;
+                yPos += qHeight + 4; // প্রশ্নের পর একটু গ্যাপ
 
-                // উত্তর বসানো
-                doc.setFont("helvetica", "normal");
-                doc.setTextColor(42, 157, 143);
-                doc.text(splitA, 20, yPos);
-                yPos += splitA.length * 5.5 + 8; // গ্যাপ
+                // উত্তরের ব্যাকগ্রাউন্ড বক্স (হালকা টিল কালার)
+                doc.setFillColor(245, 250, 250); 
+                doc.rect(15, yPos, 180, boxHeight, "F");
+                
+                // বক্সের বাঁ-দিকের ডিজাইন বর্ডার (গাঢ় টিল কালার)
+                doc.setDrawColor(42, 157, 143); 
+                doc.setLineWidth(1.5);
+                doc.line(15, yPos, 15, yPos + boxHeight);
+
+                // "Your Answer:" লেখা প্রিন্ট
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(197, 160, 89); // Gold
+                doc.text("Your Answer:", 19, yPos + 6);
+
+                // আসল উত্তরের টেক্সট প্রিন্ট
+                doc.setFont("helvetica", "italic");
+                doc.setTextColor(42, 157, 143); // Teal
+                doc.text(splitA, 19, yPos + 12);
+
+                yPos += boxHeight + 10; // পরের প্রশ্নের জন্য গ্যাপ
             }
 
             // ম্যাজিক পিডিএফ ডাউনলোড!
