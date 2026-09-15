@@ -69,7 +69,10 @@
         .goal-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
         .goal-table th { background-color: var(--navy-blue); color: var(--gold); padding: 12px; text-align: left; }
         .goal-table td { padding: 10px; border-bottom: 1px solid #ddd; vertical-align: middle; }
-        .goal-table input { padding: 8px; width: 100%; box-sizing: border-box; font-size: 14px; }
+        .goal-table input { padding: 8px; width: 100%; box-sizing: border-box; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; transition: border-color 0.3s; }
+        .goal-table input[type="text"] { font-weight: bold; color: var(--navy-blue); background-color: rgba(197, 160, 89, 0.05); }
+        .goal-table input:focus { outline: none; border-color: var(--teal); }
+        
         .fv-box { background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px; font-weight: bold; color: var(--teal); text-align: right; }
         .pension-text { font-size: 12px; color: var(--teal); font-weight: bold; margin-top: 5px; }
 
@@ -354,7 +357,6 @@
                 if(!document.getElementById("p_prof").value || !document.querySelector('input[name="p_married"]:checked')) {
                     alert("Please select Profession and Marital Status."); return;
                 }
-                // Handle Step 3 visibility based on Marital Status
                 let isMarried = document.querySelector('input[name="p_married"]:checked').value === "YES";
                 document.getElementById("spouse_section").style.display = isMarried ? "block" : "none";
                 document.getElementById("no_spouse_msg").style.display = isMarried ? "none" : "block";
@@ -379,7 +381,6 @@
                 if(hasDep) generateDepRows();
             }
             if (current === 5) {
-                // Setup Step 6 Goals logic based on previous answers
                 calculateLifestyle();
             }
             if (current === 6) {
@@ -467,7 +468,10 @@
             }
             
             globalLifestyle = levels[lvl];
-            document.getElementById("calc_summary").innerHTML = `Total Members: <b>${total_member}</b> | Total Expense: <b>₹${total_exp.toLocaleString()}</b> | Per Head: <b>₹${eph.toLocaleString()}</b>`;
+            let expStr = total_exp.toLocaleString('en-IN');
+            let ephStr = eph.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            
+            document.getElementById("calc_summary").innerHTML = `Total Members: <b>${total_member}</b> | Total Expense: <b>₹${expStr}</b> | Per Head: <b>₹${ephStr}</b>`;
             document.getElementById("status_summary").innerHTML = `Your Lifestyle Status: <b>${globalLifestyle.toUpperCase()}</b>`;
 
             // Render Goal Checkboxes
@@ -499,7 +503,6 @@
             goalsHtml += `</div>`;
             document.getElementById("goals_container").innerHTML = goalsHtml;
 
-            // Add listeners for additional goals qty toggle
             add_goals.forEach((g, idx) => {
                 document.getElementById(`g_add_${idx}`).addEventListener('change', function() {
                     document.getElementById(`g_qty_${idx}`).style.display = this.checked ? "block" : "none";
@@ -559,16 +562,15 @@
             selectedGoals.forEach((goal, i) => {
                 let pv = 0; let dur = 0; let inf = 5.0;
                 
-                // --- Complex Logic Ported from Python ---
+                // Logic Ported from Python
                 if(goal === "Retirement Fund") {
                     dur = Math.max(0, 60 - user_age);
                     if(globalLifestyle==="Basic") pv = (ann_inc*0.40)/0.09; else if(globalLifestyle==="Modest") pv = (ann_inc*0.45)/0.09; else if(globalLifestyle==="Standard") pv = (ann_inc*0.50)/0.09; else if(globalLifestyle==="Comfortable") pv = (ann_inc*0.60)/0.09; else if(globalLifestyle==="Upper_Middle class") pv = (ann_inc*0.70)/0.09; else if(globalLifestyle==="Affluent") pv = (ann_inc*0.80)/0.09; else if(globalLifestyle==="Luxury") pv = (ann_inc*0.90)/0.09; else pv = ann_inc/0.09;
                 } else if(goal === "Medical Emergency Fund") { pv = ann_exp * 5; inf = 8.0; dur = 0;
                 } else if(goal === "Contingency/Emergency Fund") { pv = ann_inc * 3; dur = 0;
                 } else if(goal.includes("Education")) {
-                    inf = 7.0; dur = 17; // Default
+                    inf = 7.0; dur = 17; 
                     if(hasChild && !goal.includes("Future")) {
-                        // Find child age
                         let c_idx = Array.from({length: parseInt(document.getElementById("num_child").value)}, (_, k) => k+1).find(k => goal.includes(document.getElementById(`c_name_${k}`).value || `Child ${k}`));
                         if(c_idx) dur = Math.max(0, 17 - parseInt(document.getElementById(`c_age_${c_idx}`).value||0));
                     }
@@ -584,32 +586,37 @@
                     }
                     if(globalLifestyle==="Basic") pv=1000000; else if(globalLifestyle==="Modest") pv=1500000; else if(globalLifestyle==="Standard") pv=2000000; else if(globalLifestyle==="Comfortable") pv=2500000; else if(globalLifestyle==="Upper_Middle class") pv=4000000; else if(globalLifestyle==="Affluent") pv=6000000; else if(globalLifestyle==="Luxury") pv=10000000; else pv=25000000;
                 } else {
-                    pv = 500000; dur = 5; // Default for others
+                    pv = 500000; dur = 5; 
                 }
 
                 let fv = pv * Math.pow(1 + inf/100, dur);
-                let penHTML = goal === "Retirement Fund" ? `<div class="pension-text" id="pen_${i}">Pension: ₹${((fv*0.09)/12).toLocaleString(undefined,{maximumFractionDigits:2})} /mo</div>` : "";
+                let fvStr = fv.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                let penStr = ((fv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                let penHTML = goal === "Retirement Fund" ? `<div class="pension-text" id="pen_${i}">Pension: ₹${penStr} /mo</div>` : "";
 
+                // মেইন ম্যাজিক: Goal Name এখন Editable Text Box!
                 tbody.innerHTML += `
                     <tr>
-                        <td><strong>${goal}</strong></td>
+                        <td><input type="text" id="goalName_${i}" value="${goal}"></td>
                         <td><input type="number" id="pv_${i}" value="${pv.toFixed(0)}" oninput="calcRow(${i}, '${goal}')"></td>
                         <td><input type="number" id="dur_${i}" value="${dur}" oninput="calcRow(${i}, '${goal}')"></td>
                         <td><input type="number" id="inf_${i}" value="${inf.toFixed(1)}" step="0.5" oninput="calcRow(${i}, '${goal}')"></td>
-                        <td><div class="fv-box" id="fv_${i}">${fv.toLocaleString(undefined, {maximumFractionDigits:2})}</div>${penHTML}</td>
+                        <td><div class="fv-box" id="fv_${i}">${fvStr}</div>${penHTML}</td>
                     </tr>`;
             });
         }
 
-        function calcRow(idx, goalName) {
+        function calcRow(idx, originalGoalName) {
             let pv = parseFloat(document.getElementById(`pv_${idx}`).value || 0);
             let dur = parseFloat(document.getElementById(`dur_${idx}`).value || 0);
             let inf = parseFloat(document.getElementById(`inf_${idx}`).value || 0);
             let fv = pv * Math.pow(1 + inf/100, dur);
-            document.getElementById(`fv_${idx}`).innerText = fv.toLocaleString(undefined, {maximumFractionDigits:2});
             
-            if(goalName === "Retirement Fund") {
-                document.getElementById(`pen_${idx}`).innerText = `Pension: ₹${((fv*0.09)/12).toLocaleString(undefined,{maximumFractionDigits:2})} /mo`;
+            document.getElementById(`fv_${idx}`).innerText = fv.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            
+            if(originalGoalName === "Retirement Fund") {
+                let penStr = ((fv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                document.getElementById(`pen_${idx}`).innerText = `Pension: ₹${penStr} /mo`;
             }
         }
 
@@ -618,11 +625,18 @@
             btn.innerText = "Processing...";
             btn.disabled = true;
 
+            // এডিট করা নতুন নামগুলো ধরে আনা হচ্ছে
+            let finalEditedGoals = [];
+            selectedGoals.forEach((_, i) => {
+                let newName = document.getElementById(`goalName_${i}`).value;
+                finalEditedGoals.push(newName);
+            });
+
             let name = document.getElementById("u_name").value;
             let phone = document.getElementById("u_phone").value;
             let email = document.getElementById("u_email").value;
             
-            let message = `Service: Full Financial Plan | Goals: ${selectedGoals.join(", ")} | Lifestyle: ${globalLifestyle}`;
+            let message = `Service: Full Financial Plan | Goals: ${finalEditedGoals.join(", ")} | Lifestyle: ${globalLifestyle}`;
 
             const formData = new FormData();
             formData.append('name', name);
