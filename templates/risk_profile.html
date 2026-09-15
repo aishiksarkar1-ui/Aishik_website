@@ -29,7 +29,7 @@
             line-height: 1.6;
         }
 
-        /* স্টিকি নেভিগেশন বার (আগের মতোই) */
+        /* স্টিকি নেভিগেশন বার */
         .navbar {
             position: sticky;
             top: 0;
@@ -76,6 +76,34 @@
 
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
+        /* ড্রপ-ডাউন মেনু স্টাইল */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--navy-blue);
+            min-width: 280px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 4px;
+            z-index: 1001;
+            padding: 10px 0;
+            list-style: none;
+            max-height: 60vh; 
+            overflow-y: auto; 
+        }
+
+        .dropdown-content::-webkit-scrollbar { width: 8px; }
+        .dropdown-content::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+        .dropdown-content::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+
+        .dropdown-content li { width: 100%; }
+        .dropdown-content a { padding: 10px 20px; color: var(--text-light); white-space: nowrap; }
+        .dropdown-content a:hover { background-color: rgba(197, 160, 89, 0.1); color: var(--gold); }
+        .dropdown:hover .dropdown-content { display: block; }
+        .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
+
         /* হিরো ব্যানার */
         .profiling-hero {
             position: relative;
@@ -101,7 +129,7 @@
             color: #b0b0b0;
         }
 
-/* কুইজ কন্টেইনার (Light Premium Design) */
+        /* কুইজ কন্টেইনার (Light Premium Design) */
         .quiz-section {
             padding: 0 20px 80px 20px;
             display: flex;
@@ -109,10 +137,9 @@
         }
 
         .quiz-container {
-            /* ডার্ক কালার পাল্টে ওয়ার্ম ক্রিম/সাদা কালার দেওয়া হলো */
             background: linear-gradient(135deg, #ffffff 0%, #FDFBF7 100%);
             border: 1px solid rgba(197, 160, 89, 0.3);
-            border-top: 4px solid var(--gold); /* ওপরে একটু মোটা সোনালী বর্ডার */
+            border-top: 4px solid var(--gold); 
             border-radius: 15px;
             width: 100%;
             max-width: 800px;
@@ -130,7 +157,7 @@
             align-items: center;
             margin-bottom: 15px;
             font-size: 14px;
-            color: var(--navy-blue); /* হালকা ব্যাকগ্রাউন্ডে ডার্ক লেখা */
+            color: var(--navy-blue); 
             font-weight: bold;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -139,7 +166,7 @@
         .progress-bar-bg {
             width: 100%;
             height: 6px;
-            background-color: rgba(10, 25, 47, 0.1); /* হালকা গ্রে */
+            background-color: rgba(10, 25, 47, 0.1); 
             border-radius: 10px;
             margin-bottom: 40px;
             overflow: hidden;
@@ -157,7 +184,7 @@
         .question-text {
             font-family: 'Playfair Display', serif;
             font-size: 28px;
-            color: var(--navy-blue); /* লাইট ব্যাকগ্রাউন্ডের ওপর ডার্ক ব্লু কালার */
+            color: var(--navy-blue); 
             margin-top: 0;
             margin-bottom: 30px;
             line-height: 1.4;
@@ -170,13 +197,13 @@
             margin-bottom: 40px;
         }
 
-        /* প্রিমিয়াম অপশন বাটন (Light Theme) */
+        /* প্রিমিয়াম অপশন বাটন */
         .option-btn {
-            background-color: #ffffff; /* সাদা বাটন */
-            border: 1px solid rgba(10, 25, 47, 0.1); /* হালকা বর্ডার */
+            background-color: #ffffff; 
+            border: 1px solid rgba(10, 25, 47, 0.1); 
             border-radius: 8px;
             padding: 18px 25px;
-            color: #2c3e50; /* ডার্ক গ্রে টেক্সট */
+            color: #2c3e50; 
             font-size: 16px;
             font-family: 'Lato', sans-serif;
             text-align: left;
@@ -271,18 +298,24 @@
             color: white;
             box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3);
         }
+
         /* রেসপনসিভ ডিজাইন */
+        @media (max-width: 992px) {
+            .navbar { padding: 15px 20px; }
+            .nav-links {
+                display: none; flex-direction: column; position: absolute;
+                top: 100%; left: 0; width: 100%; background-color: var(--navy-blue);
+                border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding: 20px 0;
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .dropdown-content { position: relative; box-shadow: none; border: none; background-color: rgba(255,255,255,0.05); padding-left: 15px; }
+        }
+
         @media (max-width: 768px) {
-            .quiz-container {
-                padding: 30px 20px;
-            }
-            .question-text {
-                font-size: 22px;
-            }
-            .option-btn {
-                padding: 15px;
-                font-size: 15px;
-            }
+            .quiz-container { padding: 30px 20px; }
+            .question-text { font-size: 22px; }
+            .option-btn { padding: 15px; font-size: 15px; }
         }
     </style>
 </head>
@@ -340,7 +373,7 @@
         <p>Before you invest a single rupee, it is crucial to understand your emotional capacity for risk. Answer a few logical scenarios to unlock your personalized risk profile.</p>
     </div>
 
-    <!-- কুইজ সেকশন (Glassmorphism Card) -->
+    <!-- কুইজ সেকশন -->
     <div class="quiz-section">
         <div class="quiz-container">
             
@@ -366,7 +399,6 @@
                     <i class="fa-regular fa-circle"></i> Feel anxious but wait it out and do nothing.
                 </button>
                 
-                <!-- ডেমো হিসেবে এটিকে 'selected' ক্লাস দেওয়া হয়েছে ডিজাইন দেখার জন্য -->
                 <button class="option-btn selected">
                     <i class="fa-regular fa-circle-check"></i> See it as an opportunity and buy more at lower prices.
                 </button>
@@ -374,14 +406,20 @@
 
             <!-- নেভিগেশন (Next / Prev) -->
             <div class="quiz-footer">
-                <!-- প্রথম প্রশ্নে Prev বাটন Disabled থাকবে -->
                 <button class="nav-btn disabled"><i class="fa-solid fa-arrow-left"></i> Previous</button>
-                
                 <button class="nav-btn next-btn">Next Step <i class="fa-solid fa-arrow-right"></i></button>
             </div>
 
         </div>
     </div>
+
+    <!-- মোবাইল মেনুর জন্য জাভাস্ক্রিপ্ট -->
+    <script>
+        function toggleMenu() {
+            var navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
