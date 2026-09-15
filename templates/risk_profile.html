@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Self-Risk Profiling | Financial Literacy Hub</title>
     
-    <!-- গুগল ফন্টস -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!-- ফন্ট অসাম (আইকনের জন্য) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- PDF জেনারেট করার লাইব্রেরি -->
@@ -23,36 +20,17 @@
             --teal: #2A9D8F;
         }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Lato', sans-serif;
-            background-color: var(--navy-blue);
-            color: var(--text-light);
-            line-height: 1.6;
-        }
+        body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background-color: var(--navy-blue); color: var(--text-light); line-height: 1.6; }
 
         /* স্টিকি নেভিগেশন বার */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 50px;
-            background-color: rgba(10, 25, 47, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-        }
-        
+        .navbar { position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background-color: rgba(10, 25, 47, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197, 160, 89, 0.3); }
         .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; text-decoration: none; line-height: 1.1; }
         .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; align-items: center; }
         .nav-links li { position: relative; }
         .nav-links a { color: var(--text-light); text-decoration: none; font-size: 14px; font-weight: 400; transition: color 0.3s ease; padding: 10px 0; display: block; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
-        /* ড্রপ-ডাউন মেনু স্টাইল */
+        /* ড্রপ-ডাউন মেনু */
         .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background-color: var(--navy-blue); min-width: 280px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 4px; z-index: 1001; padding: 10px 0; list-style: none; max-height: 60vh; overflow-y: auto; }
         .dropdown-content::-webkit-scrollbar { width: 8px; }
         .dropdown-content::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
@@ -74,12 +52,10 @@
 
         .part-indicator { text-align: center; color: var(--teal); font-weight: bold; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
 
-        /* প্রগ্রেস বার */
         .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 14px; color: var(--navy-blue); font-weight: bold; text-transform: uppercase; }
         .progress-bar-bg { width: 100%; height: 6px; background-color: rgba(10, 25, 47, 0.1); border-radius: 10px; margin-bottom: 35px; overflow: hidden; }
         .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--gold)); border-radius: 10px; transition: width 0.4s ease; }
 
-        /* অপশনস */
         .question-text { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--navy-blue); margin-top: 0; margin-bottom: 30px; line-height: 1.4; }
         .options-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
         .option-btn { background-color: #ffffff; border: 1px solid rgba(10, 25, 47, 0.1); border-radius: 8px; padding: 16px 20px; color: #2c3e50; font-size: 16px; font-family: 'Lato', sans-serif; text-align: left; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
@@ -89,7 +65,6 @@
         .option-btn.selected { background: linear-gradient(135deg, rgba(197, 160, 89, 0.05), rgba(42, 157, 143, 0.05)); border-color: var(--teal); box-shadow: 0 5px 15px rgba(42, 157, 143, 0.15); font-weight: bold; color: var(--navy-blue); }
         .option-btn.selected i { color: var(--teal); }
 
-        /* বাটন */
         .quiz-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(10, 25, 47, 0.1); padding-top: 25px; }
         .nav-btn { background-color: transparent; color: var(--navy-blue); border: 1px solid var(--navy-blue); padding: 10px 25px; border-radius: 5px; font-size: 14px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
         .nav-btn:hover:not(:disabled) { background-color: var(--navy-blue); color: white; box-shadow: 0 5px 15px rgba(10, 25, 47, 0.2); }
@@ -107,11 +82,8 @@
         
         .action-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
 
-        /* লিড জেনারেশন ফর্ম (নতুন) */
-        .lead-form-container {
-            display: none; margin-top: 35px; background: #ffffff; padding: 30px; border-radius: 12px;
-            border: 1px solid rgba(197, 160, 89, 0.4); box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: left; animation: fadeIn 0.5s ease;
-        }
+        /* লিড জেনারেশন ফর্ম */
+        .lead-form-container { display: none; margin-top: 35px; background: #ffffff; padding: 30px; border-radius: 12px; border: 1px solid rgba(197, 160, 89, 0.4); box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: left; animation: fadeIn 0.5s ease; }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; font-size: 14px; color: var(--navy-blue); font-weight: bold; margin-bottom: 8px; }
         .form-group input { width: 100%; padding: 12px 15px; border: 1px solid rgba(10, 25, 47, 0.2); border-radius: 6px; font-family: 'Lato', sans-serif; font-size: 15px; transition: all 0.3s ease; box-sizing: border-box; }
@@ -168,7 +140,6 @@
     <div class="quiz-section">
         <div class="quiz-container">
             
-            <!-- কুইজ ব্লক -->
             <div id="quizBlock">
                 <div class="part-indicator" id="partTitle">Part 1: Psychological & Behavioral</div>
                 <div class="progress-header">
@@ -184,40 +155,25 @@
                 </div>
             </div>
 
-            <!-- রেজাল্ট ব্লক -->
             <div id="resultContainer">
-                <div class="score-circle">
-                    <h2 id="finalScore">0%</h2>
-                    <span>Risk Score</span>
-                </div>
+                <div class="score-circle"><h2 id="finalScore">0%</h2><span>Risk Score</span></div>
                 <h1 class="profile-title" id="profileTitle">Your Profile</h1>
                 <p class="profile-desc" id="profileDesc">Description goes here.</p>
                 
                 <div class="action-buttons">
-                    <!-- এই বাটনে ক্লিক করলে ফর্ম খুলবে -->
-                    <button class="nav-btn next-btn" onclick="showLeadForm()" style="background-color: var(--gold); border-color: var(--gold); color: var(--navy-blue);">Download Certificate <i class="fa-solid fa-download"></i></button>
+                    <button class="nav-btn next-btn" onclick="showLeadForm()" style="background-color: var(--gold); border-color: var(--gold); color: var(--navy-blue);">Download Detailed Report <i class="fa-solid fa-download"></i></button>
                     <button class="nav-btn" onclick="location.reload()">Retake Assessment <i class="fa-solid fa-rotate-right"></i></button>
                 </div>
 
-                <!-- লিড ফর্ম (হাইড করা থাকবে, বাটনে ক্লিক করলে খুলবে) -->
                 <div class="lead-form-container" id="leadFormContainer">
-                    <h3 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; font-size: 24px;">Enter details to unlock your Certificate</h3>
-                    <p style="color: #7f8c8d; font-size: 14px; margin-bottom: 20px;">Your personalized PDF certificate will be generated instantly.</p>
+                    <h3 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; font-size: 24px;">Enter details to unlock your Report</h3>
+                    <p style="color: #7f8c8d; font-size: 14px; margin-bottom: 20px;">Your personalized PDF report with all Q&A will be generated instantly.</p>
                     
                     <form id="certificateForm" onsubmit="submitLeadForm(event)">
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" id="certName" required placeholder="E.g. Rajesh Sharma">
-                        </div>
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" id="certEmail" required placeholder="yourmail@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label>Phone Number</label>
-                            <input type="tel" id="certPhone" required placeholder="+91 9876543210">
-                        </div>
-                        <button type="submit" id="certSubmitBtn" class="nav-btn next-btn" style="width: 100%; padding: 15px; font-size: 16px;">Get Certificate <i class="fa-solid fa-file-pdf"></i></button>
+                        <div class="form-group"><label>Full Name</label><input type="text" id="certName" required placeholder="E.g. Rajesh Sharma"></div>
+                        <div class="form-group"><label>Email Address</label><input type="email" id="certEmail" required placeholder="yourmail@example.com"></div>
+                        <div class="form-group"><label>Phone Number</label><input type="tel" id="certPhone" required placeholder="+91 9876543210"></div>
+                        <button type="submit" id="certSubmitBtn" class="nav-btn next-btn" style="width: 100%; padding: 15px; font-size: 16px;">Get Report <i class="fa-solid fa-file-pdf"></i></button>
                         <p id="formMessage" style="font-size: 14px; text-align: center; margin-top: 15px; font-weight: bold;"></p>
                     </form>
                 </div>
@@ -226,21 +182,29 @@
         </div>
     </div>
 
-    <!-- PDF তৈরির জন্য লুকানো টেমপ্লেট (ইউজার এটা দেখবে না, শুধু PDF-এ আসবে) -->
+    <!-- PDF টেমপ্লেট (সার্টিফিকেট + প্রশ্নোত্তর) -->
     <div id="certificateTemplate" style="display: none;">
-        <div id="certContent" style="padding: 50px; background: #FDFBF7; border: 12px solid #0A192F; text-align: center; font-family: 'Playfair Display', serif; color: #0A192F; width: 800px; margin: 0 auto; box-sizing: border-box; position: relative;">
-            <div style="position: absolute; top: 20px; left: 20px; color: #C5A059; font-size: 20px; font-weight: bold;">FINANCE WITH AISHIK</div>
-            <h1 style="color: #C5A059; font-size: 48px; margin-bottom: 10px; margin-top: 60px;">Certificate of Risk Profiling</h1>
-            <p style="font-family: 'Lato', sans-serif; font-size: 20px; color: #2c3e50; margin-bottom: 20px;">This is to proudly certify that</p>
-            <h2 id="certUserName" style="font-size: 45px; border-bottom: 3px solid #2A9D8F; display: inline-block; padding-bottom: 10px; margin-bottom: 30px; font-weight: bold; color: #0A192F;">User Name</h2>
-            <p style="font-family: 'Lato', sans-serif; font-size: 20px; color: #2c3e50; margin-bottom: 30px;">has successfully completed the Investment Risk Assessment and obtained a</p>
+        <!-- width 100% করা হয়েছে যাতে Portrait মোডে সুন্দর ফিট হয় -->
+        <div id="certContent" style="padding: 40px; background: #FDFBF7; border: 8px solid #0A192F; text-align: center; font-family: 'Playfair Display', serif; color: #0A192F; width: 100%; margin: 0 auto; box-sizing: border-box; position: relative;">
             
-            <div style="margin: 30px auto; width: 160px; height: 160px; border-radius: 50%; border: 6px solid #C5A059; display: flex; align-items: center; justify-content: center; background: rgba(197, 160, 89, 0.1);">
-                <span id="certUserScore" style="font-size: 50px; font-weight: bold; color: #C5A059;">0%</span>
+            <!-- পেজ ১: মূল সার্টিফিকেট -->
+            <div style="min-height: 900px;">
+                <div style="color: #C5A059; font-size: 20px; font-weight: bold; margin-bottom: 40px;">FINANCE WITH AISHIK</div>
+                <h1 style="color: #C5A059; font-size: 42px; margin-bottom: 10px; margin-top: 40px;">Certificate of Risk Profiling</h1>
+                <p style="font-family: 'Lato', sans-serif; font-size: 20px; color: #2c3e50; margin-bottom: 20px;">This is to proudly certify that</p>
+                <h2 id="certUserName" style="font-size: 40px; border-bottom: 3px solid #2A9D8F; display: inline-block; padding-bottom: 10px; margin-bottom: 30px; font-weight: bold; color: #0A192F;">User Name</h2>
+                <p style="font-family: 'Lato', sans-serif; font-size: 18px; color: #2c3e50; margin-bottom: 30px;">has successfully completed the Investment Risk Assessment and obtained a</p>
+                
+                <div style="margin: 30px auto; width: 150px; height: 150px; border-radius: 50%; border: 6px solid #C5A059; display: flex; align-items: center; justify-content: center; background: rgba(197, 160, 89, 0.1);">
+                    <span id="certUserScore" style="font-size: 45px; font-weight: bold; color: #C5A059;">0%</span>
+                </div>
+                
+                <h3 id="certUserProfile" style="font-size: 32px; color: #2A9D8F; margin-top: 30px; margin-bottom: 10px;">Profile Type</h3>
+                <p style="font-family: 'Lato', sans-serif; font-size: 16px; margin-top: 50px; color: #7f8c8d; border-top: 1px solid #ccc; display: inline-block; padding-top: 15px;">Issued by Aishik Sarkar<br>Financial Literacy Hub</p>
             </div>
-            
-            <h3 id="certUserProfile" style="font-size: 36px; color: #2A9D8F; margin-top: 30px; margin-bottom: 10px;">Profile Type</h3>
-            <p style="font-family: 'Lato', sans-serif; font-size: 16px; margin-top: 60px; color: #7f8c8d; border-top: 1px solid #ccc; display: inline-block; padding-top: 15px;">Issued by Aishik Sarkar<br>Financial Literacy Hub</p>
+
+            <!-- পেজ ২+: প্রশ্ন-উত্তরের রিপোর্ট (JavaScript দিয়ে এখানে ডেটা ঢুকবে) -->
+            <div id="qaReport" style="text-align: left; margin-top: 20px;"></div>
         </div>
     </div>
 
@@ -249,29 +213,26 @@
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
         const questions = [
-            // Part 1
-            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "If the market suddenly crashes by 20-25% and your portfolio shows negative returns, what would be your first reaction?", options: [ { text: "Panic immensely and sell everything to withdraw my money.", score: 1 }, { text: "Get worried and sell a portion to minimize further losses.", score: 2 }, { text: "Feel bad, but stay calm knowing the market will recover.", score: 3 }, { text: "Feel happy, seeing it as an opportunity to buy more good funds/shares at cheaper rates.", score: 4 } ] },
-            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "What does the word 'Risk' truly mean to you?", options: [ { text: "The fear of losing my hard-earned money.", score: 1 }, { text: "Temporary uncertainty or fluctuation in money's value.", score: 2 }, { text: "An opportunity to beat inflation.", score: 3 }, { text: "Thrill and a pathway to creating immense wealth.", score: 4 } ] },
-            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "Suppose a good fund you invested in has been giving negative returns for the last 3-6 months. What will you do?", options: [ { text: "Book the loss, withdraw the money, and put it in a Fixed Deposit (FD).", score: 1 }, { text: "Stop my SIP or new investments and just wait.", score: 2 }, { text: "Continue my regular SIPs without interruption.", score: 3 }, { text: "Invest more money as a lumpsum since the market is down.", score: 4 } ] },
-            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "If you were asked to choose a game or scheme, which one would you pick?", options: [ { text: "100% guarantee of getting ₹10,000.", score: 1 }, { text: "75% probability of getting ₹15,000.", score: 2 }, { text: "50% probability of getting ₹25,000.", score: 3 }, { text: "25% probability of getting ₹50,000 (and a 75% chance of getting nothing).", score: 4 } ] },
-            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "Your friends are making huge profits in a scheme or crypto that you don't understand at all. What will you do?", options: [ { text: "I don't understand it, so I won't invest at all.", score: 1 }, { text: "Invest a very small amount just because my friends suggested it.", score: 2 }, { text: "Study and research it first, and invest only if I understand it.", score: 3 }, { text: "Invest a large sum immediately so I don't miss out on the opportunity.", score: 4 } ] },
-            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "How would you feel if you suddenly faced a loss of ₹10,000 from an investment?", options: [ { text: "I couldn't accept it; taking the risk was a mistake.", score: 1 }, { text: "I'd be very upset, and wouldn't feel better until I made a profit of at least ₹20,000 - ₹25,000.", score: 2 }, { text: "I'd feel bad, but I would accept it as a normal market cycle.", score: 3 }, { text: "I would forget it quickly and look for new opportunities; winning and losing is part of the game.", score: 4 } ] },
-            { part: "Part 1: Psychological & Behavioral (Risk Attitude)", text: "How do you generally view your past financial mistakes?", options: [ { text: "I regret them forever and am afraid to try anything new.", score: 1 }, { text: "I feel scared, so I tread very cautiously now.", score: 2 }, { text: "I learn from my mistakes and rebuild my strategy.", score: 3 }, { text: "I forget them quickly and do not hesitate to take new, big risks.", score: 4 } ] },
-            // Part 2
-            { part: "Part 2: Financial Capacity & Liability", text: "What is your current life stage?", options: [ { text: "Retired or nearing retirement (Above 55 years).", score: 1 }, { text: "Late career stage (45 - 55 years).", score: 2 }, { text: "Mid-career stage (30 - 45 years).", score: 3 }, { text: "Early career or young adult (Below 30 years).", score: 4 } ] },
-            { part: "Part 2: Financial Capacity & Liability", text: "How is the stability of your current income?", options: [ { text: "Highly uncertain (e.g., freelancing or small business).", score: 1 }, { text: "Moderately stable, but fluctuates sometimes.", score: 2 }, { text: "Quite stable (private sector job or established business).", score: 3 }, { text: "Highly secure with guaranteed annual increments.", score: 4 } ] },
-            { part: "Part 2: Financial Capacity & Liability", text: "How many people are entirely financially dependent on you?", options: [ { text: "3 or more (elderly parents and children).", score: 1 }, { text: "2 people.", score: 2 }, { text: "1 person.", score: 3 }, { text: "No dependents (or both spouses are earning).", score: 4 } ] },
-            { part: "Part 2: Financial Capacity & Liability", text: "What percentage of your monthly income goes toward paying loans or EMIs?", options: [ { text: "More than 50%.", score: 1 }, { text: "Between 30% and 50%.", score: 2 }, { text: "Between 10% and 30%.", score: 3 }, { text: "Less than 10%, or no loans/EMIs.", score: 4 } ] },
-            { part: "Part 2: Financial Capacity & Liability", text: "Do you have an adequate Emergency Fund built up?", options: [ { text: "No, I hardly have any savings.", score: 1 }, { text: "Yes, enough to cover 1-3 months of expenses.", score: 2 }, { text: "Yes, enough to cover 3-6 months of expenses, kept separately.", score: 3 }, { text: "Yes, enough to cover more than 6 months of expenses, kept securely.", score: 4 } ] },
-            { part: "Part 2: Financial Capacity & Liability", text: "How secure is your Life & Health Insurance coverage?", options: [ { text: "I don't have either.", score: 1 }, { text: "I only have basic coverage provided by my employer.", score: 2 }, { text: "I have both, but the coverage is moderate.", score: 3 }, { text: "I have my own Term and Health policies with adequate coverage.", score: 4 } ] },
-            { part: "Part 2: Financial Capacity & Liability", text: "After deducting all expenses and EMIs, what percentage of your income can you comfortably invest?", options: [ { text: "Less than 10%.", score: 1 }, { text: "10% - 20%.", score: 2 }, { text: "20% - 40%.", score: 3 }, { text: "More than 40%.", score: 4 } ] },
-            { part: "Part 2: Financial Capacity & Liability", text: "How is the ratio of your family's total Assets compared to Liabilities (Loans)?", options: [ { text: "The burden of debt is much higher than assets.", score: 1 }, { text: "Assets and debts are almost equal.", score: 2 }, { text: "Assets are quite a bit higher than debts.", score: 3 }, { text: "I have plenty of assets and zero debt.", score: 4 } ] },
-            // Part 3
-            { part: "Part 3: Goals & Surplus (Efficient Money)", text: "How many years are left to achieve your biggest financial goal?", options: [ { text: "1 - 3 years (very close).", score: 1 }, { text: "3 - 7 years.", score: 2 }, { text: "7 - 10 years.", score: 3 }, { text: "More than 10 years.", score: 4 } ] },
-            { part: "Part 3: Goals & Surplus (Efficient Money)", text: "What percentage of the total amount required for that goal have you already accumulated?", options: [ { text: "75% - 100% (Cannot afford to lose capital now).", score: 1 }, { text: "50% - 75%.", score: 2 }, { text: "25% - 50%.", score: 3 }, { text: "0% - 25% (Just started, plenty of time).", score: 4 } ] },
-            { part: "Part 3: Goals & Surplus (Efficient Money)", text: "If you realize you are falling short of funds as the deadline approaches, what will you do?", options: [ { text: "It would be a disaster! I cannot compromise.", score: 1 }, { text: "I will be forced to take a loan.", score: 2 }, { text: "I am willing to wait another 2-3 years.", score: 3 }, { text: "I am very flexible; I can postpone or modify the goal.", score: 4 } ] },
-            { part: "Part 3: Goals & Surplus (Efficient Money)", text: "After making secure investments (PF, FD), do you have 'Surplus' money for taking risks?", options: [ { text: "Not at all.", score: 1 }, { text: "Very little.", score: 2 }, { text: "A fair amount.", score: 3 }, { text: "Yes, ample surplus money; fluctuations won't affect me.", score: 4 } ] },
-            { part: "Part 3: Goals & Surplus (Efficient Money)", text: "Approximately what percentage of return from your portfolio is sufficient to achieve your goals?", options: [ { text: "7% - 8% (Happy with guaranteed returns).", score: 1 }, { text: "9% - 11% (Just enough to beat inflation).", score: 2 }, { text: "12% - 15% (Standard market returns).", score: 3 }, { text: "15%+ (Absolutely need very high returns).", score: 4 } ] }
+            { part: "Part 1: Psychological & Behavioral", text: "If the market suddenly crashes by 20-25% and your portfolio shows negative returns, what would be your first reaction?", options: [ { text: "Panic immensely and sell everything to withdraw my money.", score: 1 }, { text: "Get worried and sell a portion to minimize further losses.", score: 2 }, { text: "Feel bad, but stay calm knowing the market will recover.", score: 3 }, { text: "Feel happy, seeing it as an opportunity to buy more good funds/shares at cheaper rates.", score: 4 } ] },
+            { part: "Part 1: Psychological & Behavioral", text: "What does the word 'Risk' truly mean to you?", options: [ { text: "The fear of losing my hard-earned money.", score: 1 }, { text: "Temporary uncertainty or fluctuation in money's value.", score: 2 }, { text: "An opportunity to beat inflation.", score: 3 }, { text: "Thrill and a pathway to creating immense wealth.", score: 4 } ] },
+            { part: "Part 1: Psychological & Behavioral", text: "Suppose a good fund you invested in has been giving negative returns for the last 3-6 months. What will you do?", options: [ { text: "Book the loss, withdraw the money, and put it in a Fixed Deposit (FD).", score: 1 }, { text: "Stop my SIP or new investments and just wait.", score: 2 }, { text: "Continue my regular SIPs without interruption.", score: 3 }, { text: "Invest more money as a lumpsum since the market is down.", score: 4 } ] },
+            { part: "Part 1: Psychological & Behavioral", text: "If you were asked to choose a game or scheme, which one would you pick?", options: [ { text: "100% guarantee of getting ₹10,000.", score: 1 }, { text: "75% probability of getting ₹15,000.", score: 2 }, { text: "50% probability of getting ₹25,000.", score: 3 }, { text: "25% probability of getting ₹50,000 (and a 75% chance of getting nothing).", score: 4 } ] },
+            { part: "Part 1: Psychological & Behavioral", text: "Your friends are making huge profits in a scheme or crypto that you don't understand at all. What will you do?", options: [ { text: "I don't understand it, so I won't invest at all.", score: 1 }, { text: "Invest a very small amount just because my friends suggested it.", score: 2 }, { text: "Study and research it first, and invest only if I understand it.", score: 3 }, { text: "Invest a large sum immediately so I don't miss out on the opportunity.", score: 4 } ] },
+            { part: "Part 1: Psychological & Behavioral", text: "How would you feel if you suddenly faced a loss of ₹10,000 from an investment?", options: [ { text: "I couldn't accept it; taking the risk was a mistake.", score: 1 }, { text: "I'd be very upset, and wouldn't feel better until I made a profit of at least ₹20,000 - ₹25,000.", score: 2 }, { text: "I'd feel bad, but I would accept it as a normal market cycle.", score: 3 }, { text: "I would forget it quickly and look for new opportunities; winning and losing is part of the game.", score: 4 } ] },
+            { part: "Part 1: Psychological & Behavioral", text: "How do you generally view your past financial mistakes?", options: [ { text: "I regret them forever and am afraid to try anything new.", score: 1 }, { text: "I feel scared, so I tread very cautiously now.", score: 2 }, { text: "I learn from my mistakes and rebuild my strategy.", score: 3 }, { text: "I forget them quickly and do not hesitate to take new, big risks.", score: 4 } ] },
+            { part: "Part 2: Financial Capacity", text: "What is your current life stage?", options: [ { text: "Retired or nearing retirement (Above 55 years).", score: 1 }, { text: "Late career stage (45 - 55 years).", score: 2 }, { text: "Mid-career stage (30 - 45 years).", score: 3 }, { text: "Early career or young adult (Below 30 years).", score: 4 } ] },
+            { part: "Part 2: Financial Capacity", text: "How is the stability of your current income?", options: [ { text: "Highly uncertain (e.g., freelancing or small business).", score: 1 }, { text: "Moderately stable, but fluctuates sometimes.", score: 2 }, { text: "Quite stable (private sector job or established business).", score: 3 }, { text: "Highly secure with guaranteed annual increments.", score: 4 } ] },
+            { part: "Part 2: Financial Capacity", text: "How many people are entirely financially dependent on you?", options: [ { text: "3 or more (elderly parents and children).", score: 1 }, { text: "2 people.", score: 2 }, { text: "1 person.", score: 3 }, { text: "No dependents (or both spouses are earning).", score: 4 } ] },
+            { part: "Part 2: Financial Capacity", text: "What percentage of your monthly income goes toward paying loans or EMIs?", options: [ { text: "More than 50%.", score: 1 }, { text: "Between 30% and 50%.", score: 2 }, { text: "Between 10% and 30%.", score: 3 }, { text: "Less than 10%, or no loans/EMIs.", score: 4 } ] },
+            { part: "Part 2: Financial Capacity", text: "Do you have an adequate Emergency Fund built up?", options: [ { text: "No, I hardly have any savings.", score: 1 }, { text: "Yes, enough to cover 1-3 months of expenses.", score: 2 }, { text: "Yes, enough to cover 3-6 months of expenses, kept separately.", score: 3 }, { text: "Yes, enough to cover more than 6 months of expenses, kept securely.", score: 4 } ] },
+            { part: "Part 2: Financial Capacity", text: "How secure is your Life & Health Insurance coverage?", options: [ { text: "I don't have either.", score: 1 }, { text: "I only have basic coverage provided by my employer.", score: 2 }, { text: "I have both, but the coverage is moderate.", score: 3 }, { text: "I have my own Term and Health policies with adequate coverage.", score: 4 } ] },
+            { part: "Part 2: Financial Capacity", text: "After deducting all expenses and EMIs, what percentage of your income can you comfortably invest?", options: [ { text: "Less than 10%.", score: 1 }, { text: "10% - 20%.", score: 2 }, { text: "20% - 40%.", score: 3 }, { text: "More than 40%.", score: 4 } ] },
+            { part: "Part 2: Financial Capacity", text: "How is the ratio of your family's total Assets compared to Liabilities (Loans)?", options: [ { text: "The burden of debt is much higher than assets.", score: 1 }, { text: "Assets and debts are almost equal.", score: 2 }, { text: "Assets are quite a bit higher than debts.", score: 3 }, { text: "I have plenty of assets and zero debt.", score: 4 } ] },
+            { part: "Part 3: Goals & Surplus", text: "How many years are left to achieve your biggest financial goal?", options: [ { text: "1 - 3 years (very close).", score: 1 }, { text: "3 - 7 years.", score: 2 }, { text: "7 - 10 years.", score: 3 }, { text: "More than 10 years.", score: 4 } ] },
+            { part: "Part 3: Goals & Surplus", text: "What percentage of the total amount required for that goal have you already accumulated?", options: [ { text: "75% - 100% (Cannot afford to lose capital now).", score: 1 }, { text: "50% - 75%.", score: 2 }, { text: "25% - 50%.", score: 3 }, { text: "0% - 25% (Just started, plenty of time).", score: 4 } ] },
+            { part: "Part 3: Goals & Surplus", text: "If you realize you are falling short of funds as the deadline approaches, what will you do?", options: [ { text: "It would be a disaster! I cannot compromise.", score: 1 }, { text: "I will be forced to take a loan.", score: 2 }, { text: "I am willing to wait another 2-3 years.", score: 3 }, { text: "I am very flexible; I can postpone or modify the goal.", score: 4 } ] },
+            { part: "Part 3: Goals & Surplus", text: "After making secure investments (PF, FD), do you have 'Surplus' money for taking risks?", options: [ { text: "Not at all.", score: 1 }, { text: "Very little.", score: 2 }, { text: "A fair amount.", score: 3 }, { text: "Yes, ample surplus money; fluctuations won't affect me.", score: 4 } ] },
+            { part: "Part 3: Goals & Surplus", text: "Approximately what percentage of return from your portfolio is sufficient to achieve your goals?", options: [ { text: "7% - 8% (Happy with guaranteed returns).", score: 1 }, { text: "9% - 11% (Just enough to beat inflation).", score: 2 }, { text: "12% - 15% (Standard market returns).", score: 3 }, { text: "15%+ (Absolutely need very high returns).", score: 4 } ] }
         ];
 
         let currentQuestion = 0;
@@ -311,11 +272,12 @@
             }
         }
 
+        function nextQuestion() { if (currentcurrentQuestion < 19) { currentQuestion++; loadQuestion(); } else { calculateResult(); } }
+        function prevQuestion() { if (currentQuestion > 0) { currentQuestion--; loadQuestion(); } }
+
+        // ফিক্সড: currentcurrentQuestion টাইপো ঠিক করা হলো
         function nextQuestion() {
             if (currentQuestion < 19) { currentQuestion++; loadQuestion(); } else { calculateResult(); }
-        }
-        function prevQuestion() {
-            if (currentQuestion > 0) { currentQuestion--; loadQuestion(); }
         }
 
         function calculateResult() {
@@ -345,14 +307,12 @@
             }
         }
 
-        // লিড ফর্ম দেখানো
         function showLeadForm() {
             const form = document.getElementById('leadFormContainer');
             form.style.display = 'block';
             form.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // ফর্ম সাবমিট এবং Google Sheets এ ডেটা পাঠানো
         async function submitLeadForm(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('certSubmitBtn');
@@ -362,7 +322,6 @@
             const email = document.getElementById('certEmail').value;
             const phone = document.getElementById('certPhone').value;
             
-            // রেজাল্ট থেকে স্কোর এবং প্রোফাইল নিয়ে মেসেজে পাঠানো হচ্ছে (Google Sheet এর জন্য)
             const score = document.getElementById('finalScore').innerText;
             const profile = document.getElementById('profileTitle').innerText;
             const customMessage = `Risk Profile Score: ${score} | Category: ${profile}`;
@@ -374,56 +333,69 @@
             formData.append('name', name);
             formData.append('email', email);
             formData.append('phone', phone);
-            formData.append('message', customMessage); // আপনার Sheet-এর 4th কলামে এটা সেভ হবে
+            formData.append('message', customMessage);
 
             try {
-                // আপনার app.py এর existing '/submit_form' রাউটেই ডেটা যাচ্ছে
                 const response = await fetch('/submit_form', { method: 'POST', body: formData });
                 const result = await response.json();
 
                 if(result.status === 'success') {
                     formMessage.style.color = 'green';
-                    formMessage.innerText = 'Success! Downloading your PDF Certificate...';
+                    formMessage.innerText = 'Success! Downloading your PDF Report...';
                     
-                    // PDF জেনারেট ফাংশন কল
                     generatePDF(name, score, profile);
 
                     setTimeout(() => {
                         document.getElementById('leadFormContainer').style.display = 'none';
-                        submitBtn.innerHTML = `Get Certificate <i class="fa-solid fa-file-pdf"></i>`;
+                        submitBtn.innerHTML = `Get Report <i class="fa-solid fa-file-pdf"></i>`;
                         submitBtn.disabled = false;
                         formMessage.innerText = '';
                         document.getElementById('certificateForm').reset();
                     }, 4000);
                 } else {
-                    formMessage.style.color = 'red';
-                    formMessage.innerText = 'Error connecting to server. Please try again.';
-                    submitBtn.innerHTML = `Get Certificate <i class="fa-solid fa-file-pdf"></i>`;
-                    submitBtn.disabled = false;
+                    formMessage.style.color = 'red'; formMessage.innerText = 'Error connecting to server.';
+                    submitBtn.innerHTML = `Get Report <i class="fa-solid fa-file-pdf"></i>`; submitBtn.disabled = false;
                 }
             } catch (error) {
-                formMessage.style.color = 'red';
-                formMessage.innerText = 'Network error. Please check your internet.';
-                submitBtn.innerHTML = `Get Certificate <i class="fa-solid fa-file-pdf"></i>`;
-                submitBtn.disabled = false;
+                formMessage.style.color = 'red'; formMessage.innerText = 'Network error. Please check your internet.';
+                submitBtn.innerHTML = `Get Report <i class="fa-solid fa-file-pdf"></i>`; submitBtn.disabled = false;
             }
         }
 
-        // PDF বানানোর ম্যাজিক
         function generatePDF(name, score, profile) {
-            // টেমপ্লেটে ইউজারের ডেটা বসানো
             document.getElementById('certUserName').innerText = name;
             document.getElementById('certUserScore').innerText = score;
             document.getElementById('certUserProfile').innerText = profile;
             
+            // প্রশ্নোত্তর পেজের জন্য ডাইনামিক HTML তৈরি করা
+            let qaHTML = `<div class="html2pdf__page-break"></div>`; // লাইব্রেরিকে বলা হলো নতুন পেজ শুরু করতে
+            qaHTML += `<h2 style="color: #0A192F; font-size: 28px; border-bottom: 2px solid #C5A059; padding-bottom: 10px; margin-top: 40px; margin-bottom: 30px; font-weight: bold;">Detailed Risk Assessment Report</h2>`;
+
+            for (let i = 0; i < questions.length; i++) {
+                let q = questions[i];
+                let ansIndex = userAnswers[i];
+                let selectedText = ansIndex !== null ? q.options[ansIndex].text : "Not answered";
+
+                qaHTML += `
+                    <div style="margin-bottom: 25px; font-family: 'Lato', sans-serif; text-align: left;">
+                        <div style="font-weight: bold; color: #0A192F; font-size: 16px; margin-bottom: 8px; line-height: 1.4;">Q${i + 1}. ${q.text}</div>
+                        <div style="color: #2A9D8F; font-size: 15px; background: rgba(42, 157, 143, 0.05); padding: 10px; border-left: 4px solid #2A9D8F; border-radius: 4px;">
+                            <strong style="color: #C5A059;">Your Answer:</strong> ${selectedText}
+                        </div>
+                    </div>
+                `;
+            }
+            document.getElementById('qaReport').innerHTML = qaHTML;
+            
             const element = document.getElementById('certContent');
             
+            // PDF এর সেটিং Landscape থেকে Portrait (লম্বালম্বি) করা হলো যাতে প্রশ্নগুলো সুন্দরভাবে পেজে ধরে
             const opt = {
                 margin:       0.5,
-                filename:     `${name}_Risk_Profile_Certificate.pdf`,
+                filename:     `${name}_Detailed_Risk_Report.pdf`,
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 2 },
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' } 
             };
             
             html2pdf().set(opt).from(element).save();
