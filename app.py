@@ -37,6 +37,10 @@ def about():
 def learn():
     return render_template('learn.html')
 
+@app.route('/risk-profiling')
+def risk_profiling():
+    return render_template('risk_profile.html')
+
 @app.route('/submit_form', methods=['POST'])
 def submit_form():
     try:
