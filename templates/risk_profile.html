@@ -439,23 +439,26 @@
             doc.setFontSize(18);
             doc.text("Detailed Risk Assessment Report", 105, 25, null, null, "center");
 
-            let yPos = 45; // প্রথম প্রশ্নের শুরুর পজিশন
+            let yPos = 45; 
 
             for (let i = 0; i < questions.length; i++) {
-                let q = questions[i];
+                // মেইন ফিক্স: ₹ চিহ্নটিকে 'Rs.' দিয়ে রিপ্লেস করা হলো যাতে ফন্ট ভেঙে না যায়
+                let safeQText = questions[i].text.replace(/₹/g, 'Rs. ');
+                
                 let ansIndex = userAnswers[i];
-                let ansText = ansIndex !== null ? q.options[ansIndex].text : "Not answered";
+                let rawAnsText = ansIndex !== null ? questions[i].options[ansIndex].text : "Not answered";
+                let safeAnsText = rawAnsText.replace(/₹/g, 'Rs. ');
 
                 // প্রশ্ন
                 doc.setFont("helvetica", "bold");
                 doc.setFontSize(11);
                 doc.setTextColor(10, 25, 47); // Navy Blue
-                let splitQ = doc.splitTextToSize(`Q${i + 1}. ${q.text}`, 175);
+                let splitQ = doc.splitTextToSize(`Q${i + 1}. ${safeQText}`, 175);
                 
                 // উত্তর
                 doc.setFont("helvetica", "normal");
                 doc.setFontSize(10);
-                let splitA = doc.splitTextToSize(ansText, 170); 
+                let splitA = doc.splitTextToSize(safeAnsText, 170); 
 
                 // বক্সের হাইট ক্যালকুলেট
                 let qHeight = splitQ.length * 5;
@@ -465,12 +468,12 @@
                 // যদি পেজের একদম নিচে চলে যায়, তবে নতুন পেজ তৈরি করবে
                 if (yPos + qHeight + boxHeight > 280) {
                     doc.addPage();
-                    yPos = 20; // নতুন পেজের ওপর থেকে শুরু
+                    yPos = 20; 
                 }
 
                 // প্রশ্ন প্রিন্ট
                 doc.text(splitQ, 15, yPos);
-                yPos += qHeight + 4; // প্রশ্নের পর একটু গ্যাপ
+                yPos += qHeight + 4; 
 
                 // উত্তরের ব্যাকগ্রাউন্ড বক্স (হালকা টিল কালার)
                 doc.setFillColor(245, 250, 250); 
