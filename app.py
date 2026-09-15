@@ -6,6 +6,7 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
+# Google Sheets কানেকশন ফাংশন
 def get_sheet():
     google_creds_json = os.environ.get('GOOGLE_CREDENTIALS')
     if not google_creds_json:
@@ -19,27 +20,36 @@ def get_sheet():
         sheet = client.open("Website_Contacts").sheet1 
         return sheet
     except Exception as e:
-        print(e)
+        print(f"Google Sheets Error: {e}")
         return None
+
+# ==========================================
+# ওয়েবসাইট রাউটস (Pages)
+# ==========================================
 
 # হোমপেজ রুট
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# নতুন About পেজ রুট
+# About পেজ রুট
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-# নতুন Learn পেজ রুট
+# Learn পেজ রুট
 @app.route('/learn')
 def learn():
     return render_template('learn.html')
 
+# Self-Risk Profiling পেজ রুট
 @app.route('/risk-profiling')
 def risk_profiling():
     return render_template('risk_profile.html')
+
+# ==========================================
+# এপিআই এবং ফর্ম সাবমিশন
+# ==========================================
 
 @app.route('/submit_form', methods=['POST'])
 def submit_form():
@@ -59,5 +69,6 @@ def submit_form():
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
+# অ্যাপ রান করার কোড
 if __name__ == '__main__':
     app.run(debug=True)
