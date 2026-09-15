@@ -51,7 +51,6 @@
         .quiz-container { background: linear-gradient(135deg, #ffffff 0%, #FDFBF7 100%); border: 1px solid rgba(197, 160, 89, 0.3); border-top: 4px solid var(--gold); border-radius: 15px; width: 100%; max-width: 850px; padding: 40px 50px; margin-top: -60px; position: relative; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
 
         .part-indicator { text-align: center; color: var(--teal); font-weight: bold; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
-
         .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 14px; color: var(--navy-blue); font-weight: bold; text-transform: uppercase; }
         .progress-bar-bg { width: 100%; height: 6px; background-color: rgba(10, 25, 47, 0.1); border-radius: 10px; margin-bottom: 35px; overflow: hidden; }
         .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), var(--gold)); border-radius: 10px; transition: width 0.4s ease; }
@@ -182,29 +181,36 @@
         </div>
     </div>
 
-    <!-- PDF টেমপ্লেট (সার্টিফিকেট + প্রশ্নোত্তর) -->
+    <!-- PDF টেমপ্লেট: একদম মাপে মাপে ফিক্সড সাইজ করা হলো -->
     <div id="certificateTemplate" style="display: none;">
-        <!-- width 100% করা হয়েছে যাতে Portrait মোডে সুন্দর ফিট হয় -->
-        <div id="certContent" style="padding: 40px; background: #FDFBF7; border: 8px solid #0A192F; text-align: center; font-family: 'Playfair Display', serif; color: #0A192F; width: 100%; margin: 0 auto; box-sizing: border-box; position: relative;">
+        <!-- width 800px ফিক্স করা হয়েছে যাতে ডিজাইন না ভাঙে -->
+        <div id="certContent" style="background: #ffffff; font-family: 'Playfair Display', serif; color: #0A192F; width: 800px; margin: 0 auto; box-sizing: border-box;">
             
-            <!-- পেজ ১: মূল সার্টিফিকেট -->
-            <div style="min-height: 900px;">
-                <div style="color: #C5A059; font-size: 20px; font-weight: bold; margin-bottom: 40px;">FINANCE WITH AISHIK</div>
-                <h1 style="color: #C5A059; font-size: 42px; margin-bottom: 10px; margin-top: 40px;">Certificate of Risk Profiling</h1>
-                <p style="font-family: 'Lato', sans-serif; font-size: 20px; color: #2c3e50; margin-bottom: 20px;">This is to proudly certify that</p>
-                <h2 id="certUserName" style="font-size: 40px; border-bottom: 3px solid #2A9D8F; display: inline-block; padding-bottom: 10px; margin-bottom: 30px; font-weight: bold; color: #0A192F;">User Name</h2>
-                <p style="font-family: 'Lato', sans-serif; font-size: 18px; color: #2c3e50; margin-bottom: 30px;">has successfully completed the Investment Risk Assessment and obtained a</p>
+            <!-- পেজ ১: মূল সার্টিফিকেট (Height 1130px ফিক্সড করে দেওয়া হলো যাতে পুরো 1 পেজ নেয়) -->
+            <div style="height: 1130px; padding: 60px; border: 12px solid #0A192F; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; box-sizing: border-box; background: #FDFBF7;">
                 
-                <div style="margin: 30px auto; width: 150px; height: 150px; border-radius: 50%; border: 6px solid #C5A059; display: flex; align-items: center; justify-content: center; background: rgba(197, 160, 89, 0.1);">
-                    <span id="certUserScore" style="font-size: 45px; font-weight: bold; color: #C5A059;">0%</span>
+                <div style="position: absolute; top: 40px; left: 40px; color: #C5A059; font-size: 22px; font-weight: bold; letter-spacing: 2px;">FINANCE WITH AISHIK</div>
+                
+                <h1 style="color: #C5A059; font-size: 55px; margin-bottom: 20px; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px;">Certificate of Risk Profiling</h1>
+                <p style="font-family: 'Lato', sans-serif; font-size: 24px; color: #2c3e50; margin-bottom: 30px;">This is to proudly certify that</p>
+                
+                <h2 id="certUserName" style="font-size: 50px; border-bottom: 4px solid #2A9D8F; display: inline-block; padding-bottom: 10px; margin-bottom: 40px; font-weight: bold; color: #0A192F;">User Name</h2>
+                
+                <p style="font-family: 'Lato', sans-serif; font-size: 20px; color: #2c3e50; margin-bottom: 40px; max-width: 600px; line-height: 1.6;">has successfully completed the Investment Risk Assessment and obtained a</p>
+                
+                <div style="margin: 0 auto 40px auto; width: 180px; height: 180px; border-radius: 50%; border: 8px solid #C5A059; display: flex; align-items: center; justify-content: center; background: rgba(197, 160, 89, 0.1);">
+                    <span id="certUserScore" style="font-size: 55px; font-weight: bold; color: #C5A059;">0%</span>
                 </div>
                 
-                <h3 id="certUserProfile" style="font-size: 32px; color: #2A9D8F; margin-top: 30px; margin-bottom: 10px;">Profile Type</h3>
-                <p style="font-family: 'Lato', sans-serif; font-size: 16px; margin-top: 50px; color: #7f8c8d; border-top: 1px solid #ccc; display: inline-block; padding-top: 15px;">Issued by Aishik Sarkar<br>Financial Literacy Hub</p>
+                <h3 id="certUserProfile" style="font-size: 38px; color: #2A9D8F; margin-bottom: 15px;">Profile Type</h3>
+                
+                <div style="position: absolute; bottom: 50px; width: 100%; text-align: center;">
+                    <p style="font-family: 'Lato', sans-serif; font-size: 18px; color: #7f8c8d; border-top: 2px solid #ccc; display: inline-block; padding-top: 15px;">Issued by <strong>Aishik Sarkar</strong><br>Financial Literacy Hub & FinXHorizon</p>
+                </div>
             </div>
 
             <!-- পেজ ২+: প্রশ্ন-উত্তরের রিপোর্ট (JavaScript দিয়ে এখানে ডেটা ঢুকবে) -->
-            <div id="qaReport" style="text-align: left; margin-top: 20px;"></div>
+            <div id="qaReport" style="text-align: left; padding: 50px; box-sizing: border-box; background: #ffffff;"></div>
         </div>
     </div>
 
@@ -272,12 +278,11 @@
             }
         }
 
-        function nextQuestion() { if (currentcurrentQuestion < 19) { currentQuestion++; loadQuestion(); } else { calculateResult(); } }
-        function prevQuestion() { if (currentQuestion > 0) { currentQuestion--; loadQuestion(); } }
-
-        // ফিক্সড: currentcurrentQuestion টাইপো ঠিক করা হলো
         function nextQuestion() {
             if (currentQuestion < 19) { currentQuestion++; loadQuestion(); } else { calculateResult(); }
+        }
+        function prevQuestion() {
+            if (currentQuestion > 0) { currentQuestion--; loadQuestion(); }
         }
 
         function calculateResult() {
@@ -367,9 +372,9 @@
             document.getElementById('certUserScore').innerText = score;
             document.getElementById('certUserProfile').innerText = profile;
             
-            // প্রশ্নোত্তর পেজের জন্য ডাইনামিক HTML তৈরি করা
-            let qaHTML = `<div class="html2pdf__page-break"></div>`; // লাইব্রেরিকে বলা হলো নতুন পেজ শুরু করতে
-            qaHTML += `<h2 style="color: #0A192F; font-size: 28px; border-bottom: 2px solid #C5A059; padding-bottom: 10px; margin-top: 40px; margin-bottom: 30px; font-weight: bold;">Detailed Risk Assessment Report</h2>`;
+            // ম্যাজিক ট্রিক: ফোর্সমূলক CSS পেজ ব্রেক দেওয়া হলো
+            let qaHTML = `<div style="page-break-before: always; padding-top: 10px;"></div>`; 
+            qaHTML += `<h2 style="color: #0A192F; font-size: 32px; border-bottom: 3px solid #C5A059; padding-bottom: 15px; margin-bottom: 40px; font-weight: bold;">Detailed Risk Assessment Report</h2>`;
 
             for (let i = 0; i < questions.length; i++) {
                 let q = questions[i];
@@ -377,9 +382,9 @@
                 let selectedText = ansIndex !== null ? q.options[ansIndex].text : "Not answered";
 
                 qaHTML += `
-                    <div style="margin-bottom: 25px; font-family: 'Lato', sans-serif; text-align: left;">
-                        <div style="font-weight: bold; color: #0A192F; font-size: 16px; margin-bottom: 8px; line-height: 1.4;">Q${i + 1}. ${q.text}</div>
-                        <div style="color: #2A9D8F; font-size: 15px; background: rgba(42, 157, 143, 0.05); padding: 10px; border-left: 4px solid #2A9D8F; border-radius: 4px;">
+                    <div style="margin-bottom: 30px; font-family: 'Lato', sans-serif; text-align: left;">
+                        <div style="font-weight: bold; color: #0A192F; font-size: 18px; margin-bottom: 10px; line-height: 1.5;">Q${i + 1}. ${q.text}</div>
+                        <div style="color: #2A9D8F; font-size: 16px; background: rgba(42, 157, 143, 0.05); padding: 15px; border-left: 5px solid #2A9D8F; border-radius: 6px;">
                             <strong style="color: #C5A059;">Your Answer:</strong> ${selectedText}
                         </div>
                     </div>
@@ -389,13 +394,13 @@
             
             const element = document.getElementById('certContent');
             
-            // PDF এর সেটিং Landscape থেকে Portrait (লম্বালম্বি) করা হলো যাতে প্রশ্নগুলো সুন্দরভাবে পেজে ধরে
+            // PDF সেটিংসে একদম পারফেক্ট A4 রেশিও (800x1130) ফিক্স করা হলো
             const opt = {
-                margin:       0.5,
+                margin:       0, // জিরো মার্জিন যাতে বর্ডার পুরো পেজে থাকে
                 filename:     `${name}_Detailed_Risk_Report.pdf`,
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 },
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' } 
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale: 2, windowWidth: 800 },
+                jsPDF:        { unit: 'px', format: [800, 1130], orientation: 'portrait' } 
             };
             
             html2pdf().set(opt).from(element).save();
