@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inflation Impact Calculator | Finance With Aishik</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --navy-blue: #0A192F; --gold: #C5A059; --light-cream: #FDFBF7; --text-light: #E0E0E0; --teal: #2A9D8F; }
+        body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background-color: var(--navy-blue); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
+
+        /* Animated Background Elements */
+        .bg-orb-1 { position: absolute; top: 10%; left: 15%; width: 400px; height: 400px; background: rgba(197, 160, 89, 0.15); border-radius: 50%; filter: blur(80px); z-index: -1; animation: float 6s ease-in-out infinite; }
+        .bg-orb-2 { position: absolute; bottom: 10%; right: 10%; width: 500px; height: 500px; background: rgba(42, 157, 143, 0.1); border-radius: 50%; filter: blur(100px); z-index: -1; animation: float 8s ease-in-out infinite reverse; }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-30px); } 100% { transform: translateY(0px); } }
+
+        /* Hero */
+        .page-header { text-align: center; padding: 60px 20px 30px 20px; position: relative; z-index: 10; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--gold); margin: 0 0 10px 0; letter-spacing: 1px; text-shadow: 0 4px 10px rgba(197, 160, 89, 0.2); }
+        .page-header p { font-size: 16px; max-width: 600px; margin: 0 auto; color: #a0aec0; }
+
+        /* Glassmorphism Calculator Container */
+        .calc-wrapper { display: flex; justify-content: center; padding: 0 20px 80px 20px; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-top: 1px solid rgba(197, 160, 89, 0.4); border-radius: 24px; width: 100%; max-width: 800px; padding: 50px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3); position: relative; z-index: 10; }
+
+        /* Input Grid */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .input-box { position: relative; }
+        .input-box label { display: block; font-size: 13px; font-weight: bold; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        
+        .sleek-input { display: flex; align-items: center; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 5px 15px; transition: all 0.3s ease; }
+        .sleek-input:focus-within { border-color: var(--gold); background: rgba(0, 0, 0, 0.4); box-shadow: 0 0 15px rgba(197, 160, 89, 0.2); }
+        .sleek-input i { color: #8892b0; font-size: 18px; margin-right: 15px; }
+        .sleek-input input { flex: 1; background: transparent; border: none; padding: 15px 0; color: white; font-size: 22px; font-family: 'Lato', sans-serif; font-weight: bold; outline: none; width: 100%; }
+        .sleek-input span { color: #8892b0; font-weight: bold; margin-left: 10px; font-size: 16px; }
+
+        /* Center Inflation Slider Box */
+        .center-box { display: flex; flex-direction: column; align-items: center; margin-bottom: 40px; padding-top: 10px; border-top: 1px dashed rgba(255,255,255,0.1); }
+        .center-box .sleek-input { max-width: 300px; margin-top: 10px; border-color: rgba(42, 157, 143, 0.4); }
+        .center-box .sleek-input:focus-within { border-color: var(--teal); box-shadow: 0 0 15px rgba(42, 157, 143, 0.2); }
+        .center-box .sleek-input i { color: var(--teal); }
+
+        /* Output Section - The "Hatke" Result */
+        .result-box { background: linear-gradient(145deg, rgba(10, 25, 47, 0.8), rgba(22, 46, 82, 0.8)); border-radius: 20px; padding: 40px 30px; text-align: center; position: relative; overflow: hidden; border: 1px solid rgba(197, 160, 89, 0.2); box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
+        .result-box::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(197,160,89,0.1) 0%, transparent 60%); z-index: 0; pointer-events: none; }
+        
+        .result-box h3 { position: relative; z-index: 1; margin: 0 0 10px 0; font-size: 16px; color: #a0aec0; text-transform: uppercase; letter-spacing: 2px; }
+        .future-value { position: relative; z-index: 1; font-family: 'Playfair Display', serif; font-size: 60px; font-weight: bold; background: linear-gradient(to right, #C5A059, #f1c40f, #C5A059); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0px 5px 15px rgba(197, 160, 89, 0.2); margin: 10px 0; }
+        
+        .erosion-text { position: relative; z-index: 1; font-size: 15px; color: #ffb3b3; background: rgba(231, 76, 60, 0.1); display: inline-block; padding: 8px 20px; border-radius: 30px; border: 1px solid rgba(231, 76, 60, 0.3); margin-top: 15px; }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 20px; }
+            .glass-card { padding: 30px 20px; }
+            .future-value { font-size: 42px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ব্যাকগ্রাউন্ড গ্লোয়িং ইফেক্ট -->
+    <div class="bg-orb-1"></div>
+    <div class="bg-orb-2"></div>
+
+    {% include 'navbar.html' %}
+
+    <div class="page-header">
+        <h1>The Silent Wealth Killer</h1>
+        <p>Inflation silently reduces your purchasing power. Calculate exactly how much a goal will cost in the future compared to today.</p>
+    </div>
+
+    <div class="calc-wrapper">
+        <div class="glass-card">
+            
+            <!-- Box 1 & 2: Present Value and Duration -->
+            <div class="grid-2">
+                <div class="input-box">
+                    <label>Current Cost of Goal</label>
+                    <div class="sleek-input">
+                        <i class="fa-solid fa-wallet"></i>
+                        <input type="number" id="inf_pv" value="1000000" min="0" step="50000" oninput="calculateInflation()">
+                        <span>₹</span>
+                    </div>
+                </div>
+                
+                <div class="input-box">
+                    <label>Time to Goal</label>
+                    <div class="sleek-input">
+                        <i class="fa-solid fa-hourglass-half"></i>
+                        <input type="number" id="inf_years" value="10" min="1" max="50" oninput="calculateInflation()">
+                        <span>Yrs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Box 3: Inflation Rate (Centered Below) -->
+            <div class="center-box">
+                <div class="input-box" style="text-align: center; width: 100%;">
+                    <label style="color: var(--teal);"><i class="fa-solid fa-fire-flame-curved" style="margin-right: 5px;"></i> Expected Inflation Rate</label>
+                    <div class="sleek-input" style="margin: 0 auto;">
+                        <input type="number" id="inf_rate" value="6.0" min="0" max="20" step="0.1" oninput="calculateInflation()" style="text-align: center;">
+                        <span>%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Box: Goal Future Value -->
+            <div class="result-box">
+                <h3>Estimated Future Cost</h3>
+                <div class="future-value" id="res_fv">₹ 0</div>
+                <div class="erosion-text" id="res_diff">
+                    <i class="fa-solid fa-arrow-trend-up"></i> You will need ₹0 extra just to beat inflation!
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function calculateInflation() {
+            let pv = parseFloat(document.getElementById("inf_pv").value || 0);
+            let years = parseFloat(document.getElementById("inf_years").value || 0);
+            let rate = parseFloat(document.getElementById("inf_rate").value || 0);
+            
+            // FV = PV * (1 + r/100)^n
+            let fv = pv * Math.pow(1 + (rate / 100), years);
+            let extraNeeded = fv - pv;
+
+            // Update UI
+            document.getElementById("res_fv").innerText = "₹ " + fv.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            
+            if (extraNeeded > 0) {
+                document.getElementById("res_diff").innerHTML = `<i class="fa-solid fa-arrow-trend-up"></i> You will need <strong>₹ ${extraNeeded.toLocaleString('en-IN', {maximumFractionDigits: 0})}</strong> extra just to beat inflation!`;
+                document.getElementById("res_diff").style.display = "inline-block";
+            } else {
+                document.getElementById("res_diff").style.display = "none";
+            }
+        }
+
+        // Initialize on page load
+        window.onload = function() { calculateInflation(); };
+    </script>
+</body>
+</html>
