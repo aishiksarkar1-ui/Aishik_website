@@ -194,42 +194,45 @@
                 let tickerHtml = '';
                 let listHtml = '';
 
-                data.stocks.forEach(item => {
-                    let isUp = item.change >= 0;
-                    let tColor = isUp ? 'ticker-up' : 'ticker-down';
-                    let icon = isUp ? '<i class="fa-solid fa-caret-up"></i>' : '<i class="fa-solid fa-caret-down"></i>';
-                    let sign = isUp ? '+' : '';
-                    
-                    tickerHtml += `
-                        <div class="ticker-item">
-                            ${item.name} 
-                            <span class="ticker-price">₹${item.price.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> 
-                            <span class="${tColor}">${icon} ${sign}${item.change_percent}%</span>
-                        </div>`;
-                });
+                if (data.stocks && Array.isArray(data.stocks)) {
+                    data.stocks.forEach(item => {
+                        let isUp = item.change >= 0;
+                        let tColor = isUp ? 'ticker-up' : 'ticker-down';
+                        let icon = isUp ? '<i class="fa-solid fa-caret-up"></i>' : '<i class="fa-solid fa-caret-down"></i>';
+                        let sign = isUp ? '+' : '';
+                        
+                        tickerHtml += `
+                            <div class="ticker-item">
+                                ${item.name} 
+                                <span class="ticker-price">₹${item.price.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> 
+                                <span class="${tColor}">${icon} ${sign}${item.change_percent}%</span>
+                            </div>`;
+                    });
+                    document.getElementById('live-ticker-box').innerHTML = tickerHtml + tickerHtml;
+                }
 
-                data.indices.forEach(item => {
-                    let isUp = item.change >= 0;
-                    let lColor = isUp ? 'text-up' : 'text-down';
-                    let sign = isUp ? '+' : '';
-                    
-                    listHtml += `
-                        <div class="market-row">
-                            <div class="market-name">
-                                <i class="fa-solid fa-chart-pie"></i> ${item.name}
-                            </div>
-                            <div class="market-price-col">
-                                <div class="market-price">${item.price.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
-                                <div class="market-change ${lColor}">
-                                    ${sign}${item.change.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${sign}${item.change_percent}%)
+                if (data.indices && Array.isArray(data.indices)) {
+                    data.indices.forEach(item => {
+                        let isUp = item.change >= 0;
+                        let lColor = isUp ? 'text-up' : 'text-down';
+                        let sign = isUp ? '+' : '';
+                        
+                        listHtml += `
+                            <div class="market-row">
+                                <div class="market-name">
+                                    <i class="fa-solid fa-chart-pie"></i> ${item.name}
+                                </div>
+                                <div class="market-price-col">
+                                    <div class="market-price">${item.price.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                                    <div class="market-change ${lColor}">
+                                        ${sign}${item.change.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${sign}${item.change_percent}%)
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    `;
-                });
-
-                document.getElementById('live-ticker-box').innerHTML = tickerHtml + tickerHtml;
-                document.getElementById('custom-market-list').innerHTML = listHtml;
+                        `;
+                    });
+                    document.getElementById('custom-market-list').innerHTML = listHtml;
+                }
             })
             .catch(err => {
                 console.log("Error loading data: ", err);
@@ -262,7 +265,8 @@
                                     : 'https://via.placeholder.com/150x100/004d99/FFFFFF?text=BS+News';
                             }
 
-                            const cleanDesc = item.description.replace(/<[^>]+>/g, />);
+                            // Clean description safely
+                            const cleanDesc = item.description ? item.description.replace(/<[^>]+>/g, '') : '';
 
                             container.innerHTML += `
                                 <div class="news-item">
@@ -278,11 +282,11 @@
                             `;
                         });
                     } else {
-                        container.innerHTML = '<p style="color: #ffb3b3;">Failed to load latest news.</p>';
+                        container.innerHTML = '<p style="color: #ffb3b3; text-align: center; margin-top: 30px;">Failed to load latest news.</p>';
                     }
                 })
                 .catch(error => {
-                    document.getElementById(containerId).innerHTML = '<p style="color: #ffb3b3;">Error connecting to news server.</p>';
+                    document.getElementById(containerId).innerHTML = '<p style="color: #ffb3b3; text-align: center; margin-top: 30px;">Error connecting to news server.</p>';
                 });
         }
 
@@ -290,6 +294,5 @@
         loadRssFeed('https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms', 'et-news-container');
         loadRssFeed('https://www.business-standard.com/rss/markets-106.rss', 'bs-news-container');
     </script>
-
 </body>
 </html>
