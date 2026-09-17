@@ -173,16 +173,16 @@
     </div>
 
     <script>
-        // 1. Fetch Market Data for Ticker and Center List
+        // 1. Fetch Market Data: Stocks for Ticker, Indices for Center List
         fetch('/api/live-ticker')
             .then(response => response.json())
             .then(data => {
                 let tickerHtml = '';
                 let listHtml = '';
 
-                data.forEach(item => {
+                // A. Ticker-এ শুধুমাত্র Nifty 50 Stocks বসানো হচ্ছে
+                data.stocks.forEach(item => {
                     let isUp = item.change >= 0;
-                    
                     let tColor = isUp ? 'ticker-up' : 'ticker-down';
                     let icon = isUp ? '<i class="fa-solid fa-caret-up"></i>' : '<i class="fa-solid fa-caret-down"></i>';
                     let sign = isUp ? '+' : '';
@@ -193,8 +193,13 @@
                             <span class="ticker-price">₹${item.price.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> 
                             <span class="${tColor}">${icon} ${sign}${item.change_percent}%</span>
                         </div>`;
+                });
 
+                // B. Center List-এ শুধুমাত্র Sectoral Indices বসানো হচ্ছে
+                data.indices.forEach(item => {
+                    let isUp = item.change >= 0;
                     let lColor = isUp ? 'text-up' : 'text-down';
+                    let sign = isUp ? '+' : '';
                     
                     listHtml += `
                         <div class="market-row">
@@ -202,7 +207,7 @@
                                 <i class="fa-solid fa-chart-pie"></i> ${item.name}
                             </div>
                             <div class="market-price-col">
-                                <div class="market-price">₹${item.price.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                                <div class="market-price">${item.price.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                                 <div class="market-change ${lColor}">
                                     ${sign}${item.change.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${sign}${item.change_percent}%)
                                 </div>
@@ -233,23 +238,17 @@
                         data.items.slice(0, 15).forEach(item => {
                             const newsDate = new Date(item.pubDate).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' });
                             
-                            // Extracting Image URL logic
                             let imgUrl = item.thumbnail || (item.enclosure && item.enclosure.link);
-                            
-                            // If thumbnail not found, try to extract from description HTML
                             if (!imgUrl) {
                                 let match = item.description.match(/src\s*=\s*"([^"]+)"/);
                                 if (match) imgUrl = match[1];
                             }
-                            
-                            // Default Fallback Image if absolutely no image is found
                             if (!imgUrl) {
                                 imgUrl = containerId === 'et-news-container' 
                                     ? 'https://img.etimg.com/photo/msid-74451948,quality-100/et-logo.jpg' 
                                     : 'https://via.placeholder.com/150x100/004d99/FFFFFF?text=BS+News';
                             }
 
-                            // Clean description for text display
                             const cleanDesc = item.description.replace(/<[^>]+>/g, '');
 
                             container.innerHTML += `
