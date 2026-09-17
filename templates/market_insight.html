@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Market Insight | Finance With Aishik</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --navy-blue: #0A192F; --gold: #C5A059; --text-light: #E0E0E0; --teal: #2A9D8F; }
+        body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background-color: var(--navy-blue); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
+
+        /* Ticker Tape Section */
+        .ticker-wrapper { border-bottom: 1px solid rgba(197, 160, 89, 0.3); background: rgba(0, 0, 0, 0.2); }
+
+        /* Page Header */
+        .page-header { text-align: center; padding: 50px 20px 30px 20px; position: relative; z-index: 10; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--gold); margin: 0 0 10px 0; letter-spacing: 1px; }
+        .page-header p { font-size: 15px; max-width: 650px; margin: 0 auto; color: #a0aec0; }
+
+        /* Main Dashboard Grid */
+        .dashboard-container { padding: 20px 40px 80px 40px; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; max-width: 1300px; margin: 0 auto; }
+
+        /* Glassmorphism Cards */
+        .glass-panel { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(197, 160, 89, 0.3); border-radius: 16px; padding: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); }
+        
+        .panel-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 10px; }
+
+        /* Widget Containers (To hide TradingView default borders) */
+        .widget-box { width: 100%; height: 600px; border-radius: 8px; overflow: hidden; }
+
+        @media (max-width: 1024px) {
+            .dashboard-container { grid-template-columns: 1fr; padding: 20px; }
+            .widget-box { height: 500px; }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <!-- 1. Live Ticker Tape (Scrolls at the top) -->
+    <div class="ticker-wrapper">
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+          {
+          "symbols": [
+            { "proName": "BSE:SENSEX", "title": "Sensex" },
+            { "proName": "NSE:NIFTY", "title": "Nifty 50" },
+            { "proName": "NSE:BANKNIFTY", "title": "Bank Nifty" },
+            { "description": "Reliance", "proName": "NSE:RELIANCE" },
+            { "description": "HDFC Bank", "proName": "NSE:HDFCBANK" },
+            { "description": "Infosys", "proName": "NSE:INFY" }
+          ],
+          "showSymbolLogo": true,
+          "colorTheme": "dark",
+          "isTransparent": true,
+          "displayMode": "adaptive",
+          "locale": "in"
+        }
+          </script>
+        </div>
+        <!-- TradingView Widget END -->
+    </div>
+
+    <div class="page-header">
+        <h1>Global & Domestic Market Pulse</h1>
+        <p>Track live Indian indices and stay updated with top financial stories breaking right now. Data updates automatically in real-time.</p>
+    </div>
+
+    <div class="dashboard-container">
+        
+        <!-- 2. Market Overview (Indian Indices & Chart) -->
+        <div class="glass-panel">
+            <h2 class="panel-title"><i class="fa-solid fa-chart-line"></i> Indian Indices Overview</h2>
+            <div class="widget-box">
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container">
+                  <div class="tradingview-widget-container__widget"></div>
+                  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                  {
+                  "colorTheme": "dark",
+                  "dateRange": "1M",
+                  "showChart": true,
+                  "locale": "in",
+                  "width": "100%",
+                  "height": "100%",
+                  "largeChartUrl": "",
+                  "isTransparent": true,
+                  "showSymbolLogo": true,
+                  "showFloatingTooltip": true,
+                  "tabs": [
+                    {
+                      "title": "Top Indices",
+                      "symbols": [
+                        { "s": "BSE:SENSEX", "d": "BSE Sensex" },
+                        { "s": "NSE:NIFTY", "d": "Nifty 50" },
+                        { "s": "NSE:BANKNIFTY", "d": "Bank Nifty" },
+                        { "s": "BSE:BSE500", "d": "BSE 500" },
+                        { "s": "NSE:CNXMIDCAP", "d": "Nifty Midcap 100" }
+                      ]
+                    }
+                  ]
+                }
+                  </script>
+                </div>
+                <!-- TradingView Widget END -->
+            </div>
+        </div>
+
+        <!-- 3. Real-Time Financial News Timeline -->
+        <div class="glass-panel">
+            <h2 class="panel-title"><i class="fa-regular fa-newspaper"></i> Latest Market News</h2>
+            <div class="widget-box">
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container">
+                  <div class="tradingview-widget-container__widget"></div>
+                  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+                  {
+                  "feedMode": "market",
+                  "market": "stock",
+                  "isTransparent": true,
+                  "displayMode": "regular",
+                  "width": "100%",
+                  "height": "100%",
+                  "colorTheme": "dark",
+                  "locale": "in"
+                }
+                  </script>
+                </div>
+                <!-- TradingView Widget END -->
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
