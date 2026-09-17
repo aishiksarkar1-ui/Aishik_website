@@ -28,18 +28,18 @@
         .page-header h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--gold); margin: 0 0 10px 0; letter-spacing: 1px; }
         .page-header p { font-size: 15px; max-width: 650px; margin: 0 auto; color: #a0aec0; }
 
-        /* Main Dashboard Grid */
-        .dashboard-container { padding: 20px 40px 80px 40px; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; max-width: 1300px; margin: 0 auto; }
+        /* Main Dashboard Grid (3 Columns now) */
+        .dashboard-container { padding: 20px 40px 80px 40px; display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 25px; max-width: 1500px; margin: 0 auto; }
 
         /* Glassmorphism Cards */
-        .glass-panel { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(197, 160, 89, 0.3); border-radius: 16px; padding: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); }
-        .panel-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .glass-panel { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(197, 160, 89, 0.3); border-radius: 16px; padding: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; }
+        .panel-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 10px; }
 
         /* Widget Box (Chart + List) */
-        .widget-box { width: 100%; height: 600px; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255,255,255,0.05); }
-        .chart-half { height: 280px; width: 100%; border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
+        .widget-box { width: 100%; flex-grow: 1; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255,255,255,0.05); }
+        .chart-half { height: 320px; width: 100%; border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
         
-        /* Custom Market List (Replaces TV List) */
+        /* Custom Market List */
         .market-list-container { height: 320px; overflow-y: auto; padding: 10px; }
         .market-list-container::-webkit-scrollbar { width: 6px; }
         .market-list-container::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
@@ -48,7 +48,6 @@
         .market-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.3s; border-radius: 6px; }
         .market-row:hover { background: rgba(255,255,255,0.04); }
         .market-name { font-weight: bold; color: var(--text-light); font-size: 15px; display: flex; align-items: center; gap: 10px; }
-        .market-name img { width: 24px; height: 24px; border-radius: 50%; background: white; padding: 2px; }
         .market-price-col { text-align: right; }
         .market-price { font-size: 16px; font-weight: bold; font-family: 'Lato', sans-serif; color: white; }
         .market-change { font-size: 13px; font-weight: bold; margin-top: 2px; }
@@ -56,19 +55,25 @@
         .text-down { color: #ffb3b3; }
 
         /* Custom News Scrollbar */
-        .custom-news-box { height: 600px; overflow-y: auto; padding-right: 10px; }
+        .custom-news-box { height: 640px; overflow-y: auto; padding-right: 10px; }
         .custom-news-box::-webkit-scrollbar { width: 6px; }
         .custom-news-box::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
         .custom-news-box::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+        
         .news-item { border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 15px; margin-bottom: 15px; transition: 0.3s; }
         .news-item:hover { background: rgba(255,255,255,0.02); border-radius: 6px; padding-left: 5px; }
         .news-date { font-size: 12px; color: var(--teal); margin-bottom: 5px; font-weight: bold; }
-        .news-title { color: var(--text-light); text-decoration: none; font-size: 16px; font-weight: bold; display: block; margin-bottom: 5px; transition: color 0.3s; line-height: 1.4; }
+        .news-title { color: var(--text-light); text-decoration: none; font-size: 15px; font-weight: bold; display: block; margin-bottom: 5px; transition: color 0.3s; line-height: 1.4; }
         .news-title:hover { color: var(--gold); }
-        .news-desc { font-size: 13.5px; color: #a0aec0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .news-desc { font-size: 13px; color: #a0aec0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        @media (max-width: 1024px) {
-            .dashboard-container { grid-template-columns: 1fr; padding: 20px; }
+        @media (max-width: 1200px) {
+            .dashboard-container { grid-template-columns: 1fr 1fr; }
+            .glass-panel:nth-child(2) { grid-column: span 2; order: -1; } /* Moves chart to top on medium screens */
+        }
+        @media (max-width: 768px) {
+            .dashboard-container { grid-template-columns: 1fr; }
+            .glass-panel:nth-child(2) { grid-column: span 1; }
         }
     </style>
 </head>
@@ -90,11 +95,25 @@
 
     <div class="dashboard-container">
         
-        <!-- 2. Hybrid Market Overview (TV Chart + Custom Yahoo Finance List) -->
+        <!-- Left Column: Business Standard News -->
         <div class="glass-panel">
-            <h2 class="panel-title"><i class="fa-solid fa-chart-line"></i> Indian Indices & Stocks</h2>
+            <h2 class="panel-title">
+                <i class="fa-regular fa-newspaper"></i> 
+                Business Standard
+                <span style="background: #004d99; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; margin-left: auto; font-family: sans-serif; font-weight: bold;">BS</span>
+            </h2>
+            <div class="custom-news-box" id="bs-news-container">
+                <div style="text-align: center; color: var(--gold); margin-top: 50px;">
+                    <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i>
+                    <p style="margin-top: 10px;">Fetching news from BS...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Column: Market Overview Chart + Yahoo Data -->
+        <div class="glass-panel" style="padding: 25px;">
+            <h2 class="panel-title"><i class="fa-solid fa-chart-line"></i> Indian Indices Overview</h2>
             <div class="widget-box">
-                
                 <!-- Top Half: Transparent Area Chart -->
                 <div class="chart-half">
                     <div class="tradingview-widget-container" style="height: 100%; width: 100%;">
@@ -120,28 +139,27 @@
                     </div>
                 </div>
 
-                <!-- Bottom Half: Custom Live Data List (Yahoo Finance) -->
+                <!-- Bottom Half: Custom Live Data List -->
                 <div class="market-list-container" id="custom-market-list">
                     <div style="text-align: center; color: var(--gold); margin-top: 50px;">
                         <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i>
                         <p style="margin-top: 10px;">Fetching Live Prices...</p>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- 3. Economic Times Live RSS Feed -->
+        <!-- Right Column: Economic Times News -->
         <div class="glass-panel">
             <h2 class="panel-title">
                 <i class="fa-regular fa-newspaper"></i> 
-                Economic Times - Live
+                Economic Times
                 <img src="https://img.etimg.com/photo/msid-74451948,quality-100/et-logo.jpg" alt="ET Logo" style="height: 20px; border-radius: 4px; margin-left: auto;">
             </h2>
             <div class="custom-news-box" id="et-news-container">
                 <div style="text-align: center; color: var(--gold); margin-top: 50px;">
                     <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i>
-                    <p style="margin-top: 10px;">Fetching latest news from ET...</p>
+                    <p style="margin-top: 10px;">Fetching news from ET...</p>
                 </div>
             </div>
         </div>
@@ -149,7 +167,7 @@
     </div>
 
     <script>
-        // Fetch Data from our Flask Backend for BOTH Ticker and Market List
+        // 1. Fetch Market Data for Ticker and Center List
         fetch('/api/live-ticker')
             .then(response => response.json())
             .then(data => {
@@ -159,7 +177,6 @@
                 data.forEach(item => {
                     let isUp = item.change >= 0;
                     
-                    // Logic for Ticker
                     let tColor = isUp ? 'ticker-up' : 'ticker-down';
                     let icon = isUp ? '<i class="fa-solid fa-caret-up"></i>' : '<i class="fa-solid fa-caret-down"></i>';
                     let sign = isUp ? '+' : '';
@@ -171,9 +188,7 @@
                             <span class="${tColor}">${icon} ${sign}${item.change_percent}%</span>
                         </div>`;
 
-                    // Logic for Custom List
                     let lColor = isUp ? 'text-up' : 'text-down';
-                    let firstLetter = item.name.charAt(0);
                     
                     listHtml += `
                         <div class="market-row">
@@ -190,7 +205,6 @@
                     `;
                 });
 
-                // Update UI
                 document.getElementById('live-ticker-box').innerHTML = tickerHtml + tickerHtml;
                 document.getElementById('custom-market-list').innerHTML = listHtml;
             })
@@ -199,36 +213,43 @@
                 document.getElementById('custom-market-list').innerHTML = '<p style="color: #ffb3b3; text-align: center; margin-top: 30px;">Error connecting to live data server.</p>';
             });
 
-        // RSS to JSON API for Economic Times Markets Feed
-        const rssUrl = 'https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms';
-        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+        // 2. Helper function to format and load RSS Feeds
+        function loadRssFeed(rssUrl, containerId) {
+            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+            
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById(containerId);
+                    container.innerHTML = ''; 
+                    
+                    if(data.status === 'ok') {
+                        data.items.slice(0, 15).forEach(item => {
+                            const newsDate = new Date(item.pubDate).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' });
+                            const cleanDesc = item.description.replace(/<[^>]+>/g, '');
 
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('et-news-container');
-                container.innerHTML = ''; 
-                
-                if(data.status === 'ok') {
-                    data.items.slice(0, 15).forEach(item => {
-                        const newsDate = new Date(item.pubDate).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' });
-                        const cleanDesc = item.description.replace(/<[^>]+>/g, '');
+                            container.innerHTML += `
+                                <div class="news-item">
+                                    <div class="news-date"><i class="fa-regular fa-clock"></i> ${newsDate}</div>
+                                    <a href="${item.link}" target="_blank" class="news-title">${item.title}</a>
+                                    <div class="news-desc">${cleanDesc}</div>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        container.innerHTML = '<p style="color: #ffb3b3;">Failed to load latest news.</p>';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById(containerId).innerHTML = '<p style="color: #ffb3b3;">Error connecting to news server.</p>';
+                });
+        }
 
-                        container.innerHTML += `
-                            <div class="news-item">
-                                <div class="news-date"><i class="fa-regular fa-clock"></i> ${newsDate}</div>
-                                <a href="${item.link}" target="_blank" class="news-title">${item.title}</a>
-                                <div class="news-desc">${cleanDesc}</div>
-                            </div>
-                        `;
-                    });
-                } else {
-                    container.innerHTML = '<p style="color: #ffb3b3;">Failed to load latest news at the moment.</p>';
-                }
-            })
-            .catch(error => {
-                document.getElementById('et-news-container').innerHTML = '<p style="color: #ffb3b3;">Error connecting to news server.</p>';
-            });
+        // Load Economic Times Feed (Right)
+        loadRssFeed('https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms', 'et-news-container');
+        
+        // Load Business Standard Feed (Left)
+        loadRssFeed('https://www.business-standard.com/rss/markets-106.rss', 'bs-news-container');
     </script>
 
 </body>
