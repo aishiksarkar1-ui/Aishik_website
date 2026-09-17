@@ -1,3 +1,29 @@
+<style>
+    /* Navbar CSS / Design */
+    .navbar { position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background-color: rgba(10, 25, 47, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197, 160, 89, 0.3); font-family: 'Lato', sans-serif; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: #C5A059; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; line-height: 1.1; }
+    .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; align-items: center; }
+    .nav-links li { position: relative; }
+    .nav-links a { color: #E0E0E0; text-decoration: none; font-size: 14px; transition: color 0.3s ease; padding: 10px 0; display: block; }
+    .nav-links a:hover, .nav-links a.active { color: #C5A059; }
+    
+    /* Dropdown CSS */
+    .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background-color: #0A192F; min-width: 280px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 4px; padding: 10px 0; list-style: none; z-index: 1001; }
+    .dropdown-content li { width: 100%; }
+    .dropdown-content a { padding: 10px 20px; white-space: nowrap; }
+    .dropdown-content a:hover { background-color: rgba(197, 160, 89, 0.1); color: #C5A059; }
+    .dropdown:hover .dropdown-content { display: block; }
+    
+    /* Mobile Menu */
+    .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: #C5A059; }
+    @media (max-width: 768px) {
+        .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: #0A192F; padding: 20px 0; }
+        .nav-links.active { display: flex; }
+        .menu-toggle { display: block; }
+        .dropdown-content { position: relative; box-shadow: none; border: none; padding-left: 20px; }
+    }
+</style>
+
 <nav class="navbar">
     <a href="/" class="logo">FINANCE WITH<br>AISHIK</a>
     <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
@@ -32,7 +58,6 @@
         <li class="dropdown">
             <a href="#">Tools &#9662;</a>
             <ul class="dropdown-content">
-                <!-- লিংগুলো আপডেট করে দেওয়া হয়েছে -->
                 <li><a href="/sip-calculator">SIP Calculator</a></li>
                 <li><a href="/financial-planning">Goal Planning Calculator</a></li>
                 <li><a href="#">Inflation Impact Calculator</a></li>
