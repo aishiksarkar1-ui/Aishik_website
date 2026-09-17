@@ -1,4 +1,25 @@
 import yfinance as yf
+from concurrent.futures import ThreadPoolExecutor
+
+# ডেটা ফেচ করার লজিক (5d হিস্ট্রি ব্যবহার করা হয়েছে যাতে ছুটির দিনেও এরর না আসে)
+def fetch_stock_data(name, symbol):
+    try:
+        ticker = yf.Ticker(symbol)
+        hist = ticker.history(period="5d")
+        if len(hist) >= 2:
+            current = float(hist['Close'].iloc[-1])
+            prev = float(hist['Close'].iloc[-2])
+            change = current - prev
+            pct = (change / prev) * 100
+            return {
+                "name": name,
+                "price": round(current, 2),
+                "change": round(change, 2),
+                "change_percent": round(pct, 2)
+            }
+    except Exception as e:
+        print(f"Failed to fetch {name}: {e}")
+    return None
 
 def get_market_data():
     # চার্টের নিচে দেখানোর জন্য ইনডেক্স লিস্ট
@@ -15,7 +36,7 @@ def get_market_data():
         "Nifty Infra": "^CNXINFRA"
     }
     
-    # ওপরে টিকারের জন্য Nifty 50-এর টপ স্টক লিস্ট
+    # ওপরে টিকারের জন্য Nifty 50-এর টপ ২০টি স্টক লিস্ট
     nifty50_stocks = {
         "Reliance": "RELIANCE.NS",
         "TCS": "TCS.NS",
@@ -39,28 +60,22 @@ def get_market_data():
         "NTPC": "NTPC.NS"
     }
 
-    # ডেটা ফেচ করার কমন ফাংশন
-    def fetch_info(ticker_dict):
-        result = []
-        for name, symbol in ticker_dict.items():
-            try:
-                info = yf.Ticker(symbol).fast_info
-                current = info.last_price
-                prev = info.previous_close
-                change = current - prev
-                pct = (change / prev) * 100
-                result.append({
-                    "name": name,
-                    "price": round(current, 2),
-                    "change": round(change, 2),
-                    "change_percent": round(pct, 2)
-                })
-            except Exception as e:
-                print(f"Error fetching {name}: {e}")
-        return result
-        
-    # দুটো আলাদা লিস্ট একসাথে রিটার্ন করা হলো
+    # Multi-threading ব্যবহার করে একসাথে সব ডেটা সুপার-ফাস্ট টানার ফাংশন
+    def fetch_group(item_dict):
+        results = []
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            futures = []
+            for name, symbol in item_dict.items():
+                futures.append(executor.submit(fetch_stock_data, name, symbol))
+            
+            for future in futures:
+                res = future.result()
+                if res is not None:
+                    results.append(res)
+        return results
+
+    # ইনডেক্স এবং স্টক আলাদা করে রিটার্ন করা হলো
     return {
-        "indices": fetch_info(indices),
-        "stocks": fetch_info(nifty50_stocks)
+        "indices": fetch_group(indices),
+        "stocks": fetch_group(nifty50_stocks)
     }
