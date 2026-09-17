@@ -4,12 +4,11 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from flask import Flask, render_template, request, jsonify
 
-# নতুন তৈরি করা ফাইল থেকে ফাংশনটি ইম্পোর্ট করা হলো
-from market_data import get_nifty_live_data
+# আপডেট করা ফাংশনটি ইম্পোর্ট করা হলো
+from market_data import get_market_data
 
 app = Flask(__name__)
 
-# Google Sheets কানেকশন ফাংশন
 def get_sheet():
     google_creds_json = os.environ.get('GOOGLE_CREDENTIALS')
     if not google_creds_json:
@@ -25,10 +24,6 @@ def get_sheet():
     except Exception as e:
         print(f"Google Sheets Error: {e}")
         return None
-
-# ==========================================
-# ওয়েবসাইট রাউটস (Pages)
-# ==========================================
 
 @app.route('/')
 def home():
@@ -62,15 +57,11 @@ def inflation_calculator():
 def market_insight():
     return render_template('market_insight.html')
 
-# ==========================================
-# এপিআই (API) এবং ফর্ম সাবমিশন
-# ==========================================
-
-# নতুন লাইভ টিকার API (Yahoo Finance Data)
+# লাইভ টিকার API (উভয় ডেটা একসাথে পাঠাবে)
 @app.route('/api/live-ticker')
 def live_ticker_api():
     try:
-        data = get_nifty_live_data()
+        data = get_market_data()
         return jsonify(data)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -93,6 +84,5 @@ def submit_form():
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
-# অ্যাপ রান করার কোড
 if __name__ == '__main__':
     app.run(debug=True)
