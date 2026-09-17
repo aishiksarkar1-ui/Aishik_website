@@ -88,7 +88,7 @@
         .goal-table {
             width: 100%;
             border-collapse: separate;
-            border-spacing: 0 12px; /* Adds space between rows for card effect */
+            border-spacing: 0 12px;
             margin-top: 10px;
             font-size: 14.5px;
         }
@@ -104,33 +104,34 @@
         .goal-table th:first-child { border-radius: 8px 0 0 8px; }
         .goal-table th:last-child { border-radius: 0 8px 8px 0; }
 
+        /* Royal Cream Background for Rows */
         .goal-table tr td {
-            background: #ffffff;
+            background: #FCFBF5; /* Light cream instead of pure white */
             padding: 16px 12px;
             vertical-align: middle;
-            border-top: 1px solid #f0f0f0;
-            border-bottom: 1px solid #f0f0f0;
+            border-top: 1px solid rgba(197, 160, 89, 0.15); /* Soft gold border */
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .goal-table tbody tr { box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+        .goal-table tbody tr { box-shadow: 0 3px 8px rgba(0,0,0,0.04); }
         .goal-table tbody tr:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.08); }
         
         .goal-table tr td:first-child { border-left: 4px solid var(--teal); border-radius: 8px 0 0 8px; }
-        .goal-table tr td:last-child { border-right: 1px solid #f0f0f0; border-radius: 0 8px 8px 0; }
+        .goal-table tr td:last-child { border-right: 1px solid rgba(197, 160, 89, 0.15); border-radius: 0 8px 8px 0; }
 
         .goal-table input {
             padding: 10px;
             width: 100%;
             box-sizing: border-box;
             font-size: 14px;
-            border: 1px solid #d1d5db;
+            border: 1px solid rgba(197, 160, 89, 0.4);
             border-radius: 6px;
-            background-color: #f9fafb;
+            background-color: #ffffff; /* White input inside cream card looks distinct */
             transition: all 0.3s ease;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.04);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
         }
-        .goal-table input[type="text"] { font-weight: bold; color: var(--navy-blue); background-color: #fff; border: 1px dashed #cbd5e1; }
-        .goal-table input:focus { outline: none; border-color: var(--teal); background-color: #fff; box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15); }
+        .goal-table input[type="text"] { font-weight: bold; color: var(--navy-blue); }
+        .goal-table input:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15); }
         
         .fv-box {
             background: linear-gradient(135deg, #eef8f6 0%, #dcf0ec 100%);
