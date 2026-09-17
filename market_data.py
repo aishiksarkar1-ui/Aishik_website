@@ -1,41 +1,22 @@
 import yfinance as yf
-from concurrent.futures import ThreadPoolExecutor
 import time
+import pandas as pd
 
-# ক্যাশে স্টোর করার জন্য ভেরিয়েবল (Yahoo Finance ব্লক করবে না)
+# ক্যাশ মেমরি (যাতে সার্ভার ব্লক না হয়)
 cache = {
     "data": None,
     "last_updated": 0
 }
 
-def fetch_stock_data(name, symbol):
-    try:
-        ticker = yf.Ticker(symbol)
-        hist = ticker.history(period="5d")
-        if len(hist) >= 2:
-            current = float(hist['Close'].iloc[-1])
-            prev = float(hist['Close'].iloc[-2])
-            change = current - prev
-            pct = (change / prev) * 100
-            return {
-                "name": name,
-                "price": round(current, 2),
-                "change": round(change, 2),
-                "change_percent": round(pct, 2)
-            }
-    except Exception:
-        pass
-    return None
-
 def get_market_data():
     global cache
-    
-    # যদি গত ৬০ সেকেন্ডের মধ্যে ডেটা টানা হয়ে থাকে, তবে পুরোনো ডেটাই পাঠাবে (Super Fast)
     current_time = time.time()
+    
+    # যদি গত ১ মিনিটের মধ্যে ডেটা টানা হয়ে থাকে, তবে পুরোনো ডেটাই পাঠাবে (০.১ সেকেন্ডে)
     if cache["data"] is not None and (current_time - cache["last_updated"]) < 60:
         return cache["data"]
 
-    # চার্টের নিচে দেখানোর জন্য ইনডেক্স লিস্ট
+    # চার্টের নিচে দেখানোর জন্য ইনডেক্স
     indices = {
         "Nifty 50": "^NSEI",
         "Bank Nifty": "^NSEBANK",
@@ -49,7 +30,7 @@ def get_market_data():
         "Nifty Infra": "^CNXINFRA"
     }
     
-    # ওপরে টিকারের জন্য Nifty 50-এর টপ ২০টি স্টক লিস্ট
+    # ওপরে টিকারের জন্য Nifty 50-এর টপ ২০টি স্টক
     nifty50_stocks = {
         "Reliance": "RELIANCE.NS",
         "TCS": "TCS.NS",
@@ -73,28 +54,56 @@ def get_market_data():
         "NTPC": "NTPC.NS"
     }
 
-    def fetch_group(item_dict):
-        results = []
-        with ThreadPoolExecutor(max_workers=10) as executor:
-            futures = []
-            for name, symbol in item_dict.items():
-                futures.append(executor.submit(fetch_stock_data, name, symbol))
-            
-            for future in futures:
-                res = future.result()
-                if res is not None:
-                    results.append(res)
-        return results
+    all_symbols = list(indices.values()) + list(nifty50_stocks.values())
+    
+    fetched_indices = []
+    fetched_stocks = []
 
-    # নতুন ডেটা ফেচ করে ক্যাশে সেভ করা হচ্ছে
-    fetched_data = {
-        "indices": fetch_group(indices),
-        "stocks": fetch_group(nifty50_stocks)
+    try:
+        # 💥 ম্যাজিক: ৩০টা আলাদা রিকোয়েস্টের বদলে মাত্র ১টি রিকোয়েস্ট (Bulk Fetch) 💥
+        df = yf.download(all_symbols, period="5d", progress=False)
+        
+        # শুধুমাত্র Close প্রাইসগুলো আলাদা করা হলো
+        closes = df['Close']
+        
+        def parse_data(name, symbol):
+            try:
+                # নির্দিষ্ট স্টকের লাস্ট ৫ দিনের ডেটা থেকে ফাঁকা (NaN) বাদ দেওয়া
+                series = closes[symbol].dropna()
+                if len(series) >= 2:
+                    current = float(series.iloc[-1])
+                    prev = float(series.iloc[-2])
+                    change = current - prev
+                    pct = (change / prev) * 100
+                    return {
+                        "name": name,
+                        "price": round(current, 2),
+                        "change": round(change, 2),
+                        "change_percent": round(pct, 2)
+                    }
+            except Exception:
+                pass
+            return None
+
+        for name, symbol in indices.items():
+            res = parse_data(name, symbol)
+            if res: fetched_indices.append(res)
+            
+        for name, symbol in nifty50_stocks.items():
+            res = parse_data(name, symbol)
+            if res: fetched_stocks.append(res)
+            
+    except Exception as e:
+        print(f"Bulk Fetch Error: {e}")
+
+    final_data = {
+        "indices": fetched_indices,
+        "stocks": fetched_stocks
     }
     
-    # যদি ডেটা ফাঁকা না আসে, তবেই ক্যাশ আপডেট হবে
-    if len(fetched_data["indices"]) > 0 or len(fetched_data["stocks"]) > 0:
-        cache["data"] = fetched_data
+    # ডেটা সফলভাবে আসলে ক্যাশ মেমরিতে সেভ করা
+    if len(fetched_indices) > 0 or len(fetched_stocks) > 0:
+        cache["data"] = final_data
         cache["last_updated"] = current_time
         
-    return fetched_data
+    return final_data
