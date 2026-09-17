@@ -33,18 +33,33 @@
 
         /* Glassmorphism Cards */
         .glass-panel { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(197, 160, 89, 0.3); border-radius: 16px; padding: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); }
-        
         .panel-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 10px; }
 
-        /* Widget Containers */
-        .widget-box { width: 100%; height: 600px; border-radius: 8px; overflow: hidden; }
+        /* Widget Box (Chart + List) */
+        .widget-box { width: 100%; height: 600px; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255,255,255,0.05); }
+        .chart-half { height: 280px; width: 100%; border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
         
+        /* Custom Market List (Replaces TV List) */
+        .market-list-container { height: 320px; overflow-y: auto; padding: 10px; }
+        .market-list-container::-webkit-scrollbar { width: 6px; }
+        .market-list-container::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+        .market-list-container::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+
+        .market-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.3s; border-radius: 6px; }
+        .market-row:hover { background: rgba(255,255,255,0.04); }
+        .market-name { font-weight: bold; color: var(--text-light); font-size: 15px; display: flex; align-items: center; gap: 10px; }
+        .market-name img { width: 24px; height: 24px; border-radius: 50%; background: white; padding: 2px; }
+        .market-price-col { text-align: right; }
+        .market-price { font-size: 16px; font-weight: bold; font-family: 'Lato', sans-serif; color: white; }
+        .market-change { font-size: 13px; font-weight: bold; margin-top: 2px; }
+        .text-up { color: #38ef7d; }
+        .text-down { color: #ffb3b3; }
+
         /* Custom News Scrollbar */
         .custom-news-box { height: 600px; overflow-y: auto; padding-right: 10px; }
         .custom-news-box::-webkit-scrollbar { width: 6px; }
         .custom-news-box::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
         .custom-news-box::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
-
         .news-item { border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 15px; margin-bottom: 15px; transition: 0.3s; }
         .news-item:hover { background: rgba(255,255,255,0.02); border-radius: 6px; padding-left: 5px; }
         .news-date { font-size: 12px; color: var(--teal); margin-bottom: 5px; font-weight: bold; }
@@ -54,7 +69,6 @@
 
         @media (max-width: 1024px) {
             .dashboard-container { grid-template-columns: 1fr; padding: 20px; }
-            .widget-box, .custom-news-box { height: 500px; }
         }
     </style>
 </head>
@@ -62,7 +76,7 @@
 
     {% include 'navbar.html' %}
 
-    <!-- 1. Custom Live Ticker Tape (Yahoo Finance Data) -->
+    <!-- 1. Custom Live Ticker Tape -->
     <div class="custom-ticker-wrap">
         <div class="ticker-move" id="live-ticker-box">
             <span style="color: var(--gold); margin-left: 20px;"><i class="fa-solid fa-circle-notch fa-spin"></i> Loading Live NSE Data...</span>
@@ -76,39 +90,44 @@
 
     <div class="dashboard-container">
         
-        <!-- 2. Market Overview Chart (BSE Symbols Fix) -->
+        <!-- 2. Hybrid Market Overview (TV Chart + Custom Yahoo Finance List) -->
         <div class="glass-panel">
-            <h2 class="panel-title"><i class="fa-solid fa-chart-line"></i> Indian Indices Overview</h2>
+            <h2 class="panel-title"><i class="fa-solid fa-chart-line"></i> Indian Indices & Stocks</h2>
             <div class="widget-box">
-                <div class="tradingview-widget-container">
-                  <div class="tradingview-widget-container__widget"></div>
-                  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-                  {
-                  "colorTheme": "dark",
-                  "dateRange": "1M",
-                  "showChart": true,
-                  "locale": "in",
-                  "width": "100%",
-                  "height": "100%",
-                  "largeChartUrl": "",
-                  "isTransparent": true,
-                  "showSymbolLogo": true,
-                  "showFloatingTooltip": true,
-                  "tabs": [
-                    {
-                      "title": "Top Indices",
-                      "symbols": [
-                        { "s": "BSE:SENSEX", "d": "BSE Sensex" },
-                        { "s": "BSE:BANKEX", "d": "BSE Bankex" },
-                        { "s": "BSE:BSE500", "d": "BSE 500" },
-                        { "s": "BSE:BSEMID", "d": "BSE Midcap" },
-                        { "s": "BSE:RELIANCE", "d": "Reliance Ind." }
-                      ]
-                    }
-                  ]
-                }
-                  </script>
+                
+                <!-- Top Half: Transparent Area Chart -->
+                <div class="chart-half">
+                    <div class="tradingview-widget-container" style="height: 100%; width: 100%;">
+                      <div class="tradingview-widget-container__widget" style="height: 100%; width: 100%;"></div>
+                      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                      {
+                        "autosize": true,
+                        "symbol": "BSE:SENSEX",
+                        "interval": "D",
+                        "timezone": "Asia/Kolkata",
+                        "theme": "dark",
+                        "style": "3",
+                        "locale": "in",
+                        "enable_publishing": false,
+                        "backgroundColor": "rgba(0, 0, 0, 0)",
+                        "gridColor": "rgba(255, 255, 255, 0.05)",
+                        "hide_top_toolbar": true,
+                        "hide_legend": true,
+                        "save_image": false,
+                        "hide_volume": true
+                      }
+                      </script>
+                    </div>
                 </div>
+
+                <!-- Bottom Half: Custom Live Data List (Yahoo Finance) -->
+                <div class="market-list-container" id="custom-market-list">
+                    <div style="text-align: center; color: var(--gold); margin-top: 50px;">
+                        <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i>
+                        <p style="margin-top: 10px;">Fetching Live Prices...</p>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -130,28 +149,55 @@
     </div>
 
     <script>
-        // Fetch Data from our Flask Backend (market_data.py) for the Ticker
+        // Fetch Data from our Flask Backend for BOTH Ticker and Market List
         fetch('/api/live-ticker')
             .then(response => response.json())
             .then(data => {
                 let tickerHtml = '';
+                let listHtml = '';
+
                 data.forEach(item => {
                     let isUp = item.change >= 0;
-                    let colorClass = isUp ? 'ticker-up' : 'ticker-down';
+                    
+                    // Logic for Ticker
+                    let tColor = isUp ? 'ticker-up' : 'ticker-down';
                     let icon = isUp ? '<i class="fa-solid fa-caret-up"></i>' : '<i class="fa-solid fa-caret-down"></i>';
                     let sign = isUp ? '+' : '';
                     
                     tickerHtml += `
                         <div class="ticker-item">
                             ${item.name} 
-                            <span class="ticker-price">₹${item.price.toLocaleString('en-IN')}</span> 
-                            <span class="${colorClass}">${icon} ${sign}${item.change_percent}%</span>
+                            <span class="ticker-price">₹${item.price.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> 
+                            <span class="${tColor}">${icon} ${sign}${item.change_percent}%</span>
                         </div>`;
+
+                    // Logic for Custom List
+                    let lColor = isUp ? 'text-up' : 'text-down';
+                    let firstLetter = item.name.charAt(0);
+                    
+                    listHtml += `
+                        <div class="market-row">
+                            <div class="market-name">
+                                <i class="fa-solid fa-chart-pie"></i> ${item.name}
+                            </div>
+                            <div class="market-price-col">
+                                <div class="market-price">₹${item.price.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                                <div class="market-change ${lColor}">
+                                    ${sign}${item.change.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${sign}${item.change_percent}%)
+                                </div>
+                            </div>
+                        </div>
+                    `;
                 });
-                // Doubled for seamless infinite scroll
+
+                // Update UI
                 document.getElementById('live-ticker-box').innerHTML = tickerHtml + tickerHtml;
+                document.getElementById('custom-market-list').innerHTML = listHtml;
             })
-            .catch(err => console.log("Error loading ticker: ", err));
+            .catch(err => {
+                console.log("Error loading data: ", err);
+                document.getElementById('custom-market-list').innerHTML = '<p style="color: #ffb3b3; text-align: center; margin-top: 30px;">Error connecting to live data server.</p>';
+            });
 
         // RSS to JSON API for Economic Times Markets Feed
         const rssUrl = 'https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms';
@@ -164,23 +210,17 @@
                 container.innerHTML = ''; 
                 
                 if(data.status === 'ok') {
-                    // Show top 15 news items
                     data.items.slice(0, 15).forEach(item => {
                         const newsDate = new Date(item.pubDate).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' });
                         const cleanDesc = item.description.replace(/<[^>]+>/g, '');
 
-                        const newsHtml = `
+                        container.innerHTML += `
                             <div class="news-item">
                                 <div class="news-date"><i class="fa-regular fa-clock"></i> ${newsDate}</div>
-                                <a href="${item.link}" target="_blank" class="news-title">
-                                    ${item.title}
-                                </a>
-                                <div class="news-desc">
-                                    ${cleanDesc}
-                                </div>
+                                <a href="${item.link}" target="_blank" class="news-title">${item.title}</a>
+                                <div class="news-desc">${cleanDesc}</div>
                             </div>
                         `;
-                        container.innerHTML += newsHtml;
                     });
                 } else {
                     container.innerHTML = '<p style="color: #ffb3b3;">Failed to load latest news at the moment.</p>';
