@@ -1,7 +1,13 @@
 import yfinance as yf
 from concurrent.futures import ThreadPoolExecutor
+import time
 
-# ডেটা ফেচ করার লজিক (5d হিস্ট্রি ব্যবহার করা হয়েছে যাতে ছুটির দিনেও এরর না আসে)
+# ক্যাশে স্টোর করার জন্য ভেরিয়েবল (Yahoo Finance ব্লক করবে না)
+cache = {
+    "data": None,
+    "last_updated": 0
+}
+
 def fetch_stock_data(name, symbol):
     try:
         ticker = yf.Ticker(symbol)
@@ -17,11 +23,18 @@ def fetch_stock_data(name, symbol):
                 "change": round(change, 2),
                 "change_percent": round(pct, 2)
             }
-    except Exception as e:
-        print(f"Failed to fetch {name}: {e}")
+    except Exception:
+        pass
     return None
 
 def get_market_data():
+    global cache
+    
+    # যদি গত ৬০ সেকেন্ডের মধ্যে ডেটা টানা হয়ে থাকে, তবে পুরোনো ডেটাই পাঠাবে (Super Fast)
+    current_time = time.time()
+    if cache["data"] is not None and (current_time - cache["last_updated"]) < 60:
+        return cache["data"]
+
     # চার্টের নিচে দেখানোর জন্য ইনডেক্স লিস্ট
     indices = {
         "Nifty 50": "^NSEI",
@@ -60,7 +73,6 @@ def get_market_data():
         "NTPC": "NTPC.NS"
     }
 
-    # Multi-threading ব্যবহার করে একসাথে সব ডেটা সুপার-ফাস্ট টানার ফাংশন
     def fetch_group(item_dict):
         results = []
         with ThreadPoolExecutor(max_workers=10) as executor:
@@ -74,8 +86,15 @@ def get_market_data():
                     results.append(res)
         return results
 
-    # ইনডেক্স এবং স্টক আলাদা করে রিটার্ন করা হলো
-    return {
+    # নতুন ডেটা ফেচ করে ক্যাশে সেভ করা হচ্ছে
+    fetched_data = {
         "indices": fetch_group(indices),
         "stocks": fetch_group(nifty50_stocks)
     }
+    
+    # যদি ডেটা ফাঁকা না আসে, তবেই ক্যাশ আপডেট হবে
+    if len(fetched_data["indices"]) > 0 or len(fetched_data["stocks"]) > 0:
+        cache["data"] = fetched_data
+        cache["last_updated"] = current_time
+        
+    return fetched_data
