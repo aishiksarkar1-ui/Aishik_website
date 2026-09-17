@@ -51,6 +51,10 @@ def risk_profiling():
 def financial_planning():
     return render_template('financial_planning.html')
 
+@app.route('/sip-calculator')
+def sip_calculator():
+    return render_template('sip_calculator.html')
+
 # ==========================================
 # এপিআই এবং ফর্ম সাবমিশন
 # ==========================================
