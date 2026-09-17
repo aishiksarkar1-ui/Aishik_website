@@ -114,23 +114,7 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="/" class="logo">FINANCE WITH<br>AISHIK</a>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/learn">Learn</a></li>
-            <li><a href="/risk-profiling">Self-Risk Profiling</a></li>
-            <li class="dropdown">
-                <a href="#" class="active">Tools <i class="fa-solid fa-caret-down"></i></a>
-                <ul class="dropdown-content">
-                    <li><a href="/sip-calculator">SIP Expectation Calculator</a></li>
-                    <li><a href="/financial-planning">Goal Planning Calculator</a></li>
-                    <li><a href="#">Inflation Impact Calculator</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+    {% include 'navbar.html' %}
 
     <div class="planning-hero">
         <h1>Advanced SIP Matrix</h1>
