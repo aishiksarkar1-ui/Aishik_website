@@ -28,7 +28,7 @@
         .page-header h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--gold); margin: 0 0 10px 0; letter-spacing: 1px; }
         .page-header p { font-size: 15px; max-width: 650px; margin: 0 auto; color: #a0aec0; }
 
-        /* Main Dashboard Grid (3 Columns now) */
+        /* Main Dashboard Grid */
         .dashboard-container { padding: 20px 40px 80px 40px; display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 25px; max-width: 1500px; margin: 0 auto; }
 
         /* Glassmorphism Cards */
@@ -54,22 +54,28 @@
         .text-up { color: #38ef7d; }
         .text-down { color: #ffb3b3; }
 
-        /* Custom News Scrollbar */
+        /* Custom News Scrollbar & Images Layout */
         .custom-news-box { height: 640px; overflow-y: auto; padding-right: 10px; }
         .custom-news-box::-webkit-scrollbar { width: 6px; }
         .custom-news-box::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
         .custom-news-box::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
         
-        .news-item { border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 15px; margin-bottom: 15px; transition: 0.3s; }
+        /* News Item with Image Styling */
+        .news-item { display: flex; gap: 15px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 15px; margin-bottom: 15px; transition: 0.3s; align-items: flex-start; }
         .news-item:hover { background: rgba(255,255,255,0.02); border-radius: 6px; padding-left: 5px; }
-        .news-date { font-size: 12px; color: var(--teal); margin-bottom: 5px; font-weight: bold; }
-        .news-title { color: var(--text-light); text-decoration: none; font-size: 15px; font-weight: bold; display: block; margin-bottom: 5px; transition: color 0.3s; line-height: 1.4; }
+        
+        .news-img-box { width: 75px; height: 60px; flex-shrink: 0; border-radius: 6px; overflow: hidden; background: rgba(0,0,0,0.3); border: 1px solid rgba(197, 160, 89, 0.2); }
+        .news-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .news-text-box { flex-grow: 1; display: flex; flex-direction: column; }
+        .news-date { font-size: 11px; color: var(--teal); margin-bottom: 4px; font-weight: bold; }
+        .news-title { color: var(--text-light); text-decoration: none; font-size: 14px; font-weight: bold; display: block; margin-bottom: 5px; transition: color 0.3s; line-height: 1.4; }
         .news-title:hover { color: var(--gold); }
-        .news-desc { font-size: 13px; color: #a0aec0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .news-desc { font-size: 12.5px; color: #a0aec0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; }
 
         @media (max-width: 1200px) {
             .dashboard-container { grid-template-columns: 1fr 1fr; }
-            .glass-panel:nth-child(2) { grid-column: span 2; order: -1; } /* Moves chart to top on medium screens */
+            .glass-panel:nth-child(2) { grid-column: span 2; order: -1; }
         }
         @media (max-width: 768px) {
             .dashboard-container { grid-template-columns: 1fr; }
@@ -213,7 +219,7 @@
                 document.getElementById('custom-market-list').innerHTML = '<p style="color: #ffb3b3; text-align: center; margin-top: 30px;">Error connecting to live data server.</p>';
             });
 
-        // 2. Helper function to format and load RSS Feeds
+        // 2. Helper function to format and load RSS Feeds WITH IMAGES
         function loadRssFeed(rssUrl, containerId) {
             const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
             
@@ -226,13 +232,36 @@
                     if(data.status === 'ok') {
                         data.items.slice(0, 15).forEach(item => {
                             const newsDate = new Date(item.pubDate).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' });
+                            
+                            // Extracting Image URL logic
+                            let imgUrl = item.thumbnail || (item.enclosure && item.enclosure.link);
+                            
+                            // If thumbnail not found, try to extract from description HTML
+                            if (!imgUrl) {
+                                let match = item.description.match(/src\s*=\s*"([^"]+)"/);
+                                if (match) imgUrl = match[1];
+                            }
+                            
+                            // Default Fallback Image if absolutely no image is found
+                            if (!imgUrl) {
+                                imgUrl = containerId === 'et-news-container' 
+                                    ? 'https://img.etimg.com/photo/msid-74451948,quality-100/et-logo.jpg' 
+                                    : 'https://via.placeholder.com/150x100/004d99/FFFFFF?text=BS+News';
+                            }
+
+                            // Clean description for text display
                             const cleanDesc = item.description.replace(/<[^>]+>/g, '');
 
                             container.innerHTML += `
                                 <div class="news-item">
-                                    <div class="news-date"><i class="fa-regular fa-clock"></i> ${newsDate}</div>
-                                    <a href="${item.link}" target="_blank" class="news-title">${item.title}</a>
-                                    <div class="news-desc">${cleanDesc}</div>
+                                    <div class="news-img-box">
+                                        <img src="${imgUrl}" alt="News Image" onerror="this.src='https://via.placeholder.com/150x100/0A192F/C5A059?text=News'">
+                                    </div>
+                                    <div class="news-text-box">
+                                        <div class="news-date"><i class="fa-regular fa-clock"></i> ${newsDate}</div>
+                                        <a href="${item.link}" target="_blank" class="news-title">${item.title}</a>
+                                        <div class="news-desc">${cleanDesc}</div>
+                                    </div>
                                 </div>
                             `;
                         });
