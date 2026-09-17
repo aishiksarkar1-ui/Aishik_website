@@ -55,6 +55,10 @@ def financial_planning():
 def sip_calculator():
     return render_template('sip_calculator.html')
 
+@app.route('/inflation-calculator')
+def inflation_calculator():
+    return render_template('inflation_calculator.html')
+
 # ==========================================
 # এপিআই এবং ফর্ম সাবমিশন
 # ==========================================
