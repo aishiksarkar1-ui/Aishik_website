@@ -79,7 +79,11 @@
         .out-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
         .out-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; }
         .out-card h4 { margin: 0 0 15px 0; font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-        .out-card .amount { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: bold; margin: 15px 0; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.4); }
+        .out-card .amount { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: bold; margin: 15px 0 5px 0; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.4); }
+        
+        /* Profit/Loss Badge CSS */
+        .out-card .profit-val { font-size: 14px; font-weight: bold; margin-bottom: 15px; color: rgba(255,255,255,0.95); background: rgba(0,0,0,0.2); padding: 4px 12px; border-radius: 6px; display: inline-block; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.1); box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); }
+        
         .out-card .prob { font-size: 14px; font-weight: bold; padding: 6px 15px; border-radius: 20px; display: inline-block; background: rgba(255,255,255,0.2); color: white; backdrop-filter: blur(5px); }
         .out-card .rate { font-size: 15px; color: rgba(255,255,255,0.9); margin-top: 10px; font-weight: bold; background: rgba(0,0,0,0.1); padding: 5px 10px; border-radius: 4px; display: inline-block;}
 
@@ -185,6 +189,8 @@
                     <h4>Probable Highest</h4>
                     <div class="prob" id="prob_high">Probability: 20%</div>
                     <div class="amount" id="res_high">₹ 0</div>
+                    <div class="profit-val" id="profit_high">+ ₹ 0 (Profit)</div>
+                    <br>
                     <div class="rate">Est. Rate: <span id="rate_high">0%</span></div>
                 </div>
 
@@ -193,6 +199,8 @@
                     <h4>Average Expected</h4>
                     <div class="prob">Most Likely Scenario</div>
                     <div class="amount" id="res_mean">₹ 0</div>
+                    <div class="profit-val" id="profit_mean">+ ₹ 0 (Profit)</div>
+                    <br>
                     <div class="rate" style="background: rgba(255,255,255,0.2);">Est. Rate: <span id="rate_mean">0%</span></div>
                 </div>
 
@@ -201,6 +209,8 @@
                     <h4>Probable Lowest</h4>
                     <div class="prob" id="prob_low">Probability: 35%</div>
                     <div class="amount" id="res_low">₹ 0</div>
+                    <div class="profit-val" id="profit_low">- ₹ 0 (Loss)</div>
+                    <br>
                     <div class="rate">Est. Rate: <span id="rate_low">0%</span></div>
                 </div>
 
@@ -292,6 +302,16 @@
             calculateSIP();
         }
 
+        // Helper function to format Profit/Loss text
+        function getProfitText(finalValue, investedAmount) {
+            let diff = finalValue - investedAmount;
+            if (diff >= 0) {
+                return "+ ₹ " + diff.toLocaleString('en-IN', {maximumFractionDigits:0}) + " (Profit)";
+            } else {
+                return "- ₹ " + Math.abs(diff).toLocaleString('en-IN', {maximumFractionDigits:0}) + " (Loss)";
+            }
+        }
+
         function calculateSIP() {
             let amount = parseFloat(document.getElementById("invest_amount").value || 0);
             let freq = parseInt(document.getElementById("invest_freq").value);
@@ -314,6 +334,7 @@
                 let rAnnual = parseFloat(document.getElementById("custom_rate").value || 0);
                 let fv = getFutureValue(amount, rAnnual, totalPeriods, freq);
                 document.getElementById("res_mean").innerText = "₹ " + fv.toLocaleString('en-IN', {maximumFractionDigits:0});
+                document.getElementById("profit_mean").innerText = getProfitText(fv, totalInvested);
                 document.getElementById("rate_mean").innerText = rAnnual + "%";
                 return;
             }
@@ -331,15 +352,18 @@
 
             // Update Mean
             document.getElementById("res_mean").innerText = "₹ " + meanFV.toLocaleString('en-IN', {maximumFractionDigits:0});
+            document.getElementById("profit_mean").innerText = getProfitText(meanFV, totalInvested);
             document.getElementById("rate_mean").innerText = data.mean + "%";
 
             // Update High
             document.getElementById("res_high").innerText = "₹ " + highFV.toLocaleString('en-IN', {maximumFractionDigits:0});
+            document.getElementById("profit_high").innerText = getProfitText(highFV, totalInvested);
             document.getElementById("rate_high").innerText = data.high + "%";
             document.getElementById("prob_high").innerText = `Probability: ${data.pHigh}%`;
 
             // Update Low
             document.getElementById("res_low").innerText = "₹ " + lowFV.toLocaleString('en-IN', {maximumFractionDigits:0});
+            document.getElementById("profit_low").innerText = getProfitText(lowFV, totalInvested);
             document.getElementById("rate_low").innerText = data.low + "%";
             
             if(data.pLow > 0) {
@@ -351,8 +375,10 @@
 
             if(data.low < 0) {
                 document.getElementById("res_low").style.color = "#ffb3b3"; // Lighter red text on dark red card
+                document.getElementById("profit_low").style.color = "#ffb3b3";
             } else {
                 document.getElementById("res_low").style.color = "white";
+                document.getElementById("profit_low").style.color = "rgba(255,255,255,0.95)";
             }
         }
 
