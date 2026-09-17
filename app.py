@@ -4,6 +4,9 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from flask import Flask, render_template, request, jsonify
 
+# নতুন তৈরি করা ফাইল থেকে ফাংশনটি ইম্পোর্ট করা হলো
+from market_data import get_nifty_live_data
+
 app = Flask(__name__)
 
 # Google Sheets কানেকশন ফাংশন
@@ -27,22 +30,18 @@ def get_sheet():
 # ওয়েবসাইট রাউটস (Pages)
 # ==========================================
 
-# হোমপেজ রুট
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# About পেজ রুট
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-# Learn পেজ রুট
 @app.route('/learn')
 def learn():
     return render_template('learn.html')
 
-# Self-Risk Profiling পেজ রুট
 @app.route('/risk-profiling')
 def risk_profiling():
     return render_template('risk_profile.html')
@@ -64,8 +63,17 @@ def market_insight():
     return render_template('market_insight.html')
 
 # ==========================================
-# এপিআই এবং ফর্ম সাবমিশন
+# এপিআই (API) এবং ফর্ম সাবমিশন
 # ==========================================
+
+# নতুন লাইভ টিকার API (Yahoo Finance Data)
+@app.route('/api/live-ticker')
+def live_ticker_api():
+    try:
+        data = get_nifty_live_data()
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/submit_form', methods=['POST'])
 def submit_form():
