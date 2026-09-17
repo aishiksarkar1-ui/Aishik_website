@@ -12,20 +12,7 @@
         :root { --navy-blue: #0A192F; --gold: #C5A059; --light-cream: #FDFBF7; --text-light: #E0E0E0; --teal: #2A9D8F; }
         body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background-color: var(--navy-blue); color: var(--text-light); line-height: 1.6; }
 
-        /* Navbar */
-        .navbar { position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background-color: rgba(10, 25, 47, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197, 160, 89, 0.3); }
-        .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; text-decoration: none; line-height: 1.1; }
-        .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; align-items: center; }
-        .nav-links li { position: relative; }
-        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 14px; transition: color 0.3s ease; padding: 10px 0; display: block; }
-        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background-color: var(--navy-blue); min-width: 280px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 4px; padding: 10px 0; list-style: none; z-index: 1001; }
-        .dropdown-content li { width: 100%; }
-        .dropdown-content a { padding: 10px 20px; white-space: nowrap; }
-        .dropdown-content a:hover { background-color: rgba(197, 160, 89, 0.1); color: var(--gold); }
-        .dropdown:hover .dropdown-content { display: block; }
-        .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
-
+        
         /* Hero */
         .planning-hero { position: relative; background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)), url("{{ url_for('static', filename='Study.png') }}"); background-size: cover; background-position: center; padding: 60px 20px 80px 20px; text-align: center; border-bottom: 1px solid rgba(42, 157, 143, 0.3); }
         .planning-hero h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--gold); margin: 0 0 10px 0; }
