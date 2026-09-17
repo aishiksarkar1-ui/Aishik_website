@@ -1,6 +1,5 @@
 import yfinance as yf
 import time
-import pandas as pd
 
 # ক্যাশ মেমরি (যাতে সার্ভার ব্লক না হয়)
 cache = {
@@ -12,11 +11,11 @@ def get_market_data():
     global cache
     current_time = time.time()
     
-    # যদি গত ১ মিনিটের মধ্যে ডেটা টানা হয়ে থাকে, তবে পুরোনো ডেটাই পাঠাবে (০.১ সেকেন্ডে)
+    # ক্যাশ চেক (৬০ সেকেন্ড)
     if cache["data"] is not None and (current_time - cache["last_updated"]) < 60:
         return cache["data"]
 
-    # চার্টের নিচে দেখানোর জন্য ইনডেক্স
+    # সেক্টরাল এবং মূল ইনডেক্স লিস্ট (নিশ্চিত ও সঠিক সিম্বল সহ)
     indices = {
         "Nifty 50": "^NSEI",
         "Bank Nifty": "^NSEBANK",
@@ -26,11 +25,11 @@ def get_market_data():
         "Nifty FMCG": "^CNXFMCG",
         "Nifty Metal": "^CNXMETAL",
         "Nifty Energy": "^CNXENERGY",
-        "Nifty Realty": "^CNXREALTY",
-        "Nifty Infra": "^CNXINFRA"
+        "Nifty Media": "^CNXMEDIA",
+        "Nifty Realty": "^CNXREALTY"
     }
     
-    # ওপরে টিকারের জন্য Nifty 50-এর টপ ২০টি স্টক
+    # ওপরে টিকারের জন্য Nifty 50-এর স্টক লিস্ট
     nifty50_stocks = {
         "Reliance": "RELIANCE.NS",
         "TCS": "TCS.NS",
@@ -60,15 +59,11 @@ def get_market_data():
     fetched_stocks = []
 
     try:
-        # 💥 ম্যাজিক: ৩০টা আলাদা রিকোয়েস্টের বদলে মাত্র ১টি রিকোয়েস্ট (Bulk Fetch) 💥
         df = yf.download(all_symbols, period="5d", progress=False)
-        
-        # শুধুমাত্র Close প্রাইসগুলো আলাদা করা হলো
         closes = df['Close']
         
         def parse_data(name, symbol):
             try:
-                # নির্দিষ্ট স্টকের লাস্ট ৫ দিনের ডেটা থেকে ফাঁকা (NaN) বাদ দেওয়া
                 series = closes[symbol].dropna()
                 if len(series) >= 2:
                     current = float(series.iloc[-1])
@@ -101,7 +96,6 @@ def get_market_data():
         "stocks": fetched_stocks
     }
     
-    # ডেটা সফলভাবে আসলে ক্যাশ মেমরিতে সেভ করা
     if len(fetched_indices) > 0 or len(fetched_stocks) > 0:
         cache["data"] = final_data
         cache["last_updated"] = current_time
