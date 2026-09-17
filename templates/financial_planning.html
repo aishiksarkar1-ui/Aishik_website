@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personalized Financial Planning | FinXHorizon</title>
+    <title>Personalized Financial Planning | Financial Literacy Hub</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,19 +12,29 @@
         :root { --navy-blue: #0A192F; --gold: #C5A059; --light-cream: #FDFBF7; --text-light: #E0E0E0; --teal: #2A9D8F; }
         body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background-color: var(--navy-blue); color: var(--text-light); line-height: 1.6; }
 
-        /* Navbar & Hero */
+        /* Navbar */
         .navbar { position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background-color: rgba(10, 25, 47, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197, 160, 89, 0.3); }
         .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; text-decoration: none; line-height: 1.1; }
         .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; align-items: center; }
+        .nav-links li { position: relative; }
         .nav-links a { color: var(--text-light); text-decoration: none; font-size: 14px; transition: color 0.3s ease; padding: 10px 0; display: block; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; background-color: var(--navy-blue); min-width: 280px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 4px; padding: 10px 0; list-style: none; z-index: 1001; }
+        .dropdown-content li { width: 100%; }
+        .dropdown-content a { padding: 10px 20px; white-space: nowrap; }
+        .dropdown-content a:hover { background-color: rgba(197, 160, 89, 0.1); color: var(--gold); }
+        .dropdown:hover .dropdown-content { display: block; }
+        .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--gold); }
+
+        /* Hero */
         .planning-hero { position: relative; background-image: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)), url("{{ url_for('static', filename='Study.png') }}"); background-size: cover; background-position: center; padding: 60px 20px 80px 20px; text-align: center; border-bottom: 1px solid rgba(42, 157, 143, 0.3); }
         .planning-hero h1 { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--gold); margin: 0 0 10px 0; }
         .planning-hero p { font-size: 16px; max-width: 650px; margin: 0 auto; color: #b0b0b0; }
 
-        /* Master Container & Forms */
+        /* Form Wizard */
         .form-section { padding: 0 20px 80px 20px; display: flex; justify-content: center; min-height: 80vh; flex-direction: column; align-items: center; }
         .planning-container { background: linear-gradient(135deg, #ffffff 0%, #FDFBF7 100%); border: 1px solid rgba(197, 160, 89, 0.3); border-top: 4px solid var(--gold); border-radius: 12px; width: 100%; max-width: 900px; padding: 40px; margin-top: -40px; margin-bottom: 40px; position: relative; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.3); color: #0A192F; }
+        
         .step { display: none; animation: fadeIn 0.5s; }
         .step.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -37,8 +47,11 @@
         
         .radio-group { display: flex; gap: 15px; flex-wrap: wrap; }
         .radio-btn { display: flex; align-items: center; gap: 5px; cursor: pointer; font-size: 15px; }
+        .radio-btn input { width: auto; cursor: pointer; }
+
         .checkbox-group { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 15px; cursor: pointer; }
-        
+        .checkbox-group input { width: 18px; height: 18px; cursor: pointer; }
+
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
         .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px; }
@@ -52,64 +65,77 @@
         .info-box { background: rgba(42, 157, 143, 0.1); border-left: 4px solid var(--teal); padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 15px; color: var(--navy-blue); }
         .success-box { background: rgba(197, 160, 89, 0.1); border-left: 4px solid var(--gold); padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 15px; font-weight: bold; color: var(--navy-blue); }
 
-        /* 3D Goal Cards (Step 6) */
+        /* --- 3D Goal Cards CSS (Step 6) --- */
         .goal-card { border-radius: 12px; padding: 22px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.03), inset 0 2px 2px rgba(255, 255, 255, 0.8); transition: all 0.3s ease; position: relative; }
+        .goal-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12), 0 6px 12px rgba(0, 0, 0, 0.08), inset 0 2px 2px rgba(255, 255, 255, 1); }
         .goal-card.gold { background: linear-gradient(135deg, #ffffff 0%, #fdf8eb 100%); border: 1px solid rgba(197, 160, 89, 0.3); border-bottom: 4px solid var(--gold); }
         .goal-card.teal { background: linear-gradient(135deg, #ffffff 0%, #eef8f6 100%); border: 1px solid rgba(42, 157, 143, 0.3); border-bottom: 4px solid var(--teal); }
         .goal-card.blue { background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%); border: 1px solid rgba(10, 25, 47, 0.2); border-bottom: 4px solid var(--navy-blue); }
 
-        /* 3D Goal Table (Step 7) */
+        /* --- 3D Goal Table & Note CSS (Step 7) --- */
         .table-note-box { background: linear-gradient(135deg, #fdfbf7 0%, #f4f0e6 100%); border-left: 5px solid var(--gold); padding: 18px 20px; border-radius: 8px; font-size: 14px; color: var(--navy-blue); margin-bottom: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); line-height: 1.6; }
         .goal-table { width: 100%; border-collapse: separate; border-spacing: 0 12px; margin-top: 10px; font-size: 14.5px; }
-        .goal-table th { background: linear-gradient(135deg, var(--navy-blue) 0%, #162e52 100%); color: var(--gold); padding: 15px; text-align: left; font-family: 'Playfair Display', serif; }
-        .goal-table th:first-child { border-radius: 8px 0 0 8px; } .goal-table th:last-child { border-radius: 0 8px 8px 0; }
-        .goal-table tr td { background: #FCFBF5; padding: 16px 12px; vertical-align: middle; border-top: 1px solid rgba(197, 160, 89, 0.15); border-bottom: 1px solid rgba(197, 160, 89, 0.15); }
-        .goal-table tr td:first-child { border-left: 4px solid var(--teal); border-radius: 8px 0 0 8px; } .goal-table tr td:last-child { border-right: 1px solid rgba(197, 160, 89, 0.15); border-radius: 0 8px 8px 0; }
-        .goal-table input { padding: 10px; width: 100%; box-sizing: border-box; font-size: 14px; border: 1px solid rgba(197, 160, 89, 0.4); border-radius: 6px; background-color: #ffffff; }
+        .goal-table th { background: linear-gradient(135deg, var(--navy-blue) 0%, #162e52 100%); color: var(--gold); padding: 15px; text-align: left; font-family: 'Playfair Display', serif; letter-spacing: 0.5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .goal-table th:first-child { border-radius: 8px 0 0 8px; }
+        .goal-table th:last-child { border-radius: 0 8px 8px 0; }
+
+        .goal-table tr td { background: #FCFBF5; padding: 16px 12px; vertical-align: middle; border-top: 1px solid rgba(197, 160, 89, 0.15); border-bottom: 1px solid rgba(197, 160, 89, 0.15); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .goal-table tbody tr { box-shadow: 0 3px 8px rgba(0,0,0,0.04); }
+        .goal-table tbody tr:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.08); }
+        .goal-table tr td:first-child { border-left: 4px solid var(--teal); border-radius: 8px 0 0 8px; }
+        .goal-table tr td:last-child { border-right: 1px solid rgba(197, 160, 89, 0.15); border-radius: 0 8px 8px 0; }
+
+        .goal-table input { padding: 10px; width: 100%; box-sizing: border-box; font-size: 14px; border: 1px solid rgba(197, 160, 89, 0.4); border-radius: 6px; background-color: #ffffff; transition: all 0.3s ease; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02); }
         .goal-table input[type="text"] { font-weight: bold; color: var(--navy-blue); }
+        .goal-table input:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15); }
+        
+        /* CSS for Disabled/Locked Input state */
         .goal-table input:disabled { background-color: #f0f2f5; color: #7f8c8d; cursor: not-allowed; border-color: #d1d5db; opacity: 0.8; }
-        .fv-box { background: linear-gradient(135deg, #eef8f6 0%, #dcf0ec 100%); border: 1px solid rgba(42, 157, 143, 0.2); border-radius: 6px; padding: 12px; font-weight: 700; color: var(--teal); text-align: right; }
+        
+        .fv-box { background: linear-gradient(135deg, #eef8f6 0%, #dcf0ec 100%); border: 1px solid rgba(42, 157, 143, 0.2); border-radius: 6px; padding: 12px; font-weight: 700; color: var(--teal); text-align: right; box-shadow: 0 2px 4px rgba(42, 157, 143, 0.1); }
         .pension-badge { display: inline-block; font-size: 11.5px; font-weight: bold; margin-top: 8px; padding: 4px 10px; border-radius: 20px; background: rgba(42, 157, 143, 0.1); color: var(--teal); border: 1px solid rgba(42, 157, 143, 0.2); }
         .pension-badge.current { background: rgba(127, 140, 141, 0.08); color: #636e72; border: 1px solid rgba(127, 140, 141, 0.2); }
 
-        /* Timeline & Bridge */
+        /* --- VISUAL TIMELINE ROADMAP CSS --- */
         #timeline_wrapper { display: none; width: 100%; max-width: 900px; margin-top: 20px; background: rgba(10, 25, 47, 0.98); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 12px; padding: 40px 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); color: #fff; animation: fadeIn 1s; }
         .timeline-header { text-align: center; margin-bottom: 40px; }
         .timeline-header h2 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 32px; margin: 0 0 10px 0; }
+        .timeline-header p { color: #a0aec0; font-size: 15px; margin: 0; }
         .timeline-container { position: relative; max-width: 800px; margin: 0 auto; padding-bottom: 20px; }
-        .timeline-container::after { content: ''; position: absolute; width: 4px; background: linear-gradient(to bottom, var(--gold), #f39c12); top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; }
-        .tl-row { padding: 15px 0; position: relative; width: 50%; }
+        .timeline-container::after { content: ''; position: absolute; width: 4px; background: linear-gradient(to bottom, var(--gold), #f39c12); top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; box-shadow: 0 0 10px rgba(197, 160, 89, 0.5); }
+        .tl-row { padding: 15px 0; position: relative; background-color: inherit; width: 50%; }
         .tl-row.left { left: 0; text-align: right; padding-right: 40px; }
         .tl-row.right { left: 50%; text-align: left; padding-left: 40px; }
-        .tl-icon { position: absolute; top: 20px; width: 40px; height: 40px; background-color: var(--navy-blue); border: 3px solid var(--gold); border-radius: 50%; z-index: 1; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 16px; }
+        .tl-icon { position: absolute; top: 20px; width: 40px; height: 40px; background-color: var(--navy-blue); border: 3px solid var(--gold); border-radius: 50%; z-index: 1; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 16px; box-shadow: 0 0 15px rgba(197, 160, 89, 0.6); }
         .tl-row.left .tl-icon { right: -20px; } .tl-row.right .tl-icon { left: -20px; }
         .tl-row.left .tl-date-area { position: absolute; right: -130px; top: 25px; text-align: left; width: 100px; }
         .tl-row.right .tl-date-area { position: absolute; left: -130px; top: 25px; text-align: right; width: 100px; }
         .tl-year { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); font-weight: bold; line-height: 1; }
         .tl-age { font-size: 13px; color: var(--teal); font-weight: bold; margin-top: 4px; }
-        .tl-content { padding: 20px; background: linear-gradient(135deg, #ffffff 0%, #FDFBF7 100%); position: relative; border-radius: 8px; border-bottom: 4px solid var(--teal); box-shadow: 0 10px 20px rgba(0,0,0,0.2); color: var(--navy-blue); }
-        .tl-content h3 { margin: 0 0 8px 0; font-size: 18px; font-family: 'Playfair Display', serif; }
+        .tl-content { padding: 20px; background: linear-gradient(135deg, #ffffff 0%, #FDFBF7 100%); position: relative; border-radius: 8px; border-bottom: 4px solid var(--teal); box-shadow: 0 10px 20px rgba(0,0,0,0.2); color: var(--navy-blue); transition: 0.3s; }
+        .tl-content:hover { transform: translateY(-5px); box-shadow: 0 15px 25px rgba(197, 160, 89, 0.2); }
+        .tl-content h3 { margin: 0 0 8px 0; font-size: 18px; font-family: 'Playfair Display', serif; color: var(--navy-blue); }
         .tl-amount { font-size: 20px; font-weight: bold; color: var(--teal); }
         .tl-pension-highlight { display: inline-block; background: var(--navy-blue); color: var(--gold); padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; margin-top: 10px; border: 1px solid var(--gold); }
 
+        /* --- Financial Health CSS (New additions) --- */
         .health-cta-box { margin-top: 50px; background: linear-gradient(135deg, rgba(10, 25, 47, 0.95), rgba(22, 46, 82, 0.95)); border: 1px solid var(--gold); border-radius: 12px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.4); position: relative; overflow: hidden; }
         .health-cta-box h3 { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 28px; margin-top: 0; margin-bottom: 15px; }
         .health-cta-box p { color: #e0e0e0; font-size: 15px; margin-bottom: 25px; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto; }
-        .btn-health { background: var(--gold); color: var(--navy-blue); font-size: 16px; font-weight: bold; padding: 15px 35px; border: none; border-radius: 30px; cursor: pointer; text-transform: uppercase; box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3); }
+        .btn-health { background: var(--gold); color: var(--navy-blue); font-size: 16px; font-weight: bold; padding: 15px 35px; border: none; border-radius: 30px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3); }
+        .btn-health:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(197, 160, 89, 0.5); background: #d4af37; }
 
-        /* Diagnosis Cards */
         .diag-card { padding: 25px; border-radius: 10px; text-align: center; margin-bottom: 15px; border: 1px solid #eee; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .diag-card h4 { margin: 0 0 10px 0; color: #7f8c8d; font-size: 14px; text-transform: uppercase; }
         .diag-card .val { font-size: 24px; font-weight: bold; font-family: 'Playfair Display', serif; color: var(--navy-blue); }
         .diag-card.green { border-bottom: 4px solid var(--teal); }
         .diag-card.red { border-bottom: 4px solid #e74c3c; }
         .diag-card.blue { border-bottom: 4px solid var(--navy-blue); }
-        
         .verdict-box { padding: 20px; border-radius: 8px; text-align: center; font-size: 16px; margin-top: 20px; font-weight: bold; }
         .verdict-box.success { background: rgba(42, 157, 143, 0.1); color: #1e7066; border: 1px solid var(--teal); }
         .verdict-box.danger { background: rgba(231, 76, 60, 0.1); color: #c0392b; border: 1px solid #e74c3c; }
 
-        /* --- MAGIC PRINT CSS --- */
+        /* --- Print CSS --- */
         @media print {
             body { background: white !important; color: black !important; }
             .navbar, .planning-hero, .btn-wrapper, .no-print { display: none !important; }
@@ -127,6 +153,8 @@
             .goal-table { display: block; overflow-x: auto; }
             .nav-links { display: none; }
             .menu-toggle { display: block; }
+            
+            /* Mobile Timeline Fix */
             .timeline-container::after { left: 31px; }
             .tl-row { width: 100%; padding-left: 80px; padding-right: 0; text-align: left; }
             .tl-row.left, .tl-row.right { left: 0; }
@@ -142,46 +170,48 @@
         <a href="/" class="logo">FINANCE WITH<br>AISHIK</a>
         <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
         <ul class="nav-links" id="navLinks">
-            <li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/learn">Learn</a></li><li><a href="/risk-profiling">Self-Risk Profiling</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/learn">Learn</a></li>
+            <li><a href="/risk-profiling">Self-Risk Profiling</a></li>
         </ul>
     </nav>
 
     <div class="planning-hero">
         <h1>Wealth & Goal Planner</h1>
-        <p>Architect your financial future with our customized goal planning tool. Map out your highest aspirations and watch them turn into a clear, day-by-day roadmap.</p>
+        <p>Architect your financial future with our customized goal planning tool. Map out your highest aspirations and watch them turn into a clear, day-by-day roadmap. Take complete control of your timeline with a framework built entirely around you.</p>
     </div>
 
     <div class="form-section">
         <div class="planning-container">
-            <!-- JINJA INCLUDES: ALL MODULAR FILES MERGED HERE -->
             {% include 'step1_to_7.html' %}
             {% include 'financial_health.html' %}
         </div>
-        
-        <!-- TIMELINE MODULE -->
         {% include 'timeline.html' %}
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT HOUSED IN MASTER FILE -->
     <script>
-        // --- 1. BASIC NAVIGATION & UI LOGIC ---
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+
         function showWelcomeMsg() {
             let name = document.getElementById("u_name").value.trim().split(" ")[0];
             let gender = document.querySelector('input[name="u_gender"]:checked')?.value;
+            let box = document.getElementById("welcome_msg");
             if (name && gender) {
-                document.getElementById("welcome_msg").style.display = "block";
+                box.style.display = "block";
                 let salutation = gender === "MALE" ? "Sir" : (gender === "FEMALE" ? "Mam" : "");
-                document.getElementById("welcome_msg").innerHTML = `Thank You ${name} ${salutation}, it is a pleasure to have you. Kindly fill the form to proceed further.`;
+                box.innerHTML = `Thank You ${name} ${salutation}, it is a pleasure to have you. Kindly fill the form to proceed further.`;
             }
         }
+
         function toggleIncome(profId, groupDivId) {
             let prof = document.getElementById(profId).value;
-            if (["Business", "Service", "Self Employed"].includes(prof)) { document.getElementById(groupDivId).style.display = "block"; } 
-            else { document.getElementById(groupDivId).style.display = "none"; document.getElementById(profId.replace("_prof", "_inc")).value = 0; }
+            let group = document.getElementById(groupDivId);
+            if (["Business", "Service", "Self Employed"].includes(prof)) { group.style.display = "block"; } 
+            else { group.style.display = "none"; document.getElementById(profId.replace("_prof", "_inc")).value = 0; }
         }
 
-        // --- 2. STEP TRANSITIONS ---
         function nextStep(current) {
             if (current === 1) {
                 if(!document.getElementById("u_name").value || !document.querySelector('input[name="u_gender"]:checked')) { alert("Please fill Name and Gender."); return; }
@@ -222,20 +252,28 @@
             document.querySelector('.planning-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // --- 3. DYNAMIC GENERATORS ---
+        // Generators
         function generateChildRows() {
-            let num = parseInt(document.getElementById("num_child").value); let html = "";
-            for(let i=1; i<=num; i++) html += `<div style="background: rgba(42,157,143,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;"><strong style="color: var(--navy-blue);">Child ${i} Details:</strong><div class="grid-3" style="margin-top:10px;"><div class="form-group"><label>Name</label><input type="text" id="c_name_${i}" placeholder="Name"></div><div class="form-group"><label>Gender</label><select id="c_gen_${i}"><option>MALE</option><option>FEMALE</option></select></div><div class="form-group"><label>Age</label><input type="number" id="c_age_${i}" value="0" min="0"></div></div></div>`;
+            let num = parseInt(document.getElementById("num_child").value);
+            let html = "";
+            for(let i=1; i<=num; i++) {
+                html += `<div style="background: rgba(42,157,143,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;"><strong style="color: var(--navy-blue);">Child ${i} Details:</strong><div class="grid-3" style="margin-top:10px;"><div class="form-group"><label>Name</label><input type="text" id="c_name_${i}" placeholder="Name"></div><div class="form-group"><label>Gender</label><select id="c_gen_${i}"><option>MALE</option><option>FEMALE</option></select></div><div class="form-group"><label>Age</label><input type="number" id="c_age_${i}" value="0" min="0"></div></div></div>`;
+            }
             document.getElementById("child_rows_container").innerHTML = html;
         }
+
         function generateDepRows() {
-            let num = parseInt(document.getElementById("num_dep").value); let html = "";
-            for(let i=1; i<=num; i++) html += `<div style="background: rgba(197,160,89,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;"><strong style="color: var(--navy-blue);">Dependent ${i}:</strong><div class="grid-4" style="margin-top:10px;"><div class="form-group"><label>Name</label><input type="text" id="d_name_${i}"></div><div class="form-group"><label>Gender</label><select id="d_gen_${i}"><option>MALE</option><option>FEMALE</option></select></div><div class="form-group"><label>Age</label><input type="number" id="d_age_${i}" value="50"></div><div class="form-group"><label>Relation</label><select id="d_rel_${i}"><option>FATHER</option><option>MOTHER</option><option>OTHER</option></select></div></div></div>`;
+            let num = parseInt(document.getElementById("num_dep").value);
+            let html = "";
+            for(let i=1; i<=num; i++) {
+                html += `<div style="background: rgba(197,160,89,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;"><strong style="color: var(--navy-blue);">Dependent ${i}:</strong><div class="grid-4" style="margin-top:10px;"><div class="form-group"><label>Name</label><input type="text" id="d_name_${i}"></div><div class="form-group"><label>Gender</label><select id="d_gen_${i}"><option>MALE</option><option>FEMALE</option></select></div><div class="form-group"><label>Age</label><input type="number" id="d_age_${i}" value="50"></div><div class="form-group"><label>Relation</label><select id="d_rel_${i}"><option>FATHER</option><option>MOTHER</option><option>OTHER</option></select></div></div></div>`;
+            }
             document.getElementById("dep_rows_container").innerHTML = html;
         }
 
-        // --- 4. LIFESTYLE & GOAL LOGIC ---
+        // Lifestyle Calc
         let globalLifestyle = "Basic";
+
         function calculateLifestyle() {
             let loc = document.getElementById("location_type").value;
             if(!loc) { document.getElementById("btn_to_table").style.display = "none"; return; }
@@ -245,126 +283,283 @@
             let isMarried = document.querySelector('input[name="p_married"]:checked')?.value === "YES";
             let hasChild = isMarried && document.querySelector('input[name="sp_child"]:checked')?.value === "YES";
             let hasDep = document.querySelector('input[name="has_dependent"]:checked')?.value === "YES";
-            let total_member = 1 + (isMarried?1:0) + (hasChild?parseInt(document.getElementById("num_child").value||0):0) + (hasDep?parseInt(document.getElementById("num_dep").value||0):0);
-            let total_exp = parseFloat(document.getElementById("p_exp").value || 0) + (isMarried ? parseFloat(document.getElementById("sp_exp").value || 0) : 0);
-            let eph = total_member > 0 ? total_exp / total_member : 0;
-            
-            // Dummy simplistic logic for lifestyle categorization based on EPH & Loc
-            let lvl = 2; if (eph > 20000) lvl = 4; if (eph > 50000) lvl = 6; 
-            let levels = ["Basic", "Modest", "Standard", "Comfortable", "Upper_Middle class", "Affluent", "Luxury", "Elite"];
-            globalLifestyle = levels[lvl];
 
-            document.getElementById("calc_summary").innerHTML = `Total Members: <b>${total_member}</b> | Total Expense: <b>₹${total_exp.toLocaleString('en-IN')}</b>`;
+            let total_member = 1;
+            if(isMarried) total_member++;
+            if(hasChild) total_member += parseInt(document.getElementById("num_child").value || 0);
+            if(hasDep) total_member += parseInt(document.getElementById("num_dep").value || 0);
+
+            let total_exp = parseFloat(document.getElementById("p_exp").value || 0);
+            if(isMarried) total_exp += parseFloat(document.getElementById("sp_exp").value || 0);
+
+            let eph = total_member > 0 ? total_exp / total_member : 0;
+            let levels = ["Basic", "Modest", "Standard", "Comfortable", "Upper_Middle class", "Affluent", "Luxury", "Elite"];
+            let lvl = 0;
+
+            if (loc === "Village") { if (eph <= 5000) lvl = 0; else if (eph <= 10000) lvl = 1; else if (eph <= 15000) lvl = 2; else if (eph <= 20000) lvl = 3; else if (eph <= 30000) lvl = 4; else if (eph <= 50000) lvl = 5; else if (eph <= 75000) lvl = 6; else lvl = 7; } 
+            else if (loc === "Semi-village") { if (eph <= 8000) lvl = 0; else if (eph <= 12000) lvl = 1; else if (eph <= 20000) lvl = 2; else if (eph <= 35000) lvl = 3; else if (eph <= 50000) lvl = 4; else if (eph <= 75000) lvl = 5; else if (eph <= 100000) lvl = 6; else lvl = 7; } 
+            else if (loc === "Small City") { if (eph <= 10000) lvl = 0; else if (eph <= 15000) lvl = 1; else if (eph <= 22000) lvl = 2; else if (eph <= 40000) lvl = 3; else if (eph <= 60000) lvl = 4; else if (eph <= 100000) lvl = 5; else if (eph <= 120000) lvl = 6; else lvl = 7; } 
+            else if (loc === "City") { if (eph <= 12000) lvl = 0; else if (eph <= 18000) lvl = 1; else if (eph <= 25000) lvl = 2; else if (eph <= 50000) lvl = 3; else if (eph <= 80000) lvl = 4; else if (eph <= 110000) lvl = 5; else if (eph <= 130000) lvl = 6; else lvl = 7; } 
+            else if (loc === "Megacity") { if (eph <= 15000) lvl = 0; else if (eph <= 20000) lvl = 1; else if (eph <= 22000) lvl = 2; else if (eph <= 30000) lvl = 3; else if (eph <= 60000) lvl = 4; else if (eph <= 100000) lvl = 5; else if (eph <= 150000) lvl = 6; else lvl = 7; }
+            
+            globalLifestyle = levels[lvl];
+            document.getElementById("calc_summary").innerHTML = `Total Members: <b>${total_member}</b> | Total Expense: <b>₹${total_exp.toLocaleString('en-IN')}</b> | Per Head: <b>₹${eph.toLocaleString('en-IN', {maximumFractionDigits: 0})}</b>`;
             document.getElementById("status_summary").innerHTML = `Your Lifestyle Status: <b>${globalLifestyle.toUpperCase()}</b>`;
 
-            let goalsHtml = `<div class="grid-2"><div class="goal-card gold"><h4>📌 Base Goals</h4><label class="checkbox-group"><input type="checkbox" id="g_retire" checked> Retirement</label><label class="checkbox-group"><input type="checkbox" id="g_emerg" checked> Emergency</label></div>`;
-            goalsHtml += `<div class="goal-card teal"><h4>👶 Children Goals</h4>`;
+            let goalsHtml = `<div class="grid-2">`;
+            goalsHtml += `<div class="goal-card gold"><h4 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px dashed var(--gold); padding-bottom: 10px;">📌 Base Goals</h4><label class="checkbox-group"><input type="checkbox" id="g_retire" checked> <strong>Retirement Fund</strong></label><label class="checkbox-group"><input type="checkbox" id="g_med" checked> <strong>Medical Emergency Fund</strong></label><label class="checkbox-group"><input type="checkbox" id="g_emerg" checked> <strong>Contingency/Emergency Fund</strong></label>`;
+            if(!isMarried) goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="g_mar" checked> <strong>Marriage</strong></label>`;
+            goalsHtml += `</div>`;
+
+            goalsHtml += `<div class="goal-card teal"><h4 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px dashed var(--teal); padding-bottom: 10px;">👶 Children Goals</h4>`;
             if(hasChild) {
                 let num_c = parseInt(document.getElementById("num_child").value);
-                for(let i=1; i<=num_c; i++) goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="gc_edu_${i}" checked> Child ${i} Education</label>`;
-            } else { goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="g_fut_child" checked> Future Child Planning</label><input type="number" id="fut_child_qty" value="1" style="width: 60px;">`; }
-            goalsHtml += `</div></div><div class="goal-card blue" style="margin-top: 20px;"><h4>➕ Additional Goals</h4><div class="grid-3">`;
-            let add_goals = ["House", "Car", "Vacation", "Add Other Goal"];
-            add_goals.forEach((g, idx) => { goalsHtml += `<div><label class="checkbox-group"><input type="checkbox" id="g_add_${idx}"> ${g}</label><input type="number" id="g_qty_${idx}" value="1" style="width: 70px; display: none;"></div>`; });
+                for(let i=1; i<=num_c; i++){ let n = document.getElementById(`c_name_${i}`).value || `Child ${i}`; goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="gc_edu_${i}" checked> <strong>${n} Education</strong></label><label class="checkbox-group"><input type="checkbox" id="gc_mar_${i}" checked> <strong>${n} Marriage</strong></label>`; }
+            } else {
+                goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="g_fut_child" checked> <strong>Future Child Planning</strong></label><div id="fut_child_qty_div" style="margin-left: 28px; margin-top: 8px;"><label style="font-size:12px; color:var(--navy-blue); font-weight:bold;">How many children?</label><input type="number" id="fut_child_qty" value="1" min="1" style="width: 80px; padding: 6px; margin-top:4px;"></div>`;
+            }
+            goalsHtml += `</div></div>`;
+
+            goalsHtml += `<div class="goal-card blue" style="margin-top: 20px;"><h4 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px dashed var(--navy-blue); padding-bottom: 10px;">➕ Additional Goals</h4><div class="grid-3">`;
+            let add_goals = ["House", "Car", "Vacation", "Lavish Accessories", "Business Fund", "Add Other Goal"];
+            add_goals.forEach((g, idx) => {
+                let extraText = g === "Add Other Goal" ? `<div style="font-size: 11.5px; color: #7f8c8d; margin-top: 2px;">You can add any goal of yours here...</div>` : "";
+                goalsHtml += `<div><label class="checkbox-group"><input type="checkbox" id="g_add_${idx}" ${g === "Add Other Goal" ? "checked" : ""}> <strong>${g}</strong></label>${extraText}<input type="number" id="g_qty_${idx}" value="1" min="1" style="width: 70px; padding: 6px; margin-top: 8px; display: ${g === "Add Other Goal" ? "block" : "none"}; border: 1px solid var(--navy-blue);"></div>`;
+            });
             goalsHtml += `</div></div>`;
             document.getElementById("goals_container").innerHTML = goalsHtml;
 
-            add_goals.forEach((g, idx) => { document.getElementById(`g_add_${idx}`).addEventListener('change', function() { document.getElementById(`g_qty_${idx}`).style.display = this.checked ? "block" : "none"; }); });
+            add_goals.forEach((g, idx) => {
+                document.getElementById(`g_add_${idx}`).addEventListener('change', function() { document.getElementById(`g_qty_${idx}`).style.display = this.checked ? "block" : "none"; });
+            });
         }
 
         let selectedGoals = [];
-        let total_future_value_needed = 0; // GLOBAL VARIABLE FOR STEP 8
 
         function generateGoalTable() {
             selectedGoals = [];
+            let isMarried = document.querySelector('input[name="p_married"]:checked')?.value === "YES";
+            let hasChild = isMarried && document.querySelector('input[name="sp_child"]:checked')?.value === "YES";
+
             if(document.getElementById("g_retire").checked) selectedGoals.push("Retirement Fund");
-            if(document.getElementById("g_emerg").checked) selectedGoals.push("Emergency Fund");
-            
-            // Collect Add_goals based on checked
-            for(let i=0; i<4; i++){
-                if(document.getElementById(`g_add_${i}`) && document.getElementById(`g_add_${i}`).checked) {
-                    let gName = i===3 ? "Add Other Goal" : (i===0?"House":(i===1?"Car":"Vacation"));
-                    selectedGoals.push(gName);
-                }
+            if(document.getElementById("g_med").checked) selectedGoals.push("Medical Emergency Fund");
+            if(document.getElementById("g_emerg").checked) selectedGoals.push("Contingency/Emergency Fund");
+            if(!isMarried && document.getElementById("g_mar").checked) selectedGoals.push("Marriage");
+
+            if(hasChild) {
+                let num_c = parseInt(document.getElementById("num_child").value);
+                for(let i=1; i<=num_c; i++){ let n = document.getElementById(`c_name_${i}`).value || `Child ${i}`; if(document.getElementById(`gc_edu_${i}`).checked) selectedGoals.push(`${n} Education`); if(document.getElementById(`gc_mar_${i}`).checked) selectedGoals.push(`${n} Marriage`); }
+            } else if (document.getElementById("g_fut_child") && document.getElementById("g_fut_child").checked) {
+                let qty = parseInt(document.getElementById("fut_child_qty").value || 1);
+                for(let i=1; i<=qty; i++){ selectedGoals.push(`Future Child ${i} Education`); selectedGoals.push(`Future Child ${i} Marriage`); }
             }
 
-            let tbody = document.querySelector("#final_goal_table tbody"); tbody.innerHTML = "";
-            let ann_inc = parseFloat(document.getElementById("p_inc").value || 0) * 12;
+            let add_goals = ["House", "Car", "Vacation", "Lavish Accessories", "Business Fund", "Add Other Goal"];
+            add_goals.forEach((g, idx) => {
+                if(document.getElementById(`g_add_${idx}`).checked) {
+                    let qty = parseInt(document.getElementById(`g_qty_${idx}`).value || 1);
+                    if(qty === 1) selectedGoals.push(g); else { for(let i=1; i<=qty; i++) selectedGoals.push(`${g} ${i}`); }
+                }
+            });
+
+            let tbody = document.querySelector("#final_goal_table tbody");
+            tbody.innerHTML = "";
+
+            let total_inc = parseFloat(document.getElementById("p_inc").value || 0);
+            if(isMarried) total_inc += parseFloat(document.getElementById("sp_inc").value || 0);
+            let ann_inc = total_inc * 12;
+            let total_exp = parseFloat(document.getElementById("p_exp").value || 0);
+            if(isMarried) total_exp += parseFloat(document.getElementById("sp_exp").value || 0);
+            let ann_exp = total_exp * 12;
             let user_age = parseInt(document.getElementById("p_age").value || 30);
 
             selectedGoals.forEach((goal, i) => {
                 let pv = 0; let dur = 0; let inf = 5.0;
-                if(goal === "Retirement Fund") { dur = Math.max(0, 60 - user_age); pv = ann_inc/0.09; } 
-                else if(goal === "Emergency Fund") { pv = ann_inc * 3; dur = 0; } 
-                else if(goal.includes("Add Other Goal")) { pv = 0; dur = 0; } 
+                if(goal === "Retirement Fund") { dur = Math.max(0, 60 - user_age); if(globalLifestyle==="Basic") pv = (ann_inc*0.40)/0.09; else if(globalLifestyle==="Modest") pv = (ann_inc*0.45)/0.09; else if(globalLifestyle==="Standard") pv = (ann_inc*0.50)/0.09; else if(globalLifestyle==="Comfortable") pv = (ann_inc*0.60)/0.09; else if(globalLifestyle==="Upper_Middle class") pv = (ann_inc*0.70)/0.09; else if(globalLifestyle==="Affluent") pv = (ann_inc*0.80)/0.09; else if(globalLifestyle==="Luxury") pv = (ann_inc*0.90)/0.09; else pv = ann_inc/0.09; } 
+                else if(goal === "Medical Emergency Fund") { pv = ann_exp * 5; inf = 8.0; dur = 0; } 
+                else if(goal === "Contingency/Emergency Fund") { pv = ann_inc * 3; dur = 0; } 
+                else if(goal.includes("Education")) { inf = 7.0; dur = 17; if(hasChild && !goal.includes("Future")) { let c_idx = Array.from({length: parseInt(document.getElementById("num_child").value)}, (_, k) => k+1).find(k => goal.includes(document.getElementById(`c_name_${k}`).value || `Child ${k}`)); if(c_idx) dur = Math.max(0, 17 - parseInt(document.getElementById(`c_age_${c_idx}`).value||0)); } if(globalLifestyle==="Basic") pv=500000; else if(globalLifestyle==="Modest") pv=1000000; else if(globalLifestyle==="Standard") pv=1500000; else if(globalLifestyle==="Comfortable") pv=2500000; else if(globalLifestyle==="Upper_Middle class") pv=4000000; else if(globalLifestyle==="Affluent") pv=6500000; else if(globalLifestyle==="Luxury") pv=10000000; else pv=20000000; } 
+                else if(goal.includes("Marriage") || goal==="Marriage") { dur = 24; if(hasChild && !goal.includes("Future")) { let c_idx = Array.from({length: parseInt(document.getElementById("num_child").value)}, (_, k) => k+1).find(k => goal.includes(document.getElementById(`c_name_${k}`).value || `Child ${k}`)); if(c_idx) { let gen = document.getElementById(`c_gen_${c_idx}`).value; dur = Math.max(0, (gen==="MALE"?28:24) - parseInt(document.getElementById(`c_age_${c_idx}`).value||0)); } } if(globalLifestyle==="Basic") pv=1000000; else if(globalLifestyle==="Modest") pv=1500000; else if(globalLifestyle==="Standard") pv=2000000; else if(globalLifestyle==="Comfortable") pv=2500000; else if(globalLifestyle==="Upper_Middle class") pv=4000000; else if(globalLifestyle==="Affluent") pv=6000000; else if(globalLifestyle==="Luxury") pv=10000000; else pv=25000000; } 
+                else if(goal.includes("Add Other Goal")) { pv = 0; dur = 0; inf = 5.0; } 
                 else { pv = 500000; dur = 5; }
 
                 let fv = pv * Math.pow(1 + inf/100, dur);
-                let fvStr = fv.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+                let fvStr = fv.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                let fvPenStr = ((fv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                let pvPenStr = ((pv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 
-                let goalNameHTML = goal.includes("Add Other Goal") ? `<input type="text" id="goalName_${i}" placeholder="Type your goal name..." style="border: 1px solid var(--teal);">` : `<strong style="font-size: 15px;">${goal}</strong><input type="hidden" id="goalName_${i}" value="${goal}">`;
+                let fvPenHTML = goal === "Retirement Fund" ? `<br><div class="pension-badge" id="pen_${i}">Future Pension: ₹${fvPenStr} /mo</div>` : "";
+                let pvPenHTML = goal === "Retirement Fund" ? `<br><div class="pension-badge current" id="pv_pen_${i}">Current Pension: ₹${pvPenStr} /mo</div>` : "";
 
-                tbody.innerHTML += `<tr>
-                    <td>${goalNameHTML}</td>
-                    <td><input type="number" id="pv_${i}" value="${pv.toFixed(0)}" oninput="calcRow(${i}, '${goal}')"></td>
-                    <td><input type="number" id="dur_${i}" value="${dur}" oninput="calcRow(${i}, '${goal}')"></td>
-                    <td><input type="number" id="inf_${i}" value="${inf.toFixed(1)}" step="0.5" oninput="calcRow(${i}, '${goal}')"></td>
-                    <td><div class="fv-box" id="fv_${i}">${fvStr}</div></td>
-                </tr>`;
+                let goalNameHTML = "";
+                if (goal.includes("Add Other Goal")) {
+                    goalNameHTML = `<input type="text" id="goalName_${i}" placeholder="Type your goal name..." value="" style="border: 1px solid var(--teal); background: #fff;">
+                                    <div style="font-size: 11px; color: #d35400; margin-top: 6px; font-weight: bold;"><i class="fa-solid fa-circle-info"></i> Fill all boxes</div>`;
+                } else {
+                    goalNameHTML = `<strong style="font-size: 15px;">${goal}</strong><input type="hidden" id="goalName_${i}" value="${goal}">`;
+                }
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${goalNameHTML}</td>
+                        <td><input type="number" id="pv_${i}" value="${pv.toFixed(0)}" oninput="calcRow(${i}, '${goal}')">${pvPenHTML}</td>
+                        <td><input type="number" id="dur_${i}" value="${dur}" oninput="calcRow(${i}, '${goal}')"></td>
+                        <td><input type="number" id="inf_${i}" value="${inf.toFixed(1)}" step="0.5" oninput="calcRow(${i}, '${goal}')"></td>
+                        <td><div class="fv-box" id="fv_${i}">${fvStr}</div>${fvPenHTML}</td>
+                    </tr>`;
             });
         }
 
-        function calcRow(idx) {
+        function calcRow(idx, originalGoalName) {
             let pv = parseFloat(document.getElementById(`pv_${idx}`).value || 0);
             let dur = parseFloat(document.getElementById(`dur_${idx}`).value || 0);
             let inf = parseFloat(document.getElementById(`inf_${idx}`).value || 0);
             let fv = pv * Math.pow(1 + inf/100, dur);
-            document.getElementById(`fv_${idx}`).innerText = fv.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+            
+            document.getElementById(`fv_${idx}`).innerText = fv.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            
+            if(originalGoalName === "Retirement Fund") {
+                let fvPenStr = ((fv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                document.getElementById(`pen_${idx}`).innerText = `Future Pension: ₹${fvPenStr} /mo`;
+                let pvPenStr = ((pv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                document.getElementById(`pv_pen_${idx}`).innerText = `Current Pension: ₹${pvPenStr} /mo`;
+            }
         }
 
+        // --- Roadmap Generator Logic ---
+        let total_future_value_needed = 0; // Global for Health check
+
         function drawTimeline() {
-            let currentYear = new Date().getFullYear(); let currentAge = parseInt(document.getElementById("p_age").value || 30);
-            let timelineData = []; total_future_value_needed = 0; // Reset global val
+            let currentYear = new Date().getFullYear();
+            let currentAge = parseInt(document.getElementById("p_age").value || 30);
+            let timelineData = [];
+            total_future_value_needed = 0;
 
             selectedGoals.forEach((origGoal, i) => {
-                let name = document.getElementById(`goalName_${i}`).value || origGoal;
+                let nameBox = document.getElementById(`goalName_${i}`);
+                let name = nameBox ? nameBox.value.trim() : origGoal;
                 let dur = parseFloat(document.getElementById(`dur_${i}`).value || 0);
-                let fv = parseFloat(document.getElementById(`fv_${i}`).innerText.replace(/[^0-9.-]+/g,""));
+                let pv = parseFloat(document.getElementById(`pv_${i}`).value || 0);
+                let inf = parseFloat(document.getElementById(`inf_${i}`).value || 0);
+                let fv = pv * Math.pow(1 + inf/100, dur);
+                
                 total_future_value_needed += fv;
-                timelineData.push({ name: name, dur: dur, fv: fv });
+                timelineData.push({ name: name || "Unnamed Goal", dur: dur, fv: fv, origGoal: origGoal });
             });
 
+            // Sort Chronologically
             timelineData.sort((a, b) => a.dur - b.dur);
+
             let html = "";
             timelineData.forEach((item, index) => {
-                let targetYear = currentYear + item.dur; let targetAge = currentAge + item.dur;
+                let iconClass = "fa-bullseye";
+                let lname = item.name.toLowerCase();
+                if(lname.includes("retire")) iconClass = "fa-umbrella-beach";
+                else if(lname.includes("med") || lname.includes("emerg")) iconClass = "fa-truck-medical";
+                else if(lname.includes("edu")) iconClass = "fa-user-graduate";
+                else if(lname.includes("mar")) iconClass = "fa-ring";
+                else if(lname.includes("house") || lname.includes("home")) iconClass = "fa-house-chimney";
+                else if(lname.includes("car") || lname.includes("bike") || lname.includes("vehicle")) iconClass = "fa-car";
+                else if(lname.includes("vacation") || lname.includes("trip")) iconClass = "fa-plane-departure";
+                else if(lname.includes("biz") || lname.includes("business")) iconClass = "fa-briefcase";
+
+                let targetYear = currentYear + item.dur;
+                let targetAge = currentAge + item.dur;
+                let fvStr = item.fv.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+
+                let extraHtml = "";
+                if(item.origGoal === "Retirement Fund") {
+                    let pen = ((item.fv * 0.09) / 12).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+                    extraHtml = `<div class="tl-pension-highlight">🌟 Your Pension Starts from here: ₹${pen} /mo</div>`;
+                }
+
                 let sideClass = index % 2 === 0 ? "left" : "right";
-                html += `<div class="tl-row ${sideClass}"><div class="tl-date-area"><div class="tl-year">${targetYear}</div><div class="tl-age">Age: ${targetAge} Yrs</div></div><div class="tl-icon"><i class="fa-solid fa-bullseye"></i></div><div class="tl-content"><h3>${item.name}</h3><div class="tl-amount">₹ ${item.fv.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div></div></div>`;
+
+                html += `
+                <div class="tl-row ${sideClass}">
+                    <div class="tl-date-area">
+                        <div class="tl-year">${targetYear}</div>
+                        <div class="tl-age">Age: ${targetAge} Yrs</div>
+                    </div>
+                    <div class="tl-icon"><i class="fa-solid ${iconClass}"></i></div>
+                    <div class="tl-content">
+                        <h3>${item.name}</h3>
+                        <div class="tl-amount">₹ ${fvStr}</div>
+                        ${extraHtml}
+                    </div>
+                </div>`;
             });
+
             document.getElementById("timeline_graphics").innerHTML = html;
         }
 
+        // --- Final Submission ---
         async function submitFinalPlan(btn) {
-            btn.innerText = "Processing..."; btn.disabled = true;
-            document.querySelectorAll('#final_goal_table input').forEach(input => input.disabled = true);
-            document.getElementById('step7_back_btn').style.display = 'none';
+            let finalEditedGoals = [];
+            let isValid = true;
 
-            drawTimeline();
-            let tlWrapper = document.getElementById("timeline_wrapper");
-            tlWrapper.style.display = "block";
-            setTimeout(() => { tlWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 500);
-            btn.innerHTML = `Saved <i class="fa-solid fa-check-double"></i>`;
+            selectedGoals.forEach((_, i) => {
+                let newName = document.getElementById(`goalName_${i}`).value.trim();
+                if (newName === "") isValid = false; 
+                finalEditedGoals.push(newName || "Unnamed Goal");
+            });
+
+            if (!isValid) { alert("Please type a name for all your custom goals before submitting."); return; }
+
+            btn.innerText = "Processing...";
+            btn.disabled = true;
+
+            let name = document.getElementById("u_name").value;
+            let phone = document.getElementById("u_phone").value;
+            let email = document.getElementById("u_email").value;
+            let message = `Service: Full Financial Plan | Goals: ${finalEditedGoals.join(", ")} | Lifestyle: ${globalLifestyle}`;
+
+            const formData = new FormData();
+            formData.append('name', name); formData.append('email', email); formData.append('phone', phone); formData.append('message', message);
+
+            try {
+                const response = await fetch('/submit_form', { method: 'POST', body: formData });
+                const result = await response.json();
+                if(result.status === 'success') {
+                    document.getElementById("finalMessage").style.color = "var(--teal)";
+                    document.getElementById("finalMessage").innerHTML = "🎉 Your Financial Plan has been saved successfully! Scroll down to see your Roadmap.";
+                    btn.innerHTML = `Saved <i class="fa-solid fa-check-double"></i>`;
+                    
+                    let tableInputs = document.querySelectorAll('#final_goal_table input');
+                    tableInputs.forEach(input => input.disabled = true);
+                    document.getElementById('step7_back_btn').style.display = 'none';
+
+                    drawTimeline();
+                    let tlWrapper = document.getElementById("timeline_wrapper");
+                    tlWrapper.style.display = "block";
+                    setTimeout(() => { tlWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 500);
+
+                } else {
+                    document.getElementById("finalMessage").style.color = "red";
+                    document.getElementById("finalMessage").innerText = "Error saving data. Please try again.";
+                    btn.innerHTML = `Finalize & Save Data <i class="fa-solid fa-check"></i>`;
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                document.getElementById("finalMessage").style.color = "red";
+                document.getElementById("finalMessage").innerText = "Network Error!";
+                btn.innerHTML = `Finalize & Save Data <i class="fa-solid fa-check"></i>`;
+                btn.disabled = false;
+            }
         }
 
+        // --- Edit Plan Logic ---
         function editPlan() {
             document.getElementById("timeline_wrapper").style.display = "none";
-            document.querySelectorAll('#final_goal_table input').forEach(input => input.disabled = false);
+            let tableInputs = document.querySelectorAll('#final_goal_table input');
+            tableInputs.forEach(input => input.disabled = false);
             document.getElementById('step7_back_btn').style.display = 'inline-block';
             let btn = document.getElementById("submit_btn"); btn.disabled = false; btn.innerHTML = `Finalize & Save Data <i class="fa-solid fa-check"></i>`;
+            document.getElementById("finalMessage").innerHTML = "";
             document.getElementById("step-7").scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // --- 5. FINANCIAL HEALTH BRIDGE LOGIC (Step 8 & 9) ---
+        // --- FINANCIAL HEALTH BRIDGE ---
         function goToFinancialHealth() {
             document.getElementById("timeline_wrapper").style.display = "none";
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
@@ -382,15 +577,12 @@
             let sp_inc = document.getElementById("sp_inc") ? parseFloat(document.getElementById("sp_inc").value || 0) : 0;
             let ann_inc = (user_inc + sp_inc) * 12;
 
-            // Simplified Wealth Projection (Assuming avg 15 years: Savings @8%, SIP @12%)
             let proj_sav = savings * Math.pow(1.08, 15);
-            let proj_sip = sip * 12 * 15 * 1.8; // Rough multiplier for SIP
+            let proj_sip = sip * 12 * 15 * 1.8; 
             let total_proj = proj_sav + proj_sip;
-            
             let gap = total_future_value_needed - total_proj;
-            
             let life_req = ann_inc * 10;
-            let health_req = 1000000; // Minimum 10L
+            let health_req = 1000000; 
 
             let wealthClass = gap > 0 ? "danger" : "success";
             let wealthMsg = gap > 0 ? `You have a wealth gap of <b>₹ ${gap.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</b>.` : "You are on track to achieve your goals!";
@@ -406,9 +598,7 @@
                         <div class="val">₹ ${total_proj.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
                     </div>
                 </div>
-                
                 <div class="verdict-box ${wealthClass}">${wealthMsg}</div>
-
                 <div class="grid-2" style="margin-top:20px;">
                     <div class="diag-card ${life >= life_req ? 'green' : 'red'}">
                         <h4>Life Insurance</h4>
@@ -418,11 +608,9 @@
                         <h4>Health Insurance</h4>
                         <p style="font-size:13px;">Recommended: ₹ ${health_req.toLocaleString('en-IN')} <br> Current: ₹ ${health.toLocaleString('en-IN')}</p>
                     </div>
-                </div>
-            `;
+                </div>`;
 
             document.getElementById('diagnosis_result').innerHTML = html;
-            
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
             document.getElementById("step-9").classList.add("active");
         }
