@@ -65,6 +65,34 @@
         .info-box { background: rgba(42, 157, 143, 0.1); border-left: 4px solid var(--teal); padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 15px; color: var(--navy-blue); }
         .success-box { background: rgba(197, 160, 89, 0.1); border-left: 4px solid var(--gold); padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 15px; font-weight: bold; color: var(--navy-blue); }
 
+        /* --- 3D Goal Cards CSS --- */
+        .goal-card {
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.03), inset 0 2px 2px rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .goal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12), 0 6px 12px rgba(0, 0, 0, 0.08), inset 0 2px 2px rgba(255, 255, 255, 1);
+        }
+        .goal-card.gold {
+            background: linear-gradient(135deg, #ffffff 0%, #fdf8eb 100%);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-bottom: 4px solid var(--gold);
+        }
+        .goal-card.teal {
+            background: linear-gradient(135deg, #ffffff 0%, #eef8f6 100%);
+            border: 1px solid rgba(42, 157, 143, 0.3);
+            border-bottom: 4px solid var(--teal);
+        }
+        .goal-card.blue {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+            border: 1px solid rgba(10, 25, 47, 0.2);
+            border-bottom: 4px solid var(--navy-blue);
+        }
+
         /* Table Design */
         .goal-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
         .goal-table th { background-color: var(--navy-blue); color: var(--gold); padding: 12px; text-align: left; }
@@ -280,7 +308,7 @@
                     
                     <hr>
                     <h3 style="color: var(--navy-blue); font-family: 'Playfair Display', serif; margin-bottom: 5px;">🎯 Customized Goal List</h3>
-                    <p style="color: #7f8c8d; font-size: 14px; margin-bottom: 20px;">Please select or deselect the financial milestones you wish to plan for. You can also add extra goals from the additional section.</p>
+                    <p style="color: #7f8c8d; font-size: 14px; margin-bottom: 25px;">Please select or deselect the financial milestones you wish to plan for. You can also add extra goals from the additional section below.</p>
                     
                     <div id="goals_container"></div>
                 </div>
@@ -483,47 +511,48 @@
             document.getElementById("calc_summary").innerHTML = `Total Members: <b>${total_member}</b> | Total Expense: <b>₹${expStr}</b> | Per Head: <b>₹${ephStr}</b>`;
             document.getElementById("status_summary").innerHTML = `Your Lifestyle Status: <b>${globalLifestyle.toUpperCase()}</b>`;
 
-            // Premium Goal List Design (Card Based)
+            // Premium Goal List Design (3D Card Based)
             let goalsHtml = `<div class="grid-2">`;
             
             // Base Goals Card
-            goalsHtml += `<div style="background: rgba(197, 160, 89, 0.05); border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 8px; padding: 20px;">
+            goalsHtml += `<div class="goal-card gold">
                             <h4 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px dashed var(--gold); padding-bottom: 10px;">📌 Base Goals</h4>
-                            <label class="checkbox-group"><input type="checkbox" id="g_retire" checked> Retirement Fund</label>
-                            <label class="checkbox-group"><input type="checkbox" id="g_med" checked> Medical Emergency Fund</label>
-                            <label class="checkbox-group"><input type="checkbox" id="g_emerg" checked> Contingency/Emergency Fund</label>`;
-            if(!isMarried) goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="g_mar" checked> Marriage</label>`;
+                            <label class="checkbox-group"><input type="checkbox" id="g_retire" checked> <strong>Retirement Fund</strong></label>
+                            <label class="checkbox-group"><input type="checkbox" id="g_med" checked> <strong>Medical Emergency Fund</strong></label>
+                            <label class="checkbox-group"><input type="checkbox" id="g_emerg" checked> <strong>Contingency/Emergency Fund</strong></label>`;
+            if(!isMarried) goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="g_mar" checked> <strong>Marriage</strong></label>`;
             goalsHtml += `</div>`;
 
             // Children Goals Card
-            goalsHtml += `<div style="background: rgba(42, 157, 143, 0.05); border: 1px solid rgba(42, 157, 143, 0.2); border-radius: 8px; padding: 20px;">
+            goalsHtml += `<div class="goal-card teal">
                             <h4 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px dashed var(--teal); padding-bottom: 10px;">👶 Children Goals</h4>`;
             
             if(hasChild) {
                 let num_c = parseInt(document.getElementById("num_child").value);
                 for(let i=1; i<=num_c; i++){
                     let n = document.getElementById(`c_name_${i}`).value || `Child ${i}`;
-                    goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="gc_edu_${i}" checked> ${n} Education</label>
-                                  <label class="checkbox-group"><input type="checkbox" id="gc_mar_${i}" checked> ${n} Marriage</label>`;
+                    goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="gc_edu_${i}" checked> <strong>${n} Education</strong></label>
+                                  <label class="checkbox-group"><input type="checkbox" id="gc_mar_${i}" checked> <strong>${n} Marriage</strong></label>`;
                 }
             } else {
-                goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="g_fut_child" checked> Future Child Planning</label>
-                              <div id="fut_child_qty_div" style="margin-left: 28px; margin-top: 8px;"><label style="font-size:12px; color:var(--navy-blue);">How many children?</label><input type="number" id="fut_child_qty" value="1" min="1" style="width: 80px; padding: 6px; margin-top:4px;"></div>`;
+                goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="g_fut_child" checked> <strong>Future Child Planning</strong></label>
+                              <div id="fut_child_qty_div" style="margin-left: 28px; margin-top: 8px;"><label style="font-size:12px; color:var(--navy-blue); font-weight:bold;">How many children?</label><input type="number" id="fut_child_qty" value="1" min="1" style="width: 80px; padding: 6px; margin-top:4px;"></div>`;
             }
             goalsHtml += `</div></div>`;
 
             // Additional Goals Card
-            goalsHtml += `<div style="margin-top: 20px; background: #fff; border: 1px solid #eee; border-radius: 8px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
-                            <h4 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px solid #eee; padding-bottom: 10px;">➕ Additional Goals</h4>
+            goalsHtml += `<div class="goal-card blue" style="margin-top: 20px;">
+                            <h4 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px dashed var(--navy-blue); padding-bottom: 10px;">➕ Additional Goals</h4>
                             <div class="grid-3">`;
             
             let add_goals = ["House", "Car", "Vacation", "Lavish Accessories", "Business Fund", "Add Other Goal"];
+            
             add_goals.forEach((g, idx) => {
                 let extraText = g === "Add Other Goal" ? `<div style="font-size: 11.5px; color: #7f8c8d; margin-top: 2px;">You can add any goal of yours here...</div>` : "";
                 goalsHtml += `<div>
-                                <label class="checkbox-group"><input type="checkbox" id="g_add_${idx}"> ${g}</label>
+                                <label class="checkbox-group"><input type="checkbox" id="g_add_${idx}" ${g === "Add Other Goal" ? "checked" : ""}> <strong>${g}</strong></label>
                                 ${extraText}
-                                <input type="number" id="g_qty_${idx}" value="1" min="1" style="width: 70px; padding: 6px; margin-top: 8px; display: none;">
+                                <input type="number" id="g_qty_${idx}" value="1" min="1" style="width: 70px; padding: 6px; margin-top: 8px; display: ${g === "Add Other Goal" ? "block" : "none"}; border: 1px solid var(--navy-blue);">
                               </div>`;
             });
             goalsHtml += `</div></div>`;
@@ -669,7 +698,7 @@
 
             selectedGoals.forEach((_, i) => {
                 let newName = document.getElementById(`goalName_${i}`).value.trim();
-                if (newName === "") isValid = false; // Validation to check if custom goal name is typed
+                if (newName === "") isValid = false; // Validation
                 finalEditedGoals.push(newName || "Unnamed Goal");
             });
 
