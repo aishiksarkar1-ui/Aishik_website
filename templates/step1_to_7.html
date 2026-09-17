@@ -1,0 +1,99 @@
+<!-- STEP 1 -->
+<div id="step-1" class="step active">
+    <h2 class="form-title">Step 1: Basic Information</h2>
+    <div class="form-group"><label>Full Name</label><input type="text" id="u_name" placeholder="E.g. Aishik Sarkar"></div>
+    <div class="grid-2">
+        <div class="form-group"><label>Phone Number</label><input type="tel" id="u_phone" placeholder="Your mobile number"></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="u_email" placeholder="yourmail@example.com"></div>
+    </div>
+    <div class="form-group"><label>Kindly select your gender</label>
+        <div class="radio-group">
+            <label class="radio-btn"><input type="radio" name="u_gender" value="MALE" onchange="showWelcomeMsg()"> Male</label>
+            <label class="radio-btn"><input type="radio" name="u_gender" value="FEMALE" onchange="showWelcomeMsg()"> Female</label>
+            <label class="radio-btn"><input type="radio" name="u_gender" value="OTHER" onchange="showWelcomeMsg()"> Other</label>
+        </div>
+    </div>
+    <div id="welcome_msg" class="success-box" style="display: none;"></div>
+    <div class="btn-wrapper" style="justify-content: flex-end;"><button class="nav-btn" onclick="nextStep(1)">Go to Form <i class="fa-solid fa-arrow-right"></i></button></div>
+</div>
+
+<!-- STEP 2 -->
+<div id="step-2" class="step">
+    <h2 class="form-title">Step 2: Personal Information</h2>
+    <div class="info-box" id="summary_info"></div>
+    <div class="grid-2">
+        <div class="form-group"><label>Age</label><input type="number" id="p_age" min="18" max="100" value="30"></div>
+        <div class="form-group"><label>Profession</label><select id="p_prof" onchange="toggleIncome('p_prof', 'p_inc_group')"><option value="">Select Profession</option><option value="Business">Business</option><option value="Service">Service (Govt. / Pvt.)</option><option value="Self Employed">Self Employed</option><option value="Non Earning">Non Earning member</option></select></div>
+    </div>
+    <div class="grid-2">
+        <div class="form-group" id="p_inc_group" style="display: none;"><label>Approx. Monthly Income (₹)</label><input type="number" id="p_inc" value="0"></div>
+        <div class="form-group"><label>Approx. Monthly Household Expenses (₹)</label><input type="number" id="p_exp" value="0"></div>
+    </div>
+    <div class="form-group"><label>Are you married?</label>
+        <div class="radio-group"><label class="radio-btn"><input type="radio" name="p_married" value="YES"> Yes</label><label class="radio-btn"><input type="radio" name="p_married" value="NO"> No</label></div>
+    </div>
+    <div class="btn-wrapper"><button class="nav-btn back" onclick="prevStep(2)"><i class="fa-solid fa-arrow-left"></i> Back</button><button class="nav-btn" onclick="nextStep(2)">Next Step <i class="fa-solid fa-arrow-right"></i></button></div>
+</div>
+
+<!-- STEP 3 -->
+<div id="step-3" class="step">
+    <h2 class="form-title">Step 3: Spouse Details</h2>
+    <div id="spouse_section">
+        <div class="grid-2"><div class="form-group"><label>Spouse Name</label><input type="text" id="sp_name"></div><div class="form-group"><label>Spouse Age</label><input type="number" id="sp_age" min="18" value="30"></div></div>
+        <div class="form-group"><label>Spouse Profession</label><select id="sp_prof" onchange="toggleIncome('sp_prof', 'sp_inc_group')"><option value="">Select Profession</option><option value="Business">Business</option><option value="Service">Service</option><option value="Self Employed">Self Employed</option><option value="Non Earning">Non Earning member</option></select></div>
+        <div class="grid-2"><div class="form-group" id="sp_inc_group" style="display: none;"><label>Spouse Monthly Income (₹)</label><input type="number" id="sp_inc" value="0"></div><div class="form-group"><label>Spouse Monthly Household Expenses (₹)</label><input type="number" id="sp_exp" value="0"></div></div>
+        <div class="form-group"><label>Do you have children?</label><div class="radio-group"><label class="radio-btn"><input type="radio" name="sp_child" value="YES"> Yes</label><label class="radio-btn"><input type="radio" name="sp_child" value="NO"> No</label></div></div>
+    </div>
+    <div id="no_spouse_msg" class="info-box" style="display: none;">Since you are unmarried, this section is not applicable.</div>
+    <div class="btn-wrapper"><button class="nav-btn back" onclick="prevStep(3)"><i class="fa-solid fa-arrow-left"></i> Back</button><button class="nav-btn" onclick="nextStep(3)">Next Step <i class="fa-solid fa-arrow-right"></i></button></div>
+</div>
+
+<!-- STEP 4 -->
+<div id="step-4" class="step">
+    <h2 class="form-title">Step 4: Child & Dependent Details</h2>
+    <div id="child_section" style="display: none;"><div class="form-group"><label>How many children do you have?</label><input type="number" id="num_child" min="1" max="10" value="1" onchange="generateChildRows()"></div><div id="child_rows_container"></div></div>
+    <div id="no_child_msg" class="info-box" style="display: none;">Child details are not applicable.</div>
+    <hr>
+    <div class="form-group"><label>Do you have any member in your family who is completely dependent on your income?</label><div class="radio-group"><label class="radio-btn"><input type="radio" name="has_dependent" value="YES"> Yes</label><label class="radio-btn"><input type="radio" name="has_dependent" value="NO"> No</label></div></div>
+    <div class="btn-wrapper"><button class="nav-btn back" onclick="prevStep(4)"><i class="fa-solid fa-arrow-left"></i> Back</button><button class="nav-btn" onclick="nextStep(4)">Next Step <i class="fa-solid fa-arrow-right"></i></button></div>
+</div>
+
+<!-- STEP 5 -->
+<div id="step-5" class="step">
+    <h2 class="form-title">Step 5: Dependent Member Details</h2>
+    <div id="dep_section" style="display: none;"><div class="form-group"><label>How many dependent members?</label><input type="number" id="num_dep" min="1" max="10" value="1" onchange="generateDepRows()"></div><div id="dep_rows_container"></div></div>
+    <div id="no_dep_msg" class="info-box" style="display: none;">Since you do not have any dependent family members, this section is not applicable.</div>
+    <div class="btn-wrapper"><button class="nav-btn back" onclick="prevStep(5)"><i class="fa-solid fa-arrow-left"></i> Back</button><button class="nav-btn" onclick="nextStep(5)">Next Step <i class="fa-solid fa-arrow-right"></i></button></div>
+</div>
+
+<!-- STEP 6 -->
+<div id="step-6" class="step">
+    <h2 class="form-title">Step 6: Future Expenses & Goal Selection</h2>
+    <div class="form-group"><label>Where do you live?</label><select id="location_type" onchange="calculateLifestyle()"><option value="">Select Location</option><option value="Village">Village</option><option value="Semi-village">Semi-village</option><option value="Small City">Small City</option><option value="City">City</option><option value="Megacity">Megacity</option></select></div>
+    <div id="lifestyle_result" style="display: none;">
+        <div class="info-box" id="calc_summary"></div><div class="success-box" id="status_summary"></div><hr>
+        <h3 style="color: var(--navy-blue); font-family: 'Playfair Display', serif; margin-bottom: 5px;">🎯 Customized Goal List</h3>
+        <p style="color: #7f8c8d; font-size: 14px; margin-bottom: 25px;">Please select or deselect the financial milestones you wish to plan for.</p>
+        <div id="goals_container"></div>
+    </div>
+    <div class="btn-wrapper"><button class="nav-btn back" onclick="prevStep(6)"><i class="fa-solid fa-arrow-left"></i> Back</button><button class="nav-btn" onclick="nextStep(6)" id="btn_to_table" style="display:none;">Generate Plan <i class="fa-solid fa-table"></i></button></div>
+</div>
+
+<!-- STEP 7 -->
+<div id="step-7" class="step">
+    <h2 class="form-title">📋 Your Customized Goal Table</h2>
+    <div class="table-note-box"><strong>💡 Note:</strong> The Present Value for Base Goals and Education/Marriage are auto-calculated matching your current Lifestyle Status. You can freely customize the <strong>Duration</strong>, <strong>Inflation</strong>, and <strong>Present Value</strong> to fine-tune your plan.</div>
+    
+    <div style="overflow-x: auto; padding-bottom: 15px;">
+        <table class="goal-table" id="final_goal_table">
+            <thead><tr><th>Goal Name</th><th>Present Value (₹)</th><th>Duration (Yrs)</th><th>Inflation (%)</th><th>Future Value (₹)</th></tr></thead>
+            <tbody><!-- JS injects rows --></tbody>
+        </table>
+    </div>
+
+    <div class="btn-wrapper">
+        <button id="step7_back_btn" class="nav-btn back" onclick="prevStep(7)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <button id="submit_btn" class="nav-btn" onclick="submitFinalPlan(this)" style="background: var(--gold); border-color: var(--gold); color: var(--navy-blue);">Finalize & Save Data <i class="fa-solid fa-check"></i></button>
+    </div>
+    <div id="finalMessage" style="text-align: center; margin-top: 15px; font-weight: bold; font-size: 16px;"></div>
+</div>
