@@ -65,44 +65,100 @@
         .info-box { background: rgba(42, 157, 143, 0.1); border-left: 4px solid var(--teal); padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 15px; color: var(--navy-blue); }
         .success-box { background: rgba(197, 160, 89, 0.1); border-left: 4px solid var(--gold); padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 15px; font-weight: bold; color: var(--navy-blue); }
 
-        /* --- 3D Goal Cards CSS --- */
-        .goal-card {
-            border-radius: 12px;
-            padding: 22px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.03), inset 0 2px 2px rgba(255, 255, 255, 0.8);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .goal-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12), 0 6px 12px rgba(0, 0, 0, 0.08), inset 0 2px 2px rgba(255, 255, 255, 1);
-        }
-        .goal-card.gold {
-            background: linear-gradient(135deg, #ffffff 0%, #fdf8eb 100%);
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            border-bottom: 4px solid var(--gold);
-        }
-        .goal-card.teal {
-            background: linear-gradient(135deg, #ffffff 0%, #eef8f6 100%);
-            border: 1px solid rgba(42, 157, 143, 0.3);
-            border-bottom: 4px solid var(--teal);
-        }
-        .goal-card.blue {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
-            border: 1px solid rgba(10, 25, 47, 0.2);
-            border-bottom: 4px solid var(--navy-blue);
+        /* --- 3D Goal Cards CSS (Step 6) --- */
+        .goal-card { border-radius: 12px; padding: 22px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.03), inset 0 2px 2px rgba(255, 255, 255, 0.8); transition: all 0.3s ease; position: relative; }
+        .goal-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12), 0 6px 12px rgba(0, 0, 0, 0.08), inset 0 2px 2px rgba(255, 255, 255, 1); }
+        .goal-card.gold { background: linear-gradient(135deg, #ffffff 0%, #fdf8eb 100%); border: 1px solid rgba(197, 160, 89, 0.3); border-bottom: 4px solid var(--gold); }
+        .goal-card.teal { background: linear-gradient(135deg, #ffffff 0%, #eef8f6 100%); border: 1px solid rgba(42, 157, 143, 0.3); border-bottom: 4px solid var(--teal); }
+        .goal-card.blue { background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%); border: 1px solid rgba(10, 25, 47, 0.2); border-bottom: 4px solid var(--navy-blue); }
+
+        /* --- 3D Goal Table & Note CSS (Step 7) --- */
+        .table-note-box {
+            background: linear-gradient(135deg, #fdfbf7 0%, #f4f0e6 100%);
+            border-left: 5px solid var(--gold);
+            padding: 18px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--navy-blue);
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            line-height: 1.6;
         }
 
-        /* Table Design */
-        .goal-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
-        .goal-table th { background-color: var(--navy-blue); color: var(--gold); padding: 12px; text-align: left; }
-        .goal-table td { padding: 10px; border-bottom: 1px solid #ddd; vertical-align: top; }
-        .goal-table input { padding: 8px; width: 100%; box-sizing: border-box; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; transition: border-color 0.3s; }
-        .goal-table input[type="text"] { font-weight: bold; color: var(--navy-blue); }
-        .goal-table input:focus { outline: none; border-color: var(--teal); }
+        .goal-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 12px; /* Adds space between rows for card effect */
+            margin-top: 10px;
+            font-size: 14.5px;
+        }
+        .goal-table th {
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #162e52 100%);
+            color: var(--gold);
+            padding: 15px;
+            text-align: left;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .goal-table th:first-child { border-radius: 8px 0 0 8px; }
+        .goal-table th:last-child { border-radius: 0 8px 8px 0; }
+
+        .goal-table tr td {
+            background: #ffffff;
+            padding: 16px 12px;
+            vertical-align: middle;
+            border-top: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .goal-table tbody tr { box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+        .goal-table tbody tr:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.08); }
         
-        .fv-box { background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px; font-weight: bold; color: var(--teal); text-align: right; }
-        .pension-text { font-size: 12px; font-weight: bold; margin-top: 5px; }
+        .goal-table tr td:first-child { border-left: 4px solid var(--teal); border-radius: 8px 0 0 8px; }
+        .goal-table tr td:last-child { border-right: 1px solid #f0f0f0; border-radius: 0 8px 8px 0; }
+
+        .goal-table input {
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background-color: #f9fafb;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.04);
+        }
+        .goal-table input[type="text"] { font-weight: bold; color: var(--navy-blue); background-color: #fff; border: 1px dashed #cbd5e1; }
+        .goal-table input:focus { outline: none; border-color: var(--teal); background-color: #fff; box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15); }
+        
+        .fv-box {
+            background: linear-gradient(135deg, #eef8f6 0%, #dcf0ec 100%);
+            border: 1px solid rgba(42, 157, 143, 0.2);
+            border-radius: 6px;
+            padding: 12px;
+            font-weight: 700;
+            color: var(--teal);
+            text-align: right;
+            box-shadow: 0 2px 4px rgba(42, 157, 143, 0.1);
+        }
+
+        .pension-badge {
+            display: inline-block;
+            font-size: 11.5px;
+            font-weight: bold;
+            margin-top: 8px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(42, 157, 143, 0.1);
+            color: var(--teal);
+            border: 1px solid rgba(42, 157, 143, 0.2);
+        }
+        .pension-badge.current {
+            background: rgba(127, 140, 141, 0.08);
+            color: #636e72;
+            border: 1px solid rgba(127, 140, 141, 0.2);
+        }
 
         @media (max-width: 768px) {
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
@@ -323,11 +379,11 @@
             <div id="step-7" class="step">
                 <h2 class="form-title">📋 Your Customized Goal Table</h2>
                 
-                <div style="background: rgba(10, 25, 47, 0.05); border-left: 4px solid var(--navy-blue); padding: 15px; border-radius: 4px; font-size: 13.5px; color: var(--navy-blue); margin-bottom: 20px; line-height: 1.5;">
-                    <strong>💡 Note:</strong> The Present Value for <strong>Base Goals</strong> and <strong>Education/Marriage</strong> are auto-calculated matching your current Lifestyle Status. It is highly recommended not to decrease these amounts to maintain your living standard. However, you can freely customize the <strong>Duration</strong>, <strong>Inflation</strong>, and even the <strong>Present Value</strong> to fine-tune your plan.
+                <div class="table-note-box">
+                    <strong>💡 Note:</strong> The Present Value for Base Goals and Education/Marriage are auto-calculated matching your current Lifestyle Status. It is highly recommended not to decrease these amounts to maintain your living standard. However, you can freely customize the <strong>Duration</strong>, <strong>Inflation</strong>, and even the <strong>Present Value</strong> to fine-tune your plan.
                 </div>
 
-                <div style="overflow-x: auto;">
+                <div style="overflow-x: auto; padding-bottom: 15px;">
                     <table class="goal-table" id="final_goal_table">
                         <thead>
                             <tr>
@@ -381,7 +437,6 @@
         }
 
         function nextStep(current) {
-            // Validation
             if (current === 1) {
                 if(!document.getElementById("u_name").value || !document.querySelector('input[name="u_gender"]:checked')) {
                     alert("Please fill Name and Gender."); return;
@@ -651,13 +706,14 @@
                 let fvPenStr = ((fv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 let pvPenStr = ((pv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 
-                let fvPenHTML = goal === "Retirement Fund" ? `<div class="pension-text" id="pen_${i}">Future Pension: ₹${fvPenStr} /mo</div>` : "";
-                let pvPenHTML = goal === "Retirement Fund" ? `<div class="pension-text" id="pv_pen_${i}" style="color: #7f8c8d;">Current Pension: ₹${pvPenStr} /mo</div>` : "";
+                // Using Premium Badges for Pension
+                let fvPenHTML = goal === "Retirement Fund" ? `<br><div class="pension-badge" id="pen_${i}">Future Pension: ₹${fvPenStr} /mo</div>` : "";
+                let pvPenHTML = goal === "Retirement Fund" ? `<br><div class="pension-badge current" id="pv_pen_${i}">Current Pension: ₹${pvPenStr} /mo</div>` : "";
 
                 // Custom Goal Name Box with validation indication
                 let goalNameHTML = "";
                 if (goal.includes("Add Other Goal")) {
-                    goalNameHTML = `<input type="text" id="goalName_${i}" placeholder="Type your goal name..." value="" style="border: 1px solid var(--gold); background: #fff;">
+                    goalNameHTML = `<input type="text" id="goalName_${i}" placeholder="Type your goal name..." value="" style="border: 1px solid var(--teal); background: #fff;">
                                     <div style="font-size: 11px; color: #d35400; margin-top: 6px; font-weight: bold;"><i class="fa-solid fa-circle-info"></i> Fill all boxes</div>`;
                 } else {
                     goalNameHTML = `<strong style="font-size: 15px;">${goal}</strong><input type="hidden" id="goalName_${i}" value="${goal}">`;
@@ -665,11 +721,11 @@
 
                 tbody.innerHTML += `
                     <tr>
-                        <td style="padding-top: 15px;">${goalNameHTML}</td>
-                        <td style="padding-top: 15px;"><input type="number" id="pv_${i}" value="${pv.toFixed(0)}" oninput="calcRow(${i}, '${goal}')">${pvPenHTML}</td>
-                        <td style="padding-top: 15px;"><input type="number" id="dur_${i}" value="${dur}" oninput="calcRow(${i}, '${goal}')"></td>
-                        <td style="padding-top: 15px;"><input type="number" id="inf_${i}" value="${inf.toFixed(1)}" step="0.5" oninput="calcRow(${i}, '${goal}')"></td>
-                        <td style="padding-top: 15px;"><div class="fv-box" id="fv_${i}">${fvStr}</div>${fvPenHTML}</td>
+                        <td>${goalNameHTML}</td>
+                        <td><input type="number" id="pv_${i}" value="${pv.toFixed(0)}" oninput="calcRow(${i}, '${goal}')">${pvPenHTML}</td>
+                        <td><input type="number" id="dur_${i}" value="${dur}" oninput="calcRow(${i}, '${goal}')"></td>
+                        <td><input type="number" id="inf_${i}" value="${inf.toFixed(1)}" step="0.5" oninput="calcRow(${i}, '${goal}')"></td>
+                        <td><div class="fv-box" id="fv_${i}">${fvStr}</div>${fvPenHTML}</td>
                     </tr>`;
             });
         }
@@ -698,7 +754,7 @@
 
             selectedGoals.forEach((_, i) => {
                 let newName = document.getElementById(`goalName_${i}`).value.trim();
-                if (newName === "") isValid = false; // Validation
+                if (newName === "") isValid = false; // Validation to check if custom goal name is typed
                 finalEditedGoals.push(newName || "Unnamed Goal");
             });
 
