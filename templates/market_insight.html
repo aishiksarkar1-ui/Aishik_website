@@ -54,7 +54,7 @@
 
     {% include 'navbar.html' %}
 
-    <!-- 1. Live Ticker Tape -->
+    <!-- 1. Live Ticker Tape (BSE Symbols Fix) -->
     <div class="ticker-wrapper">
         <div class="tradingview-widget-container">
           <div class="tradingview-widget-container__widget"></div>
@@ -62,11 +62,12 @@
           {
           "symbols": [
             { "proName": "BSE:SENSEX", "title": "Sensex" },
-            { "proName": "NSE:NIFTY", "title": "Nifty 50" },
-            { "proName": "NSE:BANKNIFTY", "title": "Bank Nifty" },
-            { "description": "Reliance", "proName": "NSE:RELIANCE" },
-            { "description": "HDFC Bank", "proName": "NSE:HDFCBANK" },
-            { "description": "Infosys", "proName": "NSE:INFY" }
+            { "proName": "BSE:BANKEX", "title": "BSE Bankex" },
+            { "proName": "BSE:BSE500", "title": "BSE 500" },
+            { "description": "Reliance", "proName": "BSE:RELIANCE" },
+            { "description": "HDFC Bank", "proName": "BSE:HDFCBANK" },
+            { "description": "Infosys", "proName": "BSE:INFY" },
+            { "description": "TCS", "proName": "BSE:TCS" }
           ],
           "showSymbolLogo": true,
           "colorTheme": "dark",
@@ -85,7 +86,7 @@
 
     <div class="dashboard-container">
         
-        <!-- 2. Market Overview (Defaulting to SENSEX to avoid NSE Login Issue) -->
+        <!-- 2. Market Overview Chart (BSE Symbols Fix) -->
         <div class="glass-panel">
             <h2 class="panel-title"><i class="fa-solid fa-chart-line"></i> Indian Indices Overview</h2>
             <div class="widget-box">
@@ -108,10 +109,10 @@
                       "title": "Top Indices",
                       "symbols": [
                         { "s": "BSE:SENSEX", "d": "BSE Sensex" },
+                        { "s": "BSE:BANKEX", "d": "BSE Bankex" },
                         { "s": "BSE:BSE500", "d": "BSE 500" },
                         { "s": "BSE:BSEMID", "d": "BSE Midcap" },
-                        { "s": "NSE:NIFTY", "d": "Nifty 50 (Delayed)" },
-                        { "s": "NSE:BANKNIFTY", "d": "Bank Nifty (Delayed)" }
+                        { "s": "BSE:RELIANCE", "d": "Reliance Ind." }
                       ]
                     }
                   ]
@@ -147,15 +148,12 @@
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('et-news-container');
-                container.innerHTML = ''; // Clear loading text
+                container.innerHTML = ''; 
                 
                 if(data.status === 'ok') {
                     // Show top 15 news items
                     data.items.slice(0, 15).forEach(item => {
-                        // Formatting the date nicely
                         const newsDate = new Date(item.pubDate).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' });
-                        
-                        // Cleaning up HTML tags from description if any
                         const cleanDesc = item.description.replace(/<[^>]+>/g, '');
 
                         const newsHtml = `
