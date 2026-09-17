@@ -59,6 +59,10 @@ def sip_calculator():
 def inflation_calculator():
     return render_template('inflation_calculator.html')
 
+@app.route('/market-insight')
+def market_insight():
+    return render_template('market_insight.html')
+
 # ==========================================
 # এপিআই এবং ফর্ম সাবমিশন
 # ==========================================
