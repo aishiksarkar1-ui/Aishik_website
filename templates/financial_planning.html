@@ -49,7 +49,7 @@
         .radio-btn { display: flex; align-items: center; gap: 5px; cursor: pointer; font-size: 15px; }
         .radio-btn input { width: auto; cursor: pointer; }
 
-        .checkbox-group { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font-size: 15px; cursor: pointer; }
+        .checkbox-group { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 15px; cursor: pointer; }
         .checkbox-group input { width: 18px; height: 18px; cursor: pointer; }
 
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -66,15 +66,15 @@
         .success-box { background: rgba(197, 160, 89, 0.1); border-left: 4px solid var(--gold); padding: 15px; margin-bottom: 20px; border-radius: 4px; font-size: 15px; font-weight: bold; color: var(--navy-blue); }
 
         /* Table Design */
-        .goal-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+        .goal-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
         .goal-table th { background-color: var(--navy-blue); color: var(--gold); padding: 12px; text-align: left; }
-        .goal-table td { padding: 10px; border-bottom: 1px solid #ddd; vertical-align: middle; }
+        .goal-table td { padding: 10px; border-bottom: 1px solid #ddd; vertical-align: top; }
         .goal-table input { padding: 8px; width: 100%; box-sizing: border-box; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; transition: border-color 0.3s; }
-        .goal-table input[type="text"] { font-weight: bold; color: var(--navy-blue); background-color: rgba(197, 160, 89, 0.05); }
+        .goal-table input[type="text"] { font-weight: bold; color: var(--navy-blue); }
         .goal-table input:focus { outline: none; border-color: var(--teal); }
         
         .fv-box { background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 4px; padding: 8px; font-weight: bold; color: var(--teal); text-align: right; }
-        .pension-text { font-size: 12px; color: var(--teal); font-weight: bold; margin-top: 5px; }
+        .pension-text { font-size: 12px; font-weight: bold; margin-top: 5px; }
 
         @media (max-width: 768px) {
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
@@ -98,8 +98,8 @@
     </nav>
 
     <div class="planning-hero">
-        <h1>Welcome to FINXHORIZON</h1>
-        <p>Architect your financial future with our customized goal planning tool.</p>
+        <h1>Wealth & Goal Planner</h1>
+        <p>Architect your financial future with our customized goal planning tool. Map out your highest aspirations and watch them turn into a clear, day-by-day roadmap. Take complete control of your timeline with a framework built entirely around you.</p>
     </div>
 
     <div class="form-section">
@@ -279,7 +279,9 @@
                     <div class="success-box" id="status_summary"></div>
                     
                     <hr>
-                    <h3 style="color: var(--navy-blue); font-family: 'Playfair Display', serif;">🎯 Customized Goal List</h3>
+                    <h3 style="color: var(--navy-blue); font-family: 'Playfair Display', serif; margin-bottom: 5px;">🎯 Customized Goal List</h3>
+                    <p style="color: #7f8c8d; font-size: 14px; margin-bottom: 20px;">Please select or deselect the financial milestones you wish to plan for. You can also add extra goals from the additional section.</p>
+                    
                     <div id="goals_container"></div>
                 </div>
 
@@ -292,6 +294,11 @@
             <!-- STEP 7: Goal Table & Final Submission -->
             <div id="step-7" class="step">
                 <h2 class="form-title">📋 Your Customized Goal Table</h2>
+                
+                <div style="background: rgba(10, 25, 47, 0.05); border-left: 4px solid var(--navy-blue); padding: 15px; border-radius: 4px; font-size: 13.5px; color: var(--navy-blue); margin-bottom: 20px; line-height: 1.5;">
+                    <strong>💡 Note:</strong> The Present Value for <strong>Base Goals</strong> and <strong>Education/Marriage</strong> are auto-calculated matching your current Lifestyle Status. It is highly recommended not to decrease these amounts to maintain your living standard. However, you can freely customize the <strong>Duration</strong>, <strong>Inflation</strong>, and even the <strong>Present Value</strong> to fine-tune your plan.
+                </div>
+
                 <div style="overflow-x: auto;">
                     <table class="goal-table" id="final_goal_table">
                         <thead>
@@ -389,8 +396,6 @@
 
             document.getElementById(`step-${current}`).classList.remove("active");
             document.getElementById(`step-${current + 1}`).classList.add("active");
-            
-            // Auto scroll to top of form
             document.querySelector('.planning-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
@@ -478,14 +483,21 @@
             document.getElementById("calc_summary").innerHTML = `Total Members: <b>${total_member}</b> | Total Expense: <b>₹${expStr}</b> | Per Head: <b>₹${ephStr}</b>`;
             document.getElementById("status_summary").innerHTML = `Your Lifestyle Status: <b>${globalLifestyle.toUpperCase()}</b>`;
 
-            // Render Goal Checkboxes
+            // Premium Goal List Design (Card Based)
             let goalsHtml = `<div class="grid-2">`;
-            goalsHtml += `<div><h4>📌 Base Goals</h4>
-                          <label class="checkbox-group"><input type="checkbox" id="g_retire" checked> Retirement Fund</label>
-                          <label class="checkbox-group"><input type="checkbox" id="g_med" checked> Medical Emergency Fund</label>
-                          <label class="checkbox-group"><input type="checkbox" id="g_emerg" checked> Contingency/Emergency Fund</label>`;
+            
+            // Base Goals Card
+            goalsHtml += `<div style="background: rgba(197, 160, 89, 0.05); border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 8px; padding: 20px;">
+                            <h4 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px dashed var(--gold); padding-bottom: 10px;">📌 Base Goals</h4>
+                            <label class="checkbox-group"><input type="checkbox" id="g_retire" checked> Retirement Fund</label>
+                            <label class="checkbox-group"><input type="checkbox" id="g_med" checked> Medical Emergency Fund</label>
+                            <label class="checkbox-group"><input type="checkbox" id="g_emerg" checked> Contingency/Emergency Fund</label>`;
             if(!isMarried) goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="g_mar" checked> Marriage</label>`;
-            goalsHtml += `</div><div><h4>👶 Children Goals</h4>`;
+            goalsHtml += `</div>`;
+
+            // Children Goals Card
+            goalsHtml += `<div style="background: rgba(42, 157, 143, 0.05); border: 1px solid rgba(42, 157, 143, 0.2); border-radius: 8px; padding: 20px;">
+                            <h4 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px dashed var(--teal); padding-bottom: 10px;">👶 Children Goals</h4>`;
             
             if(hasChild) {
                 let num_c = parseInt(document.getElementById("num_child").value);
@@ -496,22 +508,26 @@
                 }
             } else {
                 goalsHtml += `<label class="checkbox-group"><input type="checkbox" id="g_fut_child" checked> Future Child Planning</label>
-                              <div id="fut_child_qty_div" style="margin-left: 20px;"><label style="font-size:12px;">How many?</label><input type="number" id="fut_child_qty" value="1" min="1" style="width: 60px; padding: 5px;"></div>`;
+                              <div id="fut_child_qty_div" style="margin-left: 28px; margin-top: 8px;"><label style="font-size:12px; color:var(--navy-blue);">How many children?</label><input type="number" id="fut_child_qty" value="1" min="1" style="width: 80px; padding: 6px; margin-top:4px;"></div>`;
             }
-            goalsHtml += `</div></div><hr><h4>➕ Additional Goals</h4><div class="grid-3">`;
+            goalsHtml += `</div></div>`;
+
+            // Additional Goals Card
+            goalsHtml += `<div style="margin-top: 20px; background: #fff; border: 1px solid #eee; border-radius: 8px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                            <h4 style="color: var(--navy-blue); margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px solid #eee; padding-bottom: 10px;">➕ Additional Goals</h4>
+                            <div class="grid-3">`;
             
-            // "Gadgets" এর পরিবর্তে "Add Other Goal" এবং ইনস্ট্রাকশন
             let add_goals = ["House", "Car", "Vacation", "Lavish Accessories", "Business Fund", "Add Other Goal"];
-            
             add_goals.forEach((g, idx) => {
-                let extraText = g === "Add Other Goal" ? `<div style="font-size: 11px; color: #7f8c8d; margin-top: 2px;">You can add any goal of yours here...</div>` : "";
+                let extraText = g === "Add Other Goal" ? `<div style="font-size: 11.5px; color: #7f8c8d; margin-top: 2px;">You can add any goal of yours here...</div>` : "";
                 goalsHtml += `<div>
-                                <label class="checkbox-group"><input type="checkbox" id="g_add_${idx}" ${g === "Add Other Goal" ? "checked" : ""}> ${g}</label>
+                                <label class="checkbox-group"><input type="checkbox" id="g_add_${idx}"> ${g}</label>
                                 ${extraText}
-                                <input type="number" id="g_qty_${idx}" value="1" min="1" style="width: 60px; padding: 5px; margin-top: 5px; display: ${g === "Add Other Goal" ? "block" : "none"};">
+                                <input type="number" id="g_qty_${idx}" value="1" min="1" style="width: 70px; padding: 6px; margin-top: 8px; display: none;">
                               </div>`;
             });
-            goalsHtml += `</div>`;
+            goalsHtml += `</div></div>`;
+            
             document.getElementById("goals_container").innerHTML = goalsHtml;
 
             add_goals.forEach((g, idx) => {
@@ -541,7 +557,7 @@
                     if(document.getElementById(`gc_edu_${i}`).checked) selectedGoals.push(`${n} Education`);
                     if(document.getElementById(`gc_mar_${i}`).checked) selectedGoals.push(`${n} Marriage`);
                 }
-            } else if (document.getElementById("g_fut_child").checked) {
+            } else if (document.getElementById("g_fut_child") && document.getElementById("g_fut_child").checked) {
                 let qty = parseInt(document.getElementById("fut_child_qty").value || 1);
                 for(let i=1; i<=qty; i++){
                     selectedGoals.push(`Future Child ${i} Education`);
@@ -595,30 +611,36 @@
                         }
                     }
                     if(globalLifestyle==="Basic") pv=1000000; else if(globalLifestyle==="Modest") pv=1500000; else if(globalLifestyle==="Standard") pv=2000000; else if(globalLifestyle==="Comfortable") pv=2500000; else if(globalLifestyle==="Upper_Middle class") pv=4000000; else if(globalLifestyle==="Affluent") pv=6000000; else if(globalLifestyle==="Luxury") pv=10000000; else pv=25000000;
+                } else if(goal.includes("Add Other Goal")) {
+                    pv = 0; dur = 0; inf = 5.0; // Default zero for Custom Goals
                 } else {
                     pv = 500000; dur = 5; 
                 }
 
                 let fv = pv * Math.pow(1 + inf/100, dur);
                 let fvStr = fv.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                let penStr = ((fv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                let penHTML = goal === "Retirement Fund" ? `<div class="pension-text" id="pen_${i}">Pension: ₹${penStr} /mo</div>` : "";
+                let fvPenStr = ((fv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                let pvPenStr = ((pv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                
+                let fvPenHTML = goal === "Retirement Fund" ? `<div class="pension-text" id="pen_${i}">Future Pension: ₹${fvPenStr} /mo</div>` : "";
+                let pvPenHTML = goal === "Retirement Fund" ? `<div class="pension-text" id="pv_pen_${i}" style="color: #7f8c8d;">Current Pension: ₹${pvPenStr} /mo</div>` : "";
 
-                // লজিক: শুধুমাত্র "Add Other Goal" থাকলে Editable Text Box হবে
+                // Custom Goal Name Box with validation indication
                 let goalNameHTML = "";
                 if (goal.includes("Add Other Goal")) {
-                    goalNameHTML = `<input type="text" id="goalName_${i}" value="Custom Goal ${goal.replace('Add Other Goal', '').trim()}">`;
+                    goalNameHTML = `<input type="text" id="goalName_${i}" placeholder="Type your goal name..." value="" style="border: 1px solid var(--gold); background: #fff;">
+                                    <div style="font-size: 11px; color: #d35400; margin-top: 6px; font-weight: bold;"><i class="fa-solid fa-circle-info"></i> Fill all boxes</div>`;
                 } else {
-                    goalNameHTML = `<strong>${goal}</strong><input type="hidden" id="goalName_${i}" value="${goal}">`;
+                    goalNameHTML = `<strong style="font-size: 15px;">${goal}</strong><input type="hidden" id="goalName_${i}" value="${goal}">`;
                 }
 
                 tbody.innerHTML += `
                     <tr>
-                        <td>${goalNameHTML}</td>
-                        <td><input type="number" id="pv_${i}" value="${pv.toFixed(0)}" oninput="calcRow(${i}, '${goal}')"></td>
-                        <td><input type="number" id="dur_${i}" value="${dur}" oninput="calcRow(${i}, '${goal}')"></td>
-                        <td><input type="number" id="inf_${i}" value="${inf.toFixed(1)}" step="0.5" oninput="calcRow(${i}, '${goal}')"></td>
-                        <td><div class="fv-box" id="fv_${i}">${fvStr}</div>${penHTML}</td>
+                        <td style="padding-top: 15px;">${goalNameHTML}</td>
+                        <td style="padding-top: 15px;"><input type="number" id="pv_${i}" value="${pv.toFixed(0)}" oninput="calcRow(${i}, '${goal}')">${pvPenHTML}</td>
+                        <td style="padding-top: 15px;"><input type="number" id="dur_${i}" value="${dur}" oninput="calcRow(${i}, '${goal}')"></td>
+                        <td style="padding-top: 15px;"><input type="number" id="inf_${i}" value="${inf.toFixed(1)}" step="0.5" oninput="calcRow(${i}, '${goal}')"></td>
+                        <td style="padding-top: 15px;"><div class="fv-box" id="fv_${i}">${fvStr}</div>${fvPenHTML}</td>
                     </tr>`;
             });
         }
@@ -632,21 +654,32 @@
             document.getElementById(`fv_${idx}`).innerText = fv.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             
             if(originalGoalName === "Retirement Fund") {
-                let penStr = ((fv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                document.getElementById(`pen_${idx}`).innerText = `Pension: ₹${penStr} /mo`;
+                let fvPenStr = ((fv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                document.getElementById(`pen_${idx}`).innerText = `Future Pension: ₹${fvPenStr} /mo`;
+                
+                let pvPenStr = ((pv*0.09)/12).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                document.getElementById(`pv_pen_${idx}`).innerText = `Current Pension: ₹${pvPenStr} /mo`;
             }
         }
 
         // --- Final Submission (Google Sheet via Flask Route) ---
         async function submitFinalPlan(btn) {
+            let finalEditedGoals = [];
+            let isValid = true;
+
+            selectedGoals.forEach((_, i) => {
+                let newName = document.getElementById(`goalName_${i}`).value.trim();
+                if (newName === "") isValid = false; // Validation to check if custom goal name is typed
+                finalEditedGoals.push(newName || "Unnamed Goal");
+            });
+
+            if (!isValid) {
+                alert("Please type a name for all your custom goals before submitting.");
+                return;
+            }
+
             btn.innerText = "Processing...";
             btn.disabled = true;
-
-            let finalEditedGoals = [];
-            selectedGoals.forEach((_, i) => {
-                let newName = document.getElementById(`goalName_${i}`).value;
-                finalEditedGoals.push(newName);
-            });
 
             let name = document.getElementById("u_name").value;
             let phone = document.getElementById("u_phone").value;
