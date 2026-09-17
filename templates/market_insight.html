@@ -9,7 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --navy-blue: #0A192F; --gold: #C5A059; --text-light: #E0E0E0; --teal: #2A9D8F; }
+        :root { 
+            --navy-blue: #0A192F; 
+            --gold: #C5A059; 
+            --text-light: #E0E0E0; 
+            --teal: #2A9D8F;
+            --royal-cream: #F8F4E6; /* New Royal Cream Color */
+        }
+        
         body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background-color: var(--navy-blue); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
 
         /* Custom Ticker Tape Section */
@@ -31,15 +38,21 @@
         /* Main Dashboard Grid */
         .dashboard-container { padding: 20px 40px 80px 40px; display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 25px; max-width: 1500px; margin: 0 auto; }
 
-        /* Glassmorphism Cards */
-        .glass-panel { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(197, 160, 89, 0.3); border-radius: 16px; padding: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; }
-        .panel-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold); margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 10px; }
+        /* Glassmorphism Card (For Center Data) */
+        .glass-panel { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(197, 160, 89, 0.3); border-radius: 16px; padding: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; }
+        
+        /* 👑 Royal Cream Card (For News Widgets) 👑 */
+        .cream-panel { background: var(--royal-cream); border: 1px solid #E2D7C1; border-top: 4px solid var(--gold); border-radius: 16px; padding: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; }
+        
+        .panel-title { font-family: 'Playfair Display', serif; font-size: 20px; margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; padding-bottom: 10px; }
+        .glass-panel .panel-title { color: var(--gold); border-bottom: 1px dashed rgba(255,255,255,0.1); }
+        .cream-panel .panel-title { color: var(--navy-blue); border-bottom: 1px dashed rgba(10, 25, 47, 0.2); }
 
-        /* Widget Box (Chart + List) */
+        /* Center Widget Box (Chart + List) */
         .widget-box { width: 100%; flex-grow: 1; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255,255,255,0.05); }
         .chart-half { height: 320px; width: 100%; border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
         
-        /* Custom Market List */
+        /* Custom Market List (Center) */
         .market-list-container { height: 320px; overflow-y: auto; padding: 10px; }
         .market-list-container::-webkit-scrollbar { width: 6px; }
         .market-list-container::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
@@ -54,32 +67,36 @@
         .text-up { color: #38ef7d; }
         .text-down { color: #ffb3b3; }
 
-        /* Custom News Scrollbar & Images Layout */
+        /* Custom News Scrollbar & Layout (Left & Right) */
         .custom-news-box { height: 640px; overflow-y: auto; padding-right: 10px; }
         .custom-news-box::-webkit-scrollbar { width: 6px; }
         .custom-news-box::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
-        .custom-news-box::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+        .cream-panel .custom-news-box::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); } /* Light track for cream background */
         
-        /* News Item with Image Styling */
-        .news-item { display: flex; gap: 15px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 15px; margin-bottom: 15px; transition: 0.3s; align-items: flex-start; }
-        .news-item:hover { background: rgba(255,255,255,0.02); border-radius: 6px; padding-left: 5px; }
+        .news-item { display: flex; gap: 15px; padding-bottom: 15px; margin-bottom: 15px; transition: 0.3s; align-items: flex-start; }
         
-        .news-img-box { width: 75px; height: 60px; flex-shrink: 0; border-radius: 6px; overflow: hidden; background: rgba(0,0,0,0.3); border: 1px solid rgba(197, 160, 89, 0.2); }
+        /* Styling specifically for Cream Panels */
+        .cream-panel .news-item { border-bottom: 1px solid rgba(10, 25, 47, 0.1); }
+        .cream-panel .news-item:hover { background: rgba(0, 0, 0, 0.03); border-radius: 6px; padding-left: 5px; }
+        
+        .news-img-box { width: 75px; height: 60px; flex-shrink: 0; border-radius: 6px; overflow: hidden; background: rgba(0,0,0,0.1); border: 1px solid rgba(197, 160, 89, 0.3); }
         .news-img-box img { width: 100%; height: 100%; object-fit: cover; }
         
         .news-text-box { flex-grow: 1; display: flex; flex-direction: column; }
         .news-date { font-size: 11px; color: var(--teal); margin-bottom: 4px; font-weight: bold; }
-        .news-title { color: var(--text-light); text-decoration: none; font-size: 14px; font-weight: bold; display: block; margin-bottom: 5px; transition: color 0.3s; line-height: 1.4; }
-        .news-title:hover { color: var(--gold); }
-        .news-desc { font-size: 12.5px; color: #a0aec0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; }
+        
+        /* Darker text for cream background */
+        .cream-panel .news-title { color: var(--navy-blue); text-decoration: none; font-size: 14.5px; font-weight: bold; display: block; margin-bottom: 5px; transition: color 0.3s; line-height: 1.4; }
+        .cream-panel .news-title:hover { color: var(--gold); text-decoration: underline; }
+        .cream-panel .news-desc { font-size: 13px; color: #4A5568; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; font-weight: 500; }
 
         @media (max-width: 1200px) {
             .dashboard-container { grid-template-columns: 1fr 1fr; }
-            .glass-panel:nth-child(2) { grid-column: span 2; order: -1; }
+            .glass-panel { grid-column: span 2; order: -1; }
         }
         @media (max-width: 768px) {
             .dashboard-container { grid-template-columns: 1fr; }
-            .glass-panel:nth-child(2) { grid-column: span 1; }
+            .glass-panel { grid-column: span 1; }
         }
     </style>
 </head>
@@ -101,23 +118,23 @@
 
     <div class="dashboard-container">
         
-        <!-- Left Column: Business Standard News -->
-        <div class="glass-panel">
+        <!-- Left Column: Business Standard News (ROYAL CREAM) -->
+        <div class="cream-panel">
             <h2 class="panel-title">
-                <i class="fa-regular fa-newspaper"></i> 
+                <i class="fa-regular fa-newspaper" style="color: var(--gold);"></i> 
                 Business Standard
                 <span style="background: #004d99; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; margin-left: auto; font-family: sans-serif; font-weight: bold;">BS</span>
             </h2>
             <div class="custom-news-box" id="bs-news-container">
-                <div style="text-align: center; color: var(--gold); margin-top: 50px;">
+                <div style="text-align: center; color: var(--navy-blue); margin-top: 50px;">
                     <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i>
-                    <p style="margin-top: 10px;">Fetching news from BS...</p>
+                    <p style="margin-top: 10px; font-weight: bold;">Fetching news from BS...</p>
                 </div>
             </div>
         </div>
 
-        <!-- Center Column: Market Overview Chart + Yahoo Data -->
-        <div class="glass-panel" style="padding: 25px;">
+        <!-- Center Column: Market Overview Chart + Yahoo Data (GLASSMORPHISM) -->
+        <div class="glass-panel">
             <h2 class="panel-title"><i class="fa-solid fa-chart-line"></i> Indian Indices Overview</h2>
             <div class="widget-box">
                 <!-- Top Half: Transparent Area Chart -->
@@ -155,17 +172,17 @@
             </div>
         </div>
 
-        <!-- Right Column: Economic Times News -->
-        <div class="glass-panel">
+        <!-- Right Column: Economic Times News (ROYAL CREAM) -->
+        <div class="cream-panel">
             <h2 class="panel-title">
-                <i class="fa-regular fa-newspaper"></i> 
+                <i class="fa-regular fa-newspaper" style="color: var(--gold);"></i> 
                 Economic Times
-                <img src="https://img.etimg.com/photo/msid-74451948,quality-100/et-logo.jpg" alt="ET Logo" style="height: 20px; border-radius: 4px; margin-left: auto;">
+                <img src="https://img.etimg.com/photo/msid-74451948,quality-100/et-logo.jpg" alt="ET Logo" style="height: 20px; border-radius: 4px; margin-left: auto; border: 1px solid rgba(0,0,0,0.1);">
             </h2>
             <div class="custom-news-box" id="et-news-container">
-                <div style="text-align: center; color: var(--gold); margin-top: 50px;">
+                <div style="text-align: center; color: var(--navy-blue); margin-top: 50px;">
                     <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i>
-                    <p style="margin-top: 10px;">Fetching news from ET...</p>
+                    <p style="margin-top: 10px; font-weight: bold;">Fetching news from ET...</p>
                 </div>
             </div>
         </div>
@@ -173,14 +190,13 @@
     </div>
 
     <script>
-        // 1. Fetch Market Data: Stocks for Ticker, Indices for Center List
+        // 1. Fetch Market Data for Ticker and Center List
         fetch('/api/live-ticker')
             .then(response => response.json())
             .then(data => {
                 let tickerHtml = '';
                 let listHtml = '';
 
-                // A. Ticker-এ শুধুমাত্র Nifty 50 Stocks বসানো হচ্ছে
                 data.stocks.forEach(item => {
                     let isUp = item.change >= 0;
                     let tColor = isUp ? 'ticker-up' : 'ticker-down';
@@ -195,7 +211,6 @@
                         </div>`;
                 });
 
-                // B. Center List-এ শুধুমাত্র Sectoral Indices বসানো হচ্ছে
                 data.indices.forEach(item => {
                     let isUp = item.change >= 0;
                     let lColor = isUp ? 'text-up' : 'text-down';
@@ -224,7 +239,7 @@
                 document.getElementById('custom-market-list').innerHTML = '<p style="color: #ffb3b3; text-align: center; margin-top: 30px;">Error connecting to live data server.</p>';
             });
 
-        // 2. Helper function to format and load RSS Feeds WITH IMAGES
+        // 2. Helper function to format and load RSS Feeds
         function loadRssFeed(rssUrl, containerId) {
             const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
             
@@ -243,9 +258,10 @@
                                 let match = item.description.match(/src\s*=\s*"([^"]+)"/);
                                 if (match) imgUrl = match[1];
                             }
+                            
                             if (!imgUrl) {
                                 imgUrl = containerId === 'et-news-container' 
-                                    ? 'https://img.etimg.com/photo/msid-74451948,quality-100/et-logo.jpg' 
+                                    ? 'https://via.placeholder.com/150x100/E31837/FFFFFF?text=ET+News' 
                                     : 'https://via.placeholder.com/150x100/004d99/FFFFFF?text=BS+News';
                             }
 
@@ -273,10 +289,8 @@
                 });
         }
 
-        // Load Economic Times Feed (Right)
+        // Load Feeds
         loadRssFeed('https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms', 'et-news-container');
-        
-        // Load Business Standard Feed (Left)
         loadRssFeed('https://www.business-standard.com/rss/markets-106.rss', 'bs-news-container');
     </script>
 
