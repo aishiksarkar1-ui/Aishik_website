@@ -89,6 +89,9 @@
         .goal-table input[type="text"] { font-weight: bold; color: var(--navy-blue); }
         .goal-table input:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15); }
         
+        /* CSS for Disabled/Locked Input state */
+        .goal-table input:disabled { background-color: #f0f2f5; color: #7f8c8d; cursor: not-allowed; border-color: #d1d5db; opacity: 0.8; }
+        
         .fv-box { background: linear-gradient(135deg, #eef8f6 0%, #dcf0ec 100%); border: 1px solid rgba(42, 157, 143, 0.2); border-radius: 6px; padding: 12px; font-weight: 700; color: var(--teal); text-align: right; box-shadow: 0 2px 4px rgba(42, 157, 143, 0.1); }
         .pension-badge { display: inline-block; font-size: 11.5px; font-weight: bold; margin-top: 8px; padding: 4px 10px; border-radius: 20px; background: rgba(42, 157, 143, 0.1); color: var(--teal); border: 1px solid rgba(42, 157, 143, 0.2); }
         .pension-badge.current { background: rgba(127, 140, 141, 0.08); color: #636e72; border: 1px solid rgba(127, 140, 141, 0.2); }
@@ -270,7 +273,7 @@
                 </div>
 
                 <div class="btn-wrapper">
-                    <button class="nav-btn back" onclick="prevStep(7)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button id="step7_back_btn" class="nav-btn back" onclick="prevStep(7)"><i class="fa-solid fa-arrow-left"></i> Back</button>
                     <!-- Added ID to submit button to reset it later -->
                     <button id="submit_btn" class="nav-btn" onclick="submitFinalPlan(this)" style="background: var(--gold); border-color: var(--gold); color: var(--navy-blue);">Finalize & Save Data <i class="fa-solid fa-check"></i></button>
                 </div>
@@ -635,6 +638,12 @@
                     document.getElementById("finalMessage").innerHTML = "🎉 Your Financial Plan has been saved successfully! Scroll down to see your Roadmap.";
                     btn.innerHTML = `Saved <i class="fa-solid fa-check-double"></i>`;
                     
+                    // LOCK ALL INPUTS AND HIDE BACK BUTTON
+                    let tableInputs = document.querySelectorAll('#final_goal_table input');
+                    tableInputs.forEach(input => input.disabled = true);
+                    document.getElementById('step7_back_btn').style.display = 'none';
+
+                    // Generate & Show Timeline Visuals
                     drawTimeline();
                     let tlWrapper = document.getElementById("timeline_wrapper");
                     tlWrapper.style.display = "block";
@@ -659,6 +668,11 @@
             // Hide timeline wrapper
             document.getElementById("timeline_wrapper").style.display = "none";
             
+            // UNLOCK ALL INPUTS AND SHOW BACK BUTTON
+            let tableInputs = document.querySelectorAll('#final_goal_table input');
+            tableInputs.forEach(input => input.disabled = false);
+            document.getElementById('step7_back_btn').style.display = 'inline-block';
+
             // Reset Submit Button
             let btn = document.getElementById("submit_btn");
             btn.disabled = false;
