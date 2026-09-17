@@ -271,7 +271,8 @@
 
                 <div class="btn-wrapper">
                     <button class="nav-btn back" onclick="prevStep(7)"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                    <button class="nav-btn" onclick="submitFinalPlan(this)" style="background: var(--gold); border-color: var(--gold); color: var(--navy-blue);">Finalize & Save Data <i class="fa-solid fa-check"></i></button>
+                    <!-- Added ID to submit button to reset it later -->
+                    <button id="submit_btn" class="nav-btn" onclick="submitFinalPlan(this)" style="background: var(--gold); border-color: var(--gold); color: var(--navy-blue);">Finalize & Save Data <i class="fa-solid fa-check"></i></button>
                 </div>
                 <div id="finalMessage" style="text-align: center; margin-top: 15px; font-weight: bold; font-size: 16px;"></div>
             </div>
@@ -284,8 +285,17 @@
                 <h2>Your Financial Roadmap</h2>
                 <p>A step-by-step visualization of your financial milestones and future cash flows.</p>
             </div>
+            
             <div class="timeline-container" id="timeline_graphics">
                 <!-- JS will inject visual timeline here -->
+            </div>
+            
+            <!-- EDIT PLAN BUTTON -->
+            <div style="text-align: center; margin-top: 50px; border-top: 1px dashed rgba(197, 160, 89, 0.3); padding-top: 30px;">
+                <button class="nav-btn" onclick="editPlan()" style="background-color: transparent; border: 2px solid var(--gold); color: var(--gold); padding: 12px 30px; border-radius: 30px;">
+                    <i class="fa-solid fa-pen"></i> Edit Plan & Recalculate
+                </button>
+                <p style="color: #a0aec0; font-size: 12px; margin-top: 10px;">Want to adjust amounts or years? Click here to modify your plan.</p>
             </div>
         </div>
 
@@ -532,7 +542,6 @@
             let currentAge = parseInt(document.getElementById("p_age").value || 30);
             let timelineData = [];
 
-            // Gather Data
             selectedGoals.forEach((origGoal, i) => {
                 let nameBox = document.getElementById(`goalName_${i}`);
                 let name = nameBox ? nameBox.value.trim() : origGoal;
@@ -544,12 +553,11 @@
                 timelineData.push({ name: name || "Unnamed Goal", dur: dur, fv: fv, origGoal: origGoal });
             });
 
-            // Sort by Duration (Chronological order)
+            // Sort Chronologically
             timelineData.sort((a, b) => a.dur - b.dur);
 
             let html = "";
             timelineData.forEach((item, index) => {
-                // Auto Icon Selection based on Keywords
                 let iconClass = "fa-bullseye";
                 let lname = item.name.toLowerCase();
                 if(lname.includes("retire")) iconClass = "fa-umbrella-beach";
@@ -565,14 +573,12 @@
                 let targetAge = currentAge + item.dur;
                 let fvStr = item.fv.toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
-                // Specific Pension Text Logic
                 let extraHtml = "";
                 if(item.origGoal === "Retirement Fund") {
                     let pen = ((item.fv * 0.09) / 12).toLocaleString('en-IN', { maximumFractionDigits: 0 });
                     extraHtml = `<div class="tl-pension-highlight">🌟 Your Pension Starts from here: ₹${pen} /mo</div>`;
                 }
 
-                // Alternating Left / Right Rows
                 let sideClass = index % 2 === 0 ? "left" : "right";
 
                 html += `
@@ -621,7 +627,6 @@
             formData.append('phone', phone);
             formData.append('message', message);
 
-            // Fetch Call 
             try {
                 const response = await fetch('/submit_form', { method: 'POST', body: formData });
                 const result = await response.json();
@@ -630,7 +635,6 @@
                     document.getElementById("finalMessage").innerHTML = "🎉 Your Financial Plan has been saved successfully! Scroll down to see your Roadmap.";
                     btn.innerHTML = `Saved <i class="fa-solid fa-check-double"></i>`;
                     
-                    // Generate & Show Timeline Visuals
                     drawTimeline();
                     let tlWrapper = document.getElementById("timeline_wrapper");
                     tlWrapper.style.display = "block";
@@ -648,6 +652,23 @@
                 btn.innerHTML = `Finalize & Save Data <i class="fa-solid fa-check"></i>`;
                 btn.disabled = false;
             }
+        }
+
+        // --- Edit Plan Logic ---
+        function editPlan() {
+            // Hide timeline wrapper
+            document.getElementById("timeline_wrapper").style.display = "none";
+            
+            // Reset Submit Button
+            let btn = document.getElementById("submit_btn");
+            btn.disabled = false;
+            btn.innerHTML = `Finalize & Save Data <i class="fa-solid fa-check"></i>`;
+            
+            // Clear success message
+            document.getElementById("finalMessage").innerHTML = "";
+            
+            // Scroll back to step 7 table
+            document.getElementById("step-7").scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     </script>
 </body>
