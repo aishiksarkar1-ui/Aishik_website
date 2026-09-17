@@ -14,7 +14,7 @@
             --gold: #C5A059; 
             --text-light: #E0E0E0; 
             --teal: #2A9D8F;
-            --royal-cream: #F8F4E6; /* New Royal Cream Color */
+            --royal-cream: #F8F4E6; 
         }
         
         body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background-color: var(--navy-blue); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
@@ -38,22 +38,22 @@
         /* Main Dashboard Grid */
         .dashboard-container { padding: 20px 40px 80px 40px; display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 25px; max-width: 1500px; margin: 0 auto; }
 
-        /* Glassmorphism Card (For Center Data) */
+        /* Glassmorphism Card (For Center Data - Expanded Height) */
         .glass-panel { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(197, 160, 89, 0.3); border-radius: 16px; padding: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; }
         
-        /* 👑 Royal Cream Card (For News Widgets) 👑 */
+        /* Royal Cream Card (For News Widgets) */
         .cream-panel { background: var(--royal-cream); border: 1px solid #E2D7C1; border-top: 4px solid var(--gold); border-radius: 16px; padding: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; }
         
         .panel-title { font-family: 'Playfair Display', serif; font-size: 20px; margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; padding-bottom: 10px; }
         .glass-panel .panel-title { color: var(--gold); border-bottom: 1px dashed rgba(255,255,255,0.1); }
         .cream-panel .panel-title { color: var(--navy-blue); border-bottom: 1px dashed rgba(10, 25, 47, 0.2); }
 
-        /* Center Widget Box (Chart + List) */
+        /* Expanded Widget Box (Chart + Larger List) */
         .widget-box { width: 100%; flex-grow: 1; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255,255,255,0.05); }
-        .chart-half { height: 320px; width: 100%; border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
+        .chart-half { height: 350px; width: 100%; border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
         
-        /* Custom Market List (Center) */
-        .market-list-container { height: 320px; overflow-y: auto; padding: 10px; }
+        /* Custom Market List (Expanded Height to show more indices) */
+        .market-list-container { height: 420px; overflow-y: auto; padding: 10px; }
         .market-list-container::-webkit-scrollbar { width: 6px; }
         .market-list-container::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
         .market-list-container::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
@@ -67,15 +67,13 @@
         .text-up { color: #38ef7d; }
         .text-down { color: #ffb3b3; }
 
-        /* Custom News Scrollbar & Layout (Left & Right) */
-        .custom-news-box { height: 640px; overflow-y: auto; padding-right: 10px; }
+        /* Custom News Scrollbar & Layout (Left & Right - Matching Height) */
+        .custom-news-box { height: 810px; overflow-y: auto; padding-right: 10px; }
         .custom-news-box::-webkit-scrollbar { width: 6px; }
         .custom-news-box::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
-        .cream-panel .custom-news-box::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); } /* Light track for cream background */
+        .cream-panel .custom-news-box::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
         
         .news-item { display: flex; gap: 15px; padding-bottom: 15px; margin-bottom: 15px; transition: 0.3s; align-items: flex-start; }
-        
-        /* Styling specifically for Cream Panels */
         .cream-panel .news-item { border-bottom: 1px solid rgba(10, 25, 47, 0.1); }
         .cream-panel .news-item:hover { background: rgba(0, 0, 0, 0.03); border-radius: 6px; padding-left: 5px; }
         
@@ -85,7 +83,6 @@
         .news-text-box { flex-grow: 1; display: flex; flex-direction: column; }
         .news-date { font-size: 11px; color: var(--teal); margin-bottom: 4px; font-weight: bold; }
         
-        /* Darker text for cream background */
         .cream-panel .news-title { color: var(--navy-blue); text-decoration: none; font-size: 14.5px; font-weight: bold; display: block; margin-bottom: 5px; transition: color 0.3s; line-height: 1.4; }
         .cream-panel .news-title:hover { color: var(--gold); text-decoration: underline; }
         .cream-panel .news-desc { font-size: 13px; color: #4A5568; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; font-weight: 500; }
@@ -133,7 +130,7 @@
             </div>
         </div>
 
-        <!-- Center Column: Market Overview Chart + Yahoo Data (GLASSMORPHISM) -->
+        <!-- Center Column: Market Overview Chart + Yahoo Data -->
         <div class="glass-panel">
             <h2 class="panel-title"><i class="fa-solid fa-chart-line"></i> Indian Indices Overview</h2>
             <div class="widget-box">
@@ -162,7 +159,7 @@
                     </div>
                 </div>
 
-                <!-- Bottom Half: Custom Live Data List -->
+                <!-- Bottom Half: Custom Live Data List (Taller to fit more indices) -->
                 <div class="market-list-container" id="custom-market-list">
                     <div style="text-align: center; color: var(--gold); margin-top: 50px;">
                         <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i>
@@ -265,7 +262,7 @@
                                     : 'https://via.placeholder.com/150x100/004d99/FFFFFF?text=BS+News';
                             }
 
-                            const cleanDesc = item.description.replace(/<[^>]+>/g, '');
+                            const cleanDesc = item.description.replace(/<[^>]+>/g, />);
 
                             container.innerHTML += `
                                 <div class="news-item">
