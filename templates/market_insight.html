@@ -12,8 +12,16 @@
         :root { --navy-blue: #0A192F; --gold: #C5A059; --text-light: #E0E0E0; --teal: #2A9D8F; }
         body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background-color: var(--navy-blue); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
 
-        /* Ticker Tape Section */
-        .ticker-wrapper { border-bottom: 1px solid rgba(197, 160, 89, 0.3); background: rgba(0, 0, 0, 0.2); }
+        /* Custom Ticker Tape Section */
+        .custom-ticker-wrap { width: 100%; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(197, 160, 89, 0.3); overflow: hidden; padding: 12px 0; white-space: nowrap; box-sizing: border-box; }
+        .ticker-move { display: inline-block; animation: ticker 25s linear infinite; }
+        .ticker-move:hover { animation-play-state: paused; }
+        @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
+        
+        .ticker-item { display: inline-block; padding: 0 35px; font-size: 15px; font-weight: bold; color: #E0E0E0; border-right: 1px solid rgba(255,255,255,0.1); }
+        .ticker-price { margin-left: 8px; font-family: 'Lato', sans-serif; }
+        .ticker-up { color: #38ef7d; font-size: 13px; margin-left: 5px; }
+        .ticker-down { color: #ffb3b3; font-size: 13px; margin-left: 5px; }
 
         /* Page Header */
         .page-header { text-align: center; padding: 50px 20px 30px 20px; position: relative; z-index: 10; }
@@ -54,28 +62,10 @@
 
     {% include 'navbar.html' %}
 
-    <!-- 1. Live Ticker Tape (BSE Symbols Fix) -->
-    <div class="ticker-wrapper">
-        <div class="tradingview-widget-container">
-          <div class="tradingview-widget-container__widget"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-          {
-          "symbols": [
-            { "proName": "BSE:SENSEX", "title": "Sensex" },
-            { "proName": "BSE:BANKEX", "title": "BSE Bankex" },
-            { "proName": "BSE:BSE500", "title": "BSE 500" },
-            { "description": "Reliance", "proName": "BSE:RELIANCE" },
-            { "description": "HDFC Bank", "proName": "BSE:HDFCBANK" },
-            { "description": "Infosys", "proName": "BSE:INFY" },
-            { "description": "TCS", "proName": "BSE:TCS" }
-          ],
-          "showSymbolLogo": true,
-          "colorTheme": "dark",
-          "isTransparent": true,
-          "displayMode": "adaptive",
-          "locale": "in"
-        }
-          </script>
+    <!-- 1. Custom Live Ticker Tape (Yahoo Finance Data) -->
+    <div class="custom-ticker-wrap">
+        <div class="ticker-move" id="live-ticker-box">
+            <span style="color: var(--gold); margin-left: 20px;"><i class="fa-solid fa-circle-notch fa-spin"></i> Loading Live NSE Data...</span>
         </div>
     </div>
 
@@ -140,6 +130,29 @@
     </div>
 
     <script>
+        // Fetch Data from our Flask Backend (market_data.py) for the Ticker
+        fetch('/api/live-ticker')
+            .then(response => response.json())
+            .then(data => {
+                let tickerHtml = '';
+                data.forEach(item => {
+                    let isUp = item.change >= 0;
+                    let colorClass = isUp ? 'ticker-up' : 'ticker-down';
+                    let icon = isUp ? '<i class="fa-solid fa-caret-up"></i>' : '<i class="fa-solid fa-caret-down"></i>';
+                    let sign = isUp ? '+' : '';
+                    
+                    tickerHtml += `
+                        <div class="ticker-item">
+                            ${item.name} 
+                            <span class="ticker-price">₹${item.price.toLocaleString('en-IN')}</span> 
+                            <span class="${colorClass}">${icon} ${sign}${item.change_percent}%</span>
+                        </div>`;
+                });
+                // Doubled for seamless infinite scroll
+                document.getElementById('live-ticker-box').innerHTML = tickerHtml + tickerHtml;
+            })
+            .catch(err => console.log("Error loading ticker: ", err));
+
         // RSS to JSON API for Economic Times Markets Feed
         const rssUrl = 'https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms';
         const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
