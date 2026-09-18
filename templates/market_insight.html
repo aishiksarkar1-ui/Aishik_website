@@ -36,23 +36,22 @@
         .page-header p { font-size: 15px; max-width: 650px; margin: 0 auto; color: #a0aec0; }
 
         /* Main Dashboard Grid */
-        .dashboard-container { padding: 20px 40px 80px 40px; display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 25px; max-width: 1500px; margin: 0 auto; }
+        .dashboard-container { padding: 20px 40px 60px 40px; display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 25px; max-width: 1500px; margin: 0 auto; }
 
-        /* Glassmorphism Card (For Center Data - Expanded Height) */
+        /* Glassmorphism Card */
         .glass-panel { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(197, 160, 89, 0.3); border-radius: 16px; padding: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; }
         
-        /* Royal Cream Card (For News Widgets) */
+        /* Royal Cream Card */
         .cream-panel { background: var(--royal-cream); border: 1px solid #E2D7C1; border-top: 4px solid var(--gold); border-radius: 16px; padding: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; }
         
         .panel-title { font-family: 'Playfair Display', serif; font-size: 20px; margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; padding-bottom: 10px; }
         .glass-panel .panel-title { color: var(--gold); border-bottom: 1px dashed rgba(255,255,255,0.1); }
         .cream-panel .panel-title { color: var(--navy-blue); border-bottom: 1px dashed rgba(10, 25, 47, 0.2); }
 
-        /* Expanded Widget Box (Chart + Larger List) */
+        /* Expanded Widget Box */
         .widget-box { width: 100%; flex-grow: 1; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255,255,255,0.05); }
         .chart-half { height: 350px; width: 100%; border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
         
-        /* Custom Market List (Expanded Height to show more indices) */
         .market-list-container { height: 420px; overflow-y: auto; padding: 10px; }
         .market-list-container::-webkit-scrollbar { width: 6px; }
         .market-list-container::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
@@ -67,7 +66,7 @@
         .text-up { color: #38ef7d; }
         .text-down { color: #ffb3b3; }
 
-        /* Custom News Scrollbar & Layout (Left & Right - Matching Height) */
+        /* Side News Boxes */
         .custom-news-box { height: 810px; overflow-y: auto; padding-right: 10px; }
         .custom-news-box::-webkit-scrollbar { width: 6px; }
         .custom-news-box::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
@@ -87,13 +86,126 @@
         .cream-panel .news-title:hover { color: var(--gold); text-decoration: underline; }
         .cream-panel .news-desc { font-size: 13px; color: #4A5568; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; font-weight: 500; }
 
+        /* 👑 NEW: LATEST NEWS & UPDATES GRID SECTION 👑 */
+        .bottom-news-section {
+            background-color: #FFFFFF; /* Clean white background like the image */
+            padding: 60px 40px;
+            border-top: 4px solid var(--gold);
+            margin-top: 20px;
+        }
+        .bottom-news-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .bottom-section-title {
+            text-align: center;
+            color: var(--navy-blue);
+            font-family: 'Lato', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Filter Buttons */
+        .news-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #d1d5db;
+            color: #4b5563;
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--gold);
+            color: #FFFFFF;
+            border-color: var(--gold);
+        }
+
+        /* 3-Column Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .grid-card {
+            background: #FFFFFF;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .grid-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .grid-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .grid-card-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .grid-card-date {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 12px;
+        }
+        .grid-card-title {
+            font-size: 18px;
+            color: var(--navy-blue);
+            margin: 0 0 12px 0;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+        .grid-card-desc {
+            font-size: 14px;
+            color: #4b5563;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .grid-card-link {
+            margin-top: auto;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .grid-card-link:hover {
+            color: var(--navy-blue);
+        }
+
         @media (max-width: 1200px) {
             .dashboard-container { grid-template-columns: 1fr 1fr; }
             .glass-panel { grid-column: span 2; order: -1; }
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
             .dashboard-container { grid-template-columns: 1fr; }
             .glass-panel { grid-column: span 1; }
+            .news-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -113,9 +225,10 @@
         <p>Track live Indian indices and stay updated with top financial stories breaking right now. Data updates automatically in real-time.</p>
     </div>
 
+    <!-- MAIN 3-COLUMN DASHBOARD -->
     <div class="dashboard-container">
         
-        <!-- Left Column: Business Standard News (ROYAL CREAM) -->
+        <!-- Left Column: Business Standard -->
         <div class="cream-panel">
             <h2 class="panel-title">
                 <i class="fa-regular fa-newspaper" style="color: var(--gold);"></i> 
@@ -130,11 +243,10 @@
             </div>
         </div>
 
-        <!-- Center Column: Market Overview Chart + Yahoo Data -->
+        <!-- Center Column: Market Overview -->
         <div class="glass-panel">
             <h2 class="panel-title"><i class="fa-solid fa-chart-line"></i> Indian Indices Overview</h2>
             <div class="widget-box">
-                <!-- Top Half: Transparent Area Chart -->
                 <div class="chart-half">
                     <div class="tradingview-widget-container" style="height: 100%; width: 100%;">
                       <div class="tradingview-widget-container__widget" style="height: 100%; width: 100%;"></div>
@@ -159,7 +271,6 @@
                     </div>
                 </div>
 
-                <!-- Bottom Half: Custom Live Data List (Taller to fit more indices) -->
                 <div class="market-list-container" id="custom-market-list">
                     <div style="text-align: center; color: var(--gold); margin-top: 50px;">
                         <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i>
@@ -169,7 +280,7 @@
             </div>
         </div>
 
-        <!-- Right Column: Economic Times News (ROYAL CREAM) -->
+        <!-- Right Column: Economic Times -->
         <div class="cream-panel">
             <h2 class="panel-title">
                 <i class="fa-regular fa-newspaper" style="color: var(--gold);"></i> 
@@ -186,8 +297,28 @@
 
     </div>
 
+    <!-- 2. NEW BOTTOM SECTION: LATEST NEWS & UPDATES GRID -->
+    <div class="bottom-news-section">
+        <div class="bottom-news-container">
+            <h2 class="bottom-section-title">Latest News & Updates</h2>
+            
+            <div class="news-filters">
+                <button class="filter-btn">IPO News</button>
+                <button class="filter-btn active">Market News</button>
+                <button class="filter-btn">Popular News</button>
+            </div>
+
+            <div class="news-grid" id="bottom-grid-container">
+                <div style="text-align: center; color: var(--gold); grid-column: 1 / -1; margin-top: 30px;">
+                    <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i>
+                    <p style="margin-top: 10px;">Loading latest updates...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // 1. Fetch Market Data for Ticker and Center List
+        // --- 1. Fetch Market Data for Ticker and Center List ---
         fetch('/api/live-ticker')
             .then(response => response.json())
             .then(data => {
@@ -235,12 +366,12 @@
                 }
             })
             .catch(err => {
-                console.log("Error loading data: ", err);
+                console.log("Error loading market data: ", err);
                 document.getElementById('custom-market-list').innerHTML = '<p style="color: #ffb3b3; text-align: center; margin-top: 30px;">Error connecting to live data server.</p>';
             });
 
-        // 2. Helper function to format and load RSS Feeds
-        function loadRssFeed(rssUrl, containerId) {
+        // --- 2. Helper function to load Sidebar RSS Feeds (Small Items) ---
+        function loadSidebarRssFeed(rssUrl, containerId) {
             const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
             
             fetch(apiUrl)
@@ -265,7 +396,6 @@
                                     : 'https://via.placeholder.com/150x100/004d99/FFFFFF?text=BS+News';
                             }
 
-                            // Clean description safely
                             const cleanDesc = item.description ? item.description.replace(/<[^>]+>/g, '') : '';
 
                             container.innerHTML += `
@@ -290,9 +420,63 @@
                 });
         }
 
-        // Load Feeds
-        loadRssFeed('https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms', 'et-news-container');
-        loadRssFeed('https://www.business-standard.com/rss/markets-106.rss', 'bs-news-container');
+        // --- 3. NEW: Helper function to load Bottom Grid RSS Feeds (Large Cards) ---
+        function loadGridRssFeed(rssUrl, containerId) {
+            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+            
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById(containerId);
+                    container.innerHTML = ''; 
+                    
+                    if(data.status === 'ok') {
+                        // Displaying 6 items in the grid
+                        data.items.slice(0, 6).forEach(item => {
+                            const newsDate = new Date(item.pubDate).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+                            
+                            let imgUrl = item.thumbnail || (item.enclosure && item.enclosure.link);
+                            if (!imgUrl) {
+                                let match = item.description.match(/src\s*=\s*"([^"]+)"/);
+                                if (match) imgUrl = match[1];
+                            }
+                            
+                            // High resolution fallback for Grid Cards
+                            if (!imgUrl) {
+                                imgUrl = 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=600&auto=format&fit=crop';
+                            }
+
+                            const cleanDesc = item.description ? item.description.replace(/<[^>]+>/g, '') : 'Click read more to view the full details of this financial update.';
+
+                            container.innerHTML += `
+                                <div class="grid-card">
+                                    <img src="${imgUrl}" alt="News Image" class="grid-card-img" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=600&auto=format&fit=crop'">
+                                    <div class="grid-card-content">
+                                        <div class="grid-card-date"><i class="fa-regular fa-calendar"></i> ${newsDate}</div>
+                                        <h3 class="grid-card-title">${item.title}</h3>
+                                        <div class="grid-card-desc">${cleanDesc}</div>
+                                        <a href="${item.link}" target="_blank" class="grid-card-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        container.innerHTML = '<p style="color: #ef4444; text-align: center; grid-column: 1/-1;">Failed to load latest grid news.</p>';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById(containerId).innerHTML = '<p style="color: #ef4444; text-align: center; grid-column: 1/-1;">Error connecting to news server.</p>';
+                });
+        }
+
+        // Execute All Feeds
+        loadSidebarRssFeed('https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms', 'et-news-container');
+        loadSidebarRssFeed('https://www.business-standard.com/rss/markets-106.rss', 'bs-news-container');
+        
+        // Load Mutual Fund/Market News for the new bottom grid
+        loadGridRssFeed('https://economictimes.indiatimes.com/mf/rssfeeds/837555174.cms', 'bottom-grid-container');
+
     </script>
+
 </body>
 </html>
