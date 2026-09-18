@@ -275,12 +275,15 @@
         <!-- Blog Grid -->
         <div class="blog-grid" id="blogGrid">
             
-            <!-- 💥 APNAR NOTUN BLOG (ENGLISH) 💥 -->
+            <!-- ===================== -->
+            <!-- 💥 ENGLISH BLOGS 💥 -->
+            <!-- ===================== -->
+
+            <!-- English Blog 1: Beyond the Noise -->
             <div class="blog-card" data-category="stock-market" data-lang="en">
                 <div class="blog-img-box">
                     <span class="category-badge">Stock Market</span>
-                    <!-- Ekta chomotkar market growth er chobi add kora hoyeche -->
-                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=600&auto=format&fit=crop" alt="India Economic Growth">
+                    <img src="{{ url_for('static', filename='Beyond the Noise.png') }}" alt="Beyond the Noise">
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
@@ -293,7 +296,24 @@
                 </div>
             </div>
 
-            <!-- Purono English Blogs -->
+            <!-- English Blog 2: The Underrated Strength -->
+            <div class="blog-card" data-category="stock-market" data-lang="en">
+                <div class="blog-img-box">
+                    <span class="category-badge">Stock Market</span>
+                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=600&auto=format&fit=crop" alt="Indian Economy">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 18, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 6 Min Read</span>
+                    </div>
+                    <h3 class="blog-title">The Most Underrated Strength of the Indian Economy</h3>
+                    <div class="blog-desc">An economy that grows during favorable conditions is ordinary. An economy that continues to thrive despite repeated shocks is exceptional. Discover why resilience is India's biggest structural advantage today.</div>
+                    <a href="/blog/the-underrated-strength" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- English Blog 3: Compounding -->
             <div class="blog-card" data-category="mutual-funds" data-lang="en">
                 <div class="blog-img-box">
                     <span class="category-badge">Mutual Funds</span>
@@ -310,6 +330,7 @@
                 </div>
             </div>
 
+            <!-- English Blog 4: Financial Plan -->
             <div class="blog-card" data-category="personal-finance" data-lang="en">
                 <div class="blog-img-box">
                     <span class="category-badge">Personal Finance</span>
@@ -326,7 +347,11 @@
                 </div>
             </div>
 
-            <!-- BENGALI BLOGS -->
+            <!-- ===================== -->
+            <!-- 💥 BENGALI BLOGS 💥 -->
+            <!-- ===================== -->
+
+            <!-- Bengali Blog 1 -->
             <div class="blog-card" data-category="mutual-funds" data-lang="bn">
                 <div class="blog-img-box">
                     <span class="category-badge bengali-text">মিউচুয়াল ফান্ড</span>
@@ -335,14 +360,15 @@
                 <div class="blog-content bengali-text">
                     <div class="blog-meta">
                         <span><i class="fa-regular fa-calendar"></i> ১৮ সেপ্টেম্বর, ২০২৬</span>
-                        <span><i class="fa-regular fa-clock"></i> ৫ মিনিট পড়ুন</span>
+                        <span><i class="fa-regular fa-clock"></i> ৫ মিনিট পড়ুন</span>
                     </div>
-                    <h3 class="blog-title bengali-text" style="font-size: 22px;">মিউচুয়াল ফান্ড কী এবং কেন এখানে বিনিয়োগ করা উচিত?</h3>
+                    <h3 class="blog-title bengali-text" style="font-size: 22px;">মিউচুয়াল ফান্ড কী এবং কেন এখানে বিনিয়োগ করা উচিত?</h3>
                     <div class="blog-desc bengali-text" style="font-size: 16px;">মিউচুয়াল ফান্ড হল একটি ট্রাস্ট যা অনেক বিনিয়োগকারীর কাছ থেকে টাকা সংগ্রহ করে শেয়ার, বন্ড বা অন্যান্য সম্পদে বিনিয়োগ করে। জানুন এর সুবিধাগুলো কী কী।</div>
-                    <a href="#" class="read-more-btn bengali-text" style="font-size: 15px;">সম্পূর্ণ পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#" class="read-more-btn bengali-text" style="font-size: 15px;">সম্পূর্ণ পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
 
+            <!-- Bengali Blog 2 -->
             <div class="blog-card" data-category="stock-market" data-lang="bn">
                 <div class="blog-img-box">
                     <span class="category-badge bengali-text">শেয়ার বাজার</span>
@@ -351,17 +377,15 @@
                 <div class="blog-content bengali-text">
                     <div class="blog-meta">
                         <span><i class="fa-regular fa-calendar"></i> ১৫ আগস্ট, ২০২৬</span>
-                        <span><i class="fa-regular fa-clock"></i> ৪ মিনিট পড়ুন</span>
+                        <span><i class="fa-regular fa-clock"></i> ৪ মিনিট পড়ুন</span>
                     </div>
                     <h3 class="blog-title bengali-text" style="font-size: 22px;">শেয়ার বাজারে নতুনদের জন্য ৫টি অত্যন্ত গুরুত্বপূর্ণ টিপস</h3>
                     <div class="blog-desc bengali-text" style="font-size: 16px;">শেয়ার বাজারে বিনিয়োগ শুরু করার আগে এই পাঁচটি সাধারণ ভুল এড়িয়ে চলুন। দীর্ঘমেয়াদী বিনিয়োগে কীভাবে নিজের মূলধন সুরক্ষিত রাখবেন তা জেনে নিন।</div>
-                    <a href="#" class="read-more-btn bengali-text" style="font-size: 15px;">সম্পূর্ণ পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#" class="read-more-btn bengali-text" style="font-size: 15px;">সম্পূর্ণ পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
 
         </div>
-    </div>
-
     <!-- Multi-Filter Logic Script (Language + Category) -->
     <script>
         const filterBtns = document.querySelectorAll('.filter-btn');
