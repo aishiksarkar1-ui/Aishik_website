@@ -64,7 +64,7 @@
             gap: 25px;
         }
 
-        /* 💥 NEW: Professional Profile Card 💥 */
+        /* Professional Profile Card */
         .founder-profile {
             width: 100%;
             height: 320px;
@@ -84,7 +84,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 10%; /* Keeps the face centered perfectly */
+            object-position: center 10%; 
         }
         .founder-badge {
             position: absolute;
@@ -111,25 +111,30 @@
             text-transform: uppercase;
         }
 
+        /* 💥 NEW: Light Theme Info Cards (Like Learn Page) 💥 */
         .info-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(197, 160, 89, 0.2);
+            background: var(--royal-cream);
+            border: 1px solid #E2D7C1;
+            border-left: 4px solid var(--gold);
             border-radius: 12px;
             padding: 20px 25px;
             display: flex;
             align-items: center;
             gap: 20px;
             transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
         .info-card:hover {
-            background: rgba(255, 255, 255, 0.06);
+            background: #FFFFFF;
             transform: translateX(5px);
             border-color: var(--gold);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
         }
         .info-icon {
             width: 50px;
             height: 50px;
-            background: rgba(197, 160, 89, 0.1);
+            background: rgba(197, 160, 89, 0.15);
+            border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -140,15 +145,17 @@
         }
         .info-text h3 {
             margin: 0 0 5px 0;
-            font-size: 16px;
-            color: #FFFFFF;
+            font-size: 17px;
+            color: var(--navy-blue);
             font-family: 'Playfair Display', serif;
+            font-weight: bold;
         }
         .info-text p {
             margin: 0;
             font-size: 15px;
-            color: #a0aec0;
+            color: #4A5568;
             line-height: 1.5;
+            font-weight: 500;
         }
 
         /* Map Styling */
@@ -288,7 +295,7 @@
         <!-- LEFT COLUMN: Information & Map -->
         <div class="contact-info-wrapper">
             
-            <!-- 💥 NEW: Founder Profile Picture with Flask url_for 💥 -->
+            <!-- Founder Profile Picture with Flask url_for -->
             <div class="founder-profile">
                 <img src="{{ url_for('static', filename='Aishik6.png') }}" alt="Aishik Sarkar - Financial Expert">
                 <div class="founder-badge">
@@ -297,6 +304,7 @@
                 </div>
             </div>
 
+            <!-- Light Theme Info Cards -->
             <div class="info-card">
                 <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
                 <div class="info-text">
