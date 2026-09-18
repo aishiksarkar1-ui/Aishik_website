@@ -88,7 +88,7 @@
 
         /* 👑 NEW: LATEST NEWS & UPDATES GRID SECTION 👑 */
         .bottom-news-section {
-            background-color: #FFFFFF; /* Clean white background like the image */
+            background-color: #FFFFFF; 
             padding: 60px 40px;
             border-top: 4px solid var(--gold);
             margin-top: 20px;
@@ -297,7 +297,7 @@
 
     </div>
 
-    <!-- 2. NEW BOTTOM SECTION: LATEST NEWS & UPDATES GRID -->
+    <!-- 2. BOTTOM SECTION: LATEST NEWS & UPDATES GRID -->
     <div class="bottom-news-section">
         <div class="bottom-news-container">
             <h2 class="bottom-section-title">Latest News & Updates</h2>
@@ -370,7 +370,7 @@
                 document.getElementById('custom-market-list').innerHTML = '<p style="color: #ffb3b3; text-align: center; margin-top: 30px;">Error connecting to live data server.</p>';
             });
 
-        // --- 2. Helper function to load Sidebar RSS Feeds (Small Items) ---
+        // --- 2. Helper function to load Sidebar RSS Feeds ---
         function loadSidebarRssFeed(rssUrl, containerId) {
             const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
             
@@ -420,7 +420,7 @@
                 });
         }
 
-        // --- 3. NEW: Helper function to load Bottom Grid RSS Feeds (Large Cards) ---
+        // --- 3. Helper function to load Bottom Grid RSS Feeds ---
         function loadGridRssFeed(rssUrl, containerId) {
             const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
             
@@ -431,7 +431,6 @@
                     container.innerHTML = ''; 
                     
                     if(data.status === 'ok') {
-                        // Displaying 6 items in the grid
                         data.items.slice(0, 6).forEach(item => {
                             const newsDate = new Date(item.pubDate).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
                             
@@ -469,12 +468,45 @@
                 });
         }
 
-        // Execute All Feeds
+        // Execute Sidebar Feeds
         loadSidebarRssFeed('https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms', 'et-news-container');
         loadSidebarRssFeed('https://www.business-standard.com/rss/markets-106.rss', 'bs-news-container');
         
-        // Load Mutual Fund/Market News for the new bottom grid
-        loadGridRssFeed('https://economictimes.indiatimes.com/mf/rssfeeds/837555174.cms', 'bottom-grid-container');
+        // --- 4. 💥 NEW: BUTTON CLICK LOGIC 💥 ---
+        
+        // আলাদা আলাদা ক্যাটাগরির খবরের আসল RSS ফিড লিঙ্ক
+        const categoryFeeds = {
+            'IPO News': 'https://economictimes.indiatimes.com/markets/ipos/fpos/rssfeeds/14655708.cms',
+            'Market News': 'https://economictimes.indiatimes.com/mf/rssfeeds/837555174.cms', // Mutual Funds
+            'Popular News': 'https://economictimes.indiatimes.com/rssfeedstopstories.cms' // Top Stories
+        };
+
+        // ডিফল্টভাবে পেজ লোড হলে "Market News" লোড হবে
+        loadGridRssFeed(categoryFeeds['Market News'], 'bottom-grid-container');
+
+        // বাটনে ক্লিক করলে খবর চেঞ্জ হওয়ার ম্যাজিক
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                
+                // ১. সব বাটন থেকে 'active' কালার সরিয়ে দিন
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                
+                // ২. যেই বাটনে ক্লিক করেছেন, সেটায় 'active' কালার দিন
+                this.classList.add('active');
+
+                // ৩. পুরনো খবর মুছে একটা স্পিনার দেখান
+                document.getElementById('bottom-grid-container').innerHTML = `
+                    <div style="text-align: center; color: var(--gold); grid-column: 1 / -1; margin-top: 30px;">
+                        <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i>
+                        <p style="margin-top: 10px; font-weight: bold;">Loading ${this.textContent}...</p>
+                    </div>
+                `;
+
+                // ৪. সেই ক্যাটাগরির নতুন খবর লোড করুন
+                const selectedCategory = this.textContent.trim();
+                loadGridRssFeed(categoryFeeds[selectedCategory], 'bottom-grid-container');
+            });
+        });
 
     </script>
 
