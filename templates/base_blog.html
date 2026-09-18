@@ -4,109 +4,265 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Blog | Finance With Aishik{% endblock %}</title>
-    
+
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
-        :root { 
-            --navy-blue: #0A192F; 
-            --gold: #C5A059; 
-            --text-light: #E0E0E0; 
-        }
-        
-        body { 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Lato', sans-serif; 
-            background-color: var(--navy-blue); 
-            color: var(--text-light); 
-            line-height: 1.8; 
-            overflow-x: hidden; 
+        :root {
+            --navy-blue: #0A192F;
+            --gold: #C5A059;
+            --text-light: #E0E0E0;
         }
 
-        .article-container {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 50px 5% 100px 5%;
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--navy-blue);
+            color: var(--text-light);
+            line-height: 1.8;
+            overflow-x: hidden;
         }
 
-        .back-link {
+        /* Back Button Style */
+        .back-btn-container {
+            max-width: 1300px;
+            margin: 30px auto 0;
+            padding: 0 5%;
+        }
+        .back-btn {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 15px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: var(--gold);
-            text-decoration: none;
+            transition: gap 0.3s;
             font-weight: bold;
-            font-size: 15px;
-            margin-bottom: 30px;
-            transition: opacity 0.3s;
         }
-        .back-link:hover { opacity: 0.8; }
+        .back-btn:hover { gap: 12px; }
 
-        /* Common Blog Styles */
-        .article-header { text-align: center; margin-bottom: 40px; }
+        /* 💥 New 2-Column Grid Layout 💥 */
+        .blog-layout-wrapper {
+            max-width: 1300px;
+            margin: 20px auto 80px;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 2.3fr 1fr; /* Left side bigger, Right side sidebar */
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Left Side: Main Article Box */
+        .blog-main-content {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        /* Original Article Elements */
+        .article-header { margin-bottom: 30px; text-align: left; }
+        
         .category-badge {
             display: inline-block;
-            background: rgba(197, 160, 89, 0.15);
+            background: rgba(197, 160, 89, 0.1);
+            border: 1px solid var(--gold);
             color: var(--gold);
-            padding: 6px 15px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: bold;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(197, 160, 89, 0.3);
+            margin-bottom: 15px;
+            font-weight: bold;
         }
-        
         .article-title {
             font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            color: #FFFFFF;
+            font-size: 38px;
+            color: #fff;
             margin: 0 0 20px 0;
             line-height: 1.3;
         }
-        
         .article-meta {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            justify-content: flex-start;
+            gap: 25px;
             color: #a0aec0;
             font-size: 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
         }
-        .article-meta i { color: var(--gold); margin-right: 5px; }
+        .article-meta i { color: var(--gold); margin-right: 6px; }
 
         .hero-img {
             width: 100%;
-            height: 450px;
+            height: 400px;
             object-fit: cover;
-            object-position: top;
-            border-radius: 12px;
-            margin-bottom: 50px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            margin-top: 25px;
+            margin-bottom: 35px;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        .article-body { font-size: 18px; color: #d1d5db; }
-        .article-body p { margin-bottom: 25px; }
-        .article-body b, .article-body strong { color: #FFFFFF; }
+        .article-body p {
+            font-size: 17px;
+            color: #d1d5db;
+            margin-bottom: 25px;
+            text-align: justify;
+            letter-spacing: 0.3px;
+        }
+
+        /* Right Side: Sticky Sidebar Design */
+        .blog-sidebar {
+            position: sticky;
+            top: 100px; /* Sticks when scrolling down */
+            background: rgba(10, 25, 47, 0.6);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 20px;
+            margin: 0 0 20px 0;
+            border-bottom: 1px dashed rgba(197, 160, 89, 0.4);
+            padding-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Sidebar Mini Cards */
+        .side-card {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            border-left: 3px solid transparent;
+            padding: 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        .side-card:hover {
+            background: rgba(197, 160, 89, 0.08);
+            border-color: rgba(197, 160, 89, 0.2);
+            border-left: 3px solid var(--gold);
+            transform: translateX(5px);
+        }
+
+        .side-card-title {
+            color: #E0E0E0;
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            margin: 0 0 10px 0;
+            line-height: 1.4;
+            transition: color 0.3s;
+        }
+        .side-card:hover .side-card-title {
+            color: var(--gold);
+        }
+        
+        .side-card-meta {
+            color: #8892b0;
+            font-size: 12px;
+            display: flex;
+            gap: 12px;
+        }
+        .side-card-meta i { color: var(--gold); }
+
+        /* Mobile View Adjustments */
+        @media (max-width: 992px) {
+            .blog-layout-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .blog-sidebar {
+                position: static;
+            }
+            .blog-main-content {
+                padding: 25px;
+            }
+            .article-title { font-size: 30px; }
+            .hero-img { height: 250px; }
+            .article-meta { flex-wrap: wrap; gap: 15px; }
+        }
     </style>
-
-    <!-- এই ব্লকের ভেতরে আপনি নির্দিষ্ট ব্লগের জন্য এক্সট্রা CSS অ্যাড করতে পারবেন -->
+    
     {% block extra_css %}{% endblock %}
-
 </head>
 <body>
 
     {% include 'navbar.html' %}
 
-    <div class="article-container">
-        <a href="/blogs" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Blogs</a>
+    <div class="back-btn-container">
+        <a href="/blogs" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Blogs</a>
+    </div>
+
+    <div class="blog-layout-wrapper">
         
-        <!-- এই ব্লকের ভেতরে আপনার নির্দিষ্ট ব্লগের কন্টেন্ট বসবে -->
-        {% block content %}{% endblock %}
-        
+        <!-- Left Side: Main Article -->
+        <main class="blog-main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Right Side: Sticky Sidebar -->
+        <aside class="blog-sidebar">
+            <h3 class="sidebar-title">Read Next</h3>
+            <div class="sidebar-cards-container">
+
+                <!-- Side Card 1 -->
+                <a href="/blog/beyond-the-noise" class="side-card">
+                    <h4 class="side-card-title">Beyond the Noise: The Real Story Behind India’s Growth</h4>
+                    <div class="side-card-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 18, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 8 Min</span>
+                    </div>
+                </a>
+
+                <!-- Side Card 2 -->
+                <a href="/blog/the-underrated-strength" class="side-card">
+                    <h4 class="side-card-title">The Most Underrated Strength of the Indian Economy</h4>
+                    <div class="side-card-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 05, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 6 Min</span>
+                    </div>
+                </a>
+
+                <!-- Side Card 3 -->
+                <a href="/blog/power-of-compounding" class="side-card">
+                    <h4 class="side-card-title">The Power of Compounding: Why Start Your SIP Early?</h4>
+                    <div class="side-card-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 15, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 4 Min</span>
+                    </div>
+                </a>
+
+                <!-- Side Card 4 -->
+                <a href="/blog/risk-proof-plan" class="side-card">
+                    <h4 class="side-card-title">How to Build a Risk-Proof Financial Plan for 2027</h4>
+                    <div class="side-card-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 05, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 5 Min</span>
+                    </div>
+                </a>
+
+            </div>
+        </aside>
+
     </div>
 
 </body>
