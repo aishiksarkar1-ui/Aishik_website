@@ -65,10 +65,6 @@ def connect():
 def blogs():
     return render_template('blogs.html')
 
-@app.route('/blog-post')
-def blog_post():
-    return render_template('blog_post.html')
-
 @app.route('/blog/beyond-the-noise')
 def beyond_the_noise():
     return render_template('beyond_the_noise.html')
