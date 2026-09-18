@@ -2,7 +2,10 @@
     /* Navbar CSS / Design */
     .navbar { position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background-color: rgba(10, 25, 47, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197, 160, 89, 0.3); font-family: 'Lato', sans-serif; }
     .logo { font-family: 'Playfair Display', serif; font-size: 22px; color: #C5A059; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; line-height: 1.1; }
-    .nav-links { display: flex; list-style: none; gap: 25px; margin: 0; padding: 0; align-items: center; }
+    
+    /* 💥 Flex-direction: row ebong white-space add kora holo 💥 */
+    .nav-links { display: flex; flex-direction: row; white-space: nowrap; list-style: none; gap: 20px; margin: 0; padding: 0; align-items: center; }
+    
     .nav-links li { position: relative; }
     .nav-links a { color: #E0E0E0; text-decoration: none; font-size: 14px; transition: color 0.3s ease; padding: 10px 0; display: block; }
     .nav-links a:hover, .nav-links a.active { color: #C5A059; }
@@ -66,8 +69,10 @@
 
         <li><a href="/market-insight">Market Insight</a></li>
         <li><a href="#">Gallery</a></li>
-        <li><a href="/blogs" class="...">Blogs</a>
-        <li><a href="/connect" class="nav-link">Connect</a>
+        
+        <!-- 💥 Missing tags fix kora hoyeche 💥 -->
+        <li><a href="/blogs">Blogs</a></li>
+        <li><a href="/connect">Connect</a></li>
     </ul>
 </nav>
 
