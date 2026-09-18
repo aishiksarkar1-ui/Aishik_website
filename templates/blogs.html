@@ -60,7 +60,7 @@
             padding: 0 5% 80px 5%;
         }
 
-        /* 💥 Language Toggle Switch 💥 */
+        /* Language Toggle Switch */
         .language-toggle-wrapper {
             display: flex;
             justify-content: center;
@@ -253,7 +253,7 @@
 
     <div class="blog-container">
         
-        <!-- 💥 NEW: Language Selection Toggle 💥 -->
+        <!-- Language Selection Toggle -->
         <div class="language-toggle-wrapper">
             <div class="language-toggle">
                 <input type="radio" id="lang-en" name="blog-lang" value="en" checked>
@@ -275,7 +275,25 @@
         <!-- Blog Grid -->
         <div class="blog-grid" id="blogGrid">
             
-            <!-- ENGLISH BLOGS (data-lang="en") -->
+            <!-- 💥 APNAR NOTUN BLOG (ENGLISH) 💥 -->
+            <div class="blog-card" data-category="stock-market" data-lang="en">
+                <div class="blog-img-box">
+                    <span class="category-badge">Stock Market</span>
+                    <!-- Ekta chomotkar market growth er chobi add kora hoyeche -->
+                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=600&auto=format&fit=crop" alt="India Economic Growth">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 18, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 8 Min Read</span>
+                    </div>
+                    <h3 class="blog-title">Beyond the Noise: The Real Story Behind India’s Growth</h3>
+                    <div class="blog-desc">The Indian economy demonstrates remarkable resilience amidst global uncertainty. Let's debunk the recent GDP myths and understand why the market outlook remains firmly bullish despite crude oil and AI concerns.</div>
+                    <a href="#" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Purono English Blogs -->
             <div class="blog-card" data-category="mutual-funds" data-lang="en">
                 <div class="blog-img-box">
                     <span class="category-badge">Mutual Funds</span>
@@ -283,27 +301,11 @@
                 </div>
                 <div class="blog-content">
                     <div class="blog-meta">
-                        <span><i class="fa-regular fa-calendar"></i> Sep 18, 2026</span>
+                        <span><i class="fa-regular fa-calendar"></i> Sep 15, 2026</span>
                         <span><i class="fa-regular fa-clock"></i> 4 Min Read</span>
                     </div>
                     <h3 class="blog-title">The Power of Compounding: Why Start Your SIP Early?</h3>
                     <div class="blog-desc">Discover how starting a Systematic Investment Plan (SIP) in your 20s can exponentially grow your wealth over time utilizing the magic of compounding.</div>
-                    <a href="#" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <div class="blog-card" data-category="stock-market" data-lang="en">
-                <div class="blog-img-box">
-                    <span class="category-badge">Stock Market</span>
-                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=600&auto=format&fit=crop" alt="Stock Market Chart">
-                </div>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <span><i class="fa-regular fa-calendar"></i> Sep 12, 2026</span>
-                        <span><i class="fa-regular fa-clock"></i> 6 Min Read</span>
-                    </div>
-                    <h3 class="blog-title">Top 5 Mistakes to Avoid as a Beginner in the Stock Market</h3>
-                    <div class="blog-desc">Are you new to trading? Learn the most common emotional and strategic mistakes beginner investors make and how to protect your capital.</div>
                     <a href="#" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -324,7 +326,7 @@
                 </div>
             </div>
 
-            <!-- 💥 BENGALI BLOGS (data-lang="bn") 💥 -->
+            <!-- BENGALI BLOGS -->
             <div class="blog-card" data-category="mutual-funds" data-lang="bn">
                 <div class="blog-img-box">
                     <span class="category-badge bengali-text">মিউচুয়াল ফান্ড</span>
