@@ -57,6 +57,10 @@ def inflation_calculator():
 def market_insight():
     return render_template('market_insight.html')
 
+@app.route('/connect')
+def connect():
+    return render_template('connect.html')
+
 # লাইভ টিকার API (উভয় ডেটা একসাথে পাঠাবে)
 @app.route('/api/live-ticker')
 def live_ticker_api():
