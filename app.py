@@ -65,6 +65,10 @@ def connect():
 def blogs():
     return render_template('blogs.html')
 
+@app.route('/blog-post')
+def blog_post():
+    return render_template('blog_post.html')
+
 # লাইভ টিকার API (উভয় ডেটা একসাথে পাঠাবে)
 @app.route('/api/live-ticker')
 def live_ticker_api():
