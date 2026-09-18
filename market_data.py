@@ -1,21 +1,59 @@
 import yfinance as yf
 import time
+from concurrent.futures import ThreadPoolExecutor
 
-# ক্যাশ মেমরি (যাতে সার্ভার ব্লক না হয়)
+# ক্যাশ মেমরি (যাতে পেজ রিফ্রেশ করলে সার্ভার ব্লক না হয়)
 cache = {
     "data": None,
     "last_updated": 0
 }
 
+def fetch_stock_data(name, symbol):
+    try:
+        # fast_info সবচেয়ে দ্রুত এবং নিখুঁতভাবে লাইভ ডেটা দেয়
+        ticker = yf.Ticker(symbol)
+        info = ticker.fast_info
+        
+        current = info.last_price
+        prev = info.previous_close
+        
+        if current and prev:
+            change = current - prev
+            pct = (change / prev) * 100
+            return {
+                "name": name,
+                "price": round(current, 2),
+                "change": round(change, 2),
+                "change_percent": round(pct, 2)
+            }
+    except Exception:
+        # যদি fast_info কোনো কারণে কাজ না করে, তবে history ব্যবহার করবে (ব্যাকআপ)
+        try:
+            hist = ticker.history(period="5d")
+            if len(hist) >= 2:
+                current = float(hist['Close'].iloc[-1])
+                prev = float(hist['Close'].iloc[-2])
+                change = current - prev
+                pct = (change / prev) * 100
+                return {
+                    "name": name,
+                    "price": round(current, 2),
+                    "change": round(change, 2),
+                    "change_percent": round(pct, 2)
+                }
+        except Exception:
+            pass
+    return None
+
 def get_market_data():
     global cache
     current_time = time.time()
     
-    # ক্যাশ চেক (৬০ সেকেন্ড)
+    # ৬০ সেকেন্ডের ক্যাশ (বারবার রিফ্রেশ করলেও ব্লক হবে না)
     if cache["data"] is not None and (current_time - cache["last_updated"]) < 60:
         return cache["data"]
 
-    # সেক্টরাল এবং মূল ইনডেক্স লিস্ট (নিশ্চিত ও সঠিক সিম্বল সহ)
+    # আপনার আগের অরিজিনাল Nifty Indices
     indices = {
         "Nifty 50": "^NSEI",
         "Bank Nifty": "^NSEBANK",
@@ -25,11 +63,11 @@ def get_market_data():
         "Nifty FMCG": "^CNXFMCG",
         "Nifty Metal": "^CNXMETAL",
         "Nifty Energy": "^CNXENERGY",
-        "Nifty Media": "^CNXMEDIA",
-        "Nifty Realty": "^CNXREALTY"
+        "Nifty Realty": "^CNXREALTY",
+        "Nifty Infra": "^CNXINFRA"
     }
     
-    # ওপরে টিকারের জন্য Nifty 50-এর স্টক লিস্ট
+    # Nifty 50-এর টপ ২০টি স্টক
     nifty50_stocks = {
         "Reliance": "RELIANCE.NS",
         "TCS": "TCS.NS",
@@ -53,49 +91,28 @@ def get_market_data():
         "NTPC": "NTPC.NS"
     }
 
-    all_symbols = list(indices.values()) + list(nifty50_stocks.values())
-    
     fetched_indices = []
     fetched_stocks = []
 
-    try:
-        df = yf.download(all_symbols, period="5d", progress=False)
-        closes = df['Close']
+    # একসাথে সব ডেটা আলাদা আলাদা করে টানা হচ্ছে (যাতে একটা ফেল করলে অন্যটা বাদ না যায়)
+    with ThreadPoolExecutor(max_workers=20) as executor:
+        index_futures = {executor.submit(fetch_stock_data, name, sym): name for name, sym in indices.items()}
+        stock_futures = {executor.submit(fetch_stock_data, name, sym): name for name, sym in nifty50_stocks.items()}
         
-        def parse_data(name, symbol):
-            try:
-                series = closes[symbol].dropna()
-                if len(series) >= 2:
-                    current = float(series.iloc[-1])
-                    prev = float(series.iloc[-2])
-                    change = current - prev
-                    pct = (change / prev) * 100
-                    return {
-                        "name": name,
-                        "price": round(current, 2),
-                        "change": round(change, 2),
-                        "change_percent": round(pct, 2)
-                    }
-            except Exception:
-                pass
-            return None
-
-        for name, symbol in indices.items():
-            res = parse_data(name, symbol)
+        for future in index_futures:
+            res = future.result()
             if res: fetched_indices.append(res)
             
-        for name, symbol in nifty50_stocks.items():
-            res = parse_data(name, symbol)
+        for future in stock_futures:
+            res = future.result()
             if res: fetched_stocks.append(res)
-            
-    except Exception as e:
-        print(f"Bulk Fetch Error: {e}")
 
     final_data = {
         "indices": fetched_indices,
         "stocks": fetched_stocks
     }
     
+    # ডেটা সফলভাবে আসলে ক্যাশে সেভ হবে
     if len(fetched_indices) > 0 or len(fetched_stocks) > 0:
         cache["data"] = final_data
         cache["last_updated"] = current_time
