@@ -473,12 +473,11 @@
         loadSidebarRssFeed('https://www.business-standard.com/rss/markets-106.rss', 'bs-news-container');
         
         // --- 4. 💥 NEW: BUTTON CLICK LOGIC 💥 ---
-        
         // আলাদা আলাদা ক্যাটাগরির খবরের আসল RSS ফিড লিঙ্ক
         const categoryFeeds = {
             'IPO News': 'https://economictimes.indiatimes.com/markets/ipos/fpos/rssfeeds/14655708.cms',
-            'Market News': 'https://economictimes.indiatimes.com/mf/rssfeeds/837555174.cms', // Mutual Funds
-            'Popular News': 'https://economictimes.indiatimes.com/rssfeedstopstories.cms' // Top Stories
+            'Market News': 'https://economictimes.indiatimes.com/markets/rssfeeds/1977021501.cms', 
+            'Popular News': 'https://economictimes.indiatimes.com/mf/rssfeeds/837555174.cms' // Mutual Fund & SIP News (আপনার ছবির মতো)
         };
 
         // ডিফল্টভাবে পেজ লোড হলে "Market News" লোড হবে
@@ -507,7 +506,6 @@
                 loadGridRssFeed(categoryFeeds[selectedCategory], 'bottom-grid-container');
             });
         });
-
     </script>
 
 </body>
