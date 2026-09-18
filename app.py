@@ -61,6 +61,10 @@ def market_insight():
 def connect():
     return render_template('connect.html')
 
+@app.route('/blogs')
+def blogs():
+    return render_template('blogs.html')
+
 # লাইভ টিকার API (উভয় ডেটা একসাথে পাঠাবে)
 @app.route('/api/live-ticker')
 def live_ticker_api():
