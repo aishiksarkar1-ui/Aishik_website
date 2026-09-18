@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Blogs & Insights | Finance With Aishik</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --navy-blue: #0A192F; 
+            --gold: #C5A059; 
+            --text-light: #E0E0E0; 
+            --teal: #2A9D8F;
+        }
+        
+        body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Lato', sans-serif; 
+            background-color: var(--navy-blue); 
+            color: var(--text-light); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+        }
+
+        /* Page Header */
+        .page-header { 
+            text-align: center; 
+            padding: 70px 20px 40px 20px; 
+            position: relative; 
+            z-index: 10; 
+        }
+        .page-header h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 42px; 
+            color: var(--gold); 
+            margin: 0 0 15px 0; 
+            letter-spacing: 1px; 
+        }
+        .page-header p { 
+            font-size: 16px; 
+            max-width: 700px; 
+            margin: 0 auto; 
+            color: #a0aec0; 
+        }
+
+        /* Blog Container */
+        .blog-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 5% 80px 5%;
+        }
+
+        /* 💥 Category Filter Buttons 💥 */
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            color: var(--text-light);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            font-family: 'Lato', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--gold);
+            color: var(--navy-blue);
+            border-color: var(--gold);
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        /* 💥 Glassmorphism Blog Grid 💥 */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 3px solid var(--gold);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(197, 160, 89, 0.15);
+            border-color: rgba(197, 160, 89, 0.4);
+        }
+
+        /* Blog Image */
+        .blog-img-box {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        .blog-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .blog-card:hover .blog-img-box img {
+            transform: scale(1.08); /* Slight zoom on hover */
+        }
+        
+        /* Category Badge */
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(10, 25, 47, 0.85);
+            color: var(--gold);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Blog Content */
+        .blog-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #a0aec0;
+            margin-bottom: 12px;
+        }
+        .blog-meta i {
+            color: var(--gold);
+            margin-right: 5px;
+        }
+        .blog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #FFFFFF;
+            margin: 0 0 15px 0;
+            line-height: 1.4;
+            transition: color 0.3s;
+        }
+        .blog-card:hover .blog-title {
+            color: var(--gold);
+        }
+        .blog-desc {
+            font-size: 14.5px;
+            color: #a0aec0;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* Read More Link */
+        .read-more-btn {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: gap 0.3s, color 0.3s;
+        }
+        .blog-card:hover .read-more-btn {
+            gap: 12px; /* Arrow moves right on hover */
+            color: #E0E0E0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .blog-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .blog-grid { grid-template-columns: 1fr; }
+            .blog-filters { gap: 10px; }
+            .filter-btn { padding: 8px 18px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Include Navbar -->
+    {% include 'navbar.html' %}
+
+    <div class="page-header">
+        <h1>Financial Insights & Blogs</h1>
+        <p>Enhance your financial literacy. Explore our expert articles on mutual funds, stock market trends, and personal wealth creation strategies.</p>
+    </div>
+
+    <div class="blog-container">
+        
+        <!-- Category Filters -->
+        <div class="blog-filters">
+            <button class="filter-btn active" data-filter="all">All Articles</button>
+            <button class="filter-btn" data-filter="mutual-funds">Mutual Funds</button>
+            <button class="filter-btn" data-filter="stock-market">Stock Market</button>
+            <button class="filter-btn" data-filter="personal-finance">Personal Finance</button>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="blog-grid" id="blogGrid">
+            
+            <!-- Blog 1 -->
+            <div class="blog-card" data-category="mutual-funds">
+                <div class="blog-img-box">
+                    <span class="category-badge">Mutual Funds</span>
+                    <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?q=80&w=600&auto=format&fit=crop" alt="SIP Investment">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 18, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 4 Min Read</span>
+                    </div>
+                    <h3 class="blog-title">The Power of Compounding: Why Start Your SIP Early?</h3>
+                    <div class="blog-desc">Discover how starting a Systematic Investment Plan (SIP) in your 20s can exponentially grow your wealth over time utilizing the magic of compounding.</div>
+                    <a href="#" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Blog 2 -->
+            <div class="blog-card" data-category="stock-market">
+                <div class="blog-img-box">
+                    <span class="category-badge">Stock Market</span>
+                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=600&auto=format&fit=crop" alt="Stock Market Chart">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 12, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 6 Min Read</span>
+                    </div>
+                    <h3 class="blog-title">Top 5 Mistakes to Avoid as a Beginner in the Stock Market</h3>
+                    <div class="blog-desc">Are you new to trading? Learn the most common emotional and strategic mistakes beginner investors make and how to protect your capital.</div>
+                    <a href="#" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Blog 3 -->
+            <div class="blog-card" data-category="personal-finance">
+                <div class="blog-img-box">
+                    <span class="category-badge">Personal Finance</span>
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=600&auto=format&fit=crop" alt="Financial Planning">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 05, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 5 Min Read</span>
+                    </div>
+                    <h3 class="blog-title">How to Build a Risk-Proof Financial Plan for 2027</h3>
+                    <div class="blog-desc">A step-by-step guide to structuring your emergency funds, insurance, and retirement corpus to stay immune against economic uncertainties.</div>
+                    <a href="#" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Blog 4 -->
+            <div class="blog-card" data-category="mutual-funds">
+                <div class="blog-img-box">
+                    <span class="category-badge">Mutual Funds</span>
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=600&auto=format&fit=crop" alt="Index Funds">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Aug 28, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 7 Min Read</span>
+                    </div>
+                    <h3 class="blog-title">Active Funds vs Index Funds: Where Should You Invest?</h3>
+                    <div class="blog-desc">An in-depth comparison of active mutual funds and passive index funds. Understand expense ratios, alpha generation, and which suits your risk profile.</div>
+                    <a href="#" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Blog 5 -->
+            <div class="blog-card" data-category="stock-market">
+                <div class="blog-img-box">
+                    <span class="category-badge">Stock Market</span>
+                    <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=600&auto=format&fit=crop" alt="Bull Market">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Aug 15, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 4 Min Read</span>
+                    </div>
+                    <h3 class="blog-title">Understanding Sector Rotation in a Bull Market</h3>
+                    <div class="blog-desc">Why do IT stocks surge while Banks fall? Learn the concept of sector rotation and how institutional investors move their money across industries.</div>
+                    <a href="#" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Blog 6 -->
+            <div class="blog-card" data-category="personal-finance">
+                <div class="blog-img-box">
+                    <span class="category-badge">Personal Finance</span>
+                    <img src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?q=80&w=600&auto=format&fit=crop" alt="Asset Allocation">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Aug 02, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 5 Min Read</span>
+                    </div>
+                    <h3 class="blog-title">Asset Allocation: The Ultimate Key to Wealth Creation</h3>
+                    <div class="blog-desc">Don't put all your eggs in one basket. Learn how to divide your capital among Equity, Debt, Gold, and Real Estate for optimal long-term returns.</div>
+                    <a href="#" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Filter Logic Script -->
+    <script>
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                // Show/Hide cards based on category
+                blogCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
