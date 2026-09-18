@@ -76,6 +76,10 @@ def beyond_the_noise():
 def underrated_strength():
     return render_template('the_underrated_strength.html')
 
+@app.route('/blog/power-of-compounding')
+def power_of_compounding():
+    return render_template('power_of_compounding.html')
+
 # লাইভ টিকার API (উভয় ডেটা একসাথে পাঠাবে)
 @app.route('/api/live-ticker')
 def live_ticker_api():
