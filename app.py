@@ -69,6 +69,10 @@ def blogs():
 def blog_post():
     return render_template('blog_post.html')
 
+@app.route('/blog/beyond-the-noise')
+def beyond_the_noise():
+    return render_template('beyond_the_noise.html')
+
 # লাইভ টিকার API (উভয় ডেটা একসাথে পাঠাবে)
 @app.route('/api/live-ticker')
 def live_ticker_api():
