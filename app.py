@@ -4,10 +4,13 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from flask import Flask, render_template, request, jsonify
 
-# আপডেট করা ফাংশনটি ইম্পোর্ট করা হলো
-from market_data import get_market_data
+# আপডেট করা ফাংশন এবং ব্যাকগ্রাউন্ড আপডেটার ইম্পোর্ট করা হলো
+from market_data import get_market_data, start_market_updater
 
 app = Flask(__name__)
+
+# 💥 সার্ভার চালু হওয়ার সাথে সাথেই ব্যাকগ্রাউন্ডে মার্কেট ডেটা আপডেট শুরু হয়ে যাবে 💥
+start_market_updater()
 
 def get_sheet():
     google_creds_json = os.environ.get('GOOGLE_CREDENTIALS')
