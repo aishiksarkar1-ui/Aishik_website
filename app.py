@@ -80,6 +80,10 @@ def underrated_strength():
 def power_of_compounding():
     return render_template('power_of_compounding.html')
 
+@app.route('/blog/risk-proof-plan')
+def risk_proof_plan():
+    return render_template('risk_proof_plan.html')
+
 # লাইভ টিকার API (উভয় ডেটা একসাথে পাঠাবে)
 @app.route('/api/live-ticker')
 def live_ticker_api():
