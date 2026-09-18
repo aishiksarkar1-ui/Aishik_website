@@ -3,267 +3,437 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Blog | Finance With Aishik{% endblock %}</title>
-
-    <!-- Fonts & Icons -->
+    <title>Financial Blogs & Insights | Finance With Aishik</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
     <style>
-        :root {
-            --navy-blue: #0A192F;
-            --gold: #C5A059;
-            --text-light: #E0E0E0;
+        :root { 
+            --navy-blue: #0A192F; 
+            --gold: #C5A059; 
+            --text-light: #E0E0E0; 
+            --teal: #2A9D8F;
         }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Lato', sans-serif;
-            background-color: var(--navy-blue);
-            color: var(--text-light);
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        /* Back Button Style */
-        .back-btn-container {
-            max-width: 1300px;
-            margin: 30px auto 0;
-            padding: 0 5%;
-        }
-        .back-btn {
-            color: var(--gold);
-            text-decoration: none;
-            font-size: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: gap 0.3s;
-            font-weight: bold;
-        }
-        .back-btn:hover { gap: 12px; }
-
-        /* 💥 New 2-Column Grid Layout 💥 */
-        .blog-layout-wrapper {
-            max-width: 1300px;
-            margin: 20px auto 80px;
-            padding: 0 5%;
-            display: grid;
-            grid-template-columns: 2.3fr 1fr; /* Left side bigger, Right side sidebar */
-            gap: 40px;
-            align-items: start;
-        }
-
-        /* Left Side: Main Article Box */
-        .blog-main-content {
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid rgba(197, 160, 89, 0.15);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-
-        /* Original Article Elements */
-        .article-header { margin-bottom: 30px; text-align: left; }
         
-        .category-badge {
-            display: inline-block;
-            background: rgba(197, 160, 89, 0.1);
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            font-weight: bold;
+        body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Lato', sans-serif; 
+            background-color: var(--navy-blue); 
+            color: var(--text-light); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
         }
-        .article-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 38px;
-            color: #fff;
-            margin: 0 0 20px 0;
-            line-height: 1.3;
+
+        .bengali-text {
+            font-family: 'Hind Siliguri', sans-serif !important;
         }
-        .article-meta {
+
+        /* Page Header */
+        .page-header { 
+            text-align: center; 
+            padding: 70px 20px 30px 20px; 
+            position: relative; 
+            z-index: 10; 
+        }
+        .page-header h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 42px; 
+            color: var(--gold); 
+            margin: 0 0 15px 0; 
+            letter-spacing: 1px; 
+        }
+        .page-header p { 
+            font-size: 16px; 
+            max-width: 700px; 
+            margin: 0 auto; 
+            color: #a0aec0; 
+        }
+
+        /* Blog Container */
+        .blog-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 5% 80px 5%;
+        }
+
+        /* Language Toggle Switch */
+        .language-toggle-wrapper {
             display: flex;
-            justify-content: flex-start;
-            gap: 25px;
-            color: #a0aec0;
-            font-size: 14px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 20px;
-        }
-        .article-meta i { color: var(--gold); margin-right: 6px; }
-
-        .hero-img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-top: 25px;
-            margin-bottom: 35px;
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .article-body p {
-            font-size: 17px;
-            color: #d1d5db;
+            justify-content: center;
             margin-bottom: 25px;
-            text-align: justify;
-            letter-spacing: 0.3px;
         }
-
-        /* Right Side: Sticky Sidebar Design */
-        .blog-sidebar {
-            position: sticky;
-            top: 100px; /* Sticks when scrolling down */
-            background: rgba(10, 25, 47, 0.6);
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        .language-toggle {
+            display: inline-flex;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            border-radius: 40px;
+            overflow: hidden;
+            padding: 4px;
         }
-
-        .sidebar-title {
-            font-family: 'Playfair Display', serif;
-            color: var(--gold);
-            font-size: 20px;
-            margin: 0 0 20px 0;
-            border-bottom: 1px dashed rgba(197, 160, 89, 0.4);
-            padding-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .language-toggle input[type="radio"] {
+            display: none;
         }
-
-        .sidebar-cards-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        /* Sidebar Mini Cards */
-        .side-card {
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid transparent;
-            border-left: 3px solid transparent;
-            padding: 15px;
-            border-radius: 6px;
+        .language-toggle label {
+            padding: 8px 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            color: #a0aec0;
+            border-radius: 30px;
             transition: all 0.3s ease;
         }
-        .side-card:hover {
-            background: rgba(197, 160, 89, 0.08);
-            border-color: rgba(197, 160, 89, 0.2);
-            border-left: 3px solid var(--gold);
-            transform: translateX(5px);
+        .language-toggle input[type="radio"]:checked + label {
+            background: var(--gold);
+            color: var(--navy-blue);
+            box-shadow: 0 4px 10px rgba(197, 160, 89, 0.4);
         }
 
-        .side-card-title {
-            color: #E0E0E0;
+        /* Category Filter Buttons */
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            color: var(--text-light);
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: 'Lato', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--gold);
+            color: var(--navy-blue);
+            border-color: var(--gold);
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        /* Glassmorphism Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 3px solid var(--gold);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(197, 160, 89, 0.15);
+            border-color: rgba(197, 160, 89, 0.4);
+        }
+
+        .blog-img-box {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        .blog-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .blog-card:hover .blog-img-box img {
+            transform: scale(1.08); 
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(10, 25, 47, 0.85);
+            color: var(--gold);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .blog-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #a0aec0;
+            margin-bottom: 12px;
+        }
+        .blog-meta i {
+            color: var(--gold);
+            margin-right: 5px;
+        }
+        .blog-title {
             font-family: 'Playfair Display', serif;
-            font-size: 16px;
-            margin: 0 0 10px 0;
+            font-size: 20px;
+            color: #FFFFFF;
+            margin: 0 0 15px 0;
             line-height: 1.4;
             transition: color 0.3s;
         }
-        .side-card:hover .side-card-title {
+        .blog-card:hover .blog-title {
             color: var(--gold);
         }
-        
-        .side-card-meta {
-            color: #8892b0;
-            font-size: 12px;
-            display: flex;
-            gap: 12px;
+        .blog-desc {
+            font-size: 14.5px;
+            color: #a0aec0;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
-        .side-card-meta i { color: var(--gold); }
+        
+        .read-more-btn {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: gap 0.3s, color 0.3s;
+        }
+        .blog-card:hover .read-more-btn {
+            gap: 12px; 
+            color: #E0E0E0;
+        }
 
-        /* Mobile View Adjustments */
-        @media (max-width: 992px) {
-            .blog-layout-wrapper {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .blog-sidebar {
-                position: static;
-            }
-            .blog-main-content {
-                padding: 25px;
-            }
-            .article-title { font-size: 30px; }
-            .hero-img { height: 250px; }
-            .article-meta { flex-wrap: wrap; gap: 15px; }
+        @media (max-width: 1024px) {
+            .blog-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .blog-grid { grid-template-columns: 1fr; }
+            .blog-filters { gap: 10px; }
         }
     </style>
-    
-    {% block extra_css %}{% endblock %}
 </head>
 <body>
 
     {% include 'navbar.html' %}
 
-    <div class="back-btn-container">
-        <a href="/blogs" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Blogs</a>
+    <div class="page-header">
+        <h1>Financial Insights & Blogs</h1>
+        <p>Enhance your financial literacy. Explore our expert articles on mutual funds, stock market trends, and personal wealth creation strategies in your preferred language.</p>
     </div>
 
-    <div class="blog-layout-wrapper">
+    <div class="blog-container">
         
-        <!-- Left Side: Main Article -->
-        <main class="blog-main-content">
-            {% block content %}{% endblock %}
-        </main>
-
-        <!-- Right Side: Sticky Sidebar -->
-        <aside class="blog-sidebar">
-            <h3 class="sidebar-title">Read Next</h3>
-            <div class="sidebar-cards-container">
-
-                <!-- Side Card 1 -->
-                <a href="/blog/beyond-the-noise" class="side-card">
-                    <h4 class="side-card-title">Beyond the Noise: The Real Story Behind India’s Growth</h4>
-                    <div class="side-card-meta">
-                        <span><i class="fa-regular fa-calendar"></i> Sep 18, 2026</span>
-                        <span><i class="fa-regular fa-clock"></i> 8 Min</span>
-                    </div>
-                </a>
-
-                <!-- Side Card 2 -->
-                <a href="/blog/the-underrated-strength" class="side-card">
-                    <h4 class="side-card-title">The Most Underrated Strength of the Indian Economy</h4>
-                    <div class="side-card-meta">
-                        <span><i class="fa-regular fa-calendar"></i> Sep 05, 2026</span>
-                        <span><i class="fa-regular fa-clock"></i> 6 Min</span>
-                    </div>
-                </a>
-
-                <!-- Side Card 3 -->
-                <a href="/blog/power-of-compounding" class="side-card">
-                    <h4 class="side-card-title">The Power of Compounding: Why Start Your SIP Early?</h4>
-                    <div class="side-card-meta">
-                        <span><i class="fa-regular fa-calendar"></i> Sep 15, 2026</span>
-                        <span><i class="fa-regular fa-clock"></i> 4 Min</span>
-                    </div>
-                </a>
-
-                <!-- Side Card 4 -->
-                <a href="/blog/risk-proof-plan" class="side-card">
-                    <h4 class="side-card-title">How to Build a Risk-Proof Financial Plan for 2027</h4>
-                    <div class="side-card-meta">
-                        <span><i class="fa-regular fa-calendar"></i> Sep 05, 2026</span>
-                        <span><i class="fa-regular fa-clock"></i> 5 Min</span>
-                    </div>
-                </a>
-
+        <!-- Language Selection Toggle -->
+        <div class="language-toggle-wrapper">
+            <div class="language-toggle">
+                <input type="radio" id="lang-en" name="blog-lang" value="en" checked>
+                <label for="lang-en"><i class="fa-solid fa-language"></i> English</label>
+                
+                <input type="radio" id="lang-bn" name="blog-lang" value="bn">
+                <label for="lang-bn" class="bengali-text">বাংলা (Bengali)</label>
             </div>
-        </aside>
+        </div>
 
-    </div>
+        <!-- Category Filters -->
+        <div class="blog-filters">
+            <button class="filter-btn active" data-filter="all">All Articles</button>
+            <button class="filter-btn" data-filter="mutual-funds">Mutual Funds</button>
+            <button class="filter-btn" data-filter="stock-market">Stock Market</button>
+            <button class="filter-btn" data-filter="personal-finance">Personal Finance</button>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="blog-grid" id="blogGrid">
+            
+            <!-- ===================== -->
+            <!-- 💥 ENGLISH BLOGS 💥 -->
+            <!-- ===================== -->
+
+            <!-- English Blog 1: Beyond the Noise -->
+            <div class="blog-card" data-category="stock-market" data-lang="en">
+                <div class="blog-img-box">
+                    <span class="category-badge">Stock Market</span>
+                    <img src="{{ url_for('static', filename='Beyond the Noise.png') }}" alt="Beyond the Noise">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 18, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 8 Min Read</span>
+                    </div>
+                    <h3 class="blog-title">Beyond the Noise: The Real Story Behind India’s Growth</h3>
+                    <div class="blog-desc">The Indian economy demonstrates remarkable resilience amidst global uncertainty. Let's debunk the recent GDP myths and understand why the market outlook remains firmly bullish despite crude oil and AI concerns.</div>
+                    <a href="/blog/beyond-the-noise" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- English Blog 2: The Underrated Strength -->
+            <div class="blog-card" data-category="stock-market" data-lang="en">
+                <div class="blog-img-box">
+                    <span class="category-badge">Stock Market</span>
+                    <img src="{{ url_for('static', filename='The Most Underrated Strength of the Indian Economy.png') }}" alt="Indian Economy" style="object-position: top;">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 05, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 6 Min Read</span>
+                    </div>
+                    <h3 class="blog-title">The Most Underrated Strength of the Indian Economy</h3>
+                    <div class="blog-desc">An economy that grows during favorable conditions is ordinary. An economy that continues to thrive despite repeated shocks is exceptional. Discover why resilience is India's biggest structural advantage today.</div>
+                    <a href="/blog/the-underrated-strength" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- English Blog 3: Compounding -->
+            <div class="blog-card" data-category="mutual-funds" data-lang="en">
+                <div class="blog-img-box">
+                    <span class="category-badge">Mutual Funds</span>
+                    <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?q=80&w=600&auto=format&fit=crop" alt="SIP Investment">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 15, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 4 Min Read</span>
+                    </div>
+                    <h3 class="blog-title">The Power of Compounding: Why Start Your SIP Early?</h3>
+                    <div class="blog-desc">Discover how starting a Systematic Investment Plan (SIP) in your 20s can exponentially grow your wealth over time utilizing the magic of compounding.</div>
+                    <a href="/blog/power-of-compounding" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- English Blog 4: Financial Plan -->
+            <div class="blog-card" data-category="personal-finance" data-lang="en">
+                <div class="blog-img-box">
+                    <span class="category-badge">Personal Finance</span>
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=600&auto=format&fit=crop" alt="Financial Planning">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Sep 05, 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 5 Min Read</span>
+                    </div>
+                    <h3 class="blog-title">How to Build a Risk-Proof Financial Plan for 2027</h3>
+                    <div class="blog-desc">A step-by-step guide to structuring your emergency funds, insurance, and retirement corpus to stay immune against economic uncertainties.</div>
+                    <a href="/blog/risk-proof-plan" class="read-more-btn">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- ===================== -->
+            <!-- 💥 BENGALI BLOGS 💥 -->
+            <!-- ===================== -->
+
+            <!-- Bengali Blog 1 -->
+            <div class="blog-card" data-category="mutual-funds" data-lang="bn">
+                <div class="blog-img-box">
+                    <span class="category-badge bengali-text">মিউচুয়াল ফান্ড</span>
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=600&auto=format&fit=crop" alt="Mutual Funds">
+                </div>
+                <div class="blog-content bengali-text">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> ১৮ সেপ্টেম্বর, ২০২৬</span>
+                        <span><i class="fa-regular fa-clock"></i> ৫ মিনিট পড়ুন</span>
+                    </div>
+                    <h3 class="blog-title bengali-text" style="font-size: 22px;">মিউচুয়াল ফান্ড কী এবং কেন এখানে বিনিয়োগ করা উচিত?</h3>
+                    <div class="blog-desc bengali-text" style="font-size: 16px;">মিউচুয়াল ফান্ড হল একটি ট্রাস্ট যা অনেক বিনিয়োগকারীর কাছ থেকে টাকা সংগ্রহ করে শেয়ার, বন্ড বা অন্যান্য সম্পদে বিনিয়োগ করে। জানুন এর সুবিধাগুলো কী কী।</div>
+                    <a href="#" class="read-more-btn bengali-text" style="font-size: 15px;">সম্পূর্ণ পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Bengali Blog 2 -->
+            <div class="blog-card" data-category="stock-market" data-lang="bn">
+                <div class="blog-img-box">
+                    <span class="category-badge bengali-text">শেয়ার বাজার</span>
+                    <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=600&auto=format&fit=crop" alt="Bull Market">
+                </div>
+                <div class="blog-content bengali-text">
+                    <div class="blog-meta">
+                        <span><i class="fa-regular fa-calendar"></i> ১৫ আগস্ট, ২০২৬</span>
+                        <span><i class="fa-regular fa-clock"></i> ৪ মিনিট পড়ুন</span>
+                    </div>
+                    <h3 class="blog-title bengali-text" style="font-size: 22px;">শেয়ার বাজারে নতুনদের জন্য ৫টি অত্যন্ত গুরুত্বপূর্ণ টিপস</h3>
+                    <div class="blog-desc bengali-text" style="font-size: 16px;">শেয়ার বাজারে বিনিয়োগ শুরু করার আগে এই পাঁচটি সাধারণ ভুল এড়িয়ে চলুন। দীর্ঘমেয়াদী বিনিয়োগে কীভাবে নিজের মূলধন সুরক্ষিত রাখবেন তা জেনে নিন।</div>
+                    <a href="#" class="read-more-btn bengali-text" style="font-size: 15px;">সম্পূর্ণ পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+        </div> <!-- End of Blog Grid -->
+    </div> <!-- End of Blog Container -->
+
+    <!-- Multi-Filter Logic Script (Language + Category) -->
+    <script>
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const langRadios = document.querySelectorAll('input[name="blog-lang"]');
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        let currentCategory = 'all';
+        let currentLang = 'en';
+
+        // Master function to filter by both Language and Category
+        function filterBlogs() {
+            blogCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                const cardLang = card.getAttribute('data-lang');
+
+                const categoryMatch = (currentCategory === 'all' || cardCategory === currentCategory);
+                const langMatch = (cardLang === currentLang);
+
+                if (categoryMatch && langMatch) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Event Listener for Categories
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.getAttribute('data-filter');
+                filterBlogs();
+            });
+        });
+
+        // Event Listener for Language Toggle
+        langRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                currentLang = e.target.value;
+                filterBlogs();
+            });
+        });
+
+        // Run filter initially on page load
+        filterBlogs();
+    </script>
 
 </body>
 </html>
