@@ -26,44 +26,57 @@
             overflow-x: hidden; 
         }
 
-        /* 💥 Royal Hero Image Section 💥 */
+        /* 💥 Royal Hero Image Section (Updated) 💥 */
         .hero-banner {
             width: 100%;
-            height: 450px;
+            height: 600px; /* উচ্চতা বাড়ানো হয়েছে যাতে ছবি পুরো দেখা যায় */
             position: relative;
-            background: linear-gradient(rgba(10, 25, 47, 0.4), rgba(10, 25, 47, 0.9)), url("{{ url_for('static', filename='Aishik6.png') }}") center 20% / cover no-repeat;
+            /* বামদিকে গাঢ় এবং ডানদিকে স্বচ্ছ গ্র্যাডিয়েন্ট ব্যবহার করা হয়েছে */
+            background: linear-gradient(to right, rgba(10, 25, 47, 0.95) 0%, rgba(10, 25, 47, 0.7) 40%, rgba(10, 25, 47, 0.1) 100%), url("{{ url_for('static', filename='Aishik6.png') }}") center right / cover no-repeat;
             border-bottom: 2px solid var(--gold);
             display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 40px;
+            align-items: center; /* মাঝ বরাবর রাখা হয়েছে */
+            justify-content: flex-start; /* বাম দিকে সরানো হয়েছে */
+            padding: 0 8%; /* বামদিক থেকে প্যাডিং */
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .hero-text-box {
-            text-align: center;
-            background: rgba(10, 25, 47, 0.85);
-            padding: 20px 40px;
-            border: 1px solid var(--gold);
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            text-align: left;
+            background: rgba(10, 25, 47, 0.75);
+            padding: 40px;
+            border-left: 5px solid var(--gold); /* শুধু বামদিকে সোনালি বর্ডার দেওয়া হয়েছে */
+            border-radius: 0 12px 12px 0;
+            backdrop-filter: blur(8px);
+            box-shadow: 10px 15px 35px rgba(0,0,0,0.4);
+            max-width: 550px;
         }
 
         .hero-text-box h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 38px;
+            font-size: 45px;
             color: var(--gold);
-            margin: 0 0 5px 0;
+            margin: 0 0 10px 0;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .hero-text-box p {
-            margin: 0;
+        .hero-text-box p.designation {
+            margin: 0 0 25px 0;
             color: #E0E0E0;
-            font-size: 16px;
+            font-size: 18px;
             letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .hero-text-box p.quote {
+            margin: 0;
+            color: #a0aec0;
+            font-size: 16px;
+            font-style: italic;
+            line-height: 1.7;
+            border-top: 1px dashed rgba(197, 160, 89, 0.4);
+            padding-top: 20px;
         }
 
         /* Contact Container Grid */
@@ -247,8 +260,19 @@
         .msg-error { background: rgba(255, 99, 71, 0.1); color: #ff6347; border: 1px solid rgba(255, 99, 71, 0.3); }
 
         @media (max-width: 992px) {
-            .hero-banner { height: 350px; }
-            .hero-text-box h1 { font-size: 28px; }
+            .hero-banner { 
+                height: 400px; 
+                justify-content: center;
+                background-position: center top; 
+            }
+            .hero-text-box {
+                margin: 0 20px;
+                text-align: center;
+                border-left: none;
+                border-top: 5px solid var(--gold);
+                border-radius: 0 0 12px 12px;
+            }
+            .hero-text-box h1 { font-size: 32px; }
             .contact-container { grid-template-columns: 1fr; }
             .map-container { height: 350px; }
         }
@@ -263,7 +287,8 @@
     <div class="hero-banner">
         <div class="hero-text-box">
             <h1>Aishik Sarkar</h1>
-            <p>Mutual Fund Distributor & Financial Expert</p>
+            <p class="designation">Mutual Fund Distributor & Financial Service Partner</p>
+            <p class="quote">"A goal without a plan is just a wish. Let us structure your wealth and build a risk-proof financial future together."</p>
         </div>
     </div>
 
@@ -347,21 +372,18 @@
     <!-- AJAX Form Submission Script -->
     <script>
         document.getElementById('connectForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent page reload
+            e.preventDefault(); 
             
             const form = this;
             const submitBtn = document.getElementById('submitBtn');
             const msgBox = document.getElementById('responseMessage');
             
-            // UI update during loading
             submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-circle-notch fa-spin"></i>';
             submitBtn.style.opacity = '0.8';
             submitBtn.disabled = true;
             
-            // Gather form data
             const formData = new FormData(form);
             
-            // Send to Flask Backend (/submit_form API)
             fetch('/submit_form', {
                 method: 'POST',
                 body: formData
@@ -372,7 +394,7 @@
                 if(data.status === 'success') {
                     msgBox.className = 'msg-success';
                     msgBox.innerHTML = '<i class="fa-solid fa-check-circle"></i> ' + data.message;
-                    form.reset(); // Clear form fields
+                    form.reset(); 
                 } else {
                     msgBox.className = 'msg-error';
                     msgBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error: ' + data.message;
@@ -385,12 +407,10 @@
                 console.error('Error:', error);
             })
             .finally(() => {
-                // Restore button state
                 submitBtn.innerHTML = 'Send Message <i class="fa-regular fa-paper-plane"></i>';
                 submitBtn.style.opacity = '1';
                 submitBtn.disabled = false;
                 
-                // Hide message after 5 seconds
                 setTimeout(() => {
                     msgBox.style.display = 'none';
                 }, 5000);
