@@ -10,7 +10,210 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        :root {<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | FinXHorizon</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
         :root {
+            --navy-blue: #0A192F;
+            --gold: #C5A059;
+            --text-light: #E0E0E0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--navy-blue);
+            color: var(--text-light);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* 💥 Gallery Header 💥 */
+        .gallery-header {
+            text-align: center;
+            padding: 80px 20px 40px;
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 1)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop') center/cover;
+            border-bottom: 2px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .gallery-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 45px;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .gallery-subtitle {
+            color: #a0aec0;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* 💥 Gallery Grid Layout 💥 */
+        .gallery-container {
+            max-width: 1300px;
+            margin: 60px auto 100px;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            height: 260px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1); /* Hover Zoom Effect */
+        }
+
+        /* 💥 Hover Overlay Info 💥 */
+        .gallery-overlay {
+            position: absolute;
+            bottom: -100%; /* Hidden by default */
+            left: 0;
+            width: 100%;
+            padding: 30px 20px 20px;
+            background: linear-gradient(transparent, rgba(10, 25, 47, 0.95) 40%);
+            box-sizing: border-box;
+            transition: bottom 0.4s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            bottom: 0; /* Slides up on hover */
+        }
+
+        .overlay-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            margin: 0 0 5px 0;
+            font-size: 22px;
+        }
+
+        .overlay-date {
+            font-size: 13px;
+            color: #8892b0;
+            margin-bottom: 8px;
+        }
+        
+        .overlay-date i {
+            color: var(--gold);
+            margin-right: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery-title { font-size: 35px; }
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            .gallery-item { height: 220px; }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <!-- Gallery Header Section -->
+    <header class="gallery-header">
+        <h1 class="gallery-title">Our Gallery</h1>
+        <p class="gallery-subtitle">A glimpse into our professional journey, corporate events, and the milestones that define our excellence.</p>
+    </header>
+
+    <!-- Gallery Grid Section -->
+    <div class="gallery-container">
+
+        <!-- Gallery Item 1 (UTI Photo) -->
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='uti photo.png') }}" alt="UTI Event" class="gallery-img">
+            <div class="gallery-overlay">
+                <div class="overlay-date"><i class="fa-regular fa-calendar"></i> August 2026</div>
+                <h3 class="overlay-title">UTI Mutual Fund Event</h3>
+            </div>
+        </div>
+
+        <!-- Gallery Item 2 (20241120_140900) -->
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='20241120_140900.png') }}" alt="Corporate Meeting" class="gallery-img">
+            <div class="gallery-overlay">
+                <div class="overlay-date"><i class="fa-regular fa-calendar"></i> November 2024</div>
+                <h3 class="overlay-title">Corporate Meeting</h3>
+            </div>
+        </div>
+
+        <!-- Gallery Item 3 (UTI Photo Duplicate) -->
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='uti photo.png') }}" alt="UTI Event" class="gallery-img">
+            <div class="gallery-overlay">
+                <div class="overlay-date"><i class="fa-regular fa-calendar"></i> August 2026</div>
+                <h3 class="overlay-title">Client Wealth Seminar</h3>
+            </div>
+        </div>
+
+        <!-- Gallery Item 4 (20241120_140900 Duplicate) -->
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='20241120_140900.png') }}" alt="Corporate Meeting" class="gallery-img">
+            <div class="gallery-overlay">
+                <div class="overlay-date"><i class="fa-regular fa-calendar"></i> November 2024</div>
+                <h3 class="overlay-title">Market Analysis Session</h3>
+            </div>
+        </div>
+
+        <!-- Gallery Item 5 (UTI Photo Duplicate) -->
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='uti photo.png') }}" alt="UTI Event" class="gallery-img">
+            <div class="gallery-overlay">
+                <div class="overlay-date"><i class="fa-regular fa-calendar"></i> August 2026</div>
+                <h3 class="overlay-title">Excellence Award</h3>
+            </div>
+        </div>
+
+        <!-- Gallery Item 6 (20241120_140900 Duplicate) -->
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='20241120_140900.png') }}" alt="Corporate Meeting" class="gallery-img">
+            <div class="gallery-overlay">
+                <div class="overlay-date"><i class="fa-regular fa-calendar"></i> November 2024</div>
+                <h3 class="overlay-title">Office Workspace</h3>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
             --navy-blue: #0A192F;
             --gold: #C5A059;
             --text-light: #E0E0E0;
