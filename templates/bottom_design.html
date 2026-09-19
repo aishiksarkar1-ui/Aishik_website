@@ -8,11 +8,13 @@
         border-top: 1px solid rgba(197, 160, 89, 0.2);
     }
 
-    /* 💥 CTA Section (Royal Farman Style) 💥 */
+    /* 💥 CTA Section (Royal Farman Style with Texture) 💥 */
     .footer-cta {
         padding: 70px 20px;
         text-align: center;
-        background: linear-gradient(rgba(249, 243, 233, 0.85), rgba(249, 243, 233, 0.85)), url('https://www.transparenttextures.com/patterns/old-mathematics.png');
+        /* নতুন রয়্যাল প্যাটার্ন ও ক্রিম ওভারলে */
+        background: linear-gradient(rgba(249, 243, 233, 0.90), rgba(249, 243, 233, 0.90)), url("{{ url_for('static', filename='image_958110.jpg') }}");
+        background-size: 250px; /* প্যাটার্নটি যাতে খুব বড় না দেখায় */
         background-color: #f9f3e9;
         border-top: 3px solid var(--gold, #C5A059);
         border-bottom: 3px solid var(--gold, #C5A059);
