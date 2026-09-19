@@ -1,0 +1,210 @@
+<style>
+    /* 💥 Footer Base Styles 💥 */
+    .custom-footer-wrapper {
+        font-family: 'Lato', sans-serif;
+        background-color: var(--navy-blue, #0A192F);
+        color: #a0aec0;
+        line-height: 1.8;
+        border-top: 1px solid rgba(197, 160, 89, 0.2);
+    }
+
+    /* 💥 CTA Section 💥 */
+    .footer-cta {
+        padding: 60px 20px;
+        text-align: center;
+        background: linear-gradient(rgba(10, 25, 47, 0.95), rgba(10, 25, 47, 0.95)), url('https://www.transparenttextures.com/patterns/cubes.png');
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .cta-badge {
+        display: inline-block;
+        border: 1px solid var(--gold, #C5A059);
+        border-radius: 20px;
+        padding: 5px 20px;
+        color: #E0E0E0;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    .cta-title {
+        font-family: 'Playfair Display', serif;
+        color: #ffffff;
+        font-size: 32px;
+        margin: 0 0 15px 0;
+        text-transform: uppercase;
+    }
+    .cta-desc {
+        font-size: 16px;
+        margin: 0 0 30px 0;
+    }
+    .cta-btn {
+        background: var(--gold, #C5A059);
+        color: #0A192F;
+        font-weight: bold;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: all 0.3s;
+        display: inline-block;
+    }
+    .cta-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4);
+    }
+
+    /* 💥 Footer Links Section 💥 */
+    .footer-links-section {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 50px 5%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+    }
+    .footer-column h3 {
+        color: #ffffff;
+        font-family: 'Playfair Display', serif;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .footer-column ul li {
+        margin-bottom: 12px;
+    }
+    .footer-column ul li a {
+        color: #a0aec0;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    .footer-column ul li a:hover {
+        color: var(--gold, #C5A059);
+    }
+    .footer-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    .footer-contact-item i {
+        color: var(--navy-blue, #0A192F);
+        background: var(--gold, #C5A059);
+        padding: 10px;
+        border-radius: 50%;
+        font-size: 14px;
+        width: 15px;
+        height: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 💥 Disclaimer Section 💥 */
+    .footer-disclaimer {
+        background: #061124;
+        padding: 40px 5%;
+        font-size: 12px;
+        color: #8892b0;
+        line-height: 1.8;
+        border-top: 1px dashed rgba(197, 160, 89, 0.2);
+    }
+    .disclaimer-content {
+        max-width: 1300px;
+        margin: 0 auto;
+        text-align: justify;
+    }
+    .disclaimer-content p {
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+    .disclaimer-content strong {
+        color: var(--gold, #C5A059);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .cta-title { font-size: 26px; }
+        .footer-links-section {
+            grid-template-columns: 1fr;
+            text-align: left;
+        }
+    }
+</style>
+
+<div class="custom-footer-wrapper">
+    
+    <!-- 💥 Call to Action (CTA) & WhatsApp 💥 -->
+    <div class="footer-cta">
+        <div class="cta-badge">
+            <i class="fa-solid fa-circle" style="color: #4caf50; font-size: 10px; margin-right: 5px;"></i> Talk To A Real Expert
+        </div>
+        <h2 class="cta-title">Still Confused? Get Clear Answers in Minutes</h2>
+        <p class="cta-desc">No bots. No pressure. Just honest, human guidance tailored to your financial goals.</p>
+        
+        <a href="https://wa.me/918945923463?text=Hi%20Aishik,%20I%20would%20like%20to%20schedule%20a%20free%20call." target="_blank" class="cta-btn">
+            <i class="fa-brands fa-whatsapp" style="font-size: 18px; margin-right: 8px;"></i> Schedule a Free Call
+        </a>
+    </div>
+
+    <!-- 💥 Footer Links 💥 -->
+    <div class="footer-links-section">
+        <!-- Column 1: Services -->
+        <div class="footer-column">
+            <h3>Services</h3>
+            <ul>
+                <li><a href="#">Mutual Funds</a></li>
+                <li><a href="#">Fixed Deposits</a></li>
+                <li><a href="#">Life Insurance</a></li>
+                <li><a href="#">General Insurance</a></li>
+                <li><a href="#">Health Insurance</a></li>
+                <li><a href="#">Tax Consultancy</a></li>
+                <li><a href="#">Loans</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/blogs">Blogs</a></li>
+                <li><a href="/calculator">Financial Calculator</a></li>
+                <li><a href="/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/commission-disclosures">Commission Disclosures</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 3: Contact Us -->
+        <div class="footer-column">
+            <h3>Contact Us</h3>
+            <div class="footer-contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <span>+91 8945923463</span>
+            </div>
+            <div class="footer-contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <span>finxhorizon@gmail.com</span>
+            </div>
+            <div class="footer-contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Old Market, Near Jharna Hotel,<br>Maynaguri, Jalpaiguri, West Bengal,<br>Pin- 735224</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 💥 Disclaimer Section 💥 -->
+    <div class="footer-disclaimer">
+        <div class="disclaimer-content">
+            <p>
+                <strong>Disclaimer:</strong> Mutual Fund investments are subject to market risks, read all scheme-related documents carefully. The NAVs of the schemes may go up or down depending upon the factors and forces affecting the securities market including the fluctuations in the interest rates. The past performance of the mutual funds is not necessarily indicative of future performance of the schemes. The Mutual Fund is not guaranteeing or assuring any dividend under any of the schemes and the same is subject to the availability and adequacy of distributable surplus.
+            </p>
+            <p style="margin-bottom: 0;">
+                <strong>Statutory Declaration:</strong> I am a registered Mutual Fund Distributor (ARN Holder) operating under FinXHorizon Private Limited and an authorized person of Axis Securities. I am not a SEBI Registered Research Analyst. All content provided on this website is solely for educational and awareness purposes. We do not suggest or recommend investing in any specific stock or mutual fund through this page. Kindly consult with your Financial Advisor before making any investment decision. All news and third-party content available here are outsourced, and we are not liable for any news shown here. Investments in the securities market are subject to market risks; read all the related documents carefully before investing.
+            </p>
+        </div>
+    </div>
+</div>
