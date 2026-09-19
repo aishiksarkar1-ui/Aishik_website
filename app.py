@@ -84,6 +84,10 @@ def power_of_compounding():
 def risk_proof_plan():
     return render_template('risk_proof_plan.html')
 
+@app.route('/gallery')
+def gallery():
+    return render_template('gallery.html')
+
 # লাইভ টিকার API (উভয় ডেটা একসাথে পাঠাবে)
 @app.route('/api/live-ticker')
 def live_ticker_api():
