@@ -483,7 +483,7 @@
 
                     <!-- Side Card 1 -->
                     <a href="/blog/beyond-the-noise" class="side-card">
-                        <img src="https://via.placeholder.com/150" alt="Blog 1" class="side-card-img">
+                        <img src="{{ url_for('static', filename='Beyond the Noise.png') }}" alt="Beyond the Noise" class="side-card-img">
                         <div class="side-card-content">
                             <h4 class="side-card-title">Beyond the Noise: The Real Story Behind India’s Growth</h4>
                             <div class="side-card-meta">
@@ -495,7 +495,7 @@
 
                     <!-- Side Card 2 -->
                     <a href="/blog/the-underrated-strength" class="side-card">
-                        <img src="https://via.placeholder.com/150" alt="Blog 2" class="side-card-img">
+                        <img src="{{ url_for('static', filename='The Most Underrated Strength of the Indian Economy.png') }}" alt="Indian Economy" class="side-card-img" style="object-position: top;">
                         <div class="side-card-content">
                             <h4 class="side-card-title">The Most Underrated Strength of the Indian Economy</h4>
                             <div class="side-card-meta">
@@ -507,7 +507,7 @@
 
                     <!-- Side Card 3 -->
                     <a href="/blog/power-of-compounding" class="side-card">
-                        <img src="https://via.placeholder.com/150" alt="Blog 3" class="side-card-img">
+                        <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?q=80&w=600&auto=format&fit=crop" alt="SIP Investment" class="side-card-img">
                         <div class="side-card-content">
                             <h4 class="side-card-title">The Power of Compounding: Why Start Your SIP Early?</h4>
                             <div class="side-card-meta">
@@ -519,7 +519,7 @@
 
                     <!-- Side Card 4 -->
                     <a href="/blog/risk-proof-plan" class="side-card">
-                        <img src="https://via.placeholder.com/150" alt="Blog 4" class="side-card-img">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=600&auto=format&fit=crop" alt="Financial Planning" class="side-card-img">
                         <div class="side-card-content">
                             <h4 class="side-card-title">How to Build a Risk-Proof Financial Plan for 2027</h4>
                             <div class="side-card-meta">
@@ -529,10 +529,10 @@
                         </div>
                     </a>
                     
-                    <!-- 💥 Infinite Scroll এর জন্য কার্ডগুলো আরেকবার রিপিট করতে হবে 💥 -->
+                    <!-- 💥 Infinite Scroll এর জন্য প্রথম দুটি কার্ড ডুপ্লিকেট করা হলো 💥 -->
                     <!-- Side Card 1 (Duplicate) -->
                     <a href="/blog/beyond-the-noise" class="side-card">
-                        <img src="https://via.placeholder.com/150" alt="Blog 1" class="side-card-img">
+                        <img src="{{ url_for('static', filename='Beyond the Noise.png') }}" alt="Beyond the Noise" class="side-card-img">
                         <div class="side-card-content">
                             <h4 class="side-card-title">Beyond the Noise: The Real Story Behind India’s Growth</h4>
                             <div class="side-card-meta">
@@ -541,9 +541,10 @@
                             </div>
                         </div>
                     </a>
+                    
                     <!-- Side Card 2 (Duplicate) -->
                     <a href="/blog/the-underrated-strength" class="side-card">
-                        <img src="https://via.placeholder.com/150" alt="Blog 2" class="side-card-img">
+                        <img src="{{ url_for('static', filename='The Most Underrated Strength of the Indian Economy.png') }}" alt="Indian Economy" class="side-card-img" style="object-position: top;">
                         <div class="side-card-content">
                             <h4 class="side-card-title">The Most Underrated Strength of the Indian Economy</h4>
                             <div class="side-card-meta">
