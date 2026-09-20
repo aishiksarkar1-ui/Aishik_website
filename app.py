@@ -87,6 +87,10 @@ def risk_proof_plan():
 @app.route('/gallery')
 def gallery():
     return render_template('gallery.html')
+# ati ai code er sathe samporko nai..
+@app.route('/portfolio/sutapa')
+def sutapa_portfolio():
+    return render_template('client-portfolios/sutapa-portfolio.html')
 
 # লাইভ টিকার API (উভয় ডেটা একসাথে পাঠাবে)
 @app.route('/api/live-ticker')
