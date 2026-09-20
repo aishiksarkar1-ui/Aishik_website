@@ -8,8 +8,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
         
         :root {
-            --primary: #1e3a8a; /* Deep Blue */
-            --secondary: #0ea5e9; /* Light Blue */
+            --primary: #1e3a8a;
+            --secondary: #0ea5e9;
             --bg-color: #f8fafc;
             --text-main: #1e293b;
             --text-muted: #64748b;
@@ -75,27 +75,56 @@
             background: white;
             border-radius: 16px;
             padding: 30px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             border-top: 5px solid;
+            position: relative;
         }
 
-        .opt-1 { border-color: #3b82f6; } /* Blue Theme */
-        .opt-2 { border-color: #10b981; } /* Emerald Theme */
-        .opt-3 { border-color: #f59e0b; } /* Orange Theme */
+        .opt-1 { border-color: #3b82f6; }
+        .opt-2 { border-color: #10b981; }
+        .opt-3 { border-color: #f59e0b; }
+
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            gap: 10px;
+        }
 
         .option-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
-            margin-top: 0;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin: 0;
         }
         .opt-1-title { color: #3b82f6; }
         .opt-2-title { color: #10b981; }
         .opt-3-title { color: #f59e0b; }
+
+        /* Custom Radio Selector */
+        .select-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f1f5f9;
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 1px solid #cbd5e1;
+        }
+        .select-label:hover {
+            background: #e2e8f0;
+        }
+        .select-label input[type="radio"] {
+            accent-color: #2563eb;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
 
         /* Grid for Cards */
         .grid {
@@ -158,12 +187,43 @@
             border-left: 5px solid #f59e0b;
             padding: 20px;
             border-radius: 8px;
-            margin-top: 40px;
+            margin-top: 30px;
             font-size: 16px;
             color: #451a03;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             text-align: center;
             font-weight: 600;
+        }
+
+        /* Action Panel */
+        .action-container {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 2px dashed #cbd5e1;
+        }
+        .action-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 16px 36px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: inherit;
+        }
+        .action-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
         }
 
         /* Footer */
@@ -181,6 +241,7 @@
             .client-name { font-size: 26px; }
             .investment-amount { font-size: 18px; }
             .option-section { padding: 20px; }
+            .option-header { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -194,8 +255,8 @@
     <div class="header-section">
         <div class="client-name">শ্রদ্ধেয় সুতপা বন্দো মহাশয়া,</div>
         <div class="investment-amount">মোট প্রস্তাবিত বিনিয়োগ: ₹৬,০০,০০০</div>
-        <p style="color: var(--text-muted); margin-top: 15px; max-width: 600px; margin-left: auto; margin-right: auto;">
-            বর্তমান বাজার পরিস্থিতি এবং আপনার লক্ষ্যের কথা মাথায় রেখে, নিচে তিনটি আলাদা পোর্টফোলিও অপশন তৈরি করা হয়েছে। আপনি আপনার পছন্দমতো যেকোনো একটি বেছে নিতে পারেন।
+        <p style="color: var(--text-muted); margin-top: 15px; max-width: 650px; margin-left: auto; margin-right: auto;">
+            বর্তমান বাজার পরিস্থিতি এবং আপনার লক্ষ্যের কথা মাথায় রেখে, নিচে তিনটি আলাদা পোর্টফোলিও অপশন তৈরি করা হয়েছে। আপনার পছন্দের অপশনটি টিক দিয়ে নিচের বাটনে ক্লিক করে আমাদের সরাসরি জানিয়ে দিতে পারেন।
         </p>
     </div>
 
@@ -203,11 +264,16 @@
         
         <!-- Option 1 -->
         <div class="option-section opt-1">
-            <h2 class="option-title opt-1-title">অপশন ১: ব্যালেন্সড গ্রোথ ও ভ্যালু পোর্টফোলিও (৩টি ফান্ড)</h2>
+            <div class="option-header">
+                <h2 class="option-title opt-1-title">অপশন ১: ব্যালেন্সড গ্রোথ ও ভ্যালু পোর্টফোলিও (৩টি ফান্ড)</h2>
+                <label class="select-label">
+                    <input type="radio" name="portfolioOption" value="অপশন ১ (ব্যালেন্সড গ্রোথ ও ভ্যালু পোর্টফোলিও)"> এই অপশনটি নির্বাচন করুন
+                </label>
+            </div>
             <div class="grid">
                 <div class="card grad-blue">
                     <h3>Bandhan Contra Fund</h3>
-                    <p><strong>কেন এই ফান্ড?</strong> এটি মার্কেটে একটি কন্ট্রারিয়ান ভিউ রাখে এবং ভ্যালু ইনভেস্টিং পদ্ধতি অনুসরণ করে। এছাড়াও, এই ফান্ডটি কিছুদিন আগেই নতুন NFO হিসেবে লঞ্চ করেছে এবং বর্তমানে এর NAV ১০ টাকার নিচে রয়েছে, যা এটিকে এই মুহূর্তে বিনিয়োগের জন্য অত্যন্ত আকর্ষণীয় করে তুলেছে।</p>
+                    <p><strong>কেন এই ফান্ড?</strong> এটি মার্কেটে একটি কন্ট্রারিয়ান ভিউ রাখে এবং ভ্যালু ইনভেস্টিং পদ্ধতি অনুসরণ করে। এছাড়াও, এই ফান্ডটি কিছুদিন আগেই নতুন NFO হিসেবে লঞ্চ করেছে এবং বর্তমানে এর NAV 10 টাকার নিচে রয়েছে, যা এটিকে এই মুহূর্তে বিনিয়োগের জন্য অত্যন্ত আকর্ষণীয় করে তুলেছে।</p>
                 </div>
                 <div class="card grad-purple">
                     <h3>ICICI Prudential Multi Asset Allocation Fund of Fund</h3>
@@ -222,7 +288,12 @@
 
         <!-- Option 2 -->
         <div class="option-section opt-2">
-            <h2 class="option-title opt-2-title">অপশন ২: ডাইনামিক হেজ পোর্টফোলিও (২টি ফান্ড)</h2>
+            <div class="option-header">
+                <h2 class="option-title opt-2-title">অপশন ২: ডাইনামিক হেজ পোর্টফোলিও (২টি ফান্ড)</h2>
+                <label class="select-label">
+                    <input type="radio" name="portfolioOption" value="অপশন ২ (ডাইনামিক হেজ পোর্টফোলিও)"> এই অপশনটি নির্বাচন করুন
+                </label>
+            </div>
             <div class="grid">
                 <div class="card grad-emerald">
                     <span class="allocation-tag">বিনিয়োগ: ₹৩,০০,০০০</span>
@@ -232,14 +303,19 @@
                 <div class="card grad-orange">
                     <span class="allocation-tag">বিনিয়োগ: ₹৩,০০,০০০</span>
                     <h3>HDFC Value Fund</h3>
-                    <p><strong>কেন এই ফান্ড?</strong> যখন মার্কেটে ইন্টারেস্ট রেট বাড়ার সম্ভাবনা থাকে, তখন সাধারণত গ্রোথ সেক্টরের তুলনায় ভ্যালু সেক্টর খুব ভালো পারফর্ম করে। বর্তমানে গ্লোবাল সিনারিওর জন্য আমেরিকার ফেড রেট (Fed Rate) হাইক করতে পারে। এর ফলে ইন্ডিয়াতে রেট কাট তো হবেই না, বরং রেট স্টেবিলিটি থাকতে পারে বা সামান্য রেট হাইকও হতে পারে। এই ম্যাক্রো-ইকোনমিক পরিস্থিতিতে ভ্যালু সেক্টর সামনে খুব ভালো পারফর্ম করতে পারে, তাই এই ফান্ডটি নির্বাচন করা হয়েছে।</p>
+                    <p><strong>কেন এই ফান্ড?</strong> যখন মার্কেটে ইন্টারেস্ট রেট বাড়ার সম্ভাবনা থাকে, তখন সাধারণত গ্রোথ সেক্টরের তুলনায় ভ্যালু সেক্টর খুব ভালো পারফর্ম করে। বর্তমানে গ্লোবাল সিনারিওর জন্য আমেরিকার ফেড রেট হাইক করতে পারে। এর ফলে ইন্ডিয়াতে রেট কাট তো হবেই না, বরং রেট স্টেবিলিটি থাকতে পারে বা সামান্য রেট হাইকও হতে পারে। এই পরিস্থিতিতে ভ্যালু সেক্টর সামনে খুব ভালো পারফর্ম করতে পারে, তাই এই ফান্ডটি নির্বাচন করা হয়েছে।</p>
                 </div>
             </div>
         </div>
 
         <!-- Option 3 -->
         <div class="option-section opt-3">
-            <h2 class="option-title opt-3-title">অপশন ৩: হাই-কনভিকশন আলফা পোর্টফোলিও (৩টি ফান্ড)</h2>
+            <div class="option-header">
+                <h2 class="option-title opt-3-title">অপশন ৩: হাই-কনভিকশন আলফা পোর্টফোলিও (৩টি ফান্ড)</h2>
+                <label class="select-label">
+                    <input type="radio" name="portfolioOption" value="অপশন ৩ (হাই-কনভিকশন আলফা পোর্টফোলিও)"> এই অপশনটি নির্বাচন করুন
+                </label>
+            </div>
             <div class="grid">
                 <div class="card grad-red">
                     <h3>SBI Focused Equity Fund</h3>
@@ -258,7 +334,16 @@
 
         <!-- Closing Note Section -->
         <div class="closing-note">
-            আপনার স্টক পোর্টফোলিও যাতে প্রপারভাবে ডাইভার্সিফাইড হয়, ঠিক সেই কারণেই প্রতিটি অপশনে সম্পূর্ণ আলাদা আলাদা স্ট্র্যাটেজির ফান্ডগুলো সিলেক্ট করা হয়েছে। আপনার পছন্দ অনুযায়ী উপরের যেকোনো একটি অপশন বেছে নিলে, আমরা পরবর্তীকালে আপনার কনসেন্ট (সম্মতি) নিয়ে ইনভেস্টমেন্ট প্রসেড করতে পারি।
+            আপনার স্টক পোর্টফোলিও যাতে প্রপারভাবে ডাইভার্সিফাইড হয়, ঠিক সেই কারণেই প্রতিটি অপশনে সম্পূর্ণ আলাদা আলাদা স্ট্র্যাটেজির ফান্ডগুলো সিলেক্ট করা হয়েছে। আপনার পছন্দ অনুযায়ী যেকোনো একটি অপশন নির্বাচন করে নিচে সাবমিট করুন।
+        </div>
+
+        <!-- Submit to WhatsApp Section -->
+        <div class="action-container">
+            <h3 style="margin-top: 0; color: var(--primary); font-size: 20px;">আপনার পছন্দের অপশনটি নির্বাচন করেছেন?</h3>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">উপরের যেকোনো একটি অপশনে টিক মার্ক দিয়ে নিচের বাটনে ক্লিক করুন।</p>
+            <button class="action-btn" onclick="sendToWhatsApp()">
+                <span>📲 হোয়াটসঅ্যাপে পছন্দ কনফার্ম করুন</span>
+            </button>
         </div>
 
     </div>
@@ -267,6 +352,32 @@
         <p><strong>FinXHorizon Private Limited</strong> | AMFI Registered Mutual Fund Distributor</p>
         <p><em>Mutual Fund investments are subject to market risks, read all scheme related documents carefully. The portfolios suggested above are for illustrative purposes and based on current market views. Past performance is not an indicator of future returns.</em></p>
     </div>
+
+    <script>
+        function sendToWhatsApp() {
+            // আপনার নিজস্ব হোয়াটসঅ্যাপ নম্বরটি এখানে লিখুন (দেশের কোড 91 সহ)
+            const advisorPhoneNumber = "918906739481"; 
+
+            // ক্লায়েন্ট কোন অপশন সিলেক্ট করেছেন তা চেক করা
+            const selectedOption = document.querySelector('input[name="portfolioOption"]:checked');
+
+            if (!selectedOption) {
+                alert("অনুগ্রহ করে উপরের যেকোনো একটি পোর্টফোলিও অপশন নির্বাচন করুন!");
+                return;
+            }
+
+            const chosenValue = selectedOption.value;
+
+            // তৈরি হওয়া মেসেজের খসড়া
+            const message = `নমস্কার FinXHorizon টিম,\n\nআমি সুতপা বন্দো। আমি আপনাদের প্রস্তাবিত ₹৬,০০,০০০ বিনিয়োগের জন্য নিম্নোক্ত অপশনটি বেছে নিয়েছি:\n\n👉 *${chosenValue}*\n\nঅনুগ্রহ করে পরবর্তী ইনভেস্টমেন্ট প্রক্রিয়া শুরুর জন্য আমার সাথে যোগাযোগ করুন। ধন্যবাদ!`;
+
+            // WhatsApp Web/App রিডাইরেক্ট লিঙ্ক তৈরি
+            const whatsappUrl = `https://wa.me/${advisorPhoneNumber}?text=${encodeURIComponent(message)}`;
+
+            // নতুন ট্যাবে হোয়াটসঅ্যাপ ওপেন করা
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
 
 </body>
 </html>
