@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Portfolio - Sutapa Bando | FinXHorizon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+        
+        :root {
+            --primary: #1e3a8a; /* Deep Blue */
+            --secondary: #0ea5e9; /* Light Blue */
+            --bg-color: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            padding: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .navbar p {
+            margin: 5px 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+        .client-name {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .investment-amount {
+            background: #dbeafe;
+            color: var(--primary);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 20px;
+            border: 2px solid var(--secondary);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Options Wrapper */
+        .option-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-top: 5px solid;
+        }
+
+        .opt-1 { border-color: #3b82f6; } /* Blue Theme */
+        .opt-2 { border-color: #10b981; } /* Emerald Theme */
+        .opt-3 { border-color: #f59e0b; } /* Orange Theme */
+
+        .option-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .opt-1-title { color: #3b82f6; }
+        .opt-2-title { color: #10b981; }
+        .opt-3-title { color: #f59e0b; }
+
+        /* Grid for Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Fund Cards */
+        .card {
+            border-radius: 12px;
+            padding: 25px;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            margin: 0 0 15px;
+            font-size: 20px;
+            line-height: 1.4;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 15px;
+            opacity: 0.95;
+        }
+
+        .allocation-tag {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Gradients */
+        .grad-blue { background: linear-gradient(135deg, #2563eb, #60a5fa); }
+        .grad-purple { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+        .grad-emerald { background: linear-gradient(135deg, #059669, #34d399); }
+        .grad-orange { background: linear-gradient(135deg, #ea580c, #fb923c); }
+        .grad-red { background: linear-gradient(135deg, #dc2626, #f87171); }
+        .grad-teal { background: linear-gradient(135deg, #0d9488, #2dd4bf); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #1e293b;
+            color: #94a3b8;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+        .footer strong { color: white; }
+
+        @media (max-width: 768px) {
+            .client-name { font-size: 26px; }
+            .investment-amount { font-size: 18px; }
+            .option-section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>FinXHorizon Private Limited</h1>
+        <p>Strategic Wealth Management & Portfolio Advisory</p>
+    </div>
+
+    <div class="header-section">
+        <div class="client-name">শ্রদ্ধেয় সুতপা বন্দো মহাশয়া,</div>
+        <div class="investment-amount">মোট প্রস্তাবিত বিনিয়োগ: ₹৬,০০,০০০</div>
+        <p style="color: var(--text-muted); margin-top: 15px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            বর্তমান বাজার পরিস্থিতি এবং আপনার লক্ষ্যের কথা মাথায় রেখে, নিচে তিনটি আলাদা পোর্টফোলিও অপশন তৈরি করা হয়েছে। আপনি আপনার পছন্দমতো যেকোনো একটি বেছে নিতে পারেন।
+        </p>
+    </div>
+
+    <div class="container">
+        
+        <!-- Option 1 -->
+        <div class="option-section opt-1">
+            <h2 class="option-title opt-1-title">অপশন ১: ব্যালেন্সড গ্রোথ ও ভ্যালু পোর্টফোলিও (৩টি ফান্ড)</h2>
+            <div class="grid">
+                <div class="card grad-blue">
+                    <h3>Bandhan Contra Fund</h3>
+                    <p><strong>কেন এই ফান্ড?</strong> এটি মার্কেটে একটি কন্ট্রারিয়ান ভিউ (বিপরীতমুখী দৃষ্টিভঙ্গি) রাখে এবং ভ্যালু ইনভেস্টিং পদ্ধতি অনুসরণ করে। যেসব স্টক বর্তমানে আন্ডারভ্যালুড কিন্তু ভবিষ্যতে বাড়ার সম্ভাবনা আছে, সেখানে বিনিয়োগ করে।</p>
+                </div>
+                <div class="card grad-purple">
+                    <h3>ICICI Prudential Multi Asset Allocation Fund of Fund</h3>
+                    <p><strong>কেন এই ফান্ড?</strong> এই ফান্ডটিতে গোল্ড (সোনা), ডেট (বন্ড) এবং ইকুইটি—সবকিছুর মিশ্রণ রয়েছে। এর মূল উদ্দেশ্য হলো মার্কেট যখন নিচে নামবে, তখন ক্লায়েন্টের পোর্টফোলিওকে বড় ধরনের পতনের হাত থেকে বাঁচানো (Downside protection)।</p>
+                </div>
+                <div class="card grad-teal">
+                    <h3>HDFC Flexi Cap Fund</h3>
+                    <p><strong>কেন এই ফান্ড?</strong> বর্তমানে এই ফান্ডটিতে ব্যাংক এবং আইটি (IT) সেক্টরের ভালো অ্যালোকেশন রয়েছে। এই দুটি সেক্টর দীর্ঘদিন ধরে আন্ডারপারফর্ম করেছে, তাই ভবিষ্যতে এখান থেকে খুব ভালো রিটার্ন আসার সম্ভাবনা রয়েছে।</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Option 2 -->
+        <div class="option-section opt-2">
+            <h2 class="option-title opt-2-title">অপশন ২: ডাইনামিক হেজ পোর্টফোলিও (২টি ফান্ড)</h2>
+            <div class="grid">
+                <div class="card grad-emerald">
+                    <span class="allocation-tag">বিনিয়োগ: ₹৩,০০,০০০</span>
+                    <h3>ICICI Prudential Multi Asset Allocation Fund of Fund</h3>
+                    <p><strong>কেন এই ফান্ড?</strong> সোনা, ডেট এবং ইকুইটির সংমিশ্রণ পোর্টফোলিওকে চরম অস্থিরতার হাত থেকে রক্ষা করবে এবং একটি স্থিতিশীল রিটার্ন দিতে সাহায্য করবে।</p>
+                </div>
+                <div class="card grad-orange">
+                    <span class="allocation-tag">বিনিয়োগ: ₹৩,০০,০০০</span>
+                    <h3>HDFC Value Fund</h3>
+                    <p><strong>কেন এই ফান্ড?</strong> এটি পিওর ভ্যালু ইনভেস্টিং স্ট্র্যাটেজিতে কাজ করে। দীর্ঘমেয়াদে ভালো কোয়ালিটির আন্ডারভ্যালুড কোম্পানিতে ফোকাস করে দারুণ ওয়েলথ ক্রিয়েট করতে সক্ষম।</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Option 3 -->
+        <div class="option-section opt-3">
+            <h2 class="option-title opt-3-title">অপশন ৩: হাই-কনভিকশন আলফা পোর্টফোলিও (৩টি ফান্ড)</h2>
+            <div class="grid">
+                <div class="card grad-red">
+                    <h3>SBI Focused Equity Fund</h3>
+                    <p><strong>কেন এই ফান্ড?</strong> এটি একটু রিস্কি ফান্ড কারণ এটি নির্দিষ্ট কিছু গ্রোথ সেক্টরে ফোকাস করে। যেহেতু গ্রোথ সেক্টর বহুদিন ধরে সেভাবে পারফর্ম করেনি, তাই আগামী সাইকেলে এখান থেকে বড় রিটার্ন (Alpha) আসার ব্যাপক সম্ভাবনা রয়েছে।</p>
+                </div>
+                <div class="card grad-blue">
+                    <h3>Bandhan Contra Fund</h3>
+                    <p><strong>কেন এই ফান্ড?</strong> এটি পোর্টফোলিওতে একটি দুর্দান্ত 'কাউন্টার' বা ব্যালেন্স হিসেবে কাজ করবে। যদি কোনো কারণে গ্রোথ সেক্টর (SBI Focused) পারফর্ম না করে, তবে এই ফান্ডের ভ্যালু ইনভেস্টিং স্টাইল পোর্টফোলিওকে সাপোর্ট দেবে।</p>
+                </div>
+                <div class="card grad-orange">
+                    <h3>Nippon India Multi Asset Fund</h3>
+                    <p><strong>কেন এই ফান্ড?</strong> অন্যান্য ফান্ডের ঝুঁকি সামলাতে এবং পোর্টফোলিওতে গোল্ড ও গ্লোবাল ইকুইটির স্বাদ যুক্ত করতে এই মাল্টি-অ্যাসেট ফান্ডটিকে ব্যাকআপ হিসেবে রাখা হয়েছে।</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p><strong>FinXHorizon Private Limited</strong> | AMFI Registered Mutual Fund Distributor</p>
+        <p><em>Mutual Fund investments are subject to market risks, read all scheme related documents carefully. The portfolios suggested above are for illustrative purposes and based on current market views. Past performance is not an indicator of future returns.</em></p>
+    </div>
+
+</body>
+</html>
