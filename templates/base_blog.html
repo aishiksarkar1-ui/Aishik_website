@@ -479,7 +479,8 @@
             
             <!-- 💥 Scroll Area Wrapper 💥 -->
             <div class="sidebar-scroll-area">
-                <div class="sidebar-cards-container">
+                <!-- স্ক্রলিং স্পিড 20s থেকে 30s করা হয়েছে কারণ এখন কার্ড বেশি -->
+                <div class="sidebar-cards-container" style="animation: autoScroll 30s linear infinite;">
 
                     <!-- Side Card 1 -->
                     <a href="/blog/beyond-the-noise" class="side-card">
@@ -528,9 +529,32 @@
                             </div>
                         </div>
                     </a>
+
+                    <!-- 💥 New Bengali Blog 1 💥 -->
+                    <a href="/blog/mutual-fund-basics" class="side-card">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=600&auto=format&fit=crop" alt="Mutual Funds" class="side-card-img">
+                        <div class="side-card-content">
+                            <h4 class="side-card-title bengali-text" style="font-size: 15px;">মিউচুয়াল ফান্ড কী এবং কেন এখানে বিনিয়োগ করা উচিত?</h4>
+                            <div class="side-card-meta">
+                                <span><i class="fa-regular fa-calendar"></i> Sep 18, 2026</span>
+                                <span><i class="fa-regular fa-clock"></i> 5 Min</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- 💥 New Bengali Blog 2 💥 -->
+                    <a href="/blog/share-market-tips" class="side-card">
+                        <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=600&auto=format&fit=crop" alt="Share Market Tips" class="side-card-img">
+                        <div class="side-card-content">
+                            <h4 class="side-card-title bengali-text" style="font-size: 15px;">শেয়ার বাজারে নতুনদের জন্য ৫টি অত্যন্ত গুরুত্বপূর্ণ টিপস</h4>
+                            <div class="side-card-meta">
+                                <span><i class="fa-regular fa-calendar"></i> Aug 15, 2026</span>
+                                <span><i class="fa-regular fa-clock"></i> 4 Min</span>
+                            </div>
+                        </div>
+                    </a>
                     
                     <!-- 💥 Infinite Scroll এর জন্য প্রথম দুটি কার্ড ডুপ্লিকেট করা হলো 💥 -->
-                    <!-- Side Card 1 (Duplicate) -->
                     <a href="/blog/beyond-the-noise" class="side-card">
                         <img src="{{ url_for('static', filename='Beyond the Noise.png') }}" alt="Beyond the Noise" class="side-card-img">
                         <div class="side-card-content">
@@ -541,8 +565,6 @@
                             </div>
                         </div>
                     </a>
-                    
-                    <!-- Side Card 2 (Duplicate) -->
                     <a href="/blog/the-underrated-strength" class="side-card">
                         <img src="{{ url_for('static', filename='The Most Underrated Strength of the Indian Economy.png') }}" alt="Indian Economy" class="side-card-img" style="object-position: top;">
                         <div class="side-card-content">
@@ -556,7 +578,7 @@
 
                 </div>
             </div>
-       </aside>
+        </aside>
 
     </div> <!-- End of blog-layout-wrapper -->
 
