@@ -92,6 +92,10 @@ def gallery():
 def blog_mutual_fund_basics():
     return render_template('mutual-fund-basics.html')
 
+@app.route('/blog/share-market-tips')
+def blog_share_market_tips():
+    return render_template('share-market-tips.html')
+
 
 
 
