@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamental Analysis | Finance With Aishik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --navy-blue: #0A192F;
+            --gold: #C5A059;
+            --light-cream: #F4F1EA;
+            --text-light: #E0E0E0;
+            --teal: #2A9D8F;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--navy-blue);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ব্যাক বাটন */
+        .back-btn-container {
+            max-width: 1200px;
+            margin: 30px auto 0;
+            padding: 0 50px;
+        }
+        .back-btn {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            transition: gap 0.3s;
+        }
+        .back-btn:hover { gap: 12px; color: var(--light-cream); }
+
+        /* হিরো ব্যানার */
+        .learn-hero {
+            text-align: center;
+            padding: 50px 20px 30px 20px;
+        }
+        .learn-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            color: var(--gold);
+            margin: 0 0 15px 0;
+        }
+        .learn-hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #b0b0b0;
+        }
+
+        /* মডিউল গ্রিড সেকশন */
+        .modules-section {
+            padding: 40px 50px 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        /* গ্লাস-মরফিজম কার্ড ডিজাইন */
+        .module-card {
+            background: linear-gradient(135deg, rgba(76, 117, 134, 0.8) 0%, rgba(10, 25, 47, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-top: 1px solid rgba(197, 160, 89, 0.3);
+            border-left: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 12px;
+            padding: 35px 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-card h3 {
+            position: relative;
+            z-index: 1;
+            color: var(--gold); 
+            font-size: 22px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .module-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--teal);
+            box-shadow: 0 15px 35px rgba(42, 157, 143, 0.15);
+        }
+
+        .module-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 75px; 
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(197, 160, 89, 0.4);
+            position: absolute; 
+            top: -5px;
+            right: 15px;
+            font-weight: bold;
+            z-index: 0;
+            line-height: 1;
+            transition: all 0.4s ease;
+        }
+
+        .module-card:hover .module-number {
+            -webkit-text-stroke: 2px var(--teal);
+            color: rgba(253, 253, 253, 0.1);
+            transform: scale(1.1) rotate(-5deg);
+            text-shadow: 0 0 15px rgba(16, 116, 173, 0.8);
+        }
+
+        .module-card p, .module-card a {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .module-card p {
+            font-size: 15px;
+            color: #b0b0b0;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        /* স্পেশাল লাইট কার্ড */
+        .module-card.white-card {
+            background: linear-gradient(135deg, #FDFBF7 0%, #EAE4D3 100%);
+            border-color: rgba(197, 160, 89, 0.4);
+        }
+        .module-card.white-card h3 { color: var(--navy-blue); }
+        .module-card.white-card p { color: #2c3e50; font-weight: 500; }
+        .module-card.white-card .module-number {
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(10, 25, 47, 0.2);
+        }
+        .module-card.white-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 15px 35px rgba(197, 160, 89, 0.25);
+        }
+        .module-card.white-card:hover .module-number {
+            -webkit-text-stroke: 2px var(--gold);
+            color: rgba(197, 160, 89, 0.1);
+            text-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+        }
+
+        /* বাটন ডিজাইন */
+        .read-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: transparent;
+            color: var(--light-cream);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 4px;
+            transition: all 0.3s ease;
+            width: fit-content;
+        }
+        .read-more-btn:hover { color: var(--gold); gap: 12px; }
+
+        .module-card.white-card .read-more-btn {
+            color: var(--navy-blue);
+            border-bottom-color: var(--navy-blue);
+        }
+        .module-card.white-card .read-more-btn:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        @media (max-width: 992px) {
+            .modules-section, .back-btn-container { padding: 20px; }
+            .learn-hero h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+
+    <!-- Back Button -->
+    <div class="back-btn-container">
+        <a href="/learn" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to All Modules</a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="learn-hero">
+        <h1>Fundamental Analysis</h1>
+        <p>Master the art of evaluating a business's true intrinsic value, macroeconomic indicators, and the core philosophies that drive long-term stock market success.</p>
+    </div>
+
+    <!-- Sub-Modules Grid -->
+    <div class="modules-section">
+        <div class="grid-container">
+            
+            <!-- Chapter 1 -->
+            <div class="module-card">
+                <div class="module-number">01</div>
+                <h3>Introduction to Fundamental Analysis</h3>
+                <p>Understand the core philosophy of value investing. Learn how to differentiate between the price of a stock and the actual intrinsic value of the underlying business.</p>
+                <a href="#" class="read-more-btn">Start Chapter <i class="fa-solid fa-book-open"></i></a>
+            </div>
+
+            <!-- Chapter 2 -->
+            <div class="module-card white-card">
+                <div class="module-number">02</div>
+                <h3>The Three-Part Analysis</h3>
+                <p>Explore the powerful EIC framework. Master the top-down approach of analyzing the overall Economy, the specific Industry, and finally the individual Company.</p>
+                <a href="#" class="read-more-btn">Start Chapter <i class="fa-solid fa-book-open"></i></a>
+            </div>
+
+            <!-- Chapter 3 -->
+            <div class="module-card">
+                <div class="module-number">03</div>
+                <h3>Approaches to Equity Valuation</h3>
+                <p>Dive into financial modeling. Learn about Dividend Discount Models (DDM), P/E ratios, Free Cash Flow, and other valuation techniques to spot undervalued stocks.</p>
+                <a href="#" class="read-more-btn">Start Chapter <i class="fa-solid fa-book-open"></i></a>
+            </div>
+
+            <!-- Chapter 4 -->
+            <div class="module-card white-card">
+                <div class="module-number">04</div>
+                <h3>Economic Analysis and Indicators</h3>
+                <p>Decode the macro metrics. Understand how GDP growth, inflation rates, employment data, and consumer spending directly influence stock market cycles.</p>
+                <a href="#" class="read-more-btn">Start Chapter <i class="fa-solid fa-book-open"></i></a>
+            </div>
+
+            <!-- Chapter 5 -->
+            <div class="module-card">
+                <div class="module-number">05</div>
+                <h3>Political and Macroeconomic Factors</h3>
+                <p>Analyze the broader ecosystem. Understand how government policies, elections, geopolitical tensions, and global trade dynamics shape market sentiment and sector performance.</p>
+                <a href="#" class="read-more-btn">Start Chapter <i class="fa-solid fa-book-open"></i></a>
+            </div>
+
+            <!-- Chapter 6 -->
+            <div class="module-card white-card">
+                <div class="module-number">06</div>
+                <h3>Credit Policies & Foreign Investment</h3>
+                <p>Understand market liquidity. Analyze RBI's monetary policies, interest rate cycles, and the massive impact of Foreign Institutional Investors (FII) on market trends.</p>
+                <a href="#" class="read-more-btn">Start Chapter <i class="fa-solid fa-book-open"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    {% include 'bottom_design.html' %}
+
+</body>
+</html>
