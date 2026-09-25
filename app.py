@@ -87,6 +87,15 @@ def risk_proof_plan():
 @app.route('/gallery')
 def gallery():
     return render_template('gallery.html')
+
+@app.route('/blog/mutual-fund-basics')
+def blog_mutual_fund_basics():
+    return render_template('mutual-fund-basics.html')
+
+
+
+
+
 # ati ai code er sathe samporko nai..
 @app.route('/portfolio/sutapa')
 def sutapa_portfolio():
