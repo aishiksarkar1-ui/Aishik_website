@@ -96,6 +96,10 @@ def blog_mutual_fund_basics():
 def blog_share_market_tips():
     return render_template('share-market-tips.html')
 
+@app.route('/blog/power-of-compounding-bn')
+def blog_power_of_compounding_bn():
+    return render_template('power-of-compounding-bn.html')
+
 
 
 
