@@ -1,0 +1,39 @@
+<!-- templates/learnfolder/module_1.html -->
+{% extends "learnfolder/base_study.html" %}
+
+{% block title %}Module 1: Introduction to Fundamental Analysis{% endblock %}
+
+{% block study_content %}
+<div class="study-header">
+    <h1>Module 1: Introduction to Fundamental Analysis</h1>
+    <p class="intro-text">Fundamental analysis is the study of a company's financial strength to determine the actual intrinsic value of the underlying business, rather than just looking at its stock price.</p>
+</div>
+
+<div class="study-section">
+    <h2>1. What is Fundamental Analysis?</h2>
+    <p>At its core, fundamental analysis uses historical data to evaluate a company's sector and industry position, management quality, dividend history, and potential for future growth.</p>
+    
+    <div class="farman-box">
+        <strong>Example:</strong> If you are buying a used car, you don't just look at the price tag; you check the engine, the mileage, and the maintenance history. Similarly, fundamental analysis involves checking the internal "health" of a company before buying its stock.
+    </div>
+</div>
+
+<div class="study-section">
+    <h2>2. Key Elements to Evaluate</h2>
+    <p>When analyzing a company's fundamentals, investors look at several specific categories:</p>
+    <ul class="study-list">
+        <li><strong>Financial Performance:</strong> This measures how much a company collects from customers (revenue) and how much it keeps as profit (earnings).</li>
+        <li><strong>Financial Resources:</strong> A company must have the resources (assets) to invest in itself and grow.</li>
+    </ul>
+</div>
+
+<div class="study-navigation">
+    <!-- Ekhane back button dewa jete pare, ba faka rakha jete pare -->
+    <div></div> 
+    
+    <!-- Next module er link -->
+    <a href="{{ url_for('read_module', module_id='2') }}" class="nav-btn">
+        Module 2: Three-Part Analysis <i class="fas fa-arrow-right"></i>
+    </a>
+</div>
+{% endblock %}
