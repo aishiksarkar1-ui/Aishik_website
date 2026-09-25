@@ -1,0 +1,25 @@
+{% extends "learnfolder/base_study.html" %}
+
+{% block study_content %}
+<div class="study-header">
+    <h1>Module 3: Approaches to Equity Valuation</h1>
+    <p class="intro-text">Dive into financial modeling, DDM, P/E ratios, and Free Cash Flow.</p>
+</div>
+
+<div class="study-section">
+    <h2>Chapter Content Coming Soon...</h2>
+    <p>We are actively working on this chapter. Please check back later.</p>
+</div>
+
+<div class="study-navigation">
+    <!-- Previous Button -->
+    <a href="{{ url_for('read_fundamental_analysis_module', module_id=2) }}" class="nav-btn">
+        <i class="fas fa-arrow-left"></i> Previous Module
+    </a>
+    
+    <!-- Next Button -->
+    <a href="{{ url_for('read_fundamental_analysis_module', module_id=4) }}" class="nav-btn">
+        Next Module <i class="fas fa-arrow-right"></i>
+    </a>
+</div>
+{% endblock %}
