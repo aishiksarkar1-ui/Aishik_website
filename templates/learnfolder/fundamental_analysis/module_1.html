@@ -1,4 +1,3 @@
-<!-- templates/learnfolder/module_1.html -->
 {% extends "learnfolder/base_study.html" %}
 
 {% block title %}Module 1: Introduction to Fundamental Analysis{% endblock %}
@@ -23,17 +22,39 @@
     <p>When analyzing a company's fundamentals, investors look at several specific categories:</p>
     <ul class="study-list">
         <li><strong>Financial Performance:</strong> This measures how much a company collects from customers (revenue) and how much it keeps as profit (earnings).</li>
-        <li><strong>Financial Resources:</strong> A company must have the resources (assets) to invest in itself and grow.</li>
+        <li><strong>Financial Resources:</strong> A company must have the resources (assets) to invest in itself and grow, while successfully managing its debts (liabilities).</li>
+        <li><strong>Management Team:</strong> When you invest, you are trusting the CEO and managers with your money; fundamental analysis helps identify capable leadership.</li>
+        <li><strong>Valuation:</strong> Even the best company in the world is a bad investment if you pay too much for it.</li>
+        <li><strong>Macro Trends:</strong> Broad economic factors and competitor actions heavily influence a company's performance, as no business operates in a vacuum.</li>
     </ul>
 </div>
 
+<div class="study-section">
+    <h2>3. The Concept of Intrinsic Value</h2>
+    <p>The foundational premise of fundamental analysis is that every share has a true "intrinsic value" that changes over time due to internal and external factors.</p>
+    <p>The goal is to purchase a share when its market price is below its intrinsic value (undervalued) and sell it when the price rises above the intrinsic value (overvalued).</p>
+    
+    <div class="farman-box">
+        <strong>Example:</strong> If a piece of real estate has an intrinsic value of $100,000, but market panic drives the asking price down to $70,000, a fundamental analyst will buy it, knowing the market price will eventually correct itself to match the true value.
+    </div>
+    
+    <p><strong>How is it calculated?</strong> Under strict fundamental analysis, intrinsic value is calculated by discounting the present value of future dividends. Because different investors have different risk tolerances and expected rates of return, the exact intrinsic value of a share will vary from person to person.</p>
+</div>
+
+<div class="study-section">
+    <h2>4. Efficient Market Theory</h2>
+    <p>Fundamental analysts must also consider efficient market theory, which argues that in an efficient market, all information is instantly analyzed by players and immediately reflected in the current stock price.</p>
+    <p>Because current prices already reflect all known information, it is impossible to make profits purely by studying old data or previous price patterns.</p>
+    <p>To find a stock's true intrinsic value, analysts must dedicate time to forecasting how future and current events will impact a company's future profitability.</p>
+</div>
+
 <div class="study-navigation">
-    <!-- Ekhane back button dewa jete pare, ba faka rakha jete pare -->
+    <!-- Ekhane Module 1 tai kono Previous button nei -->
     <div></div> 
     
     <!-- Next module er link -->
     <a href="{{ url_for('read_fundamental_analysis_module', module_id=2) }}" class="nav-btn">
-        Module 2: Three-Part Analysis <i class="fas fa-arrow-right"></i>
+        Module 2: The Three-Part Analysis <i class="fas fa-arrow-right"></i>
     </a>
 </div>
 {% endblock %}
