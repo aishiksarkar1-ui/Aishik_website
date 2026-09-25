@@ -105,6 +105,22 @@ def learn_fundamental_analysis():
     return render_template('learnfolder/fundamental-analysis.html')
 
 
+# fundamental-analysis.html er vetor module gulor jonno.
+
+@app.route('/learn/fundamental_analysis/<int:module_id>')
+def read_fundamental_analysis_module(module_id):
+    # Eta dynamically templates/learnfolder/fundamental_analysis/module_1.html khujbe
+    template_name = f'learnfolder/fundamental_analysis/module_{module_id}.html'
+    
+    try:
+        return render_template(template_name)
+    except Exception as e:
+        # Jodi file ta na thake
+        return "Sorry, this module is currently under construction.", 404
+
+
+
+
 
 
 
