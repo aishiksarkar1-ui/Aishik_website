@@ -2,8 +2,8 @@
 
 {% block study_content %}
 <div class="study-header">
-    <h1>Module 3: Approaches to Equity Valuation</h1>
-    <p class="intro-text">Dive into financial modeling, DDM, P/E ratios, and Free Cash Flow.</p>
+    <h1>Module 6: Credit Policies & Foreign Investment</h1>
+    <p class="intro-text">Understand market liquidity, analyze RBI's monetary policies, interest rate cycles, and the impact of FIIs.</p>
 </div>
 
 <div class="study-section">
@@ -13,13 +13,13 @@
 
 <div class="study-navigation">
     <!-- Previous Button -->
-    <a href="{{ url_for('read_fundamental_analysis_module', module_id=2) }}" class="nav-btn">
+    <a href="{{ url_for('read_fundamental_analysis_module', module_id=5) }}" class="nav-btn">
         <i class="fas fa-arrow-left"></i> Previous Module
     </a>
     
-    <!-- Next Button -->
-    <a href="{{ url_for('read_fundamental_analysis_module', module_id=4) }}" class="nav-btn">
-        Next Module <i class="fas fa-arrow-right"></i>
+    <!-- Finish & Go Back Button (Redirects to main fundamental analysis page) -->
+    <a href="{{ url_for('learn_fundamental_analysis') }}" class="nav-btn" style="background-color: #FFFFF0; color: #0A192F;">
+        Finish & Go Back <i class="fas fa-check-circle"></i>
     </a>
 </div>
 {% endblock %}
