@@ -24,21 +24,93 @@
             font-family: 'Arial', sans-serif;
             line-height: 1.8;
             min-height: 100vh;
-        }
-        .study-content {
-            max-width: 900px;
+            max-width: 1200px; /* Widened to fit the sidebar */
             margin: 0 auto;
+        }
+        
+        /* Layout for Content and Sidebar */
+        .study-wrapper {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        
+        /* Main Content Area */
+        .study-content {
+            flex: 1; /* Takes up remaining space */
             background: rgba(255, 255, 255, 0.03);
             padding: 40px;
             border-radius: 12px;
             border: 1px solid rgba(197, 160, 89, 0.3);
         }
+
+        /* Right Sidebar (Appendix) */
+        .study-sidebar {
+            flex: 0 0 320px; /* Fixed width of 320px */
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            position: sticky; /* Makes it stick while scrolling */
+            top: 40px;
+        }
+
+        /* Sidebar Styling */
+        .study-sidebar h3 {
+            color: #C5A059;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            padding-bottom: 10px;
+        }
+        .appendix-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+        }
+        .appendix-list li {
+            margin-bottom: 10px;
+        }
+        .appendix-list a {
+            display: block;
+            color: #cccccc;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+        }
+        .appendix-list a:hover {
+            background-color: rgba(197, 160, 89, 0.1);
+            color: #C5A059;
+            border-color: rgba(197, 160, 89, 0.3);
+            transform: translateX(5px);
+        }
+        .return-btn {
+            display: block;
+            text-align: center;
+            background-color: #C5A059;
+            color: #0A192F;
+            padding: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        .return-btn:hover {
+            background-color: #FFFFF0;
+        }
+
+        /* Existing Content Styles */
         .study-header h1 {
             color: #C5A059; 
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 20px;
             border-bottom: 2px solid rgba(197, 160, 89, 0.3);
             padding-bottom: 15px;
+            margin-top: 0;
         }
         .study-header p.intro-text {
             font-size: 1.1rem;
@@ -48,7 +120,7 @@
         }
         .study-section h2 {
             color: #C5A059;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-top: 40px;
             margin-bottom: 20px;
         }
@@ -111,6 +183,21 @@
             background-color: #FFFFF0;
             color: #0A192F;
         }
+
+        /* Mobile Responsiveness for Sidebar */
+        @media (max-width: 992px) {
+            .study-wrapper {
+                flex-direction: column;
+            }
+            .study-sidebar {
+                flex: none;
+                width: 100%;
+                position: static;
+                box-sizing: border-box;
+                order: -1; /* Puts the appendix above the content on mobile */
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -119,11 +206,55 @@
          tahole tar code ti ekhane boshiye dite paren -->
 
     <div class="study-container">
-        <div class="study-content">
+        <div class="study-wrapper">
             
-            <!-- Ei block er bhitorei module_1, module_2 er lekha gulo dynamically ashbe -->
-            {% block study_content %}
-            {% endblock %}
+            <!-- LEFT SIDE: Main Dynamic Content -->
+            <div class="study-content">
+                {% block study_content %}
+                {% endblock %}
+            </div>
+
+            <!-- RIGHT SIDE: Sticky Appendix / Sidebar -->
+            <div class="study-sidebar">
+                <h3><i class="fas fa-list-ul"></i> Course Appendix</h3>
+                <ul class="appendix-list">
+                    <li>
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=1) }}">
+                            <i class="fas fa-angle-right"></i> Module 1: Introduction
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=2) }}">
+                            <i class="fas fa-angle-right"></i> Module 2: EIC Framework
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=3) }}">
+                            <i class="fas fa-angle-right"></i> Module 3: Equity Valuation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=4) }}">
+                            <i class="fas fa-angle-right"></i> Module 4: Economic Indicators
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=5) }}">
+                            <i class="fas fa-angle-right"></i> Module 5: Macro Factors
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=6) }}">
+                            <i class="fas fa-angle-right"></i> Module 6: Credit & FDI
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Return Button -->
+                <a href="{{ url_for('learn_fundamental_analysis') }}" class="return-btn">
+                    <i class="fas fa-home"></i> Back to Course Home
+                </a>
+            </div>
 
         </div>
     </div>
