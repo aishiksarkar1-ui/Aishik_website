@@ -1,0 +1,14 @@
+lf.loader.load(self, name, self.make_globals(globals))
+  File "/opt/render/project/src/.venv/lib/python3.14/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/opt/render/project/src/.venv/lib/python3.14/site-packages/flask/templating.py", line 66, in get_source
+    return self._get_source_fast(environment, template)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/render/project/src/.venv/lib/python3.14/site-packages/flask/templating.py", line 100, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: learnfolder/fundamental_analysis/module_3.html
+127.0.0.1 - - [25/Sep/2026:11:20:55 +0000] "GET /learn/fundamental_analysis/3 HTTP/1.1" 500 265 "https://aishiksarkar.com/learn/fundamental-analysis" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+[2026-09-25 11:20:55 +0000] [58] [INFO] Handling signal: term
+[2026-09-25 11:20:55 +0000] [75] [INFO] Worker exiting (pid: 75)
+HTTP Error 401: {"finance":{"result":null,"error":{"code":"Unauthorized","description":"Invalid Crumb"}}}
