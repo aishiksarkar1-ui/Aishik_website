@@ -44,7 +44,7 @@
             color: #C5A059;
             font-size: 3rem;
             margin: 0 0 20px 0;
-            font-family: 'Georgia', serif; /* A bit of elegant serif for the main title */
+            font-family: 'Georgia', serif;
         }
         .header-section p {
             color: #cccccc;
@@ -61,7 +61,7 @@
             gap: 40px;
         }
 
-        /* Card Styling */
+        /* DEFAULT CARD STYLING (Dark Blue) */
         .module-card {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(197, 160, 89, 0.2);
@@ -70,8 +70,16 @@
             display: flex;
             flex-direction: column;
             transition: all 0.4s ease;
-            text-decoration: none; /* Make whole card clickable visually */
+            text-decoration: none; 
         }
+        
+        /* ALTERNATE CARD STYLING (Light Cream for 2, 4, 6) */
+        .module-card:nth-child(even) {
+            background-color: #FFFFF0;
+            border: 1px solid rgba(197, 160, 89, 0.4);
+        }
+
+        /* Hover Effects */
         .module-card:hover {
             transform: translateY(-8px);
             border-color: rgba(197, 160, 89, 0.6);
@@ -92,7 +100,7 @@
             transition: transform 0.6s ease;
         }
         .module-card:hover .card-image-wrapper img {
-            transform: scale(1.08); /* Premium zoom effect on hover */
+            transform: scale(1.08); 
         }
         
         /* Floating Module Number */
@@ -110,7 +118,7 @@
             backdrop-filter: blur(4px);
         }
 
-        /* Content Section */
+        /* Content Section (Dark Cards) */
         .card-content {
             padding: 30px;
             display: flex;
@@ -131,7 +139,15 @@
             flex-grow: 1;
         }
 
-        /* Read More Button */
+        /* Content Section (Light Cards Overrides) */
+        .module-card:nth-child(even) .card-content h3 {
+            color: #0A192F; /* Deep Blue Heading */
+        }
+        .module-card:nth-child(even) .card-content p {
+            color: #333333; /* Dark Grey Text */
+        }
+
+        /* Read More Button (Dark Cards) */
         .read-more-btn {
             display: inline-flex;
             align-items: center;
@@ -150,7 +166,15 @@
             color: #C5A059;
         }
         .module-card:hover .read-more-btn i {
-            transform: translateX(5px); /* Arrow slides slightly right */
+            transform: translateX(5px);
+        }
+
+        /* Read More Button (Light Cards Overrides) */
+        .module-card:nth-child(even) .read-more-btn {
+            color: #0A192F; /* Deep Blue Button */
+        }
+        .module-card:nth-child(even):hover .read-more-btn {
+            color: #C5A059; /* Golden on Hover */
         }
 
         /* Mobile Responsiveness */
@@ -180,7 +204,7 @@
         <!-- Grid Container -->
         <div class="module-grid">
 
-            <!-- Module 1 -->
+            <!-- Module 1 (Dark) -->
             <a href="{{ url_for('read_fundamental_analysis_module', module_id=1) }}" class="module-card">
                 <div class="card-image-wrapper">
                     <div class="module-badge">01</div>
@@ -193,7 +217,7 @@
                 </div>
             </a>
 
-            <!-- Module 2 -->
+            <!-- Module 2 (Light) -->
             <a href="{{ url_for('read_fundamental_analysis_module', module_id=2) }}" class="module-card">
                 <div class="card-image-wrapper">
                     <div class="module-badge">02</div>
@@ -206,7 +230,7 @@
                 </div>
             </a>
 
-            <!-- Module 3 -->
+            <!-- Module 3 (Dark) -->
             <a href="{{ url_for('read_fundamental_analysis_module', module_id=3) }}" class="module-card">
                 <div class="card-image-wrapper">
                     <div class="module-badge">03</div>
@@ -219,7 +243,7 @@
                 </div>
             </a>
 
-            <!-- Module 4 -->
+            <!-- Module 4 (Light) -->
             <a href="{{ url_for('read_fundamental_analysis_module', module_id=4) }}" class="module-card">
                 <div class="card-image-wrapper">
                     <div class="module-badge">04</div>
@@ -232,7 +256,7 @@
                 </div>
             </a>
 
-            <!-- Module 5 -->
+            <!-- Module 5 (Dark) -->
             <a href="{{ url_for('read_fundamental_analysis_module', module_id=5) }}" class="module-card">
                 <div class="card-image-wrapper">
                     <div class="module-badge">05</div>
@@ -245,7 +269,7 @@
                 </div>
             </a>
 
-            <!-- Module 6 -->
+            <!-- Module 6 (Light) -->
             <a href="{{ url_for('read_fundamental_analysis_module', module_id=6) }}" class="module-card">
                 <div class="card-image-wrapper">
                     <div class="module-badge">06</div>
