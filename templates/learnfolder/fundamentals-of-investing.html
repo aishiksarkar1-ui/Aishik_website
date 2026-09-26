@@ -435,7 +435,7 @@
 
 
 
-    <!-- 💥 NEW: TOOLS & CALCULATORS SECTION 💥 -->
+    <!-- 💥 NEW: TOOLS & CALCULATORS SECTION (Internal Routes) 💥 -->
     <div style="max-width: 1200px; margin: 0 auto 60px auto; padding: 0 20px;">
         <div style="background: rgba(10, 25, 47, 0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 16px; padding: 40px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: center; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
             
@@ -445,18 +445,18 @@
                 <p style="font-family: 'Inter', sans-serif; color: #cbd5e1; margin: 0; font-size: 1.05rem;">Want to test how compounding builds wealth or how inflation erodes your money? Try our custom calculators.</p>
             </div>
 
-            <!-- SIP Calculator Button -->
-            <a href="https://aishiksarkar.com/sip-calculator" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--gold) 0%, #d4af37 100%); color: var(--navy-blue); padding: 14px 28px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; box-shadow: 0 6px 20px rgba(197, 160, 89, 0.3); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 25px rgba(255, 255, 240, 0.4)'; this.style.background='var(--cream)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(197, 160, 89, 0.3)'; this.style.background='linear-gradient(135deg, var(--gold) 0%, #d4af37 100%)';">
+            <!-- SIP Calculator Button (Internal Path) -->
+            <a href="{{ url_for('sip_calculator') }}" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--gold) 0%, #d4af37 100%); color: var(--navy-blue); padding: 14px 28px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; box-shadow: 0 6px 20px rgba(197, 160, 89, 0.3); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 25px rgba(255, 255, 240, 0.4)'; this.style.background='var(--cream)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 6px 20px rgba(197, 160, 89, 0.3)'; this.style.background='linear-gradient(135deg, var(--gold) 0%, #d4af37 100%)';">
                 <i class="fas fa-calculator"></i> SIP Calculator
             </a>
 
-            <!-- Inflation Calculator Button -->
-            <a href="https://aishiksarkar.com/inflation-calculator" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--gold); border: 2px solid var(--gold); padding: 12px 28px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(197, 160, 89, 0.1)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.background='transparent'; this.style.transform='translateY(0)';">
+            <!-- Inflation Calculator Button (Internal Path) -->
+            <a href="{{ url_for('inflation_calculator') }}" style="display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--gold); border: 2px solid var(--gold); padding: 12px 28px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(197, 160, 89, 0.1)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.background='transparent'; this.style.transform='translateY(0)';">
                 <i class="fas fa-chart-line"></i> Inflation Calculator
             </a>
 
-            <!-- Back to All Modules Button -->
-            <a href="/learn" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(23, 51, 36, 0.8); color: var(--light-mint); border: 1px solid rgba(244, 247, 244, 0.2); padding: 14px 28px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.background='var(--forest-green)'; this.style.transform='translateY(-3px)'; this.style.borderColor='var(--light-mint)';" onmouseout="this.style.background='rgba(23, 51, 36, 0.8)'; this.style.transform='translateY(0)'; this.style.borderColor='rgba(244, 247, 244, 0.2)';">
+            <!-- Back to All Modules Button (Internal Path) -->
+            <a href="{{ url_for('learn') }}" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(23, 51, 36, 0.8); color: var(--light-mint); border: 1px solid rgba(244, 247, 244, 0.2); padding: 14px 28px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.background='var(--forest-green)'; this.style.transform='translateY(-3px)'; this.style.borderColor='var(--light-mint)';" onmouseout="this.style.background='rgba(23, 51, 36, 0.8)'; this.style.transform='translateY(0)'; this.style.borderColor='rgba(244, 247, 244, 0.2)';">
                 <i class="fas fa-arrow-left"></i> Back to All Modules
             </a>
 
