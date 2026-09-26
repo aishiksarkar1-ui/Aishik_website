@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fundamentals of Investing - FinXHorizon</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           GLOBAL VARIABLES & BASE STYLES
+           ========================================= */
+        :root {
+            --navy-blue: #0A192F;
+            --forest-green: #173324;
+            --gold: #C5A059;
+            --cream: #FFFFF0;
+            --light-mint: #F4F7F4;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, var(--navy-blue) 0%, var(--forest-green) 40%, var(--cream) 100%);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: #f0f0f0;
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero-section {
+            width: 100%;
+            min-height: 450px;
+            /* Placeholder image, you can change 'Study.png' to any relevant image */
+            background-image: linear-gradient(to bottom, rgba(10, 25, 47, 0.8) 0%, rgba(23, 51, 36, 0.95) 100%), url("{{ url_for('static', filename='Study.png') }}");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px; 
+            box-sizing: border-box;
+            border-bottom: 3px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        .eyebrow-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        .eyebrow-text::before, .eyebrow-text::after { content: ''; height: 1px; width: 40px; background-color: var(--gold); }
+        
+        .back-link {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            background: linear-gradient(135deg, var(--gold) 0%, #d4af37 100%);
+            color: var(--navy-blue);
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.3);
+            transition: all 0.4s ease;
+            z-index: 20;
+        }
+        .back-link:hover { 
+            background: var(--cream); color: var(--navy-blue);
+            transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 255, 240, 0.4);
+        }
+        .back-link:hover i { transform: translateX(-5px); }
+        
+        .hero-section h1 {
+            color: var(--cream); font-size: 3.8rem; margin: 0 0 15px 0;
+            font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.2; text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        }
+        .hero-section p {
+            color: var(--light-mint); font-size: 1.25rem; max-width: 800px; margin: 0 auto;
+            font-family: 'Inter', sans-serif; font-weight: 300; text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+        }
+
+        /* =========================================
+           READING ARTICLE CONTENT AREA
+           ========================================= */
+        .article-container {
+            max-width: 900px; /* Narrower width for optimal reading experience */
+            margin: 60px auto 80px auto; 
+            padding: 60px 50px;
+            background: rgba(10, 25, 47, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-top: 1px solid rgba(197, 160, 89, 0.4);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+        .article-container p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .article-container h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 2.2rem;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .article-container h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--cream);
+            font-size: 1.4rem;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        .article-container strong { color: var(--cream); font-weight: 600; }
+
+        .article-list { padding-left: 20px; margin-bottom: 25px; }
+        .article-list li {
+            font-size: 1.15rem; line-height: 1.8; color: #cbd5e1; font-weight: 300;
+            margin-bottom: 15px; padding-left: 10px;
+        }
+        .article-list li::marker { color: var(--gold); }
+
+        /* Story / Highlight Box */
+        .farman-box {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-mint) 100%);
+            color: var(--navy-blue);
+            padding: 35px 40px;
+            border-left: 6px solid var(--forest-green);
+            margin: 40px 0;
+            border-radius: 0 16px 16px 0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .farman-box p { color: var(--navy-blue); font-size: 1.1rem; font-weight: 500; margin-bottom: 15px; }
+        .farman-box p:last-child { margin-bottom: 0; }
+        .farman-box h3 { color: var(--forest-green); font-family: 'Montserrat', sans-serif; margin-top: 0; font-size: 1.3rem; border-bottom: none; padding-bottom: 0; }
+        
+        /* Premium Table Design */
+        .table-responsive {
+            width: 100%; overflow-x: auto; margin: 40px 0;
+        }
+        .premium-table {
+            width: 100%; border-collapse: collapse; min-width: 600px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px; overflow: hidden;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+        .premium-table th {
+            background: rgba(197, 160, 89, 0.15); color: var(--gold);
+            font-family: 'Montserrat', sans-serif; font-weight: 700;
+            text-align: left; padding: 18px 20px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
+        }
+        .premium-table td {
+            padding: 16px 20px; color: #cbd5e1; font-size: 1.05rem;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+        }
+        .premium-table tr:last-child td { border-bottom: none; }
+        .premium-table tbody tr:hover { background: rgba(255, 255, 255, 0.05); }
+
+        /* Formula Box */
+        .formula-box {
+            background: rgba(10, 25, 47, 0.8);
+            border: 1px dashed var(--gold);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .math-formula {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem; color: var(--gold); font-style: italic; letter-spacing: 2px;
+        }
+        .formula-legend {
+            list-style: none; padding: 0; margin: 20px 0 0 0; display: inline-block; text-align: left;
+        }
+        .formula-legend li {
+            font-size: 1.05rem; color: #cbd5e1; margin-bottom: 8px;
+        }
+        .formula-legend strong { color: var(--cream); font-family: 'Montserrat', sans-serif; }
+
+        /* =========================================
+           BOTTOM SECTION: OTHER CORE MODULES (Exact Match)
+           ========================================= */
+        .other-core-section {
+            background: linear-gradient(180deg, #0e1c36 0%, var(--navy-blue) 100%);
+            padding: 90px 20px; margin-top: 60px; border-top: 4px solid var(--gold); position: relative;
+        }
+        .other-core-section::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 100px;
+            background: linear-gradient(to bottom, rgba(197, 160, 89, 0.1), transparent); pointer-events: none;
+        }
+        .other-core-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+        .core-title {
+            text-align: center; font-family: 'Playfair Display', serif; color: var(--cream);
+            font-size: 36px; margin-bottom: 50px; font-weight: 700;
+        }
+        .core-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+        .core-card {
+            border-radius: 12px; padding: 40px 30px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            position: relative; overflow: hidden; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .core-card h4 {
+            position: relative; z-index: 1; font-family: 'Playfair Display', serif; font-size: 24px;
+            margin-top: 10px; margin-bottom: 15px; font-weight: 700; line-height: 1.2;
+        }
+        .core-card p {
+            position: relative; z-index: 1; font-size: 15px; line-height: 1.7; margin-bottom: 25px;
+            font-family: 'Inter', sans-serif; flex-grow: 1; color: inherit; /* overridden by theme */
+        }
+        .core-number {
+            font-family: 'Playfair Display', serif; font-size: 75px; color: transparent; 
+            position: absolute; top: 5px; right: 15px; font-weight: bold; z-index: 0; line-height: 1; transition: all 0.4s ease;
+        }
+        .core-btn {
+            display: inline-block; background-color: transparent; text-decoration: none; font-size: 14px; font-weight: 600;
+            border-bottom: 2px solid; padding-bottom: 4px; transition: all 0.3s ease; position: relative; z-index: 1;
+            align-self: flex-start; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .core-btn:hover { letter-spacing: 2px; }
+
+        /* THEMES */
+        .core-navy { background: linear-gradient(135deg, rgba(30, 60, 90, 0.8) 0%, rgba(10, 25, 47, 0.95) 100%); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(197, 160, 89, 0.4); border-left: 1px solid rgba(197, 160, 89, 0.2); }
+        .core-navy h4 { color: var(--gold); } .core-navy p { color: #E0E0E0; } .core-navy .core-number { -webkit-text-stroke: 1.5px rgba(197, 160, 89, 0.4); } .core-navy .core-btn { color: var(--cream); border-bottom-color: var(--gold); }
+        .core-navy:hover { transform: translateY(-8px); border-color: var(--gold); box-shadow: 0 15px 35px rgba(197, 160, 89, 0.15); }
+        .core-navy:hover .core-number { -webkit-text-stroke: 2px var(--gold); color: rgba(197, 160, 89, 0.15); transform: scale(1.1) rotate(-5deg); text-shadow: 0 0 15px rgba(197, 160, 89, 0.5); }
+        .core-navy:hover .core-btn { color: var(--gold); }
+
+        .core-cream { background: linear-gradient(135deg, #FDFBF7 0%, #EAE4D3 100%); border: 1px solid rgba(197, 160, 89, 0.4); }
+        .core-cream h4 { color: var(--navy-blue); } .core-cream p { color: #2c3e50; font-weight: 500;} .core-cream .core-number { -webkit-text-stroke: 1.5px rgba(10, 25, 47, 0.2); } .core-cream .core-btn { color: var(--forest-green); border-bottom-color: var(--navy-blue); }
+        .core-cream:hover { transform: translateY(-8px); border-color: var(--navy-blue); box-shadow: 0 15px 35px rgba(10, 25, 47, 0.15); }
+        .core-cream:hover .core-number { -webkit-text-stroke: 2px var(--navy-blue); color: rgba(10, 25, 47, 0.05); transform: scale(1.1) rotate(-5deg); text-shadow: 0 0 15px rgba(10, 25, 47, 0.2); }
+        .core-cream:hover .core-btn { color: var(--navy-blue); }
+
+        .core-green { background: linear-gradient(135deg, rgba(42, 110, 75, 0.8) 0%, rgba(23, 51, 36, 0.95) 100%); border: 1px solid rgba(255, 255, 255, 0.05); border-top: 1px solid rgba(197, 160, 89, 0.4); border-left: 1px solid rgba(197, 160, 89, 0.2); }
+        .core-green h4 { color: var(--light-mint); } .core-green p { color: #c4d7cb; } .core-green .core-number { -webkit-text-stroke: 1.5px rgba(244, 247, 244, 0.3); } .core-green .core-btn { color: var(--gold); border-bottom-color: var(--gold); }
+        .core-green:hover { transform: translateY(-8px); border-color: var(--light-mint); box-shadow: 0 15px 35px rgba(244, 247, 244, 0.15); }
+        .core-green:hover .core-number { -webkit-text-stroke: 2px var(--light-mint); color: rgba(244, 247, 244, 0.15); transform: scale(1.1) rotate(-5deg); text-shadow: 0 0 15px rgba(244, 247, 244, 0.4); }
+        .core-green:hover .core-btn { color: var(--light-mint); border-bottom-color: var(--light-mint); }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 2.8rem; }
+            .back-link { top: 20px; left: 20px; padding: 8px 18px; font-size: 0.75rem; }
+            .article-container { padding: 40px 25px; margin-top: 40px; }
+            .article-container h2 { font-size: 1.8rem; }
+            .math-formula { font-size: 1.8rem; }
+            .farman-box { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <div class="hero-section">
+        <a href="/learn" class="back-link"><i class="fas fa-arrow-left"></i> Back to All Modules</a>
+        <div class="eyebrow-text">01 — The Masterclass</div>
+        <h1>The Fundamentals of <em>Investing</em></h1>
+        <p>Making Money Work for You</p>
+    </div>
+
+    <!-- MAIN ARTICLE CONTENT -->
+    <div class="article-container">
+        
+        <p>Imagine waking up tomorrow morning, making a cup of coffee, and checking your bank account. You notice that while you were asleep, you made ₹1,500. Not because you worked an extra night shift, not because someone sent you a gift, but simply because the capital you already own went out into the world and did the heavy lifting for you.</p>
+        <p>That is the entire premise of investing.</p>
+
+        <h2>What Actually Is Investing?</h2>
+        <p>Most people think investing is an intimidating world of stock tickers, green and red charts, and people yelling on trading floors. Strip all of that away, and investing comes down to one simple idea: <strong>buying a slice of someone else’s productive engine.</strong></p>
+        <p>Think about your daily routine:</p>
+        <ul class="article-list">
+            <li>You wake up and brush your teeth with toothpaste made by a consumer goods company.</li>
+            <li>You check your phone, powered by chips made by a semiconductor company.</li>
+            <li>You order groceries delivered by a logistics giant.</li>
+        </ul>
+        <p>Every single minute, billions of people around the world work, innovate, and buy things. As an ordinary individual, you have two choices:</p>
+        <ul class="article-list">
+            <li><strong>Be just a consumer:</strong> Pay money to these companies and watch your cash leave your pocket forever.</li>
+            <li><strong>Be an owner:</strong> Put your money into those companies by purchasing their shares or funds. When they make a profit, hire engineers, and sell products globally, a fraction of that profit belongs to you.</li>
+        </ul>
+        <p><em>Investing is simply trading today’s ability to consume for tomorrow’s ability to own.</em></p>
+
+        <h2>Saving vs. Investing: The Seed and The Safe</h2>
+        <p>To understand investing, you have to separate it from its quieter sibling: saving.</p>
+        <p>Picture having a handful of apple seeds:</p>
+        <ul class="article-list">
+            <li><strong>Saving</strong> is putting those seeds in a titanium vault. They are 100% safe. No thief can steal them, and rain cannot rot them. But ten years from now, when you open the vault, you will still have just a handful of dry seeds.</li>
+            <li><strong>Investing</strong> is planting those seeds in fertile soil. There is weather risk. A storm might pass through; a dry season might hit. But given water, sunlight, and time, those seeds grow into trees that produce baskets of apples every single harvest.</li>
+        </ul>
+        <p><strong>You save for certainty. You invest for freedom.</strong></p>
+
+        <h2>The Invisible Pickpocket: Why Cash Is a Trap</h2>
+        <p>Why not just play it safe and keep everything in cash? Because of <strong>inflation</strong>—the quietest, most relentless tax in the world.</p>
+        <p>Think back to what a cup of tea, a movie ticket, or a liter of petrol cost ten years ago. Now look at what they cost today. The physical note in your pocket didn't shrink, but the amount of real-world stuff it can buy did.</p>
+        <p>If inflation sits at 6% per year, ₹100,000 kept in a drawer or a 3% savings account doesn't stay ₹100,000 in purchasing power:</p>
+        <ul class="article-list">
+            <li>In 10 years, it buys what <strong>₹55,000</strong> buys today.</li>
+            <li>In 20 years, it buys what <strong>₹31,000</strong> buys today.</li>
+        </ul>
+        <p>Cash feels safe because the nominal balance on your screen doesn't drop. But in reality, holding pure cash over decades guarantees a 100% loss of purchasing power. <strong>Investing isn't a luxury for the rich; it is financial self-defense.</strong></p>
+
+        <h2>Investing vs. Gambling & Speculation</h2>
+        <p>A friend calls you excited: <em>"I found a coin that went up 400% in three days. Put ₹10,000 in right now!"</em> Is that investing? No. That is speculation, bordering on gambling.</p>
+        
+        <div class="table-responsive">
+            <table class="premium-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>The Mechanism</th>
+                        <th>What You Rely On</th>
+                        <th>The Long-Term Outcome</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Gambling</strong></td>
+                        <td>Playing games where math favors the casino</td>
+                        <td>Pure luck</td>
+                        <td>Negative-sum <em>(the house always wins)</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Speculation</strong></td>
+                        <td>Buying an asset solely hoping a "greater fool" buys it for more</td>
+                        <td>Market hype & timing</td>
+                        <td>Zero-sum <em>(one person's gain is another's loss)</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Investing</strong></td>
+                        <td>Buying a share of a business that produces real cash flow & products</td>
+                        <td>Economic growth & human productivity</td>
+                        <td>Positive-sum <em>(wealth is created, not just redistributed)</em></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <p>When you invest in a diversified index fund containing top companies, you aren't guessing whether the ball lands on red or black. You are betting that humanity will continue to wake up, go to work, solve problems, and build businesses. Historically, that has been the most reliable bet in human history.</p>
+
+        <h2>Where Financial Planning Fits In</h2>
+        <p>Only after you understand the engine can you design your journey. If you put all your money into the market without a plan, what happens when your car breaks down or a medical bill hits? You are forced to sell your investments on a random Tuesday—possibly during a market crash—locking in a loss.</p>
+        <p>A financial plan is your shock absorber:</p>
+        <ul class="article-list">
+            <li><strong>The Moat (Emergency Fund):</strong> 3 to 6 months of expenses parked in an accessible, boring savings account. This buys you peace of mind so your investments can grow undisturbed.</li>
+            <li><strong>The Timeline:</strong> Money you need within 1–2 years stays out of the stock market. Money you don't need for 10+ years belongs inside productive assets.</li>
+        </ul>
+
+        <h2>The Mathematics of Wealth: The Eighth Wonder</h2>
+        <p>Albert Einstein allegedly called compound interest the eighth wonder of the world: <em>"He who understands it, earns it; he who doesn't, pays it."</em></p>
+        
+        <div class="formula-box">
+            <div class="math-formula">A = P (1 + <sup>r</sup>/<sub>n</sub>)<sup>nt</sup></div>
+            <ul class="formula-legend">
+                <li><strong>A</strong> = Final Amount (Wealth)</li>
+                <li><strong>P</strong> = Your starting amount (Principal)</li>
+                <li><strong>r</strong> = Your rate of return</li>
+                <li><strong>n</strong> = Compounding frequency</li>
+                <li><strong>t</strong> = Time (in years)</li>
+            </ul>
+        </div>
+        
+        <p>Notice where <strong>t</strong> is located: it isn't multiplied at the bottom; it sits high up as an exponent. That tiny mathematical detail changes everything. It means growth doesn't travel in a straight line; it bends upward like a hockey stick.</p>
+
+        <div class="farman-box">
+            <h3>The Story of Two 20-Year-Olds</h3>
+            <p><strong>Rohan</strong> starts at age 22. He invests ₹5,000 every month for just 10 years, until age 32. Then he stops completely and never adds another rupee. Total money invested from his own pocket: <strong>₹6,00,000</strong>.</p>
+            <p><strong>Sameer</strong> waits until age 32 to begin. To make up for lost time, he invests ₹5,000 every single month for 28 years straight, until age 60. Total money invested from his pocket: <strong>₹16,80,000</strong>.</p>
+            <p>Assuming both earn a realistic 12% average annual return:</p>
+            <ul class="article-list" style="margin-top: 15px;">
+                <li><strong style="color: var(--navy-blue);">Sameer</strong> (who invested nearly triple the money) ends up with roughly <strong>₹1.4 Crores</strong> at age 60.</li>
+                <li><strong style="color: var(--navy-blue);">Rohan</strong> (who stopped after just 10 years) ends up with nearly <strong>₹2.3 Crores</strong> at age 60.</li>
+            </ul>
+            <p>Rohan didn't win because he was a stock-picking genius. He won because he gave the exponent—time—permission to do the work.</p>
+        </div>
+
+        <p>Wealth isn't created by predicting what the stock market will do next week. It is built by taking surplus money, buying real, productive businesses, and letting the quiet engine of compounding turn time into freedom.</p>
+
+    </div>
+
+    <!-- BOTTOM SECTION: EXPLORE OTHER MODULES -->
+    <div class="other-core-section">
+        <div class="other-core-container">
+            <h2 class="core-title">Explore Advanced Masterclasses</h2>
+            
+            <div class="core-grid">
+                
+                <!-- Card 1: Fundamental Analysis (Linking to your existing page) -->
+                <div class="core-card core-navy">
+                    <div class="core-number">FA</div>
+                    <h4>Fundamental Analysis</h4>
+                    <p>Master the art of evaluating a business's true intrinsic value, macroeconomic indicators, and core long-term philosophies.</p>
+                    <a href="{{ url_for('learn_fundamental_analysis') }}" class="core-btn">Explore Masterclass <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></a>
+                </div>
+
+                <!-- Card 2: Cream Gradient -->
+                <div class="core-card core-cream">
+                    <div class="core-number">MF</div>
+                    <h4>Mutual Funds & SIP Strategies</h4>
+                    <p>Dive deep into Mutual Funds. Learn how to select the right funds, structure your SIPs, and align them perfectly with your financial goals.</p>
+                    <a href="#" class="core-btn">Explore Module <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></a>
+                </div>
+
+                <!-- Card 3: Forest Green Gradient -->
+                <div class="core-card core-green">
+                    <div class="core-number">RM</div>
+                    <h4>Portfolio Risk Management</h4>
+                    <p>Master the art of protecting your capital. Learn strategic asset allocation, downside protection, and how to balance risk in volatile markets.</p>
+                    <a href="#" class="core-btn">Explore Module <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
