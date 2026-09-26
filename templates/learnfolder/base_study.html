@@ -15,7 +15,377 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #0A192F;
+            background-color: #0A192F;<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinXHorizon Study Center</title>
+    
+    <!-- Google Fonts: Playfair Display (Serif) & Plus Jakarta Sans (Sans-serif) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* 
+          ADVANCED PREMIUM CSS FOR STUDY MODULES 
+        */
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0A192F; }
+        ::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f9d976; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            /* Modern Radial Gradient Background */
+            background: radial-gradient(circle at 50% 0%, #152b4d 0%, #0A192F 70%, #061020 100%);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .study-container {
+            padding: 80px 20px;
+            max-width: 1250px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .study-wrapper {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        
+        /* Main Content Area - Glassmorphism Effect */
+        .study-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Right Sidebar (Appendix) */
+        .study-sidebar {
+            flex: 0 0 340px;
+            background: rgba(15, 30, 56, 0.7);
+            backdrop-filter: blur(12px);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            position: sticky; 
+            top: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        /* Sidebar Styling */
+        .study-sidebar h3 {
+            font-family: 'Playfair Display', serif;
+            color: #C5A059;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .study-sidebar h3::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(197, 160, 89, 0.4), transparent);
+        }
+        
+        .appendix-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+        .appendix-list li { margin-bottom: 12px; }
+        
+        .appendix-list a {
+            display: flex;
+            align-items: center;
+            color: #a0aec0;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+            background: transparent;
+        }
+        .appendix-list a i {
+            margin-right: 12px;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+            color: rgba(197, 160, 89, 0.5);
+        }
+        .appendix-list a:hover {
+            background: linear-gradient(90deg, rgba(197, 160, 89, 0.1) 0%, transparent 100%);
+            border-left: 3px solid #C5A059;
+            color: #FFFFF0;
+            transform: translateX(5px);
+        }
+        .appendix-list a:hover i {
+            color: #C5A059;
+            transform: translateX(3px);
+        }
+
+        .return-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #C5A059, #f9d976);
+            color: #0A192F;
+            padding: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(197, 160, 89, 0.2);
+        }
+        .return-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(197, 160, 89, 0.4);
+            color: #000;
+        }
+
+        /* Typography & Content Styles */
+        .study-header {
+            position: relative;
+            padding-bottom: 25px;
+            margin-bottom: 40px;
+        }
+        .study-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #C5A059, transparent);
+            border-radius: 2px;
+        }
+        
+        .study-header h1 {
+            font-family: 'Playfair Display', serif;
+            /* Premium Gold Text Gradient */
+            background: linear-gradient(to right, #C5A059, #f9d976, #C5A059);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.8rem;
+            margin: 0 0 20px 0;
+            line-height: 1.3;
+        }
+        
+        .study-header p.intro-text {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        .study-section h2 {
+            font-family: 'Playfair Display', serif;
+            color: #e2e8f0;
+            font-size: 1.8rem;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .study-section h2::before {
+            content: "✦";
+            color: #C5A059;
+            font-size: 1.2rem;
+        }
+        
+        .study-section p {
+            font-size: 1.05rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        /* Modern Farman Box (Example Box) */
+        .farman-box {
+            background: linear-gradient(145deg, rgba(255, 255, 240, 0.95), rgba(255, 255, 240, 0.85));
+            color: #0f172a;
+            padding: 30px 35px;
+            border-left: 6px solid #C5A059;
+            margin: 40px 0;
+            border-radius: 0 16px 16px 0;
+            font-weight: 500;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            position: relative;
+        }
+        .farman-box::before {
+            content: '\f0eb'; /* Lightbulb icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 25px;
+            top: -15px;
+            font-size: 2.5rem;
+            color: rgba(197, 160, 89, 0.2);
+        }
+        .farman-box strong {
+            color: #8b6d3b;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* List Styling */
+        .study-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .study-list li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+            color: #cbd5e1;
+        }
+        .study-list li::before {
+            content: "\f0a4"; /* Pointing icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #C5A059;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 1.1rem;
+        }
+        .study-list strong {
+            color: #f9d976;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Bottom Navigation */
+        .study-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 70px;
+            padding-top: 35px;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+        }
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: transparent;
+            color: #C5A059;
+            padding: 12px 28px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border-radius: 50px;
+            border: 1px solid #C5A059;
+            transition: all 0.3s ease;
+        }
+        .nav-btn:hover {
+            background: rgba(197, 160, 89, 0.1);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+            color: #f9d976;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .study-wrapper { flex-direction: column; }
+            .study-sidebar {
+                flex: none;
+                width: 100%;
+                position: static;
+                box-sizing: border-box;
+                order: -1; 
+                margin-bottom: 30px;
+            }
+            .study-content { padding: 30px 20px; }
+            .study-header h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="study-container">
+        <div class="study-wrapper">
+            
+            <!-- LEFT SIDE: Main Dynamic Content -->
+            <div class="study-content">
+                {% block study_content %}
+                {% endblock %}
+            </div>
+
+            <!-- RIGHT SIDE: Sticky Appendix / Sidebar -->
+            <div class="study-sidebar">
+                <h3><i class="fas fa-book-reader"></i> Course Index</h3>
+                <ul class="appendix-list">
+                    <li>
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=1) }}">
+                            <i class="fas fa-arrow-right"></i> Module 1: Introduction
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=2) }}">
+                            <i class="fas fa-arrow-right"></i> Module 2: EIC Framework
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=3) }}">
+                            <i class="fas fa-arrow-right"></i> Module 3: Equity Valuation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=4) }}">
+                            <i class="fas fa-arrow-right"></i> Module 4: Economic Indicators
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=5) }}">
+                            <i class="fas fa-arrow-right"></i> Module 5: Macro Factors
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=6) }}">
+                            <i class="fas fa-arrow-right"></i> Module 6: Credit & FDI
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Return Button -->
+                <a href="{{ url_for('learn_fundamental_analysis') }}" class="return-btn">
+                    <i class="fas fa-home"></i> Back to All Modules
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
         }
         .study-container {
             background-color: #0A192F; 
