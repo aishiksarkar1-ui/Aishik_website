@@ -28,6 +28,14 @@
         .header-section {
             text-align: center;
             margin-bottom: 60px;
+            /* ব্যাকগ্রাউন্ড ইমেজ এবং ডার্ক ওভারলে যোগ করা হলো */
+            background-image: linear-gradient(rgba(10, 25, 47, 0.75), rgba(10, 25, 47, 0.75)), url("{{ url_for('static', filename='Fundamental Analysis.png') }}");
+            background-size: cover;
+            background-position: center;
+            padding: 60px 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         .back-link {
             display: inline-block;
