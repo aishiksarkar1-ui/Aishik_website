@@ -13,7 +13,75 @@
 </div>
 
 <div class="study-section">
+    <h2>1. The Engine of the Economy: Credit Policies & The RBI</h2>{% extends "learnfolder/base_study.html" %}
+
+{% block title %}Module 6: Credit Policies and Foreign Investment - FinXHorizon{% endblock %}
+
+{% block study_content %}
+<div class="study-header">
+    <h1>Module 6: Credit Policies and Foreign Investment</h1>
+    <p class="intro-text">To truly master fundamental analysis, an investor must look beyond the borders of a single country. In today's highly connected global economy, the flow of international money and the credit policies set by central banks dictate the overall liquidity in the market.</p>
+</div>
+
+<div class="study-section">
+    <p>This final module breaks down how central banks control the domestic money supply and how foreign investments act as fuel for economic growth and stock market rallies.</p>
+</div>
+
+<div class="study-section">
     <h2>1. The Engine of the Economy: Credit Policies & The RBI</h2>
+    <p>Every nation has a central bank that acts as the supreme financial authority. In India, this is the Reserve Bank of India (RBI), established in 1935 and fully owned by the government since 1949.</p>
+    
+    <ul class="study-list">
+        <li><strong>The Role of the RBI:</strong> The RBI formulates and administers monetary policy to secure economic stability, manages foreign exchange reserves, and acts as the banker to both the government and commercial banks.</li>
+        <li><strong>Credit Policies:</strong> Through its credit policies, the RBI controls how much money is flowing through the system. By adjusting banking regulations, the central bank aims to promote stable prices while encouraging higher production through the appropriate deployment of credit.</li>
+    </ul>
+</div>
+
+<div class="study-section">
+    <h2>2. Foreign Direct Investment (FDI): The Business Builders</h2>
+    <p>Foreign Direct Investment (FDI) occurs when capital moves across national borders in a way that grants the foreign investor active control over the acquired asset or business. These multinational enterprises (MNEs) act as powerful catalysts for economic growth, impacting domestic investment, technology transfer, and employment generation.</p>
+    <p>There are two primary types of FDI:</p>
+    
+    <p><strong>Greenfield Investment:</strong> This happens when a foreign company builds new facilities from scratch or expands existing ones.</p>
+    <div class="farman-box">
+        <strong>Example:</strong> A Japanese automaker building a brand-new car manufacturing plant in India. While this creates massive local employment and brings in new technology, a downside is that the ultimate profits often flow back to the multinational's home economy rather than staying domestically.
+    </div>
+
+    <p><strong>Mergers and Acquisitions (M&A):</strong> This occurs when a foreign firm simply buys out or merges with an existing local firm, transferring the control of existing assets.</p>
+    <div class="farman-box">
+        <strong>Example:</strong> A major US retail giant acquiring an existing Indian e-commerce company to instantly capture its market share.
+    </div>
+
+    <p><strong>Regulations on FDI:</strong> The government tightly controls how much foreign ownership is allowed in various industries. While many sectors allow up to 100% FDI (like tourism and townships), others are capped at 74%, 51%, or lower (like defense and banking) to protect national interests. Some sensitive sectors—like atomic energy, railway transport, and arms/ammunition—are completely forbidden from receiving FDI.</p>
+</div>
+
+<div class="study-section">
+    <h2>3. Foreign Institutional Investors (FII): The Market Movers</h2>
+    <p>While FDI involves setting up actual businesses and factories, Foreign Institutional Investors (FII) bring money directly into the stock market. FIIs are massive investment funds—like foreign hedge funds, pension funds, mutual funds, and insurance companies—that register with regulatory bodies (like SEBI) to invest in a country's financial markets.</p>
+    
+    <ul class="study-list">
+        <li><strong>The Double-Edged Sword:</strong> FIIs bring huge amounts of money into the country, which is often responsible for pushing stock market indices (like the Sensex) to record new highs. However, because this money is highly liquid (unlike a physical factory built via FDI), FIIs can quickly pull their money out during a panic, which can lead to rapid stock market crashes.</li>
+        <li><strong>The Silver Lining:</strong> Because FIIs manage billions of dollars, they demand a high level of transparency and corporate governance from the companies they invest in. This strict demand for honesty and clear accounting ultimately benefits everyday retail shareholders to a large extent.</li>
+    </ul>
+</div>
+
+<div class="study-section">
+    <h2>Conclusion to the Series</h2>
+    <p>By combining all six modules—from understanding a company's intrinsic value and management team, to analyzing macro-trends, inflation, and the flow of global money—you now have a complete toolkit. Fundamental analysis is not about predicting the future with a crystal ball; it is about using the EIC framework (Economy, Industry, Company) and hard data to make logical, high-probability investment decisions that generate lasting wealth.</p>
+</div>
+
+<div class="module-navigation">
+    <!-- Previous Button -->
+    <a href="{{ url_for('read_fundamental_analysis_module', module_id=5) }}" class="nav-pill-btn nav-prev">
+        <i class="fas fa-arrow-left"></i> Previous Module
+    </a>
+    
+    <!-- Finish & Go Back Button -->
+    <a href="{{ url_for('learn_fundamental_analysis') }}" class="nav-pill-btn nav-next">
+        Finish & Go Back <i class="fas fa-check-circle"></i>
+    </a>
+</div>
+{% endblock %}
     <p>Every nation has a central bank that acts as the supreme financial authority. In India, this is the Reserve Bank of India (RBI), established in 1935 and fully owned by the government since 1949.</p>
     
     <ul class="study-list">
@@ -58,7 +126,7 @@
 <div class="study-navigation">
     <!-- Previous Button -->
     <a href="{{ url_for('read_fundamental_analysis_module', module_id=5) }}" class="nav-btn">
-        <i class="fas fa-arrow-left"></i> Previous Module
+        <i class="fas fa-arrow-left"></i> Module 5: Macro Factors
     </a>
     
     <!-- Finish & Go Back Button (Redirects to main fundamental analysis page) -->
