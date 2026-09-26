@@ -13,9 +13,9 @@
         body {
             margin: 0;
             padding: 0;
-            /* --- NEW GRADIENT BACKGROUND --- */
-            background: linear-gradient(to bottom, #0A192F 0%, #0A192F 35%, #FFFFF0 100%);
-            min-height: 100vh; /* Ensures the gradient covers the full page height */
+            /* স্মুথ গ্রেডিয়েন্ট: দাগের পর থেকে ব্লু শুরু হয়ে নিচে ক্রিম কালারে শেষ হবে */
+            background: linear-gradient(to bottom, #0A192F 0%, #0A192F 25%, #FFFFF0 100%);
+            min-height: 100vh;
             font-family: 'Arial', sans-serif;
             color: #f0f0f0;
         }
@@ -24,7 +24,7 @@
         .hero-section {
             width: 100%;
             min-height: 480px;
-            background-image: linear-gradient(to bottom, rgba(10, 25, 47, 0.6) 0%, rgba(10, 25, 47, 0.85) 60%, #0A192F 100%), url("{{ url_for('static', filename='Fundamental Analysis.png') }}");
+            background-image: linear-gradient(to bottom, rgba(10, 25, 47, 0.6) 0%, rgba(10, 25, 47, 0.85) 100%), url("{{ url_for('static', filename='Fundamental Analysis.png') }}");
             background-size: cover;
             background-position: center;
             display: flex;
@@ -32,8 +32,12 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 20px 80px 20px; 
+            padding: 0 20px; 
             box-sizing: border-box;
+            
+            /* NEW: গোল্ডেন সেপারেটর লাইন এবং শ্যাডো */
+            border-bottom: 4px solid #C5A059;
+            box-shadow: 0px 8px 25px rgba(197, 160, 89, 0.2), 0px 10px 30px rgba(0, 0, 0, 0.6);
         }
         
         .back-link {
@@ -68,10 +72,11 @@
             text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
         }
 
-        /* --- PAGE CONTAINER (With Overlap Effect) --- */
+        /* --- PAGE CONTAINER --- */
         .page-container {
             max-width: 1200px;
-            margin: -120px auto 80px auto; 
+            /* CHANGED: ওভারল্যাপ (নেগেটিভ মার্জিন) সরিয়ে দেওয়া হয়েছে, এখন দাগের নিচে থাকবে */
+            margin: 80px auto 80px auto; 
             padding: 0 20px;
             position: relative;
             z-index: 10; 
@@ -86,7 +91,7 @@
 
         /* DEFAULT CARD STYLING (Dark Blue) */
         .module-card {
-            background: rgba(10, 25, 47, 0.95); /* Slightly solid to stand out against gradient */
+            background: rgba(10, 25, 47, 0.95); 
             border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 12px;
             overflow: hidden;
@@ -210,7 +215,7 @@
                 font-size: 2.5rem;
             }
             .page-container {
-                margin-top: -80px; 
+                margin-top: 60px; 
             }
             .module-grid {
                 grid-template-columns: 1fr;
@@ -227,7 +232,7 @@
         <p>Master the art of evaluating a business's true intrinsic value, macroeconomic indicators, and the core philosophies that drive long-term stock market success.</p>
     </div>
 
-    <!-- GRID SECTION WITH OVERLAP -->
+    <!-- GRID SECTION -->
     <div class="page-container">
         <div class="module-grid">
 
