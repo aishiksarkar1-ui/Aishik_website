@@ -3,38 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinXHorizon Study Center</title>
+    <title>Study Module - FinXHorizon</title>
     
-    <!-- Google Fonts: Playfair Display (Serif) & Plus Jakarta Sans (Sans-serif) -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts: 4 Distinct Premium Fonts for Maximum Typography Variation -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* 
-          ADVANCED PREMIUM CSS FOR STUDY MODULES 
-        */
-        
+        /* =========================================
+           GLOBAL VARIABLES (The Masterclass Theme)
+           ========================================= */
+        :root {
+            --navy-blue: #0A192F;
+            --forest-green: #173324;
+            --gold: #C5A059;
+            --cream: #FFFFF0;
+            --light-mint: #F4F7F4;
+            --text-muted: #A9C2B1;
+        }
+
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #0A192F; }
-        ::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 5px; }
-        ::-webkit-scrollbar-thumb:hover { background: #f9d976; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--navy-blue); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
 
         body {
             margin: 0;
             padding: 0;
-            /* Modern Radial Gradient Background */
-            background: radial-gradient(circle at 50% 0%, #152b4d 0%, #0A192F 70%, #061020 100%);
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            /* Deep, reading-friendly gradient background */
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #0d2238 50%, var(--forest-green) 100%);
+            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
             color: #e2e8f0;
             line-height: 1.8;
         }
 
         .study-container {
             padding: 80px 20px;
-            max-width: 1250px;
+            max-width: 1300px;
             margin: 0 auto;
             animation: fadeIn 0.8s ease-out;
         }
@@ -50,107 +59,22 @@
             align-items: flex-start;
         }
         
-        /* Main Content Area - Glassmorphism Effect */
+        /* =========================================
+           LEFT SIDE: MAIN CONTENT (Glassmorphism)
+           ========================================= */
         .study-content {
             flex: 1;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 50px;
+            background: rgba(10, 25, 47, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 60px;
             border-radius: 20px;
             border: 1px solid rgba(197, 160, 89, 0.15);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            border-top: 1px solid rgba(197, 160, 89, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        /* Right Sidebar (Appendix) */
-        .study-sidebar {
-            flex: 0 0 340px;
-            background: rgba(15, 30, 56, 0.7);
-            backdrop-filter: blur(12px);
-            padding: 35px;
-            border-radius: 20px;
-            border: 1px solid rgba(197, 160, 89, 0.15);
-            position: sticky; 
-            top: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        /* Sidebar Styling */
-        .study-sidebar h3 {
-            font-family: 'Playfair Display', serif;
-            color: #C5A059;
-            margin-top: 0;
-            margin-bottom: 25px;
-            font-size: 1.6rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .study-sidebar h3::after {
-            content: '';
-            flex-grow: 1;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(197, 160, 89, 0.4), transparent);
-        }
-        
-        .appendix-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0 0 30px 0;
-        }
-        .appendix-list li { margin-bottom: 12px; }
-        
-        .appendix-list a {
-            display: flex;
-            align-items: center;
-            color: #a0aec0;
-            text-decoration: none;
-            padding: 12px 18px;
-            border-radius: 8px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 0.95rem;
-            font-weight: 500;
-            border-left: 3px solid transparent;
-            background: transparent;
-        }
-        .appendix-list a i {
-            margin-right: 12px;
-            font-size: 0.8rem;
-            transition: transform 0.3s ease;
-            color: rgba(197, 160, 89, 0.5);
-        }
-        .appendix-list a:hover {
-            background: linear-gradient(90deg, rgba(197, 160, 89, 0.1) 0%, transparent 100%);
-            border-left: 3px solid #C5A059;
-            color: #FFFFF0;
-            transform: translateX(5px);
-        }
-        .appendix-list a:hover i {
-            color: #C5A059;
-            transform: translateX(3px);
-        }
-
-        .return-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #C5A059, #f9d976);
-            color: #0A192F;
-            padding: 14px;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(197, 160, 89, 0.2);
-        }
-        .return-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(197, 160, 89, 0.4);
-            color: #000;
-        }
-
-        /* Typography & Content Styles */
+        /* Typography - 1. MAIN TITLE (Playfair Display) */
         .study-header {
             position: relative;
             padding-bottom: 25px;
@@ -161,63 +85,80 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #C5A059, transparent);
+            width: 100px;
+            height: 3px;
+            background: var(--gold);
             border-radius: 2px;
         }
-        
         .study-header h1 {
             font-family: 'Playfair Display', serif;
-            /* Premium Gold Text Gradient */
-            background: linear-gradient(to right, #C5A059, #f9d976, #C5A059);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 2.8rem;
+            color: var(--cream);
+            font-size: 3rem;
             margin: 0 0 20px 0;
-            line-height: 1.3;
+            line-height: 1.2;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        .study-header h1 em, .study-header h1 span {
+            color: var(--gold);
+            font-style: normal;
         }
         
+        /* Typography - 2. INTRO/SUMMARY TEXT (Lora Italic) */
         .study-header p.intro-text {
-            font-size: 1.15rem;
-            color: #cbd5e1;
+            font-family: 'Lora', serif;
+            font-size: 1.25rem;
+            color: var(--text-muted);
             font-style: italic;
-            font-weight: 300;
+            font-weight: 400;
             letter-spacing: 0.5px;
+            line-height: 1.8;
+            border-left: 3px solid rgba(197, 160, 89, 0.3);
+            padding-left: 20px;
+            margin-top: 25px;
         }
         
+        /* Typography - 3. SUB-HEADINGS (Montserrat) */
         .study-section h2 {
-            font-family: 'Playfair Display', serif;
-            color: #e2e8f0;
-            font-size: 1.8rem;
-            margin-top: 50px;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--gold);
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 60px;
             margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 15px;
         }
         .study-section h2::before {
-            content: "✦";
-            color: #C5A059;
+            content: "\f061"; /* Arrow icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: rgba(197, 160, 89, 0.5);
             font-size: 1.2rem;
         }
         
+        /* Typography - 4. BODY TEXT (Inter) */
         .study-section p {
+            font-family: 'Inter', sans-serif;
             font-size: 1.05rem;
-            color: #94a3b8;
-            margin-bottom: 20px;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+            font-weight: 300;
         }
 
-        /* Modern Farman Box (Example Box) */
+        /* --- THEME SYNC: THE EXAMPLE BOX (Cream/Mint Theme) --- */
         .farman-box {
-            background: linear-gradient(145deg, rgba(255, 255, 240, 0.95), rgba(255, 255, 240, 0.85));
-            color: #0f172a;
-            padding: 30px 35px;
-            border-left: 6px solid #C5A059;
-            margin: 40px 0;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-mint) 100%);
+            color: var(--navy-blue);
+            padding: 35px 40px;
+            border-left: 6px solid var(--forest-green);
+            margin: 45px 0;
             border-radius: 0 16px 16px 0;
+            font-family: 'Inter', sans-serif;
             font-weight: 500;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             position: relative;
         }
         .farman-box::before {
@@ -228,71 +169,150 @@
             right: 25px;
             top: -15px;
             font-size: 2.5rem;
-            color: rgba(197, 160, 89, 0.2);
+            color: rgba(23, 51, 36, 0.1); /* Subtle forest green watermark */
+            transition: transform 0.4s ease;
+        }
+        .farman-box:hover::before {
+            transform: scale(1.2) rotate(15deg);
+            color: rgba(197, 160, 89, 0.4);
         }
         .farman-box strong {
-            color: #8b6d3b;
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--forest-green);
+            font-size: 1.15rem;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         /* List Styling */
         .study-list {
             list-style-type: none;
             padding-left: 0;
+            font-family: 'Inter', sans-serif;
         }
         .study-list li {
             margin-bottom: 20px;
             padding-left: 35px;
             position: relative;
             color: #cbd5e1;
+            font-weight: 300;
         }
         .study-list li::before {
-            content: "\f0a4"; /* Pointing icon */
+            content: "\f111"; /* Solid circle */
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
-            color: #C5A059;
+            color: var(--gold);
             position: absolute;
-            left: 0;
-            top: 2px;
-            font-size: 1.1rem;
+            left: 5px;
+            top: 7px;
+            font-size: 0.5rem;
         }
         .study-list strong {
-            color: #f9d976;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--cream);
             font-weight: 600;
             letter-spacing: 0.5px;
         }
 
-        /* Bottom Navigation */
-        .study-navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 70px;
-            padding-top: 35px;
-            border-top: 1px solid rgba(197, 160, 89, 0.2);
+        /* =========================================
+           RIGHT SIDE: STICKY SIDEBAR (Course Index)
+           ========================================= */
+        .study-sidebar {
+            flex: 0 0 350px;
+            background: rgba(23, 51, 36, 0.4); /* Forest green tint for contrast */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(244, 247, 244, 0.1);
+            border-top: 1px solid rgba(197, 160, 89, 0.3);
+            position: sticky; 
+            top: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
-        .nav-btn {
-            display: inline-flex;
+
+        .study-sidebar h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--gold);
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
             align-items: center;
             gap: 12px;
-            background: transparent;
-            color: #C5A059;
-            padding: 12px 28px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05rem;
-            border-radius: 50px;
-            border: 1px solid #C5A059;
-            transition: all 0.3s ease;
         }
-        .nav-btn:hover {
+        
+        .appendix-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 40px 0;
+        }
+        .appendix-list li { margin-bottom: 8px; }
+        
+        .appendix-list a {
+            display: flex;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 14px 18px;
+            border-radius: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+        .appendix-list a i {
+            margin-right: 15px;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+            color: rgba(197, 160, 89, 0.4);
+        }
+        .appendix-list a:hover {
             background: rgba(197, 160, 89, 0.1);
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
-            color: #f9d976;
+            border-left: 3px solid var(--gold);
+            color: var(--cream);
+            transform: translateX(5px);
+        }
+        .appendix-list a:hover i {
+            color: var(--gold);
+            transform: translateX(4px);
+        }
+
+        /* Sidebar Golden Pill Button */
+        .return-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--gold) 0%, #d4af37 100%);
+            color: var(--navy-blue);
+            padding: 16px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(197, 160, 89, 0.3);
+        }
+        .return-btn i { font-size: 1.1rem; transition: transform 0.3s ease; }
+        .return-btn:hover {
+            background: var(--cream);
+            color: var(--navy-blue);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(255, 255, 240, 0.3);
+        }
+        .return-btn:hover i {
+            transform: translateX(-5px);
         }
 
         /* Mobile Responsiveness */
@@ -306,7 +326,7 @@
                 order: -1; 
                 margin-bottom: 30px;
             }
-            .study-content { padding: 30px 20px; }
+            .study-content { padding: 40px 25px; }
             .study-header h1 { font-size: 2.2rem; }
         }
     </style>
@@ -318,13 +338,18 @@
             
             <!-- LEFT SIDE: Main Dynamic Content -->
             <div class="study-content">
+                <!-- 
+                   Since this is your base_study.html, your actual content 
+                   (module_1.html, module_2.html etc) will be injected here.
+                   The CSS above will automatically format your h1, h2, p, and farman-box!
+                -->
                 {% block study_content %}
                 {% endblock %}
             </div>
 
             <!-- RIGHT SIDE: Sticky Appendix / Sidebar -->
             <div class="study-sidebar">
-                <h3><i class="fas fa-book-reader"></i> Course Index</h3>
+                <h3><i class="fas fa-list-ul"></i> Course Index</h3>
                 <ul class="appendix-list">
                     <li>
                         <a href="{{ url_for('read_fundamental_analysis_module', module_id=1) }}">
@@ -358,9 +383,9 @@
                     </li>
                 </ul>
 
-                <!-- Return Button -->
+                <!-- Outstanding Golden Pill Button -->
                 <a href="{{ url_for('learn_fundamental_analysis') }}" class="return-btn">
-                    <i class="fas fa-home"></i> Back to All Modules
+                    <i class="fas fa-arrow-left"></i> Back to All Modules
                 </a>
             </div>
 
