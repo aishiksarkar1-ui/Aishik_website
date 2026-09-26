@@ -33,7 +33,6 @@
         body {
             margin: 0;
             padding: 0;
-            /* Deep, reading-friendly gradient background */
             background: linear-gradient(135deg, var(--navy-blue) 0%, #0d2238 50%, var(--forest-green) 100%);
             background-attachment: fixed;
             font-family: 'Inter', sans-serif;
@@ -74,7 +73,7 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        /* Typography - 1. MAIN TITLE (Playfair Display) */
+        /* Typography */
         .study-header {
             position: relative;
             padding-bottom: 25px;
@@ -103,7 +102,6 @@
             font-style: normal;
         }
         
-        /* Typography - 2. INTRO/SUMMARY TEXT (Lora Italic) */
         .study-header p.intro-text {
             font-family: 'Lora', serif;
             font-size: 1.25rem;
@@ -117,7 +115,6 @@
             margin-top: 25px;
         }
         
-        /* Typography - 3. SUB-HEADINGS (Montserrat) */
         .study-section h2 {
             font-family: 'Montserrat', sans-serif;
             color: var(--gold);
@@ -139,7 +136,6 @@
             font-size: 1.2rem;
         }
         
-        /* Typography - 4. BODY TEXT (Inter) */
         .study-section p {
             font-family: 'Inter', sans-serif;
             font-size: 1.05rem;
@@ -148,7 +144,6 @@
             font-weight: 300;
         }
 
-        /* --- THEME SYNC: THE EXAMPLE BOX (Cream/Mint Theme) --- */
         .farman-box {
             background: linear-gradient(135deg, var(--cream) 0%, var(--light-mint) 100%);
             color: var(--navy-blue);
@@ -187,7 +182,6 @@
             margin-bottom: 12px;
         }
 
-        /* List Styling */
         .study-list {
             list-style-type: none;
             padding-left: 0;
@@ -247,11 +241,7 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
-        .nav-pill-btn i {
-            font-size: 1.1rem;
-            transition: transform 0.3s ease;
-        }
-
+        .nav-pill-btn i { font-size: 1.1rem; transition: transform 0.3s ease; }
         .nav-pill-btn:hover {
             background: rgba(197, 160, 89, 0.1); 
             box-shadow: 0 8px 25px rgba(197, 160, 89, 0.25);
@@ -261,10 +251,7 @@
 
         .nav-prev:hover i { transform: translateX(-5px); } 
         .nav-next:hover i { transform: translateX(5px); }  
-
-        .module-navigation .nav-next {
-            margin-left: auto;
-        }
+        .module-navigation .nav-next { margin-left: auto; }
 
         /* =========================================
            RIGHT SIDE: STICKY SIDEBAR (Course Index)
@@ -334,6 +321,19 @@
             transform: translateX(4px);
         }
 
+        /* 💥 NEW: ACTIVE MODULE HIGHLIGHT STYLE 💥 */
+        .appendix-list a.active-module {
+            background: rgba(197, 160, 89, 0.15); /* হালকা গোল্ডেন ব্যাকগ্রাউন্ড */
+            border-left: 3px solid var(--gold);
+            color: var(--cream);
+            font-weight: 600;
+            box-shadow: inset 0 0 15px rgba(197, 160, 89, 0.05);
+        }
+        .appendix-list a.active-module i {
+            color: var(--gold);
+            transform: translateX(4px);
+        }
+
         /* Sidebar Golden Pill Button */
         .return-btn {
             display: flex;
@@ -360,9 +360,7 @@
             transform: translateY(-4px);
             box-shadow: 0 15px 35px rgba(255, 255, 240, 0.3);
         }
-        .return-btn:hover i {
-            transform: translateX(-5px);
-        }
+        .return-btn:hover i { transform: translateX(-5px); }
 
         /* Mobile Responsiveness */
         @media (max-width: 992px) {
@@ -377,20 +375,9 @@
             }
             .study-content { padding: 40px 25px; }
             .study-header h1 { font-size: 2.2rem; }
-            
-            /* Mobile adjustment for navigation buttons */
-            .module-navigation {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .module-navigation .nav-next {
-                margin-left: 0;
-            }
-            .nav-pill-btn {
-                width: 100%;
-                justify-content: center;
-                box-sizing: border-box;
-            }
+            .module-navigation { flex-direction: column; gap: 15px; }
+            .module-navigation .nav-next { margin-left: 0; }
+            .nav-pill-btn { width: 100%; justify-content: center; box-sizing: border-box; }
         }
     </style>
 </head>
@@ -401,43 +388,42 @@
             
             <!-- LEFT SIDE: Main Dynamic Content -->
             <div class="study-content">
-                
                 {% block study_content %}
                 {% endblock %}
-                
             </div>
 
             <!-- RIGHT SIDE: Sticky Appendix / Sidebar -->
             <div class="study-sidebar">
                 <h3><i class="fas fa-list-ul"></i> Course Index</h3>
                 <ul class="appendix-list">
+                    <!-- 💥 NEW: JINJA LOGIC FOR DYNAMIC HIGHLIGHT 💥 -->
                     <li>
-                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=1) }}">
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=1) }}" class="{% if request.path == url_for('read_fundamental_analysis_module', module_id=1) %}active-module{% endif %}">
                             <i class="fas fa-arrow-right"></i> Module 1: Introduction
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=2) }}">
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=2) }}" class="{% if request.path == url_for('read_fundamental_analysis_module', module_id=2) %}active-module{% endif %}">
                             <i class="fas fa-arrow-right"></i> Module 2: EIC Framework
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=3) }}">
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=3) }}" class="{% if request.path == url_for('read_fundamental_analysis_module', module_id=3) %}active-module{% endif %}">
                             <i class="fas fa-arrow-right"></i> Module 3: Equity Valuation
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=4) }}">
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=4) }}" class="{% if request.path == url_for('read_fundamental_analysis_module', module_id=4) %}active-module{% endif %}">
                             <i class="fas fa-arrow-right"></i> Module 4: Economic Indicators
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=5) }}">
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=5) }}" class="{% if request.path == url_for('read_fundamental_analysis_module', module_id=5) %}active-module{% endif %}">
                             <i class="fas fa-arrow-right"></i> Module 5: Macro Factors
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=6) }}">
+                        <a href="{{ url_for('read_fundamental_analysis_module', module_id=6) }}" class="{% if request.path == url_for('read_fundamental_analysis_module', module_id=6) %}active-module{% endif %}">
                             <i class="fas fa-arrow-right"></i> Module 6: Credit & FDI
                         </a>
                     </li>
