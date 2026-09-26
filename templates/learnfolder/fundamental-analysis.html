@@ -17,49 +17,63 @@
             font-family: 'Arial', sans-serif;
             color: #f0f0f0;
         }
-        
-        .page-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
 
-        /* Header Section */
-        .header-section {
-            text-align: center;
-            margin-bottom: 60px;
-            /* ব্যাকগ্রাউন্ড ইমেজ এবং ডার্ক ওভারলে যোগ করা হলো */
-            background-image: linear-gradient(rgba(10, 25, 47, 0.75), rgba(10, 25, 47, 0.75)), url("{{ url_for('static', filename='Fundamental Analysis.png') }}");
+        /* --- NEW FULL-WIDTH HERO SECTION --- */
+        .hero-section {
+            width: 100%;
+            min-height: 480px;
+            /* Seamless gradient that fades into the body background color */
+            background-image: linear-gradient(to bottom, rgba(10, 25, 47, 0.6) 0%, rgba(10, 25, 47, 0.85) 60%, #0A192F 100%), url("{{ url_for('static', filename='Fundamental Analysis.png') }}");
             background-size: cover;
             background-position: center;
-            padding: 60px 20px;
-            border-radius: 16px;
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px 80px 20px; /* Extra bottom padding for the overlap */
+            box-sizing: border-box;
         }
+        
         .back-link {
             display: inline-block;
             color: #C5A059;
             text-decoration: none;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            font-weight: bold;
             transition: color 0.3s ease;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
         .back-link:hover {
             color: #FFFFF0;
         }
-        .header-section h1 {
+        
+        .hero-section h1 {
             color: #C5A059;
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin: 0 0 20px 0;
             font-family: 'Georgia', serif;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
         }
-        .header-section p {
-            color: #cccccc;
-            font-size: 1.1rem;
-            max-width: 700px;
+        
+        .hero-section p {
+            color: #FFFFF0; /* Bright cream color for better pop */
+            font-size: 1.2rem;
+            max-width: 750px;
             margin: 0 auto;
             line-height: 1.6;
+            font-weight: 500;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+        }
+
+        /* --- PAGE CONTAINER (With Overlap Effect) --- */
+        .page-container {
+            max-width: 1200px;
+            margin: -120px auto 80px auto; /* -120px pulls the grid up to overlap the hero section */
+            padding: 0 20px;
+            position: relative;
+            z-index: 10; /* Ensures the grid stays above the hero background */
         }
 
         /* Wix-Style Grid Layout */
@@ -72,26 +86,27 @@
         /* DEFAULT CARD STYLING (Dark Blue) */
         .module-card {
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(197, 160, 89, 0.2);
+            border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 12px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             transition: all 0.4s ease;
             text-decoration: none; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* Base shadow for overlap depth */
         }
         
         /* ALTERNATE CARD STYLING (Light Cream for 2, 4, 6) */
         .module-card:nth-child(even) {
             background-color: #FFFFF0;
-            border: 1px solid rgba(197, 160, 89, 0.4);
+            border: 1px solid rgba(197, 160, 89, 0.5);
         }
 
         /* Hover Effects */
         .module-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(197, 160, 89, 0.6);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(197, 160, 89, 0.8);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
         /* Image Section with Zoom Effect */
@@ -149,10 +164,10 @@
 
         /* Content Section (Light Cards Overrides) */
         .module-card:nth-child(even) .card-content h3 {
-            color: #0A192F; /* Deep Blue Heading */
+            color: #0A192F; 
         }
         .module-card:nth-child(even) .card-content p {
-            color: #333333; /* Dark Grey Text */
+            color: #333333; 
         }
 
         /* Read More Button (Dark Cards) */
@@ -179,16 +194,22 @@
 
         /* Read More Button (Light Cards Overrides) */
         .module-card:nth-child(even) .read-more-btn {
-            color: #0A192F; /* Deep Blue Button */
+            color: #0A192F; 
         }
         .module-card:nth-child(even):hover .read-more-btn {
-            color: #C5A059; /* Golden on Hover */
+            color: #C5A059; 
         }
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .header-section h1 {
-                font-size: 2.2rem;
+            .hero-section {
+                min-height: 400px;
+            }
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .page-container {
+                margin-top: -80px; /* Slightly less overlap on mobile */
             }
             .module-grid {
                 grid-template-columns: 1fr;
@@ -198,18 +219,15 @@
 </head>
 <body>
 
-    <!-- Optional Navbar space -->
+    <!-- FULL WIDTH HERO SECTION -->
+    <div class="hero-section">
+        <a href="/learn" class="back-link"><i class="fas fa-arrow-left"></i> Back to All Modules</a>
+        <h1>Fundamental Analysis</h1>
+        <p>Master the art of evaluating a business's true intrinsic value, macroeconomic indicators, and the core philosophies that drive long-term stock market success.</p>
+    </div>
 
+    <!-- GRID SECTION WITH OVERLAP -->
     <div class="page-container">
-        
-        <!-- Header -->
-        <div class="header-section">
-            <a href="/learn" class="back-link"><i class="fas fa-arrow-left"></i> Back to All Modules</a>
-            <h1>Fundamental Analysis</h1>
-            <p>Master the art of evaluating a business's true intrinsic value, macroeconomic indicators, and the core philosophies that drive long-term stock market success.</p>
-        </div>
-
-        <!-- Grid Container -->
         <div class="module-grid">
 
             <!-- Module 1 (Dark) -->
