@@ -173,6 +173,20 @@
         .farman-box p { color: var(--navy-blue); font-size: 1.1rem; font-weight: 500; margin-bottom: 15px; }
         .farman-box p:last-child { margin-bottom: 0; }
         .farman-box h3 { color: var(--forest-green); font-family: 'Montserrat', sans-serif; margin-top: 0; font-size: 1.3rem; border-bottom: none; padding-bottom: 0; }
+        /* 💥 FIX: Light Box Text Visibility 💥 */
+        .farman-box strong { 
+            color: var(--forest-green) !important; /* বোল্ড লেখাগুলো গাঢ় সবুজ হবে */
+            font-weight: 700; 
+        }
+        
+        .farman-box .article-list li { 
+            color: var(--navy-blue); /* লিস্টের সাধারণ লেখাগুলো গাঢ় নীল হবে */
+            font-weight: 500; 
+        }
+        
+        .farman-box .article-list li::marker {
+            color: var(--forest-green); /* লিস্টের পাশের ডটগুলো সবুজ হবে */
+        }
         
         /* Premium Table Design */
         .table-responsive {
