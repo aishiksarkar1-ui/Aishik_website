@@ -52,15 +52,15 @@
     <p>By gathering information across all three of these distinct parts, an investor can properly interpret and analyze the data to determine the true intrinsic value of a share. Once this intrinsic value is determined, it must be compared against the current market value to make a sound, logical investment decision.</p>
 </div>
 
-<div class="study-navigation">
-    <!-- Previous Button -->
-    <a href="{{ url_for('read_fundamental_analysis_module', module_id=1) }}" class="nav-btn">
-        <i class="fas fa-arrow-left"></i> Previous Module
+<div class="module-navigation">
+    <!-- Previous module er link -->
+    <a href="{{ url_for('read_fundamental_analysis_module', module_id=1) }}" class="nav-pill-btn nav-prev">
+        <i class="fas fa-arrow-left"></i> Module 1: Introduction 
     </a>
     
-    <!-- Next Button -->
-    <a href="{{ url_for('read_fundamental_analysis_module', module_id=3) }}" class="nav-btn">
-        Next Module <i class="fas fa-arrow-right"></i>
+    <!-- Next module er link -->
+    <a href="{{ url_for('read_fundamental_analysis_module', module_id=3) }}" class="nav-pill-btn nav-next">
+        Module 3:Equity Valuation <i class="fas fa-arrow-right"></i>
     </a>
 </div>
 {% endblock %}
