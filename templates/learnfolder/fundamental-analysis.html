@@ -13,16 +13,17 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #0A192F;
+            /* --- NEW GRADIENT BACKGROUND --- */
+            background: linear-gradient(to bottom, #0A192F 0%, #0A192F 35%, #FFFFF0 100%);
+            min-height: 100vh; /* Ensures the gradient covers the full page height */
             font-family: 'Arial', sans-serif;
             color: #f0f0f0;
         }
 
-        /* --- NEW FULL-WIDTH HERO SECTION --- */
+        /* --- FULL-WIDTH HERO SECTION --- */
         .hero-section {
             width: 100%;
             min-height: 480px;
-            /* Seamless gradient that fades into the body background color */
             background-image: linear-gradient(to bottom, rgba(10, 25, 47, 0.6) 0%, rgba(10, 25, 47, 0.85) 60%, #0A192F 100%), url("{{ url_for('static', filename='Fundamental Analysis.png') }}");
             background-size: cover;
             background-position: center;
@@ -31,7 +32,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 20px 80px 20px; /* Extra bottom padding for the overlap */
+            padding: 0 20px 80px 20px; 
             box-sizing: border-box;
         }
         
@@ -58,7 +59,7 @@
         }
         
         .hero-section p {
-            color: #FFFFF0; /* Bright cream color for better pop */
+            color: #FFFFF0; 
             font-size: 1.2rem;
             max-width: 750px;
             margin: 0 auto;
@@ -70,10 +71,10 @@
         /* --- PAGE CONTAINER (With Overlap Effect) --- */
         .page-container {
             max-width: 1200px;
-            margin: -120px auto 80px auto; /* -120px pulls the grid up to overlap the hero section */
+            margin: -120px auto 80px auto; 
             padding: 0 20px;
             position: relative;
-            z-index: 10; /* Ensures the grid stays above the hero background */
+            z-index: 10; 
         }
 
         /* Wix-Style Grid Layout */
@@ -85,7 +86,7 @@
 
         /* DEFAULT CARD STYLING (Dark Blue) */
         .module-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(10, 25, 47, 0.95); /* Slightly solid to stand out against gradient */
             border: 1px solid rgba(197, 160, 89, 0.3);
             border-radius: 12px;
             overflow: hidden;
@@ -93,7 +94,7 @@
             flex-direction: column;
             transition: all 0.4s ease;
             text-decoration: none; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* Base shadow for overlap depth */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
         }
         
         /* ALTERNATE CARD STYLING (Light Cream for 2, 4, 6) */
@@ -106,7 +107,7 @@
         .module-card:hover {
             transform: translateY(-8px);
             border-color: rgba(197, 160, 89, 0.8);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         /* Image Section with Zoom Effect */
@@ -209,7 +210,7 @@
                 font-size: 2.5rem;
             }
             .page-container {
-                margin-top: -80px; /* Slightly less overlap on mobile */
+                margin-top: -80px; 
             }
             .module-grid {
                 grid-template-columns: 1fr;
