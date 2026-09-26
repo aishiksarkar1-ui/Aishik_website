@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts: 3 Premium Font Variations -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Base Styles & 4-Color Palette Variables */
+        /* =========================================
+           GLOBAL VARIABLES & BASE STYLES
+           ========================================= */
         :root {
             --navy-blue: #0A192F;
             --forest-green: #173324;
@@ -24,18 +26,18 @@
         body {
             margin: 0;
             padding: 0;
-            /* ম্যাজিক গ্রেডিয়েন্ট: নেভি ব্লু -> ফরেস্ট গ্রিন -> ক্রিম */
             background: linear-gradient(to bottom, var(--navy-blue) 0%, var(--forest-green) 40%, var(--cream) 100%);
             min-height: 100vh;
             font-family: 'Inter', sans-serif;
             color: #f0f0f0;
         }
 
-        /* --- FULL-WIDTH HERO SECTION --- */
+        /* =========================================
+           TOP SECTION: HERO & FUNDAMENTAL CARDS
+           ========================================= */
         .hero-section {
             width: 100%;
             min-height: 500px;
-            /* ছবির ওপর ব্লু থেকে গ্রিন ওভারলে */
             background-image: linear-gradient(to bottom, rgba(10, 25, 47, 0.8) 0%, rgba(23, 51, 36, 0.95) 100%), url("{{ url_for('static', filename='Fundamental Analysis.png') }}");
             background-size: cover;
             background-position: center;
@@ -46,8 +48,6 @@
             text-align: center;
             padding: 0 20px; 
             box-sizing: border-box;
-            
-            /* গোল্ডেন সেপারেটর লাইন */
             border-bottom: 3px solid var(--gold);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
@@ -82,9 +82,7 @@
             font-weight: 600;
             transition: color 0.3s ease;
         }
-        .back-link:hover {
-            color: var(--cream);
-        }
+        .back-link:hover { color: var(--cream); }
         
         .hero-section h1 {
             color: var(--cream);
@@ -95,12 +93,7 @@
             line-height: 1.1;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
         }
-        
-        .hero-section h1 em {
-            font-weight: 500;
-            font-style: italic;
-            color: var(--gold); 
-        }
+        .hero-section h1 em { font-weight: 500; font-style: italic; color: var(--gold); }
         
         .hero-section p {
             color: var(--light-mint); 
@@ -113,7 +106,6 @@
             text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
         }
 
-        /* --- PAGE CONTAINER --- */
         .page-container {
             max-width: 1200px;
             margin: 80px auto; 
@@ -122,16 +114,13 @@
             z-index: 10; 
         }
 
-        /* Grid Layout */
         .module-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 40px;
         }
 
-        /* ---------------------------------------------------
-           CARD THEME 1: NAVY BLUE (Card 1, 4)
-           --------------------------------------------------- */
+        /* Top Cards Styling */
         .module-card {
             background: rgba(10, 25, 47, 0.95); 
             border: 1px solid rgba(197, 160, 89, 0.3);
@@ -155,9 +144,6 @@
         }
         .module-card:hover .read-more-btn { color: var(--gold); }
 
-        /* ---------------------------------------------------
-           CARD THEME 2: CREAM (Card 2, 5)
-           --------------------------------------------------- */
         .module-card:nth-child(3n+2) {
             background-color: var(--cream);
             border: 1px solid rgba(23, 51, 36, 0.2);
@@ -166,15 +152,9 @@
         .module-card:nth-child(3n+2) p { color: #333333; }
         .module-card:nth-child(3n+2) .module-badge { background: var(--navy-blue); color: var(--gold); }
         .module-card:nth-child(3n+2) .read-more-btn { color: var(--forest-green); }
-        
-        .module-card:nth-child(3n+2):hover {
-            border-color: var(--navy-blue);
-        }
+        .module-card:nth-child(3n+2):hover { border-color: var(--navy-blue); }
         .module-card:nth-child(3n+2):hover .read-more-btn { color: var(--navy-blue); }
 
-        /* ---------------------------------------------------
-           CARD THEME 3: FOREST GREEN (Card 3, 6)
-           --------------------------------------------------- */
         .module-card:nth-child(3n) {
             background-color: rgba(23, 51, 36, 0.95);
             border: 1px solid rgba(197, 160, 89, 0.3);
@@ -183,13 +163,9 @@
         .module-card:nth-child(3n) p { color: #A9C2B1; }
         .module-card:nth-child(3n) .module-badge { background: var(--light-mint); color: var(--forest-green); }
         .module-card:nth-child(3n) .read-more-btn { color: var(--gold); }
-        
-        .module-card:nth-child(3n):hover {
-            border-color: var(--light-mint);
-        }
+        .module-card:nth-child(3n):hover { border-color: var(--light-mint); }
         .module-card:nth-child(3n):hover .read-more-btn { color: var(--light-mint); }
 
-        /* Shared Card Components */
         .card-image-wrapper {
             width: 100%;
             height: 220px;
@@ -202,9 +178,7 @@
             object-fit: cover;
             transition: transform 0.6s ease;
         }
-        .module-card:hover .card-image-wrapper img {
-            transform: scale(1.06); 
-        }
+        .module-card:hover .card-image-wrapper img { transform: scale(1.06); }
         
         .module-badge {
             position: absolute;
@@ -254,15 +228,200 @@
             font-size: 0.9rem;
             transition: transform 0.3s ease;
         }
-        .module-card:hover .read-more-btn i {
-            transform: translateX(5px);
+        .module-card:hover .read-more-btn i { transform: translateX(5px); }
+
+
+        /* =========================================
+           BOTTOM SECTION: OTHER CORE MODULES (GLOWING GLASS)
+           ========================================= */
+        .other-core-section {
+            /* Changed from solid blue to a rich gradient with depth */
+            background: linear-gradient(180deg, #0e1c36 0%, var(--navy-blue) 100%);
+            padding: 90px 20px;
+            margin-top: 60px;
+            border-top: 4px solid var(--gold);
+            position: relative;
         }
+        
+        /* A subtle top inner glow to blend with the cream body */
+        .other-core-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(197, 160, 89, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        .other-core-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .core-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            color: var(--cream);
+            font-size: 36px;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+        .core-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Base Glassmorphism Card for Bottom Section */
+        .core-card {
+            border-radius: 12px;
+            padding: 40px 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .core-card h4 {
+            position: relative;
+            z-index: 1;
+            font-family: 'Playfair Display', serif; 
+            font-size: 24px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .core-card p {
+            position: relative;
+            z-index: 1;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-family: 'Inter', sans-serif;
+            flex-grow: 1;
+        }
+        
+        /* Hollow Number Base */
+        .core-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 75px; 
+            color: transparent; 
+            position: absolute; 
+            top: 5px;
+            right: 15px;
+            font-weight: bold;
+            z-index: 0;
+            line-height: 1;
+            transition: all 0.4s ease;
+        }
+        
+        /* Explore Button Base */
+        .core-btn {
+            display: inline-block;
+            background-color: transparent;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-bottom: 2px solid;
+            padding-bottom: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            align-self: flex-start;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .core-btn:hover { letter-spacing: 2px; }
+
+        /* --- THEME 1: NAVY BLUE GLOWING GRADIENT --- */
+        .core-navy {
+            background: linear-gradient(135deg, rgba(30, 60, 90, 0.8) 0%, rgba(10, 25, 47, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(197, 160, 89, 0.4); /* Top Gold Shine */
+            border-left: 1px solid rgba(197, 160, 89, 0.2); /* Left Gold Shine */
+        }
+        .core-navy h4 { color: var(--gold); }
+        .core-navy p { color: #E0E0E0; }
+        .core-navy .core-number { -webkit-text-stroke: 1.5px rgba(197, 160, 89, 0.4); }
+        .core-navy .core-btn { color: var(--cream); border-bottom-color: var(--gold); }
+        
+        .core-navy:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 35px rgba(197, 160, 89, 0.15);
+        }
+        .core-navy:hover .core-number {
+            -webkit-text-stroke: 2px var(--gold);
+            color: rgba(197, 160, 89, 0.15);
+            transform: scale(1.1) rotate(-5deg);
+            text-shadow: 0 0 15px rgba(197, 160, 89, 0.5);
+        }
+        .core-navy:hover .core-btn { color: var(--gold); }
+
+        /* --- THEME 2: CREAM GLOWING GRADIENT --- */
+        .core-cream {
+            background: linear-gradient(135deg, #FDFBF7 0%, #EAE4D3 100%);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+        }
+        .core-cream h4 { color: var(--navy-blue); }
+        .core-cream p { color: #2c3e50; font-weight: 500;}
+        .core-cream .core-number { -webkit-text-stroke: 1.5px rgba(10, 25, 47, 0.2); }
+        .core-cream .core-btn { color: var(--forest-green); border-bottom-color: var(--navy-blue); }
+        
+        .core-cream:hover {
+            transform: translateY(-8px);
+            border-color: var(--navy-blue);
+            box-shadow: 0 15px 35px rgba(10, 25, 47, 0.15);
+        }
+        .core-cream:hover .core-number {
+            -webkit-text-stroke: 2px var(--navy-blue);
+            color: rgba(10, 25, 47, 0.05);
+            transform: scale(1.1) rotate(-5deg);
+            text-shadow: 0 0 15px rgba(10, 25, 47, 0.2);
+        }
+        .core-cream:hover .core-btn { color: var(--navy-blue); }
+
+        /* --- THEME 3: FOREST GREEN GLOWING GRADIENT --- */
+        .core-green {
+            background: linear-gradient(135deg, rgba(42, 110, 75, 0.8) 0%, rgba(23, 51, 36, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(197, 160, 89, 0.4);
+            border-left: 1px solid rgba(197, 160, 89, 0.2);
+        }
+        .core-green h4 { color: var(--light-mint); }
+        .core-green p { color: #c4d7cb; }
+        .core-green .core-number { -webkit-text-stroke: 1.5px rgba(244, 247, 244, 0.3); }
+        .core-green .core-btn { color: var(--gold); border-bottom-color: var(--gold); }
+        
+        .core-green:hover {
+            transform: translateY(-8px);
+            border-color: var(--light-mint);
+            box-shadow: 0 15px 35px rgba(244, 247, 244, 0.15);
+        }
+        .core-green:hover .core-number {
+            -webkit-text-stroke: 2px var(--light-mint);
+            color: rgba(244, 247, 244, 0.15);
+            transform: scale(1.1) rotate(-5deg);
+            text-shadow: 0 0 15px rgba(244, 247, 244, 0.4);
+        }
+        .core-green:hover .core-btn { color: var(--light-mint); border-bottom-color: var(--light-mint); }
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .hero-section h1 { font-size: 3rem; }
             .back-link { top: 15px; left: 15px; }
             .module-grid { grid-template-columns: 1fr; }
+            .core-grid { grid-template-columns: 1fr; }
+            .core-title { font-size: 28px; }
         }
     </style>
 </head>
@@ -277,11 +436,10 @@
         <p>Master the art of evaluating a business's true intrinsic value, macroeconomic indicators, and the core philosophies that drive long-term stock market success.</p>
     </div>
 
-    <!-- GRID SECTION -->
+    <!-- UPPER GRID SECTION (Modules 1 to 6) -->
     <div class="page-container">
         <div class="module-grid">
 
-            <!-- Module 1 (Navy Blue & Gold) -->
             <a href="{{ url_for('read_fundamental_analysis_module', module_id=1) }}" class="module-card">
                 <div class="card-image-wrapper">
                     <div class="module-badge">01</div>
@@ -294,7 +452,6 @@
                 </div>
             </a>
 
-            <!-- Module 2 (Cream & Navy) -->
             <a href="{{ url_for('read_fundamental_analysis_module', module_id=2) }}" class="module-card">
                 <div class="card-image-wrapper">
                     <div class="module-badge">02</div>
@@ -307,7 +464,6 @@
                 </div>
             </a>
 
-            <!-- Module 3 (Forest Green & Mint) -->
             <a href="{{ url_for('read_fundamental_analysis_module', module_id=3) }}" class="module-card">
                 <div class="card-image-wrapper">
                     <div class="module-badge">03</div>
@@ -320,7 +476,6 @@
                 </div>
             </a>
 
-            <!-- Module 4 (Navy Blue & Gold) -->
             <a href="{{ url_for('read_fundamental_analysis_module', module_id=4) }}" class="module-card">
                 <div class="card-image-wrapper">
                     <div class="module-badge">04</div>
@@ -333,7 +488,6 @@
                 </div>
             </a>
 
-            <!-- Module 5 (Cream & Navy) -->
             <a href="{{ url_for('read_fundamental_analysis_module', module_id=5) }}" class="module-card">
                 <div class="card-image-wrapper">
                     <div class="module-badge">05</div>
@@ -346,7 +500,6 @@
                 </div>
             </a>
 
-            <!-- Module 6 (Forest Green & Mint) -->
             <a href="{{ url_for('read_fundamental_analysis_module', module_id=6) }}" class="module-card">
                 <div class="card-image-wrapper">
                     <div class="module-badge">06</div>
@@ -359,6 +512,57 @@
                 </div>
             </a>
 
+        </div>
+    </div>
+
+    <!-- BOTTOM SECTION: OTHER CORE MODULES WITH GLOWING GLASS EFFECT -->
+    <div class="other-core-section">
+        <div class="other-core-container">
+            <h2 class="core-title">Explore Other Core Modules</h2>
+            
+            <div class="core-grid">
+                
+                <!-- Card 2: Cream Gradient -->
+                <div class="core-card core-cream">
+                    <div class="core-number">02</div>
+                    <h4>Mutual Funds & SIP Strategies</h4>
+                    <p>Dive deep into Mutual Funds. Learn how to select the right funds, structure your Systematic Investment Plans (SIP), and align them perfectly with your financial goals.</p>
+                    <a href="#" class="core-btn">Explore Module <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></a>
+                </div>
+
+                <!-- Card 3: Forest Green Gradient -->
+                <div class="core-card core-green">
+                    <div class="core-number">03</div>
+                    <h4>Portfolio Risk Management</h4>
+                    <p>Master the art of protecting your capital. Learn strategic asset allocation, downside protection, and how to balance risk against potential returns in volatile markets.</p>
+                    <a href="#" class="core-btn">Explore Module <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></a>
+                </div>
+
+                <!-- Card 4: Navy Blue Gradient -->
+                <div class="core-card core-navy">
+                    <div class="core-number">04</div>
+                    <h4>Market Dynamics & Geopolitics</h4>
+                    <p>Move beyond basic investing. Understand how macroeconomic policies, interest rates, and global trade dynamics directly impact your personal investment portfolio.</p>
+                    <a href="#" class="core-btn">Explore Module <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></a>
+                </div>
+
+                <!-- Card 5: Cream Gradient -->
+                <div class="core-card core-cream">
+                    <div class="core-number">05</div>
+                    <h4>Behavioral Finance</h4>
+                    <p>Overcome emotional investing. Learn how logic, data, and psychological discipline can help you avoid common market traps and make sound, objective decisions.</p>
+                    <a href="#" class="core-btn">Explore Module <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></a>
+                </div>
+
+                <!-- Card 6: Forest Green Gradient -->
+                <div class="core-card core-green">
+                    <div class="core-number">06</div>
+                    <h4>Advanced Vehicles (PMS & AIF)</h4>
+                    <p>For high-net-worth strategies. Explore the specialized world of Portfolio Management Services and Alternative Investment Funds to further diversify your wealth.</p>
+                    <a href="#" class="core-btn">Explore Module <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i></a>
+                </div>
+
+            </div>
         </div>
     </div>
 
