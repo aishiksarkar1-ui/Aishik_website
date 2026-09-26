@@ -104,8 +104,13 @@ def blog_power_of_compounding_bn():
 def learn_fundamental_analysis():
     return render_template('learnfolder/fundamental-analysis.html')
 
+@app.route('/learn/fundamentals-of-investing')
+def fundamentals_of_investing():
+    # এই পেজটি learnfolder এর ভেতরে আছে ধরে নিয়ে লিংকটি দেওয়া হলো
+    return render_template('learnfolder/fundamentals-of-investing.html')
 
-# fundamental-analysis.html er vetor module gulor jonno.
+
+
 
 # fundamental-analysis.html er vetor module gulor jonno.
 
