@@ -54,15 +54,15 @@
     </ul>
 </div>
 
-<div class="study-navigation">
-    <!-- Previous Button -->
-    <a href="{{ url_for('read_fundamental_analysis_module', module_id=3) }}" class="nav-btn">
-        <i class="fas fa-arrow-left"></i> Previous Module
+<div class="module-navigation">
+    <!-- Previous module er link -->
+    <a href="{{ url_for('read_fundamental_analysis_module', module_id=3) }}" class="nav-pill-btn nav-prev">
+        <i class="fas fa-arrow-left"></i> Module 3:Equity Valuation
     </a>
     
-    <!-- Next Button -->
-    <a href="{{ url_for('read_fundamental_analysis_module', module_id=5) }}" class="nav-btn">
-        Next Module <i class="fas fa-arrow-right"></i>
+    <!-- Next module er link -->
+    <a href="{{ url_for('read_fundamental_analysis_module', module_id=5) }}" class="nav-pill-btn nav-next">
+        Module 5:Macro Factors <i class="fas fa-arrow-right"></i>
     </a>
 </div>
 {% endblock %}
