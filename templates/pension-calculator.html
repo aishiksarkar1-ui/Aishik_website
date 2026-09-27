@@ -31,7 +31,6 @@
 
         body {
             margin: 0; padding: 0;
-            /* 💥 NEW: Beautiful Light Gradient Background 💥 */
             background: linear-gradient(135deg, #FDFBF7 0%, var(--light-mint) 50%, #EAE4D3 100%);
             background-attachment: fixed;
             font-family: 'Inter', sans-serif;
@@ -41,27 +40,20 @@
             flex-direction: column;
         }
 
-        .main-content {
-            flex: 1; 
-        }
+        .main-content { flex: 1; }
 
         .calc-container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
 
-        /* Title Section - Light Theme */
+        /* Title Section */
         .title-sec { text-align: center; margin-bottom: 40px; }
         .title-sec h1 { font-family: 'Playfair Display', serif; color: var(--navy-blue); font-size: 3.2rem; margin: 0 0 15px 0; }
         .title-sec h1 span { color: var(--gold); font-style: italic; }
         .title-sec p { color: var(--text-muted); font-size: 1.1rem; max-width: 750px; margin: 0 auto; line-height: 1.6; }
 
-        /* 💥 NEW: Bright Cream/White Card Design 💥 */
+        /* Card Design */
         .glass-panel {
-            background: var(--card-bg); 
-            border: 1px solid var(--border-color); 
-            border-top: 4px solid var(--gold); /* Highlighted top border */
-            border-radius: 20px; 
-            padding: 45px; 
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-            margin-bottom: 40px;
+            background: var(--card-bg); border: 1px solid var(--border-color); border-top: 4px solid var(--gold);
+            border-radius: 20px; padding: 45px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05); margin-bottom: 40px;
         }
 
         .section-title {
@@ -76,19 +68,17 @@
         .input-group { display: flex; flex-direction: column; }
         .input-group label { font-family: 'Montserrat', sans-serif; color: var(--navy-blue); font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.5px; }
         .input-group input {
-            background: var(--light-bg); border: 1px solid #CBD5E1;
-            color: var(--navy-blue); padding: 14px; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600;
-            outline: none; transition: all 0.3s ease;
+            background: var(--light-bg); border: 1px solid #CBD5E1; color: var(--navy-blue); padding: 14px;
+            border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; outline: none; transition: all 0.3s ease;
         }
         .input-group input:focus { border-color: var(--gold); background: #FFFFFF; box-shadow: 0 0 0 3px rgba(197,160,89,0.1); }
         .disclaimer { font-size: 0.82rem; color: var(--text-muted); margin-top: 6px; line-height: 1.4; font-weight: 500; }
         .disclaimer span { color: var(--navy-blue); font-weight: 700; }
 
-        /* Dynamic Rows Styling - Light Theme */
+        /* Dynamic Rows */
         .dynamic-section { 
-            margin-bottom: 35px; background: #FDFDFD; padding: 25px; 
-            border-radius: 12px; border: 1px solid var(--border-color); border-left: 4px solid var(--gold); 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            margin-bottom: 35px; background: #FDFDFD; padding: 25px; border-radius: 12px;
+            border: 1px solid var(--border-color); border-left: 4px solid var(--gold); box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
         .dynamic-section h4 { font-family: 'Montserrat', sans-serif; color: var(--navy-blue); margin: 0 0 15px 0; font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center; }
         
@@ -99,44 +89,30 @@
         }
         .add-btn:hover { background: var(--gold); color: var(--cream); }
 
-        .dyn-row {
-            display: grid; grid-template-columns: 1fr 1fr auto; gap: 15px; margin-bottom: 15px; align-items: center;
-            animation: slideIn 0.3s ease-out;
-        }
+        .dyn-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 15px; margin-bottom: 15px; align-items: center; animation: slideIn 0.3s ease-out; }
         @keyframes slideIn { from { opacity: 0; transform: translateX(-15px); } to { opacity: 1; transform: translateX(0); } }
         
-        .dyn-row input {
-            background: #FFFFFF; border: 1px solid #CBD5E1;
-            color: var(--navy-blue); padding: 12px; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1rem; outline: none; width: 100%; box-sizing: border-box;
-        }
+        .dyn-row input { background: #FFFFFF; border: 1px solid #CBD5E1; color: var(--navy-blue); padding: 12px; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1rem; outline: none; width: 100%; box-sizing: border-box; }
         .dyn-row input:focus { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(197,160,89,0.1); }
         .remove-btn { background: transparent; color: #94A3B8; border: none; font-size: 1.2rem; cursor: pointer; padding: 10px; transition: color 0.3s ease; }
         .remove-btn:hover { color: var(--danger-red); }
 
         .calc-btn-container { text-align: center; margin-top: 50px; }
         .calc-btn {
-            background: linear-gradient(135deg, var(--gold) 0%, #d4af37 100%); color: var(--navy-blue);
-            border: none; padding: 18px 50px; border-radius: 50px; font-family: 'Montserrat', sans-serif;
-            font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;
-            cursor: pointer; box-shadow: 0 10px 25px rgba(197, 160, 89, 0.3); transition: all 0.4s ease;
+            background: linear-gradient(135deg, var(--gold) 0%, #d4af37 100%); color: var(--navy-blue); border: none;
+            padding: 18px 50px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.1rem;
+            text-transform: uppercase; letter-spacing: 2px; cursor: pointer; box-shadow: 0 10px 25px rgba(197, 160, 89, 0.3); transition: all 0.4s ease;
         }
         .calc-btn:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(197, 160, 89, 0.4); background: var(--navy-blue); color: var(--cream); }
 
-        /* Results Section - Bright & Punchy */
+        /* Results Section */
         .result-panel {
-            background: #FFFFFF;
-            border: 1px solid var(--border-color);
-            border-radius: 20px; padding: 50px; display: none; text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08); 
-            border-bottom: 6px solid var(--gold);
-            margin-bottom: 40px;
+            background: #FFFFFF; border: 1px solid var(--border-color); border-radius: 20px; padding: 50px; display: none; text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-bottom: 6px solid var(--gold); margin-bottom: 40px;
         }
         
-        /* Keep the main corpus box dark for a dramatic pop! */
         .res-highlight {
-            background: linear-gradient(135deg, var(--navy-blue) 0%, #0d2238 100%); 
-            padding: 35px; border-radius: 16px; border: 1px solid var(--gold); margin-bottom: 30px;
-            box-shadow: 0 10px 25px rgba(10, 25, 47, 0.2);
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #0d2238 100%); padding: 35px; border-radius: 16px; border: 1px solid var(--gold); margin-bottom: 30px; box-shadow: 0 10px 25px rgba(10, 25, 47, 0.2);
         }
         .res-highlight span { display: block; font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
         .res-highlight strong { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--cream); }
@@ -147,6 +123,20 @@
         .res-box span { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--forest-green); text-transform: uppercase; margin-bottom: 8px; }
         .res-box strong { font-family: 'Inter', sans-serif; font-size: 1.8rem; color: var(--navy-blue); font-weight: 700; }
 
+        /* 💥 NEW: Projection Table Design 💥 */
+        .projection-box {
+            background: var(--light-bg); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 30px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .projection-box h4 {
+            font-family: 'Montserrat', sans-serif; color: var(--navy-blue); margin: 0; padding: 20px; font-size: 1.1rem; background: #FFFFFF; border-bottom: 1px solid var(--border-color); text-align: left;
+        }
+        .proj-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .proj-table th { background: rgba(197, 160, 89, 0.1); color: var(--navy-blue); padding: 12px 20px; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .proj-table td { padding: 15px 20px; border-bottom: 1px solid var(--border-color); color: var(--text-dark); font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; }
+        .proj-table tr:last-child td { border-bottom: none; }
+        .table-note { background: #FFFFFF; padding: 15px 20px; font-size: 0.9rem; color: var(--text-muted); text-align: left; font-style: italic; border-top: 1px solid var(--border-color); margin: 0; }
+        .table-note i { color: var(--gold); margin-right: 5px; }
+
         .verdict-box { padding: 25px; border-radius: 12px; font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 600; line-height: 1.5; }
         .verdict-success { background: rgba(42, 157, 143, 0.1); color: var(--success-green); border: 1px solid var(--success-green); }
         .verdict-danger { background: rgba(230, 57, 70, 0.1); color: var(--danger-red); border: 1px solid var(--danger-red); }
@@ -156,12 +146,12 @@
             .remove-btn { justify-self: end; }
             .result-grid { grid-template-columns: 1fr; }
             .res-highlight strong { font-size: 2.5rem; }
+            .proj-table th, .proj-table td { padding: 12px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 💥 Include Navbar 💥 -->
     {% include 'navbar.html' %}
 
     <div class="main-content">
@@ -171,7 +161,6 @@
                 <p>Plan your retirement flawlessly. Calculate your future corpus using SIPs, Top-ups, and Lumpsums, and simulate your inflation-adjusted monthly pension drawdown.</p>
             </div>
 
-            <!-- Bright Cream & White Box -->
             <div class="glass-panel">
                 <h2 class="section-title">1. Your Timeline & Goal</h2>
                 <div class="settings-grid">
@@ -192,9 +181,11 @@
                         <input type="number" id="currentPension" placeholder="e.g. 50000" value="50000">
                         <div class="disclaimer">How much money do you need monthly in <span>today's value?</span></div>
                     </div>
+                    <!-- 💥 UPDATED: Inflation Disclaimer 💥 -->
                     <div class="input-group">
                         <label>Expected Inflation Rate (%)</label>
                         <input type="number" id="inflationRate" placeholder="e.g. 6" value="6" step="0.1">
+                        <div class="disclaimer">In India, inflation sits around <span>6%</span>. While 4% to 8% is a realistic range, 6% is the safest standard to assume.</div>
                     </div>
                 </div>
 
@@ -250,7 +241,6 @@
 
             <!-- Result Section -->
             <div class="result-panel" id="resultPanel">
-                <!-- Highlight Box is kept dark so the final massive number pops visually! -->
                 <div class="res-highlight">
                     <span>Total Corpus Built at Retirement</span>
                     <strong id="resCorpus">₹0</strong>
@@ -259,7 +249,7 @@
                 
                 <div class="result-grid">
                     <div class="res-box">
-                        <span>1st Month Pension at Retirement</span>
+                        <span>1st Year Monthly Pension at Retirement</span>
                         <strong id="resFirstPension">₹0</strong>
                         <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 5px; font-family: 'Inter', sans-serif;">(Inflation Adjusted)</div>
                     </div>
@@ -270,6 +260,24 @@
                     </div>
                 </div>
 
+                <!-- 💥 NEW: 5-Year Projection Table 💥 -->
+                <div class="projection-box">
+                    <h4>Your Projected Monthly Pension (First 5 Years)</h4>
+                    <table class="proj-table">
+                        <thead>
+                            <tr>
+                                <th>Year of Retirement</th>
+                                <th>Your Age</th>
+                                <th>Monthly Pension Limit</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projectionTableBody">
+                            <!-- JS will inject rows here -->
+                        </tbody>
+                    </table>
+                    <p class="table-note"><i class="fas fa-info-circle"></i> Like this, your pension will automatically keep increasing every year by <span id="displayInfRate" style="font-weight: bold; color: var(--navy-blue);"></span>% to protect your purchasing power against inflation.</p>
+                </div>
+
                 <div id="verdictBox" class="verdict-box">
                     <!-- Javascript will inject Success or Danger message here -->
                 </div>
@@ -277,7 +285,6 @@
         </div>
     </div>
 
-    <!-- 💥 Include Bottom Design / Footer 💥 -->
     {% include 'bottom_design.html' %}
 
     <script>
@@ -371,6 +378,23 @@
             document.getElementById('resEndAge').innerText = endAge;
             document.getElementById('resFirstPension').innerText = formatter.format(pensionAtRetire);
             document.getElementById('resTotalWithdrawn').innerText = formatter.format(totalWithdrawn);
+
+            // 💥 NEW: Generate the 5-Year Projection Table 💥
+            let tableHTML = '';
+            let projMonthlyPension = pensionAtRetire;
+            for(let i = 1; i <= 5; i++) {
+                if ((retireAge + i - 1) >= endAge) break; // Don't show if it crosses endAge
+                tableHTML += `
+                    <tr>
+                        <td>Year ${i}</td>
+                        <td>Age ${retireAge + i - 1}</td>
+                        <td style="color: var(--forest-green);">${formatter.format(projMonthlyPension)} / mo</td>
+                    </tr>
+                `;
+                projMonthlyPension *= (1 + inflation);
+            }
+            document.getElementById('projectionTableBody').innerHTML = tableHTML;
+            document.getElementById('displayInfRate').innerText = (inflation * 100).toFixed(1);
 
             const verdictBox = document.getElementById('verdictBox');
             if (isSuccessful) {
