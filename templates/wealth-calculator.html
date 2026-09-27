@@ -6,7 +6,7 @@
     <title>Wealth Calculator - FinXHorizon</title>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700&family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700&family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -43,87 +43,99 @@
         }
 
         /* Title Section */
-        .title-sec { text-align: center; margin-bottom: 40px; }
+        .title-sec { text-align: center; margin-bottom: 80px; } /* Increased margin for overlapping image */
         .title-sec h1 { font-family: 'Playfair Display', serif; color: var(--cream); font-size: 3.5rem; margin: 0 0 15px 0; }
         .title-sec h1 span { color: var(--gold); font-style: italic; }
         .title-sec p { color: #A9C2B1; font-size: 1.1rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
 
-        /* 💥 NEW: Premium Author Instruction Box 💥 */
-        .author-instruction-box {
-            display: flex;
-            align-items: center;
-            background: rgba(10, 25, 47, 0.7);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            border-left: 5px solid var(--gold);
-            border-radius: 16px;
-            padding: 30px 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            gap: 30px;
-        }
-
-        .author-avatar {
-            flex-shrink: 0;
+        /* =========================================
+           💥 Premium Author Card (Exact Match to Learn Page) 💥
+           ========================================= */
+        .author-card-wrapper {
             position: relative;
-        }
-        
-        .author-avatar img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--gold);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            background-color: var(--navy-blue); /* fallback color */
+            margin-bottom: 60px;
+            margin-left: 0; /* Aligned to the left */
+            padding-left: 20px;
         }
 
-        /* Small quote icon over the image */
-        .author-avatar::after {
-            content: '\f10e'; 
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
+        .author-card-bg {
+            background-color: #F8F5EF; /* Pure Cream Match */
+            border-radius: 12px;
+            padding: 40px 40px 40px 160px; /* Extra left padding to make room for image */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            position: relative;
+            z-index: 1;
+            max-width: 850px;
+        }
+
+        .author-image {
             position: absolute;
-            bottom: 5px;
-            right: 0;
-            background: var(--gold);
-            color: var(--navy-blue);
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            top: -40px; /* Overlaps outside the top border */
+            left: -10px; /* Half outside the left border */
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            font-size: 14px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 4px solid var(--gold);
+            object-fit: cover;
+            z-index: 2;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+            background-color: var(--navy-blue);
         }
 
-        .instruction-content { flex: 1; }
-
-        .instruction-content h3 {
+        .author-content h3 {
             font-family: 'Playfair Display', serif;
-            color: var(--gold);
+            color: var(--navy-blue);
+            font-size: 1.8rem;
             margin-top: 0;
             margin-bottom: 15px;
-            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .author-message {
+            font-family: 'Lora', serif; /* Classic italic look for the quote */
+            font-size: 1.05rem;
+            color: #334155;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        /* Styling the instructional list inside the quote */
+        .author-content ul {
+            list-style: none; padding: 0; margin: 0 0 25px 0;
+            font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #475569; line-height: 1.6;
+        }
+        .author-content ul li { margin-bottom: 8px; position: relative; padding-left: 20px; font-style: normal; }
+        .author-content ul li::before {
+            content: '\f105'; /* Single small arrow */
+            font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            position: absolute; left: 0; top: 1px; color: var(--gold);
+        }
+        .author-content ul strong { color: var(--navy-blue); font-weight: 700; }
+
+        .author-name {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-
-        .instruction-list {
-            list-style: none; padding: 0; margin: 0;
-            font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #cbd5e1; line-height: 1.7;
+        .author-name::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background-color: var(--gold);
+            display: inline-block;
         }
-        .instruction-list li { margin-bottom: 10px; position: relative; padding-left: 25px; }
-        .instruction-list li::before {
-            content: '\f101'; 
-            font-family: 'Font Awesome 6 Free'; font-weight: 900;
-            position: absolute; left: 0; top: 2px; color: var(--gold);
-        }
-        .instruction-list strong { color: var(--light-mint); font-weight: 600; }
 
-        /* Glass Panel */
+        /* =========================================
+           Glass Panel (Calculator Body)
+           ========================================= */
         .glass-panel {
             background: rgba(10, 25, 47, 0.5);
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -215,15 +227,21 @@
         .final-val-box strong { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--cream); }
         .negative-warning { color: var(--danger-red); font-size: 0.9rem; margin-top: 15px; font-weight: 500; display: none; }
 
+        /* Responsive Fixes for Author Card */
         @media (max-width: 768px) {
             .settings-grid { grid-template-columns: 1fr; }
             .cf-row { grid-template-columns: 1fr; gap: 10px; }
             .result-grid { grid-template-columns: 1fr; }
             .final-val-box strong { font-size: 2.5rem; }
             .title-sec h1 { font-size: 2.5rem; }
-            .author-instruction-box { flex-direction: column; text-align: center; padding: 30px 20px; }
-            .instruction-content h3 { justify-content: center; }
-            .instruction-list li { text-align: left; }
+            
+            .author-card-wrapper { padding-left: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+            .author-card-bg { padding: 80px 30px 30px 30px; max-width: 100%; border-radius: 16px; }
+            .author-image { top: -60px; left: 50%; transform: translateX(-50%); width: 120px; height: 120px; }
+            .author-content h3 { justify-content: center; }
+            .author-content ul li { text-align: left; }
+            .author-name { justify-content: center; }
+            .author-name::before { display: none; }
         }
     </style>
 </head>
@@ -240,20 +258,22 @@
                 <p>Track your past deposits, plan future withdrawals, and calculate your exact portfolio value at any specific date using daily compounding.</p>
             </div>
 
-            <!-- 💥 Premium Author Instruction Section 💥 -->
-            <div class="author-instruction-box">
-                <div class="author-avatar">
-                    <!-- এখানে 'your_photo_name.jpg' এর জায়গায় আপনার আসল ছবির নাম দিন -->
-                    <img src="{{ url_for('static', filename='aishik.png') }}" alt="Aishik Sarkar">
-                </div>
-                <div class="instruction-content">
-                    <h3>How to Use This Calculator?</h3>
-                    <ul class="instruction-list">
-                        <li><strong>Set Your Target Date:</strong> Select the date (e.g., Retirement age) when you want to check your total wealth.</li>
-                        <li><strong>Add Deposits (+):</strong> Enter the date and amount of money you have invested in the past or plan to invest in the future.</li>
-                        <li><strong>Add Withdrawals (-):</strong> Need cash for emergencies or goals? Add a withdrawal entry. The calculator will automatically adjust the loss of future compounding.</li>
-                        <li><strong>Calculate:</strong> Hit the button to see the final value of your portfolio on your target date based on your expected return.</li>
-                    </ul>
+            <!-- 💥 Premium Author Instruction Section (Matches Learn Page) 💥 -->
+            <div class="author-card-wrapper">
+                <img src="{{ url_for('static', filename='aishik.png') }}" alt="Aishik Sarkar" class="author-image">
+                <div class="author-card-bg">
+                    <div class="author-content">
+                        <h3>A Note Before We Begin</h3>
+                        <div class="author-message">
+                            "To build lasting wealth, you must understand your cash flows. Use this tool to see exactly how your money works for you over time. Here is a quick guide on how to use it:"
+                        </div>
+                        <ul>
+                            <li><strong>Set Target:</strong> Choose your expected return rate and the future date you want to calculate your wealth for.</li>
+                            <li><strong>Deposits (+):</strong> Add the dates and amounts of any past or future investments.</li>
+                            <li><strong>Withdrawals (-):</strong> Add any planned cash withdrawals. The tool will auto-calculate the loss of compounding.</li>
+                        </ul>
+                        <div class="author-name">Aishik Sarkar</div>
+                    </div>
                 </div>
             </div>
 
