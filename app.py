@@ -109,6 +109,17 @@ def fundamentals_of_investing():
     # এই পেজটি learnfolder এর ভেতরে আছে ধরে নিয়ে লিংকটি দেওয়া হলো
     return render_template('learnfolder/fundamentals-of-investing.html')
 
+@app.route('/wealth-calculator')
+def return_calculator():
+    # ফাইলটির নাম wealth-calculator.html হলে সেটি রিটার্ন করুন
+    return render_template('wealth-calculator.html')
+
+
+
+
+
+
+
 
 
 
