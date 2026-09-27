@@ -28,18 +28,15 @@
             font-family: 'Inter', sans-serif;
             color: #e2e8f0;
             min-height: 100vh;
+            /* 💥 Flexbox for sticky footer 💥 */
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Navbar placeholder for standalone look */
-        .header {
-            padding: 30px 50px;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* 💥 Main Content Wrapper 💥 */
+        .main-content {
+            flex: 1; 
         }
-        .header a { color: var(--gold); text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
-        .header a:hover { color: var(--cream); }
 
         .calc-container {
             max-width: 1000px;
@@ -53,7 +50,7 @@
         .title-sec h1 span { color: var(--gold); font-style: italic; }
         .title-sec p { color: #A9C2B1; font-size: 1.1rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
 
-        /* 💥 NEW: Instruction Section 💥 */
+        /* Instruction Section */
         .instruction-box {
             background: rgba(23, 51, 36, 0.6);
             backdrop-filter: blur(10px);
@@ -81,7 +78,7 @@
         }
         .instruction-list li { margin-bottom: 10px; position: relative; padding-left: 25px; }
         .instruction-list li::before {
-            content: '\f101'; /* Double arrow icon */
+            content: '\f101'; 
             font-family: 'Font Awesome 6 Free'; font-weight: 900;
             position: absolute; left: 0; top: 2px; color: var(--gold);
         }
@@ -163,6 +160,7 @@
             border-radius: 20px; padding: 40px; display: none; text-align: center;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-bottom: 6px solid var(--forest-green);
             animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 50px;
         }
         @keyframes popIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
@@ -189,93 +187,96 @@
 </head>
 <body>
 
-    <div class="header">
-        <a href="/learn"><i class="fas fa-arrow-left"></i> Back to Hub</a>
-        <a href="/"><i class="fas fa-home"></i> Home</a>
+    <!-- 💥 Include Navbar 💥 -->
+    {% include 'navbar.html' %}
+
+    <div class="main-content">
+        <div class="calc-container">
+            <!-- Title -->
+            <div class="title-sec">
+                <h1>Wealth <span>Calculator</span></h1>
+                <p>Track your past deposits, plan future withdrawals, and calculate your exact portfolio value at any specific date using daily compounding.</p>
+            </div>
+
+            <!-- INSTRUCTION SECTION -->
+            <div class="instruction-box">
+                <h3><i class="fas fa-info-circle"></i> How to Use This Calculator?</h3>
+                <ul class="instruction-list">
+                    <li><strong>Set Your Target Date:</strong> Select the date (e.g., Retirement age) when you want to check your total wealth.</li>
+                    <li><strong>Add Deposits (+):</strong> Enter the date and amount of money you have invested in the past or plan to invest in the future.</li>
+                    <li><strong>Add Withdrawals (-):</strong> Need cash for emergencies or goals? Add a withdrawal entry. The calculator will automatically adjust the loss of future compounding.</li>
+                    <li><strong>Calculate:</strong> Hit the button to see the final value of your portfolio on your target date based on your expected return.</li>
+                </ul>
+            </div>
+
+            <!-- Main Calculator Panel -->
+            <div class="glass-panel">
+                <!-- Global Settings -->
+                <div class="settings-grid">
+                    <div class="input-group">
+                        <label>Expected Annual Return (%)</label>
+                        <input type="number" id="returnRate" placeholder="e.g. 12" value="12" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Target Date (Future/Retirement)</label>
+                        <input type="date" id="targetDate">
+                    </div>
+                </div>
+
+                <!-- Cash Flow Section -->
+                <div class="cf-header">
+                    <h3>Cash Flow Entries</h3>
+                    <button class="add-btn" onclick="addEntry()"><i class="fas fa-plus"></i> Add Entry</button>
+                </div>
+                
+                <div id="cashflow-container">
+                    <!-- Initial Row -->
+                    <div class="cf-row">
+                        <select class="cf-type" onchange="updateRowColor(this)">
+                            <option value="deposit">Deposit (+)</option>
+                            <option value="withdraw">Withdrawal (-)</option>
+                        </select>
+                        <input type="number" class="cf-amount" placeholder="Amount (₹)" min="0">
+                        <input type="date" class="cf-date">
+                        <button class="remove-btn" onclick="this.parentElement.remove()" title="Remove"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+
+                <div class="calc-btn-container">
+                    <button class="calc-btn" onclick="calculateReturn()">Calculate Future Value</button>
+                </div>
+            </div>
+
+            <!-- Result Section -->
+            <div class="result-panel" id="resultPanel">
+                <h2>Portfolio Summary</h2>
+                
+                <div class="result-grid">
+                    <div class="res-box">
+                        <span>Total Invested</span>
+                        <strong id="resInvested">₹0</strong>
+                    </div>
+                    <div class="res-box">
+                        <span>Total Withdrawn</span>
+                        <strong id="resWithdrawn">₹0</strong>
+                    </div>
+                    <div class="res-box">
+                        <span>Wealth Gained (Interest)</span>
+                        <strong id="resGained">₹0</strong>
+                    </div>
+                </div>
+
+                <div class="final-val-box">
+                    <span>Value at Target Date</span>
+                    <strong id="resFinalValue">₹0</strong>
+                    <div class="negative-warning" id="negWarning">Warning: Your withdrawals exceed your portfolio growth!</div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="calc-container">
-        <!-- Title -->
-        <div class="title-sec">
-            <h1>Wealth <span>Calculator</span></h1>
-            <p>Track your past deposits, plan future withdrawals, and calculate your exact portfolio value at any specific date using daily compounding.</p>
-        </div>
-
-        <!-- 💥 NEW: INSTRUCTION SECTION 💥 -->
-        <div class="instruction-box">
-            <h3><i class="fas fa-info-circle"></i> How to Use This Calculator?</h3>
-            <ul class="instruction-list">
-                <li><strong>Set Your Target Date:</strong> Select the date (e.g., Retirement age) when you want to check your total wealth.</li>
-                <li><strong>Add Deposits (+):</strong> Enter the date and amount of money you have invested in the past or plan to invest in the future.</li>
-                <li><strong>Add Withdrawals (-):</strong> Need cash for emergencies or goals? Add a withdrawal entry. The calculator will automatically adjust the loss of future compounding.</li>
-                <li><strong>Calculate:</strong> Hit the button to see the final value of your portfolio on your target date based on your expected return.</li>
-            </ul>
-        </div>
-
-        <!-- Main Calculator Panel -->
-        <div class="glass-panel">
-            <!-- Global Settings -->
-            <div class="settings-grid">
-                <div class="input-group">
-                    <label>Expected Annual Return (%)</label>
-                    <input type="number" id="returnRate" placeholder="e.g. 12" value="12" step="0.1">
-                </div>
-                <div class="input-group">
-                    <label>Target Date (Future/Retirement)</label>
-                    <input type="date" id="targetDate">
-                </div>
-            </div>
-
-            <!-- Cash Flow Section -->
-            <div class="cf-header">
-                <h3>Cash Flow Entries</h3>
-                <button class="add-btn" onclick="addEntry()"><i class="fas fa-plus"></i> Add Entry</button>
-            </div>
-            
-            <div id="cashflow-container">
-                <!-- Initial Row -->
-                <div class="cf-row">
-                    <select class="cf-type" onchange="updateRowColor(this)">
-                        <option value="deposit">Deposit (+)</option>
-                        <option value="withdraw">Withdrawal (-)</option>
-                    </select>
-                    <input type="number" class="cf-amount" placeholder="Amount (₹)" min="0">
-                    <input type="date" class="cf-date">
-                    <button class="remove-btn" onclick="this.parentElement.remove()" title="Remove"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-
-            <div class="calc-btn-container">
-                <button class="calc-btn" onclick="calculateReturn()">Calculate Future Value</button>
-            </div>
-        </div>
-
-        <!-- Result Section -->
-        <div class="result-panel" id="resultPanel">
-            <h2>Portfolio Summary</h2>
-            
-            <div class="result-grid">
-                <div class="res-box">
-                    <span>Total Invested</span>
-                    <strong id="resInvested">₹0</strong>
-                </div>
-                <div class="res-box">
-                    <span>Total Withdrawn</span>
-                    <strong id="resWithdrawn">₹0</strong>
-                </div>
-                <div class="res-box">
-                    <span>Wealth Gained (Interest)</span>
-                    <strong id="resGained">₹0</strong>
-                </div>
-            </div>
-
-            <div class="final-val-box">
-                <span>Value at Target Date</span>
-                <strong id="resFinalValue">₹0</strong>
-                <div class="negative-warning" id="negWarning">Warning: Your withdrawals exceed your portfolio growth!</div>
-            </div>
-        </div>
-    </div>
+    <!-- 💥 Include Bottom Design 💥 -->
+    {% include 'bottom_design.html' %}
 
     <script>
         // Set default target date to 10 years from today
