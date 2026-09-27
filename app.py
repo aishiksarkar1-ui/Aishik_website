@@ -114,6 +114,10 @@ def return_calculator():
     # ফাইলটির নাম wealth-calculator.html হলে সেটি রিটার্ন করুন
     return render_template('wealth-calculator.html')
 
+@app.route('/pension-calculator')
+def pension_calculator():
+    return render_template('pension-calculator.html')
+
 
 
 
