@@ -34,7 +34,7 @@
 
     /* Hero uses the original image. The navy overlay and sharp border are defined below. */
     .home-hero { position:relative; min-height:655px; overflow:hidden; isolation:isolate; background:#F8F6F1; }
-    .home-hero::before { content:""; position:absolute; z-index:-2; inset:0; background-image:linear-gradient(90deg,#F8F6F1 1%,rgba(248,246,241,.98) 29%,rgba(248,246,241,.84) 48%,rgba(248,246,241,.14) 80%,rgba(248,246,241,.03) 100%),url("{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}"); background-size:cover; background-position:center 32%; }
+    .home-hero::before { content:""; position:absolute; z-index:-2; inset:0; background-image:linear-gradient(90deg,#F8F6F1 1%,rgba(248,246,241,.98) 29%,rgba(248,246,241,.84) 48%,rgba(248,246,241,.14) 80%,rgba(248,246,241,.03) 100%),url("{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}"); background-size:cover; background-position:center top; }
     .hero-content { padding-top:clamp(92px,10vw,142px); padding-bottom:145px; }
     .hero-copy { max-width:710px; }
     .display-title { color:#223137; font-size:clamp(55px,6vw,83px); line-height:1.08; max-width:700px; margin:29px 0 24px; }
@@ -129,7 +129,7 @@
     }
     @media(max-width:760px) {
       .home-hero { min-height:610px; }
-      .home-hero::before { background-image:linear-gradient(90deg,rgba(248,246,241,.99) 0%,rgba(248,246,241,.95) 43%,rgba(248,246,241,.62) 100%),url("{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}"); background-position:65% center; }
+      .home-hero::before { background-image:linear-gradient(90deg,rgba(248,246,241,.99) 0%,rgba(248,246,241,.95) 43%,rgba(248,246,241,.62) 100%),url("{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}"); background-position:65% top; }
       .hero-content { padding-top:90px; padding-bottom:104px; }
       .display-title { font-size:clamp(44px,10vw,64px); }
       .hero-description { font-size:15px; }
@@ -173,7 +173,7 @@
           rgba(10,25,47,.30) 100%),
         url("{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}");
       background-size:cover;
-      background-position:center 32%;
+      background-position:center top;
     }
     /* Superseded below: the final version has no navy-to-ivory gradient. */
     .finance-home .home-hero .eyebrow { color:#D9BB8E; }
@@ -203,7 +203,7 @@
             rgba(10,25,47,.89) 45%,
             rgba(10,25,47,.72) 100%),
           url("{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}");
-        background-position:65% center;
+        background-position:65% top;
       }
     }
   </style>
