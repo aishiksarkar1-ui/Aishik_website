@@ -611,6 +611,40 @@
   }
 }
 </style>
+<style id="premium-rotating-hero-title-v1">
+/* Rotating headline ONLY. Keep the title footprint constant, so the CTA buttons never jump. */
+.finance-home .home-hero .hero-rotating-title {
+  min-height: 2.16em;
+}
+.finance-home .home-hero .hero-rotating-title .hero-headline-line {
+  display:block;
+  white-space:nowrap;
+  opacity:1;
+  transform:translate3d(0,0,0);
+}
+@media (prefers-reduced-motion:no-preference) {
+  .finance-home .home-hero .hero-rotating-title.is-leaving .hero-headline-line {
+    opacity:0;
+    transform:translate3d(0,-14px,0);
+    transition: opacity .56s ease, transform .56s ease;
+  }
+  .finance-home .home-hero .hero-rotating-title.is-entering .hero-headline-line {
+    animation:hero-message-enter .78s cubic-bezier(.22,.66,.22,1) both;
+  }
+  .finance-home .home-hero .hero-rotating-title.is-entering .hero-headline-line:last-child {
+    animation-delay:.09s;
+  }
+  @keyframes hero-message-enter {
+    from { opacity:0; transform:translate3d(0,16px,0); }
+    to { opacity:1; transform:translate3d(0,0,0); }
+  }
+}
+@media(max-width:600px) {
+  .finance-home .home-hero .hero-rotating-title {
+    font-size:clamp(32px,8.7vw,52px);
+  }
+}
+</style>
 </head>
 <body class="finance-home">
   {% include 'navbar.html' %}
@@ -619,7 +653,7 @@
       <div class="home-container hero-content">
         <div class="hero-copy">
           <span class="eyebrow">FINANCIAL LITERACY, REIMAGINED</span>
-          <h1 id="home-heading" class="display-title">Understand money.<br><em>Own your future.</em></h1>
+          <h1 id="home-heading" class="display-title hero-rotating-title" aria-live="off"><span class="hero-headline-line" id="hero-headline-main">Understand money.</span><em class="hero-headline-line" id="hero-headline-accent">Own your future.</em></h1>
           <p class="hero-description">A personal space for thoughtful investing, smarter financial decisions, and the clarity to build long-term confidence—one step at a time.</p>
           <div class="hero-actions">
             <a class="primary-button" href="/learn">Explore the learning hub <span aria-hidden="true">↗</span></a>
@@ -780,5 +814,52 @@
       });
     })();
   </script>
+<script id="premium-rotating-hero-title-js">
+(() => {
+  'use strict';
+  const title = document.getElementById('home-heading');
+  const first = document.getElementById('hero-headline-main');
+  const second = document.getElementById('hero-headline-accent');
+  const hero = document.querySelector('.home-hero');
+  if (!title || !first || !second || !hero) return;
+  // Always give reduced-motion users the original, stationary message.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const messages = [
+    ['Understand money.', 'Own your future.'],
+    ['Learn with purpose.', 'Think long term.'],
+    ['Explore the risks.', 'Choose with care.'],
+    ['Plan with clarity.', 'Build your future.'],
+    ['Know your options.', 'Decide with care.']
+  ];
+  let index = 0;
+  let heroIsVisible = true;
+  let changing = false;
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      heroIsVisible = entries[0].isIntersecting;
+    }, { threshold: 0.08 });
+    observer.observe(hero);
+  }
+
+  // Display each message for around five seconds; animate just the headline.
+  window.setInterval(() => {
+    if (document.hidden || !heroIsVisible || changing) return;
+    changing = true;
+    title.classList.add('is-leaving');
+    window.setTimeout(() => {
+      index = (index + 1) % messages.length;
+      first.textContent = messages[index][0];
+      second.textContent = messages[index][1];
+      title.classList.remove('is-leaving');
+      title.classList.add('is-entering');
+      window.setTimeout(() => {
+        title.classList.remove('is-entering');
+        changing = false;
+      }, 880);
+    }, 560);
+  }, 5200);
+})();
+</script>
 </body>
 </html>
