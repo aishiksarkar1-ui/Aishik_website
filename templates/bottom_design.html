@@ -1,153 +1,298 @@
 <!-- FontAwesome Icons Link -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-    /* 💥 Footer Base Styles 💥 */
-    .custom-footer-wrapper {
-        font-family: 'Lato', sans-serif;
-        background-color: var(--navy-blue, #0A192F);
-        color: #a0aec0;
-        line-height: 1.8;
-        border-top: 1px solid rgba(197, 160, 89, 0.2);
-    }
 
-    /* 💥 CTA Section (Royal Farman Style with Texture) 💥 */
-    .footer-cta {
-        padding: 70px 20px;
-        text-align: center;
-        /* নতুন রয়্যাল প্যাটার্ন ও ক্রিম ওভারলে */
-        background: linear-gradient(rgba(249, 243, 233, 0.90), rgba(249, 243, 233, 0.90)), url("{{ url_for('static', filename='image_958110.jpg') }}");
-        background-size: 250px; /* প্যাটার্নটি যাতে খুব বড় না দেখায় */
-        background-color: #f9f3e9;
-        border-top: 3px solid var(--gold, #C5A059);
-        border-bottom: 3px solid var(--gold, #C5A059);
-        box-shadow: inset 0 0 30px rgba(197, 160, 89, 0.2);
-    }
-    .cta-badge {
-        display: inline-block;
-        border: 1px solid var(--gold, #C5A059);
-        border-radius: 20px;
-        padding: 5px 20px;
-        color: var(--navy-blue, #0A192F);
-        font-weight: bold;
-        font-size: 14px;
-        margin-bottom: 20px;
-        background: rgba(197, 160, 89, 0.1);
-    }
-    .cta-title {
-        font-family: 'Playfair Display', serif;
-        color: var(--navy-blue, #0A192F);
-        font-size: 34px;
-        margin: 0 0 15px 0;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    .cta-desc {
-        color: #334155;
-        font-size: 17px;
-        margin: 0 auto 30px auto;
-        max-width: 600px;
-        font-style: italic;
-    }
-    .cta-btn {
-        background: var(--navy-blue, #0A192F);
-        color: var(--gold, #C5A059);
-        font-weight: bold;
-        padding: 15px 35px;
-        text-decoration: none;
-        border-radius: 6px;
-        font-size: 16px;
-        transition: all 0.3s;
-        display: inline-block;
-        border: 1px solid var(--gold, #C5A059);
-        box-shadow: 0 5px 15px rgba(10, 25, 47, 0.2);
-    }
-    .cta-btn:hover {
-        transform: translateY(-3px);
-        background: var(--gold, #C5A059);
-        color: var(--navy-blue, #0A192F);
-        box-shadow: 0 8px 20px rgba(197, 160, 89, 0.4);
-    }
+/* Finance with Aishik | Shared editorial footer 2026
+   Namespaced to the footer wrapper so site-wide navbar, cards and headings
+   keep their own styles across every template. */
+.custom-footer-wrapper {
+  --footer-night:#102630;
+  --footer-ink:#142d36;
+  --footer-champagne:#e6c99f;
+  --footer-text:#cbd5d3;
+  --footer-muted:#aebdbd;
+  --footer-line:rgba(231,211,184,.16);
+  display:block;
+  background:#102630;
+  color:var(--footer-text);
+  font-family:'DM Sans','Manrope',Arial,sans-serif;
+  line-height:1.7;
+  border:0;
+  width:100%;
+  overflow:hidden;
+  isolation:isolate;
+}
+.custom-footer-wrapper *,
+.custom-footer-wrapper *::before,
+.custom-footer-wrapper *::after {box-sizing:border-box}
+.custom-footer-wrapper a:focus-visible {
+  outline:2px solid var(--footer-champagne);
+  outline-offset:4px;
+}
+.custom-footer-wrapper .footer-cta {
+  position:relative;
+  isolation:isolate;
+  padding:clamp(75px,9vw,118px) 24px clamp(80px,9.5vw,125px);
+  text-align:center;
+  color:#fffaf2;
+  background:
+    radial-gradient(ellipse at 91% 14%,rgba(197,159,110,.17),transparent 40%),
+    radial-gradient(ellipse at 7% 92%,rgba(165,150,189,.11),transparent 44%),
+    linear-gradient(125deg,#19353a 0%,#142b34 57%,#0f2230 100%);
+  border-top:3px solid #c5a579;
+  border-bottom:1px solid var(--footer-line);
+  box-shadow:none;
+}
+.custom-footer-wrapper .footer-cta::before {
+  content:"";
+  position:absolute;
+  z-index:0;
+  top:-225px;
+  right:-170px;
+  width:min(690px,78vw);
+  height:min(690px,78vw);
+  border:1px solid rgba(235,214,184,.12);
+  border-radius:50%;
+  box-shadow:0 0 0 76px rgba(235,214,184,.026),0 0 0 154px rgba(235,214,184,.014);
+  pointer-events:none;
+}
+.custom-footer-wrapper .footer-cta > * {position:relative;z-index:1}
+.custom-footer-wrapper .cta-badge {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  border:1px solid rgba(232,203,162,.36);
+  border-radius:50px;
+  padding:9px 16px;
+  margin:0 0 23px;
+  color:#edd0a8;
+  background:rgba(235,214,184,.065);
+  font:700 10px/1.35 'DM Sans',Arial,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+.custom-footer-wrapper .cta-badge i {
+  margin-right:0 !important;
+  color:#8bcfa7 !important;
+  font-size:8px !important;
+}
+.custom-footer-wrapper .cta-title {
+  max-width:940px;
+  margin:0 auto 20px;
+  color:#fff9f1;
+  font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;
+  font-size:clamp(45px,6.3vw,77px);
+  font-weight:500;
+  line-height:1.02;
+  letter-spacing:-.032em;
+  text-transform:none;
+  text-wrap:balance;
+}
+.custom-footer-wrapper .cta-desc {
+  color:#cbd6d3;
+  max-width:600px;
+  margin:0 auto 34px;
+  font:400 clamp(14px,1.5vw,16px)/1.9 'DM Sans',Arial,sans-serif;
+  letter-spacing:0;
+  font-style:normal;
+}
+.custom-footer-wrapper .cta-btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:55px;
+  padding:15px 27px;
+  border:1px solid #e6c99f;
+  border-radius:50px;
+  background:#e6c99f;
+  box-shadow:0 12px 28px rgba(2,12,22,.16);
+  color:#193038;
+  font:800 13px/1.35 'DM Sans',Arial,sans-serif;
+  letter-spacing:.1px;
+  text-decoration:none;
+  transition:transform .35s cubic-bezier(.2,.8,.25,1),box-shadow .35s ease,background .35s ease,color .35s ease;
+}
+.custom-footer-wrapper .cta-btn:visited {color:#193038}
+.custom-footer-wrapper .cta-btn i {font-size:18px;line-height:1}
+.custom-footer-wrapper .cta-btn::after {
+  content:"↗";
+  font-size:16px;
+  margin-left:5px;
+  transition:transform .3s;
+}
+.custom-footer-wrapper .cta-btn:hover {
+  transform:translateY(-4px);
+  background:#fff4e1;
+  border-color:#fff4e1;
+  color:#152c35;
+  box-shadow:0 19px 36px rgba(2,12,22,.2);
+}
+.custom-footer-wrapper .cta-btn:hover::after {transform:translate(2px,-2px)}
+/* Quiet branding bridge between the contact CTA and the footer directory. */
+.custom-footer-wrapper .footer-brand-row {
+  width:min(1200px,calc(100% - 64px));
+  margin:0 auto;
+  padding:41px 0 36px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  border-bottom:1px solid var(--footer-line);
+}
+.custom-footer-wrapper .footer-brand-mark {
+  width:44px;
+  height:44px;
+  border:1px solid rgba(224,197,156,.45);
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  color:#e6c99f;
+  background:rgba(235,214,184,.045);
+  font:500 28px/1 'Cormorant Garamond',Georgia,serif;
+}
+.custom-footer-wrapper .footer-brand-copy {
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  min-width:0;
+}
+.custom-footer-wrapper .footer-brand-copy strong {
+  color:#f8f4ec;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2.2px;
+  line-height:1.45;
+}
+.custom-footer-wrapper .footer-brand-copy small {
+  color:#aabdbb;
+  font-size:11px;
+  line-height:1.6;
+}
+.custom-footer-wrapper .footer-brand-note {
+  margin-left:auto;
+  color:#d1b48d;
+  letter-spacing:1.9px;
+  font-size:10px;
+  font-weight:700;
+  white-space:nowrap;
+}
+.custom-footer-wrapper .footer-links-section {
+  max-width:1200px;
+  margin:0 auto;
+  padding:54px 0 74px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.18fr);
+  gap:clamp(34px,5vw,90px);
+  background:none;
+}
+.custom-footer-wrapper .footer-column {
+  min-width:0;
+}
+.custom-footer-wrapper .footer-column h3 {
+  margin:0 0 24px;
+  font:500 32px/1.15 'Cormorant Garamond','Playfair Display',Georgia,serif;
+  letter-spacing:-.02em;
+  color:#f5f1e8;
+}
+.custom-footer-wrapper .footer-column ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.custom-footer-wrapper .footer-column ul li {margin:0 0 12px}
+.custom-footer-wrapper .footer-column ul li a {
+  display:inline-block;
+  padding:2px 0;
+  color:#b6c7c6;
+  font:500 13px/1.8 'DM Sans',Arial,sans-serif;
+  text-decoration:none;
+  transition:color .25s ease,transform .25s ease;
+}
+.custom-footer-wrapper .footer-column ul li a:visited {color:#b6c7c6}
+.custom-footer-wrapper .footer-column ul li a:hover,
+.custom-footer-wrapper .footer-column ul li a:focus-visible {
+  color:#ead0aa;
+  transform:translateX(4px);
+}
+.custom-footer-wrapper .footer-contact-item {
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  margin:0 0 19px;
+  color:#b6c7c6;
+  font:500 13px/1.85 'DM Sans',Arial,sans-serif;
+  overflow-wrap:anywhere;
+}
+.custom-footer-wrapper .footer-contact-item i {
+  display:grid;
+  place-items:center;
+  flex:0 0 37px;
+  width:37px;
+  height:37px;
+  padding:0;
+  margin-top:0;
+  border:1px solid rgba(231,205,167,.18);
+  border-radius:11px;
+  color:#e9cba3;
+  background:rgba(226,203,174,.07);
+  font-size:14px;
+}
+.custom-footer-wrapper .footer-contact-item span {padding-top:5px}
+.custom-footer-wrapper .footer-disclaimer {
+  margin:0;
+  padding:31px max(32px,calc((100vw - 1200px)/2)) 38px;
+  border-top:1px solid rgba(230,210,177,.13);
+  background:#0a1b26;
+  color:#a3b2b7;
+  font:400 11.5px/1.95 'DM Sans',Arial,sans-serif;
+}
+.custom-footer-wrapper .disclaimer-content {
+  max-width:1200px;
+  margin:0 auto;
+  text-align:left;
+}
+.custom-footer-wrapper .disclaimer-content p {
+  margin:0 0 14px;
+  overflow-wrap:anywhere;
+}
+.custom-footer-wrapper .disclaimer-content strong {color:#d7b98e;font-weight:800}
+@media (max-width:1260px) {
+  .custom-footer-wrapper .footer-links-section {padding-inline:32px}
+}
+@media (max-width:850px) {
+  .custom-footer-wrapper .footer-brand-note {display:none}
+  .custom-footer-wrapper .footer-links-section {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:45px 28px;
+  }
+  .custom-footer-wrapper .footer-column:last-child {grid-column:1/-1}
+}
+@media (max-width:580px) {
+  .custom-footer-wrapper .footer-cta {padding:73px 23px 86px}
+  .custom-footer-wrapper .cta-badge {font-size:9px;letter-spacing:1.6px}
+  .custom-footer-wrapper .cta-title {font-size:clamp(43px,12vw,61px)}
+  .custom-footer-wrapper .cta-desc {font-size:14px}
+  .custom-footer-wrapper .cta-btn {width:100%;max-width:340px;min-height:52px;font-size:12px;padding:14px 18px}
+  .custom-footer-wrapper .footer-brand-row {width:calc(100% - 44px);padding:33px 0 29px}
+  .custom-footer-wrapper .footer-brand-copy strong {letter-spacing:1.4px}
+  .custom-footer-wrapper .footer-brand-copy small {font-size:10px}
+  .custom-footer-wrapper .footer-links-section {
+    grid-template-columns:minmax(0,1fr);
+    padding:37px 24px 55px;
+    gap:34px;
+  }
+  .custom-footer-wrapper .footer-column:last-child {grid-column:auto}
+  .custom-footer-wrapper .footer-column h3 {font-size:30px;margin-bottom:14px}
+  .custom-footer-wrapper .footer-contact-item {margin-bottom:15px}
+  .custom-footer-wrapper .footer-disclaimer {padding:28px 24px 38px;font-size:11px}
+}
+@media (prefers-reduced-motion:reduce) {
+  .custom-footer-wrapper *,
+  .custom-footer-wrapper *::before,
+  .custom-footer-wrapper *::after {transition:none !important;animation:none !important}
+}
 
-    /* 💥 Footer Links Section 💥 */
-    .footer-links-section {
-        max-width: 1300px;
-        margin: 0 auto;
-        padding: 50px 5%;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 40px;
-    }
-    .footer-column h3 {
-        color: #ffffff;
-        font-family: 'Playfair Display', serif;
-        font-size: 22px;
-        margin-bottom: 20px;
-    }
-    .footer-column ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    .footer-column ul li {
-        margin-bottom: 12px;
-    }
-    .footer-column ul li a {
-        color: #a0aec0;
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-    .footer-column ul li a:hover {
-        color: var(--gold, #C5A059);
-    }
-    .footer-contact-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 15px;
-        margin-bottom: 20px;
-    }
-    .footer-contact-item i {
-        color: var(--navy-blue, #0A192F);
-        background: var(--gold, #C5A059);
-        padding: 10px;
-        border-radius: 50%;
-        font-size: 14px;
-        width: 15px;
-        height: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* 💥 Disclaimer Section 💥 */
-    .footer-disclaimer {
-        background: #061124;
-        padding: 40px 5%;
-        font-size: 12px;
-        color: #8892b0;
-        line-height: 1.8;
-        border-top: 1px dashed rgba(197, 160, 89, 0.2);
-    }
-    .disclaimer-content {
-        max-width: 1300px;
-        margin: 0 auto;
-        text-align: justify;
-    }
-    .disclaimer-content p {
-        margin-top: 0;
-        margin-bottom: 15px;
-    }
-    .disclaimer-content strong {
-        color: var(--gold, #C5A059);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .cta-title { font-size: 26px; }
-        .footer-links-section {
-            grid-template-columns: 1fr;
-            text-align: left;
-        }
-    }
 </style>
 
 <div class="custom-footer-wrapper">
@@ -163,6 +308,16 @@
         <a href="https://wa.me/918945923463?text=Hi%20Aishik,%20I%20would%20like%20to%20schedule%20a%20free%20call." target="_blank" class="cta-btn">
             <i class="fa-brands fa-whatsapp" style="font-size: 18px; margin-right: 8px;"></i> Schedule an appointment
         </a>
+    </div>
+
+    <!-- Personal identity kept separate from corporate services. -->
+    <div class="footer-brand-row">
+      <span class="footer-brand-mark" aria-hidden="true">A</span>
+      <div class="footer-brand-copy">
+        <strong>FINANCE WITH AISHIK</strong>
+        <small>Clarity in finance. Confidence in decisions.</small>
+      </div>
+      <span class="footer-brand-note">LEARN &nbsp; / &nbsp; PLAN &nbsp; / &nbsp; GROW</span>
     </div>
 
     <!-- 💥 Footer Links 💥 -->
