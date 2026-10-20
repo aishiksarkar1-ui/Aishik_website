@@ -1,419 +1,468 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance with Aishik | Financial Literacy Hub</title>
-    <!-- গিটহাব থেকে ফন্ট ইমপোর্ট -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --navy-blue: #0A192F;
-            --gold: #C5A059;
-            --light-cream: #F4F1EA;
-            --text-light: #E0E0E0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Finance with Aishik — a personal learning space for financial literacy, investing fundamentals, thoughtful planning and informed decisions.">
+  <meta name="theme-color" content="#F8F6F1">
+  <title>Finance with Aishik | Learn. Plan. Grow.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy-blue:#0A192F; --gold:#C5A059; --light-cream:#F4F1EA; --text-light:#E0E0E0; }
+    *,*::before,*::after { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body.finance-home { margin:0; background:#F8F6F1; color:#253137; font-family:'DM Sans', sans-serif; -webkit-font-smoothing:antialiased; }
+    .finance-home button,.finance-home input,.finance-home textarea { font:inherit; }
+    .finance-home button { cursor:pointer; }
+    .finance-home a { -webkit-tap-highlight-color:transparent; }
+    .finance-home :focus-visible { outline:3px solid #9B7B4F; outline-offset:4px; }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Lato', sans-serif;
-            background-color: var(--navy-blue);
-            color: var(--text-light);
-        }
+    /* Navbar is included below and styled entirely by navbar.html. */
 
-        
+    .home-container { max-width:1320px; margin-inline:auto; padding-inline:clamp(22px,5.2vw,82px); }
+    .eyebrow { display:inline-flex; align-items:center; gap:13px; color:#8f7049; font-size:11px; font-weight:800; letter-spacing:2.4px; text-transform:uppercase; }
+    .eyebrow::before { content:""; display:inline-block; width:28px; height:1px; background:currentColor; }
+    .display-title,.section-title,.profile-title { font-family:'Playfair Display',Georgia,serif; font-weight:500; letter-spacing:-1.9px; }
+    .section-title { font-size:clamp(37px,4.5vw,58px); line-height:1.12; color:#203036; margin:20px 0 0; }
+    .section-lead { margin:0; max-width:460px; color:#667175; font-size:16px; line-height:1.85; }
+    .soft-link { display:inline-flex; align-items:center; gap:10px; font-size:13px; font-weight:800; letter-spacing:.1px; color:#7f6240; text-decoration:none; }
+    .soft-link .arrow { display:inline-grid; place-items:center; width:30px; height:30px; border-radius:50%; border:1px solid #d8c5ac; transition:transform .3s,background .3s; }
+    .soft-link:hover .arrow { transform:translateX(5px); background:#e9dbc7; }
 
-        /* হিরো সেকশন */
-        .hero {
-            position: relative;
-            background-image: linear-gradient(to right, rgba(10, 25, 47, 0.9) 30%, rgba(10, 25, 47, 0.4) 100%), url('{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}');
-            background-size: cover;
-            background-position: top center;
-            padding: 120px 50px 180px 50px;
-        }
+    /* Hero uses the original image. The navy overlay and sharp border are defined below. */
+    .home-hero { position:relative; min-height:655px; overflow:hidden; isolation:isolate; background:#F8F6F1; }
+    .home-hero::before { content:""; position:absolute; z-index:-2; inset:0; background-image:linear-gradient(90deg,#F8F6F1 1%,rgba(248,246,241,.98) 29%,rgba(248,246,241,.84) 48%,rgba(248,246,241,.14) 80%,rgba(248,246,241,.03) 100%),url("{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}"); background-size:cover; background-position:center 32%; }
+    .hero-content { padding-top:clamp(92px,10vw,142px); padding-bottom:145px; }
+    .hero-copy { max-width:710px; }
+    .display-title { color:#223137; font-size:clamp(55px,6vw,83px); line-height:1.08; max-width:700px; margin:29px 0 24px; }
+    .display-title em { color:#98734a; font-style:normal; }
+    .hero-description { max-width:550px; font-size:17px; line-height:1.85; color:#5b686c; margin:0; }
+    .hero-actions { display:flex; align-items:center; flex-wrap:wrap; gap:15px; margin-top:33px; }
+    .primary-button,.secondary-button { border-radius:100px; min-height:54px; display:inline-flex; align-items:center; justify-content:center; gap:16px; padding:15px 25px; text-decoration:none; font-size:13px; letter-spacing:.3px; font-weight:800; transition:transform .28s ease,background .28s ease,box-shadow .28s ease; }
+    .primary-button { color:#fff; background:#24373c; border:1px solid #24373c; box-shadow:0 9px 27px rgba(33,53,58,.13); }
+    .primary-button:hover { background:#3c5459; transform:translateY(-3px); box-shadow:0 18px 35px rgba(33,53,58,.19); }
+    .secondary-button { background:rgba(255,255,255,.57); color:#26343a; border:1px solid #cfc7bb; }
+    .secondary-button:hover { background:#fff; transform:translateY(-3px); box-shadow:0 15px 25px rgba(42,53,53,.08); }
+    .hero-caption { display:flex; align-items:center; gap:12px; color:#78817f; font-size:11px; text-transform:uppercase; letter-spacing:1.5px; margin-top:60px; font-weight:700; }
+    .hero-caption span { width:6px; height:6px; border-radius:50%; background:#a6875d; }
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 50px;
-            color: white;
-            max-width: 600px;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
+    /* Replace the three dense text columns with a story-led learning journey. */
+    .learning-section { background:#F8F6F1; padding:92px 0 115px; }
+    .section-heading { display:flex; justify-content:space-between; align-items:end; gap:50px; margin-bottom:42px; }
+    .learning-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:17px; }
+    .learning-card { min-height:290px; position:relative; background:#FFFEFB; border:1px solid #e8e3d9; border-radius:20px; padding:27px 25px 29px; box-shadow:0 5px 25px rgba(49,47,40,.025); transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s,border-color .35s; }
+    .learning-card:hover { transform:translateY(-9px); box-shadow:0 24px 42px rgba(49,57,54,.10); border-color:#cdb89b; }
+    .step-number { display:flex; align-items:center; justify-content:space-between; color:#a68a64; font-size:12px; font-weight:700; letter-spacing:1.3px; }
+    .step-symbol { display:grid; place-items:center; width:45px; height:45px; background:#f4eee5; border-radius:14px; font-size:21px; color:#917249; transition:transform .35s ease; }
+    .learning-card:hover .step-symbol { transform:rotate(-8deg) scale(1.08); }
+    .learning-card h3 { margin:35px 0 12px; color:#24343a; font-size:19px; letter-spacing:-.5px; line-height:1.3; font-weight:700; }
+    .learning-card p { margin:0; color:#6d7676; font-size:13px; line-height:1.75; }
+    .section-outro { margin-top:31px; color:#77807d; font-size:13px; }
 
-        .hero p {
-            font-size: 18px;
-            max-width: 500px;
-            margin-bottom: 40px;
-            line-height: 1.5;
-            color: #b0b0b0;
-        }
+    /* Editorial personal statement, without implying this is a corporate website. */
+    .personal-section { padding:15px 0 104px; background:#F8F6F1; }
+    .personal-panel { position:relative; display:grid; grid-template-columns:minmax(250px,.78fr) minmax(0,1.22fr); gap:55px; align-items:center; border-radius:27px; background:#27363B; color:white; padding:52px clamp(35px,5vw,78px); overflow:hidden; }
+    .personal-panel::before { content:""; position:absolute; top:-150px; right:-130px; width:450px; height:450px; border-radius:50%; border:1px solid rgba(226,213,190,.16); box-shadow:0 0 0 90px rgba(226,213,190,.035),0 0 0 190px rgba(226,213,190,.02); pointer-events:none; }
+    .portrait-wrap { max-width:350px; aspect-ratio:4/4.65; border-radius:18px; overflow:hidden; border:7px solid rgba(255,255,255,.08); background:#b8ada0; box-shadow:0 25px 42px rgba(0,0,0,.2); }
+    .portrait-wrap img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; transition:transform .8s ease; }
+    .portrait-wrap:hover img { transform:scale(1.05); }
+    .personal-panel .eyebrow { color:#d7b581; }
+    .personal-panel .profile-title { color:#fff; font-size:clamp(33px,4.15vw,54px); line-height:1.17; margin:23px 0; }
+    .personal-panel .profile-text { color:#cfdbd9; font-size:15px; line-height:1.9; max-width:610px; }
+    .principle-row { display:flex; flex-wrap:wrap; gap:9px; margin:25px 0 28px; }
+    .principle-row span { border:1px solid rgba(255,255,255,.24); color:#e7eae6; font-size:11px; letter-spacing:.35px; padding:10px 13px; border-radius:50px; }
+    .personal-panel .soft-link { color:#dfc395; }
+    .personal-panel .soft-link .arrow { border-color:#bf9e71; }
+    .personal-panel .soft-link:hover .arrow { background:rgba(255,255,255,.12); }
 
-        .cta-btn {
-            background-color: var(--gold);
-            color: var(--navy-blue);
-            padding: 15px 35px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            font-family: 'Lato', sans-serif;
-            transition: all 0.3s ease;
-        }
+    /* Specific, categorized expertise instead of the original general bullet list. */
+    .expertise-section { padding:96px 0 112px; background:#F0EEE8; }
+    .expertise-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .expertise-card { position:relative; min-height:242px; background:#FBFAF6; border:1px solid #dfdbd1; border-radius:21px; padding:32px 33px 28px; overflow:hidden; transition:transform .35s,box-shadow .35s,border-color .35s; }
+    .expertise-card:hover { transform:translateY(-7px); border-color:#c8b596; box-shadow:0 24px 36px rgba(35,51,51,.085); }
+    .expertise-card::before { content:""; position:absolute; left:0; top:0; width:0; height:3px; background:#A78658; transition:width .45s ease; }
+    .expertise-card:hover::before { width:100%; }
+    .topic-tag { display:flex; align-items:center; gap:10px; font-size:10px; letter-spacing:2px; font-weight:800; color:#977957; text-transform:uppercase; }
+    .topic-tag i { font-style:normal; width:27px; height:27px; display:grid; place-items:center; background:#efe6da; border-radius:50%; font-size:11px; }
+    .expertise-card h3 { margin:20px 0 10px; font:500 28px/1.2 'Playfair Display',Georgia,serif; color:#25363a; }
+    .expertise-card p { font-size:14px; line-height:1.7; color:#6e7878; margin:0 0 18px; max-width:470px; }
+    .expertise-card .soft-link { font-size:12px; }
 
-        .cta-btn:hover {
-            background-color: #d4af37;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4);
-        }
+    .tools-section { background:#F8F6F1; padding:89px 0 102px; }
+    .tools-heading { display:flex; justify-content:space-between; align-items:end; gap:30px; margin-bottom:30px; }
+    .tools-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .tool-card { display:flex; justify-content:space-between; align-items:center; gap:20px; color:#28383c; background:#fffefa; text-decoration:none; border:1px solid #e5e0d5; padding:22px 24px; border-radius:15px; transition:transform .3s,box-shadow .3s,border-color .3s; }
+    .tool-card:hover { transform:translateY(-5px); box-shadow:0 17px 25px rgba(36,48,48,.08); border-color:#c5b294; }
+    .tool-card strong { font-size:14px; font-weight:700; }
+    .tool-card small { display:block; margin-top:6px; color:#798382; font-size:11px; }
+    .tool-card .tool-arrow { flex:0 0 auto; font-size:23px; color:#9f8059; }
 
-        /* তিন কলামের ডিজাইন এবং সমান উচ্চতা করার কোড */
-        .bottom-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: stretch;
-            padding: 0 50px 50px 50px;
-            margin-top: -80px;
-            position: relative;
-            z-index: 10;
-        }
+    /* Preserve the existing contact-form endpoint and field names. */
+    .home-modal { display:none; position:fixed; z-index:2000; inset:0; padding:20px; background:rgba(14,30,34,.72); backdrop-filter:blur(9px); overflow-y:auto; align-items:center; justify-content:center; }
+    .home-modal.is-open { display:flex; }
+    .home-modal-content { width:min(100%,500px); margin:auto; padding:34px; border-radius:23px; background:#FCFBF7; color:#26383c; box-shadow:0 35px 85px rgba(0,0,0,.3); position:relative; }
+    .home-modal-content h2 { font:500 36px/1.2 'Playfair Display',Georgia,serif; margin:12px 40px 24px 0; }
+    .modal-close { position:absolute; top:17px; right:19px; width:37px; height:37px; display:grid; place-items:center; font-size:23px; background:#eee9e0; border:0; border-radius:50%; color:#253137; }
+    .home-form-group { margin-bottom:16px; }
+    .home-form-group label { display:block; font-size:12px; font-weight:700; margin-bottom:7px; }
+    .home-form-group input,.home-form-group textarea { display:block; width:100%; background:#fff; border:1px solid #d9d6cc; border-radius:10px; padding:13px 14px; color:#25373b; font-size:14px; }
+    .home-form-group input:focus,.home-form-group textarea:focus { border-color:#b19467; }
+    .home-submit { background:#263a40; color:#fff; width:100%; padding:16px; border:0; border-radius:10px; font-weight:700; transition:background .25s; }
+    .home-submit:hover { background:#435a5e; }
+    #form-response { font-size:13px; line-height:1.5; margin-top:15px; min-height:20px; }
 
-        .info-box {
-            width: 30%;
-            padding: 20px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-        }
+    /* Animations: visible by default if JS is unavailable. */
+    .motion-ready .reveal { opacity:0; transform:translateY(27px); transition:opacity .82s ease,transform .82s cubic-bezier(.2,.8,.2,1); }
+    .motion-ready .reveal.is-visible { opacity:1; transform:translateY(0); }
+    .hero-copy > * { animation:soft-appear .8s both; }
+    .hero-copy > :nth-child(2) { animation-delay:.12s; }
+    .hero-copy > :nth-child(3) { animation-delay:.23s; }
+    .hero-copy > :nth-child(4) { animation-delay:.36s; }
+    .hero-copy > :nth-child(5) { animation-delay:.49s; }
+    @keyframes soft-appear { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
 
-        .info-box h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--gold);
-            font-size: 30px;
-            margin-bottom: 15px;
-        }
+    @media(max-width:1180px) {
+      .learning-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media(max-width:760px) {
+      .home-hero { min-height:610px; }
+      .home-hero::before { background-image:linear-gradient(90deg,rgba(248,246,241,.99) 0%,rgba(248,246,241,.95) 43%,rgba(248,246,241,.62) 100%),url("{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}"); background-position:65% center; }
+      .hero-content { padding-top:90px; padding-bottom:104px; }
+      .display-title { font-size:clamp(44px,10vw,64px); }
+      .hero-description { font-size:15px; }
+      .hero-caption { margin-top:38px; }
+      .section-heading,.tools-heading { display:block; }
+      .section-lead { margin-top:18px; }
+      .learning-section { padding:65px 0 75px; }
+      .learning-grid,.expertise-grid,.tools-grid { grid-template-columns:1fr; }
+      .learning-card { min-height:auto; padding:27px 26px 32px; }
+      .learning-card h3 { margin-top:25px; }
+      .personal-section { padding-bottom:72px; }
+      .personal-panel { grid-template-columns:1fr; padding:30px; gap:32px; }
+      .portrait-wrap { max-width:260px; aspect-ratio:1; }
+      .expertise-section { padding:72px 0 78px; }
+      .expertise-card { min-height:auto; padding:27px; }
+      .tools-section { padding:72px 0 85px; }
+      .home-modal-content { padding:28px 24px; }
+    }
+    @media(max-width:420px) {
+      .hero-actions { align-items:stretch; }
+      .hero-actions > * { width:100%; }
+      .display-title { font-size:42px; }
+      .eyebrow { letter-spacing:1.65px; font-size:10px; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after { animation:none !important; transition-duration:.01ms !important; }
+      .motion-ready .reveal { opacity:1 !important; transform:none !important; }
+    }
+  </style>
 
-        .info-box p, .info-box li {
-            font-size: 14px;
-            line-height: 1.7;
-            color: #b0b0b0;
-        }
+  <style id="navy-hero-variation">
+    /* Navy image overlay inspired by the original live homepage; only the hero changes. */
+    .finance-home .home-hero { background-color:#0A192F; }
+    .finance-home .home-hero::before {
+      background-image:
+        linear-gradient(90deg,
+          rgba(7,18,35,.94) 0%,
+          rgba(10,25,47,.86) 35%,
+          rgba(10,25,47,.56) 66%,
+          rgba(10,25,47,.30) 100%),
+        url("{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}");
+      background-size:cover;
+      background-position:center 32%;
+    }
+    /* Superseded below: the final version has no navy-to-ivory gradient. */
+    .finance-home .home-hero .eyebrow { color:#D9BB8E; }
+    .finance-home .home-hero .display-title { color:#FFFDF7; text-shadow:0 3px 23px rgba(0,0,0,.13); }
+    .finance-home .home-hero .display-title em { color:#EAC597; }
+    .finance-home .home-hero .hero-description { color:#E5E9E9; }
+    .finance-home .home-hero .hero-caption { color:#DDE3E3; }
+    .finance-home .home-hero .hero-caption span { background:#E4BC81; }
+    .finance-home .home-hero .primary-button {
+      color:#14263B; background:#E5C399; border-color:#E5C399;
+      box-shadow:0 10px 29px rgba(4,13,24,.23);
+    }
+    .finance-home .home-hero .primary-button:hover {
+      background:#F2D6B4; box-shadow:0 17px 33px rgba(4,13,24,.30);
+    }
+    .finance-home .home-hero .secondary-button {
+      color:#FFFCF4; background:rgba(255,255,255,.075);
+      border-color:rgba(255,255,255,.55);
+      backdrop-filter:blur(6px);
+    }
+    .finance-home .home-hero .secondary-button:hover { color:#172942; background:rgba(255,255,255,.92); }
+    @media(max-width:760px) {
+      .finance-home .home-hero::before {
+        background-image:
+          linear-gradient(90deg,
+            rgba(7,18,35,.95) 0%,
+            rgba(10,25,47,.89) 45%,
+            rgba(10,25,47,.72) 100%),
+          url("{{ url_for('static', filename='Gemini_Generated_Aishik.jpg') }}");
+        background-position:65% center;
+      }
+    }
+  </style>
 
-        .info-box ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .info-box li {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding: 8px 0;
-        }
-
-        /* মাঝখানের ক্রিম রঙের বক্সটি আলাদাভাবে তার স্টাইল ও কালার ধরে রাখবে */
-        .center-box {
-            background-color: var(--light-cream) !important;
-            color: var(--navy-blue) !important;
-            padding: 80px 40px 40px 40px !important;
-            text-align: center;
-            border-radius: 5px;
-            position: relative;
-            margin-top: -60px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .center-box h3 {
-            color: var(--navy-blue);
-        }
-
-        .center-box p {
-            color: #333;
-            font-style: italic;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        /* গোলাকার প্রোফাইল ছবি */
-        .profile-img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 5px solid var(--gold);
-            position: absolute;
-            top: -70px;
-            left: 50%;
-            transform: translateX(-50%);
-            object-fit: cover;
-            object-position: top;
-            background-color: #fff;
-        }
-
-        /* কন্টাক্ট ফর্ম পপ-আপ স্টাইল */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(10, 25, 47, 0.85);
-            backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background-color: var(--light-cream);
-            margin: 10% auto;
-            padding: 40px;
-            width: 90%;
-            max-width: 450px;
-            border-radius: 8px;
-            color: var(--navy-blue);
-            position: relative;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-        }
-        .close-btn {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            color: var(--navy-blue);
-        }
-        .modal-content h2 {
-            font-family: 'Playfair Display', serif;
-            margin-top: 0;
-            color: var(--navy-blue);
-            border-bottom: 2px solid var(--gold);
-            padding-bottom: 10px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-family: 'Lato', sans-serif;
-        }
-        .submit-btn {
-            background-color: var(--navy-blue);
-            color: var(--gold);
-            width: 100%;
-            padding: 14px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-        .submit-btn:hover {
-            background-color: #1b365d;
-        }
-        #form-response {
-            margin-top: 15px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        /* মোবাইল ও রেসপনসিভ ডিজাইন */
-        @media (max-width: 992px) {
-            .navbar {
-                padding: 15px 20px;
-            }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--navy-blue);
-                border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-                padding: 20px 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .dropdown-content {
-                position: relative;
-                box-shadow: none;
-                border: none;
-                background-color: rgba(255,255,255,0.05);
-                padding-left: 15px;
-            }
-            .hero {
-                background-position: center right;
-                padding: 80px 20px 120px 20px;
-            }
-            .hero h1 {
-                font-size: 32px;
-            }
-            .bottom-section {
-                flex-direction: column;
-                margin-top: -50px;
-            }
-            .info-box {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+  <style id="sharp-cut-hero-refinement">
+    /* FINAL REVIEW DRAFT: clean hero boundary, left alignment, overlapping editorial bridge. */
+    .finance-home .home-hero {
+      border-bottom:3px solid #BF9B67;
+    }
+    .finance-home .hero-content {
+      max-width:none;
+      padding-left:clamp(24px,3.5vw,54px);
+      padding-right:clamp(24px,4vw,66px);
+    }
+    .finance-home .hero-copy { max-width:690px; }
+    .finance-home .hero-bridge-shell {
+      position:relative;
+      z-index:8;
+      background:transparent;
+      margin-top:-47px;
+      padding:0 clamp(22px,5.2vw,82px);
+    }
+    .finance-home .hero-bridge {
+      max-width:1210px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:58px minmax(270px,1.18fr) minmax(250px,.85fr);
+      align-items:center;
+      gap:24px;
+      min-height:110px;
+      padding:22px clamp(24px,3.3vw,48px);
+      border:1px solid #e4d9c8;
+      border-top:3px solid #C6A16F;
+      border-radius:5px;
+      background:#FFFDF9;
+      box-shadow:0 18px 48px rgba(9,25,43,.15);
+    }
+    .finance-home .hero-bridge-icon {
+      display:grid;
+      place-items:center;
+      width:56px;
+      height:56px;
+      border:1px solid #dcc7a6;
+      border-radius:50%;
+      font-size:23px;
+      color:#A7814D;
+      background:#f9f4eb;
+      transition:transform .3s ease,background .3s ease;
+    }
+    .finance-home .hero-bridge:hover .hero-bridge-icon { transform:translate(2px,-3px); background:#f2e8d8; }
+    .finance-home .bridge-eyebrow {
+      display:block;
+      margin-bottom:6px;
+      color:#987750;
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:1.9px;
+    }
+    .finance-home .bridge-title {
+      display:block;
+      color:#20303d;
+      font:500 clamp(18px,2.1vw,25px)/1.35 'Playfair Display',Georgia,serif;
+      letter-spacing:-.5px;
+    }
+    .finance-home .bridge-milestones {
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+      column-gap:20px;
+      row-gap:8px;
+      color:#4e5a61;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.7px;
+    }
+    .finance-home .bridge-milestones span+span { border-left:1px solid #d8d0c3; padding-left:20px; }
+    .finance-home .learning-section { padding-top:73px; }
+    @media(max-width:900px) {
+      .finance-home .hero-bridge { grid-template-columns:56px 1fr; gap:14px 22px; }
+      .finance-home .bridge-milestones { grid-column:2; justify-content:flex-start; }
+    }
+    @media(max-width:760px) {
+      .finance-home .hero-content { padding-left:24px; padding-right:24px; }
+      .finance-home .hero-bridge-shell { margin-top:-31px; padding:0 17px; }
+      .finance-home .hero-bridge { grid-template-columns:1fr; min-height:0; padding:24px; gap:13px; }
+      .finance-home .hero-bridge-icon { width:42px; height:42px; font-size:20px; }
+      .finance-home .bridge-milestones { grid-column:auto; gap:8px 15px; font-size:10px; }
+      .finance-home .bridge-milestones span+span { padding-left:13px; }
+      .finance-home .learning-section { padding-top:58px; }
+    }
+  </style>
 </head>
-<body>
+<body class="finance-home">
+  {% include 'navbar.html' %}
+  <main id="main-content">
+    <section class="home-hero" aria-labelledby="home-heading">
+      <div class="home-container hero-content">
+        <div class="hero-copy">
+          <span class="eyebrow">FINANCIAL LITERACY, REIMAGINED</span>
+          <h1 id="home-heading" class="display-title">Understand money.<br><em>Own your future.</em></h1>
+          <p class="hero-description">A personal space for thoughtful investing, smarter financial decisions, and the clarity to build long-term confidence—one step at a time.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="/learn">Explore the learning hub <span aria-hidden="true">↗</span></a>
+            <button class="secondary-button" type="button" onclick="openModal()">Let's connect <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="hero-caption"><span aria-hidden="true"></span> LEARN WITH PERSPECTIVE &nbsp; / &nbsp; PLAN WITH PURPOSE</div>
+        </div>
+      </div>
+    </section>
 
-    <!-- স্টিকি নেভিগেশন বার -->
-    {% include 'navbar.html' %}
-
-    <!-- হিরো সেকশন -->
-    <div class="hero">
-        <h1>ACHIEVE FINANCIAL FREEDOM & BUILD LASTING WEALTH</h1>
-        <p>Learn the core fundamentals of smart asset allocation and risk management. Master practical investing skills to protect your capital and grow wealth with confidence.</p>
-        <button class="cta-btn" onclick="openModal()">START YOUR LEARNING JOURNEY</button>
+    <!-- The ivory editorial panel overlaps the navy hero by 47px. -->
+    <div class="hero-bridge-shell" aria-label="Learning philosophy">
+      <div class="hero-bridge">
+        <div class="hero-bridge-icon" aria-hidden="true">↗</div>
+        <div>
+          <span class="bridge-eyebrow">A CLEARER WAY FORWARD</span>
+          <strong class="bridge-title">Build knowledge. Make decisions with confidence.</strong>
+        </div>
+        <div class="bridge-milestones" aria-label="Learning, planning and growing">
+          <span>01 / LEARN</span><span>02 / PLAN</span><span>03 / GROW</span>
+        </div>
+      </div>
     </div>
 
-    <!-- তিন কলামের সেকশন -->
-    <div class="bottom-section">
-        
-        <!-- বাম দিকের কলাম -->
-        <div class="info-box">
-            <h3>How We Learn Together</h3>
-            <p>We bridge the gap between financial complexity and practical execution through a structured, easy-to-understand mentoring framework designed to help you succeed in the long run. Our journey together begins by securing your financial foundation through comprehensive life, health, and general insurance planning. From there, we focus on growing your assets steadily by exploring various options like Mutual Funds, SIF, PMS, and AIF.</p>
-            <p>We teach you how to analyze your unique risk profile along with current market conditions, comparing market valuations versus investor sentiment. Based on this, we guide you through goal-based tactical and strategic asset allocation so you know exactly where and how to place your money. We also help you turn your personal dreams into structured, actionable plans—teaching you how to budget effectively, forecast and manage future cash flows, and finance your goals precisely.</p>
-            <p>We make your dreams accountable and budgetable by estimating future cash flows and making them achievable through systematic investing. Furthermore, we walk you through intelligent stock selection and other reliable investment vehicles, teaching you step-by-step how to create a consistent passive income stream for your future.</p>
+    <section class="learning-section" aria-labelledby="learning-heading">
+      <div class="home-container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow">THE LEARNING JOURNEY</span>
+            <h2 class="section-title" id="learning-heading">From complexity<br>to clarity.</h2>
+          </div>
+          <p class="section-lead">Good financial decisions start with understanding. Here's a clear, practical way to learn the essentials, connect the dots, and put knowledge to use.</p>
         </div>
-
-        <!-- মাঝখানের ক্রিম রঙের কলাম -->
-        <div class="info-box center-box">
-            <img src="{{ url_for('static', filename='Aishik Sarkar.png') }}" alt="Aishik Sarkar" class="profile-img">
-            <h3>My Investment Core Principles</h3>
-            <p>"I believe that successful investing is a blend of disciplined education and data-driven strategy. My coaching focuses on three core pillars:
-            <br>1. Strategic Asset Allocation: Aligning investments with your risk tolerance and long-term goals.
-            <br>2. Proactive Risk Management: Protecting your capital through smart diversification.
-            <br>3. Mindset Mastery: Learning to make logical, evidence-based decisions rather than reacting to market noise."</p>
-            <p style="font-weight: bold; font-style: normal; margin-top: 20px;">- Smart Investing</p>
+        <div class="learning-grid">
+          <article class="learning-card reveal"><div class="step-number"><span>01 / FOUNDATIONS</span><span class="step-symbol" aria-hidden="true">◇</span></div><h3>Understand your money</h3><p>Start with cash flow, financial priorities, protection needs, and the habits behind lasting progress.</p></article>
+          <article class="learning-card reveal"><div class="step-number"><span>02 / DIRECTION</span><span class="step-symbol" aria-hidden="true">⌁</span></div><h3>Give your goals a plan</h3><p>Translate ambitions into timelines, budgets, and realistic saving and investing scenarios.</p></article>
+          <article class="learning-card reveal"><div class="step-number"><span>03 / STRATEGY</span><span class="step-symbol" aria-hidden="true">◎</span></div><h3>Learn to invest thoughtfully</h3><p>Explore diversification, asset allocation, valuation, and the trade-off between risk and reward.</p></article>
+          <article class="learning-card reveal"><div class="step-number"><span>04 / DISCIPLINE</span><span class="step-symbol" aria-hidden="true">↗</span></div><h3>Review. Refine. Repeat.</h3><p>Build a long-term process that adapts as your circumstances, goals, and markets change.</p></article>
         </div>
+        <p class="section-outro reveal">No shortcuts. No promises of returns. Just practical education for better decisions.</p>
+      </div>
+    </section>
 
-        <!-- ডান দিকের কলাম -->
-        <div class="info-box">
-            <h3>Areas of Expertise</h3>
-            <ul>
-                <li>• Mutual Fund</li>
-                <li>• SIP Planning & Setup</li>
-                <li>• Specialised Investment Fund (SIF)</li>
-                <li>• Portfolio Management Services</li>
-                <li>• Alternative Investment Fund</li>
-                <li>• Wealth Building Strategy</li>
-                <li>• Portfolio Risk Management</li>
-                <li>• Stock Selections</li>
-                <li>• Fixed Income</li>
-                <li>• Global Capital Markets and Commodities</li>
-                <li>• Health Insurance</li>
-                <li>• Life Insurance</li>
-                <li>• General Insurance</li>
-            </ul>
+    <section class="personal-section" aria-labelledby="principles-heading">
+      <div class="home-container">
+        <div class="personal-panel reveal">
+          <div class="portrait-wrap"><img src="{{ url_for('static', filename='Aishik Sarkar.png') }}" alt="Portrait of Aishik Sarkar" loading="lazy"></div>
+          <div>
+            <span class="eyebrow">MY APPROACH</span>
+            <h2 class="profile-title" id="principles-heading">Financial confidence is built on understanding—not predictions.</h2>
+            <p class="profile-text">I'm Aishik. Through this personal platform, I share ideas that make finance easier to understand, from investment principles and risk awareness to the everyday choices that shape our financial lives.</p>
+            <div class="principle-row"><span>Clarity over noise</span><span>Risk before return</span><span>Discipline over impulse</span></div>
+            <a href="/about" class="soft-link">More about my perspective <span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
         </div>
+      </div>
+    </section>
 
+    <section class="expertise-section" aria-labelledby="expertise-heading">
+      <div class="home-container">
+        <div class="section-heading reveal">
+          <div><span class="eyebrow">AREAS I EXPLORE</span><h2 class="section-title" id="expertise-heading">Knowledge for every<br>financial decision.</h2></div>
+          <p class="section-lead">Instead of a long list of products, discover the subjects that connect everyday financial choices to the bigger picture.</p>
+        </div>
+        <div class="expertise-grid">
+          <article class="expertise-card reveal"><div class="topic-tag"><i aria-hidden="true">01</i> BUILDING WEALTH</div><h3>Investment fundamentals</h3><p>Mutual funds, SIPs, fixed income, and the principles that underpin long-term compounding.</p><a href="/learn" class="soft-link">Explore fundamentals <span class="arrow" aria-hidden="true">↗</span></a></article>
+          <article class="expertise-card reveal"><div class="topic-tag"><i aria-hidden="true">02</i> THINKING IN RISKS</div><h3>Portfolio strategy & risk</h3><p>Asset allocation, diversification, risk profiling, and how to assess different market conditions.</p><a href="/risk-profiling" class="soft-link">Understand your risk profile <span class="arrow" aria-hidden="true">↗</span></a></article>
+          <article class="expertise-card reveal"><div class="topic-tag"><i aria-hidden="true">03</i> UNDERSTANDING MARKETS</div><h3>Advanced investment avenues</h3><p>Educational perspectives on equities, SIFs, PMS, AIFs, and global markets—not product recommendations.</p><a href="/market-insight" class="soft-link">Explore market insights <span class="arrow" aria-hidden="true">↗</span></a></article>
+          <article class="expertise-card reveal"><div class="topic-tag"><i aria-hidden="true">04</i> PLANNING AHEAD</div><h3>Protection & life goals</h3><p>Life, health, and general insurance concepts alongside budgeting, cash-flow planning, and future goals.</p><a href="/financial-planning" class="soft-link">Explore goal planning <span class="arrow" aria-hidden="true">↗</span></a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tools-section" aria-labelledby="tools-heading">
+      <div class="home-container">
+        <div class="tools-heading reveal"><div><span class="eyebrow">PRACTICAL TOOLS</span><h2 class="section-title" id="tools-heading">Put ideas into perspective.</h2></div><p class="section-lead">Explore familiar financial questions through simple interactive calculators.</p></div>
+        <div class="tools-grid">
+          <a href="/sip-calculator" class="tool-card reveal"><span><strong>SIP Calculator</strong><small>Explore periodic investing scenarios</small></span><span class="tool-arrow" aria-hidden="true">↗</span></a>
+          <a href="/financial-planning" class="tool-card reveal"><span><strong>Goal Planning</strong><small>Connect your targets to timelines</small></span><span class="tool-arrow" aria-hidden="true">↗</span></a>
+          <a href="/inflation-calculator" class="tool-card reveal"><span><strong>Inflation Impact</strong><small>See how purchasing power can change</small></span><span class="tool-arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="consultationModal" class="home-modal" role="dialog" aria-modal="true" aria-labelledby="consultation-title" aria-hidden="true">
+    <div class="home-modal-content">
+      <button type="button" class="modal-close" aria-label="Close consultation form" onclick="closeModal()">×</button>
+      <span class="eyebrow">GET IN TOUCH</span>
+      <h2 id="consultation-title">Let's start a conversation.</h2>
+      <form id="consultationForm">
+        <div class="home-form-group"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required placeholder="Enter your full name"></div>
+        <div class="home-form-group"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+        <div class="home-form-group"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="Your contact number"></div>
+        <div class="home-form-group"><label for="message">Message / requirements</label><textarea id="message" name="message" rows="3" placeholder="What would you like to discuss?"></textarea></div>
+        <button type="submit" class="home-submit">Send message <span aria-hidden="true">↗</span></button>
+        <div id="form-response" role="status" aria-live="polite"></div>
+      </form>
     </div>
+  </div>
 
-    <!-- কন্টাক্ট ফর্ম পপ-আপ মডাল (Modal) -->
-    <div id="consultationModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2>Book a Consultation</h2>
-            <form id="consultationForm">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="Enter your email">
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message / Requirements</label>
-                    <textarea id="message" name="message" rows="3" placeholder="Tell me about your financial goals..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Submit Details</button>
-                <div id="form-response"></div>
-            </form>
-        </div>
-    </div>
-
-    <!-- জাভাস্ক্রিপ্ট -->
-    <script>
-        // মোবাইল মেনু টগল
-        function toggleMenu() {
-            var navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+  {% include 'bottom_design.html' %}
+  <script>
+    (function () {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const elements = document.querySelectorAll('.reveal');
+      if (!reduceMotion && 'IntersectionObserver' in window) {
+        document.body.classList.add('motion-ready');
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } });
+        }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+        elements.forEach(el => observer.observe(el));
+      }
+      const modal = document.getElementById('consultationModal');
+      const form = document.getElementById('consultationForm');
+      let lastFocus = null;
+      window.openModal = function () {
+        lastFocus = document.activeElement;
+        modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        modal.querySelector('.modal-close').focus();
+      };
+      window.closeModal = function () {
+        modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+      };
+      modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+        if (e.key === 'Tab' && modal.classList.contains('is-open')) {
+          const nodes = [...modal.querySelectorAll('button, input, textarea, a[href]')].filter(el=>!el.disabled);
+          if (!nodes.length) return;
+          if (e.shiftKey && document.activeElement === nodes[0]) { e.preventDefault(); nodes[nodes.length-1].focus(); }
+          else if (!e.shiftKey && document.activeElement === nodes[nodes.length-1]) { e.preventDefault(); nodes[0].focus(); }
         }
-
-        // পপ-আপ মডাল ফাংশন
-        function openModal() {
-            document.getElementById('consultationModal').style.display = 'block';
+      });
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const response = document.getElementById('form-response');
+        const submit = form.querySelector('button[type="submit"]');
+        response.style.color = '#86683e'; response.textContent = 'Submitting…';
+        if (document.documentElement.dataset.preview === 'true') {
+          response.textContent = 'Preview only — no information has been submitted.'; return;
         }
-        function closeModal() {
-            document.getElementById('consultationModal').style.display = 'none';
-        }
-        window.onclick = function(event) {
-            var modal = document.getElementById('consultationModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // ফর্ম সাবমিট হ্যান্ডলার
-        document.getElementById('consultationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            var responseDiv = document.getElementById('form-response');
-            responseDiv.style.color = '#C5A059';
-            responseDiv.innerText = 'Submitting...';
-
-            fetch('/submit_form', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data.status === 'success') {
-                    responseDiv.style.color = 'green';
-                    responseDiv.innerText = data.message;
-                    document.getElementById('consultationForm').reset();
-                    setTimeout(closeModal, 3000);
-                } else {
-                    responseDiv.style.color = 'red';
-                    responseDiv.innerText = 'Error: ' + data.message;
-                }
-            })
-            .catch(error => {
-                responseDiv.style.color = 'red';
-                responseDiv.innerText = 'An error occurred. Please try again.';
-            });
-        });
-    </script>
-    <!-- পেজের অন্যান্য সমস্ত কোড... -->
-
-    {% include 'bottom_design.html' %}
-
+        submit.disabled = true;
+        try {
+          const res = await fetch('/submit_form', { method:'POST', body:new FormData(form) });
+          const data = await res.json();
+          if (res.ok && data.status === 'success') {
+            response.style.color = '#27744d'; response.textContent = data.message || 'Message submitted.';
+            form.reset(); setTimeout(closeModal, 2600);
+          } else {
+            response.style.color = '#aa3930'; response.textContent = data.message || 'Unable to submit. Please try again.';
+          }
+        } catch(error) { response.style.color = '#aa3930'; response.textContent = 'Unable to submit. Please try again.'; }
+        finally { submit.disabled = false; }
+      });
+    })();
+  </script>
 </body>
 </html>
