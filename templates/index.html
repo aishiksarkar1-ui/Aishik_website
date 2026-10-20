@@ -473,6 +473,144 @@
     .finance-home .learning-card h3 { margin-top:26px; }
   }
 </style>
+<style id="cinematic-scroll-presentation-v1">
+/* Progressive enhancement: opacity/3D motion only while existing IntersectionObserver
+   adds .motion-ready, then .is-visible. No extra JS library, and no scroll hijacking. */
+@media (prefers-reduced-motion: no-preference) {
+  .finance-home.motion-ready .learning-section .section-heading.reveal {
+    opacity:0;
+    transform:translate3d(0,62px,0) scale(.958);
+    transform-origin:50% 75%;
+    transition:opacity .9s ease,transform 1.10s cubic-bezier(.2,.75,.2,1);
+  }
+  .finance-home.motion-ready .learning-section .section-heading.reveal.is-visible {
+    opacity:1;
+    transform:translate3d(0,0,0) scale(1);
+  }
+  .finance-home.motion-ready .learning-card.reveal {
+    opacity:0;
+    transform:perspective(1100px) translate3d(0,75px,0) rotateX(8deg) scale(.95);
+    transform-origin:center bottom;
+    transition:opacity .70s ease, transform .95s cubic-bezier(.19,.8,.24,1),box-shadow .35s,border-color .35s;
+    will-change:transform,opacity;
+  }
+  .finance-home.motion-ready .learning-card.reveal.is-visible {
+    opacity:1;
+    transform:perspective(1100px) translate3d(0,0,0) rotateX(0deg) scale(1);
+    will-change:auto;
+  }
+  .finance-home.motion-ready .learning-card.reveal:nth-child(1) {transition-delay:.02s;}
+  .finance-home.motion-ready .learning-card.reveal:nth-child(2) {transition-delay:.13s;}
+  .finance-home.motion-ready .learning-card.reveal:nth-child(3) {transition-delay:.24s;}
+  .finance-home.motion-ready .learning-card.reveal:nth-child(4) {transition-delay:.35s;}
+  .finance-home.motion-ready .expertise-section .section-heading.reveal {
+    opacity:0;
+    transform:translate3d(0,55px,0) scale(.965);
+    transition:opacity .8s ease,transform 1s cubic-bezier(.2,.78,.2,1);
+  }
+  .finance-home.motion-ready .expertise-section .section-heading.reveal.is-visible {
+    opacity:1; transform:translate3d(0,0,0) scale(1);
+  }
+  .finance-home.motion-ready .expertise-grid {perspective:1300px;perspective-origin:center center;}
+  .finance-home.motion-ready .expertise-card.reveal {
+    opacity:0;
+    transform:translate3d(-35px,84px,0) rotateY(12deg) rotateZ(-4deg) scale(.93);
+    transform-origin:center center;
+    transition:opacity .8s ease,transform 1.13s cubic-bezier(.16,.9,.23,1),box-shadow .35s,border-color .35s;
+    will-change:transform,opacity;
+    backface-visibility:hidden;
+  }
+  .finance-home.motion-ready .expertise-card.reveal:nth-child(2n) {
+    transform:translate3d(35px,84px,0) rotateY(-12deg) rotateZ(4deg) scale(.93);
+  }
+  .finance-home.motion-ready .expertise-card.reveal.is-visible,
+  .finance-home.motion-ready .expertise-card.reveal.is-visible:nth-child(2n) {
+    opacity:1;
+    transform:translate3d(0,0,0) rotateY(0) rotateZ(0) scale(1);
+    will-change:auto;
+  }
+  .finance-home.motion-ready .expertise-card.reveal:nth-child(1) {transition-delay:.04s;}
+  .finance-home.motion-ready .expertise-card.reveal:nth-child(2) {transition-delay:.17s;}
+  .finance-home.motion-ready .expertise-card.reveal:nth-child(3) {transition-delay:.30s;}
+  .finance-home.motion-ready .expertise-card.reveal:nth-child(4) {transition-delay:.43s;}
+  /* Preserve existing hover lift after the entrance animation finishes. */
+  .finance-home.motion-ready .expertise-card.reveal.is-visible:hover,
+  .finance-home.motion-ready .expertise-card.reveal.is-visible:focus-within {
+    transform:translate3d(0,-7px,0) rotateY(0) scale(1.008);
+    transition-delay:0ms;
+  }
+  .finance-home.motion-ready .learning-card.reveal.is-visible:hover,
+  .finance-home.motion-ready .learning-card.reveal.is-visible:focus-within {
+    transform:perspective(1100px) translate3d(0,-9px,0) rotateX(0) scale(1.008);
+    transition-delay:0ms;
+  }
+}
+@media(max-width:768px) and (prefers-reduced-motion:no-preference) {
+  /* On small screens avoid pronounced lateral tilt and costly 3D effects. */
+  .finance-home.motion-ready .expertise-card.reveal,
+  .finance-home.motion-ready .expertise-card.reveal:nth-child(2n) {
+    transform:translate3d(0,38px,0) scale(.97) rotateZ(0);
+    transition-duration:.7s;
+    transition-delay:0ms;
+  }
+  .finance-home.motion-ready .expertise-card.reveal.is-visible,
+  .finance-home.motion-ready .expertise-card.reveal.is-visible:nth-child(2n) {
+    transform:translate3d(0,0,0) scale(1);
+  }
+  .finance-home.motion-ready .learning-card.reveal {transition-delay:0ms;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .finance-home .learning-section .section-heading.reveal,
+  .finance-home .learning-card.reveal,
+  .finance-home .expertise-section .section-heading.reveal,
+  .finance-home .expertise-card.reveal {
+    opacity:1 !important; transform:none !important; transition:none !important;
+  }
+}
+</style>
+<style id="cinematic-slower-motion-no-start-delay">
+/* The entrance begins at the original intersection point. The duration,
+   NOT the start delay, has been increased for the cinematic presentation. */
+@media (prefers-reduced-motion: no-preference) {
+  .finance-home.motion-ready .learning-section .section-heading.reveal,
+  .finance-home.motion-ready .expertise-section .section-heading.reveal {
+    transition-property: opacity, transform;
+    transition-duration: 1.75s, 2s;
+    transition-timing-function: ease, cubic-bezier(.22,.62,.29,1);
+    transition-delay: 0s, 0s;
+  }
+  .finance-home.motion-ready .learning-card.reveal,
+  .finance-home.motion-ready .expertise-card.reveal {
+    transition-property: opacity, transform, box-shadow, border-color;
+    transition-duration: 1.75s, 2s, .35s, .35s;
+    transition-timing-function: ease, cubic-bezier(.22,.62,.29,1), ease, ease;
+    transition-delay: 0s, 0s, 0s, 0s;
+  }
+  /* Gentle sequencing rather than waiting before the first card starts. */
+  .finance-home.motion-ready .learning-card.reveal:nth-child(1),
+  .finance-home.motion-ready .expertise-card.reveal:nth-child(1) { transition-delay: 0s, 0s, 0s, 0s; }
+  .finance-home.motion-ready .learning-card.reveal:nth-child(2),
+  .finance-home.motion-ready .expertise-card.reveal:nth-child(2) { transition-delay: .17s, .17s, 0s, 0s; }
+  .finance-home.motion-ready .learning-card.reveal:nth-child(3),
+  .finance-home.motion-ready .expertise-card.reveal:nth-child(3) { transition-delay: .34s, .34s, 0s, 0s; }
+  .finance-home.motion-ready .learning-card.reveal:nth-child(4),
+  .finance-home.motion-ready .expertise-card.reveal:nth-child(4) { transition-delay: .51s, .51s, 0s, 0s; }
+  /* Hover remains snappy once a card has entered. */
+  .finance-home.motion-ready .learning-card.reveal.is-visible:hover,
+  .finance-home.motion-ready .learning-card.reveal.is-visible:focus-within,
+  .finance-home.motion-ready .expertise-card.reveal.is-visible:hover,
+  .finance-home.motion-ready .expertise-card.reveal.is-visible:focus-within {
+    transition-duration: .3s, .35s, .35s, .35s;
+    transition-delay: 0s, 0s, 0s, 0s;
+  }
+}
+@media (max-width:768px) and (prefers-reduced-motion:no-preference) {
+  .finance-home.motion-ready .learning-card.reveal,
+  .finance-home.motion-ready .expertise-card.reveal {
+    transition-duration: 1.6s, 1.85s, .35s, .35s;
+  }
+}
+</style>
 </head>
 <body class="finance-home">
   {% include 'navbar.html' %}
