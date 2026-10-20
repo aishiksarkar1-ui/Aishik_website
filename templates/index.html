@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root { --navy-blue:#0A192F; --gold:#C5A059; --light-cream:#F4F1EA; --text-light:#E0E0E0; }
     *,*::before,*::after { box-sizing:border-box; }
@@ -295,6 +296,183 @@
       .finance-home .learning-section { padding-top:58px; }
     }
   </style>
+
+<style id="premium-card-depth-v2">
+  /* V2 visual refinement — section colors and card elevation only.
+     Hero, navigation, form, footer and document structure are unchanged. */
+  .finance-home .learning-section,
+  .finance-home .personal-section {
+    background-color: #F6F3ED;
+  }
+  .finance-home .learning-card {
+    background: #FFFDF9;
+    border-color: #DFD8CC;
+    box-shadow:
+      0 2px 5px rgba(22,35,39,.045),
+      0 13px 34px rgba(22,35,39,.075);
+  }
+  .finance-home .learning-card:hover,
+  .finance-home .learning-card:focus-within {
+    border-color: #C4AD88;
+    box-shadow:
+      0 7px 16px rgba(20,33,39,.085),
+      0 25px 48px rgba(20,33,39,.13);
+  }
+
+  /* Solid warm-stone canvas (not a fade between sections) lets cards stand out. */
+  .finance-home .expertise-section {
+    background-color: #E9E5DD;
+    border-top: 1px solid #DED7CB;
+    border-bottom: 1px solid #DED7CB;
+  }
+  .finance-home .expertise-card {
+    background: #FFFDF9;
+    border: 1px solid #D9D1C4;
+    box-shadow:
+      0 2px 5px rgba(20,32,38,.055),
+      0 15px 38px rgba(20,32,38,.10),
+      inset 0 1px 0 rgba(255,255,255,.95);
+    transition:
+      transform .35s cubic-bezier(.2,.75,.25,1),
+      box-shadow .35s ease,
+      border-color .35s ease;
+  }
+  .finance-home .expertise-card:hover,
+  .finance-home .expertise-card:focus-within {
+    transform: translateY(-7px);
+    border-color: #BEA27A;
+    box-shadow:
+      0 9px 20px rgba(20,32,38,.085),
+      0 28px 55px rgba(20,32,38,.16),
+      inset 0 1px 0 rgba(255,255,255,.95);
+  }
+  .finance-home .expertise-card:focus-within::before { width:100%; }
+  .finance-home .expertise-card .topic-tag i {
+    background: #F3EADC;
+    border: 1px solid #E5D7C1;
+    box-shadow: 0 2px 5px rgba(34,40,35,.055);
+  }
+
+  .finance-home .tools-section { background-color:#F6F3ED; }
+  .finance-home .tool-card {
+    border-color: #DED6C9;
+    background: #FFFDF9;
+    box-shadow: 0 2px 4px rgba(20,32,38,.04), 0 10px 25px rgba(20,32,38,.075);
+  }
+  .finance-home .tool-card:hover,
+  .finance-home .tool-card:focus-visible {
+    border-color: #BEA27A;
+    box-shadow: 0 8px 18px rgba(20,32,38,.085), 0 20px 36px rgba(20,32,38,.12);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .finance-home .expertise-card:hover,
+    .finance-home .expertise-card:focus-within { transform:none; }
+  }
+</style>
+
+<style id="premium-editorial-refinement-v3">
+  /* Homepage-only refinement: lighter hero lettering, warm ivory/lilac surfaces,
+     and more editorial learning-card text. Navbar, layout, and forms stay intact. */
+
+  /* The hero keeps its original navy photo overlay and its sharp section boundary. */
+  .finance-home .home-hero .display-title {
+    font-family: 'Cormorant Garamond','Playfair Display',Georgia,serif;
+    font-weight: 400;
+    font-size: clamp(54px,6.3vw,84px);
+    line-height: 1.07;
+    letter-spacing: -.028em;
+    text-shadow: 0 2px 18px rgba(0,0,0,.10);
+  }
+  .finance-home .home-hero .display-title em {
+    font-weight: 400;
+  }
+
+  /* Each quiet gradient remains WITHIN its cream/stone section; no hero fade. */
+  .finance-home .learning-section {
+    background:
+      radial-gradient(ellipse at 92% 12%,rgba(219,204,232,.27),transparent 48%),
+      linear-gradient(137deg,#FBF8F4 0%,#F4F0F6 54%,#F8F4EC 100%);
+  }
+  .finance-home .personal-section {
+    background:linear-gradient(150deg,#F8F4ED 0%,#F5F0F5 53%,#F9F5EF 100%);
+  }
+  .finance-home .expertise-section {
+    background:
+      radial-gradient(ellipse at 14% 80%,rgba(219,205,231,.29),transparent 49%),
+      linear-gradient(124deg,#EDE9E4 0%,#EBE7EE 49%,#E8E4DC 100%);
+  }
+  .finance-home .tools-section {
+    background:linear-gradient(150deg,#FAF7F1 0%,#F3EFF6 57%,#F8F5EF 100%);
+  }
+
+  /* Crisp foreground cards over the warmer/lilac background, never oversaturated. */
+  .finance-home .learning-card,
+  .finance-home .expertise-card {
+    background:linear-gradient(160deg,#FFFEFC 0%,#FBF9FC 100%);
+  }
+  .finance-home .learning-card {
+    overflow:hidden;
+  }
+  .finance-home .learning-card::before {
+    content:"";
+    position:absolute;
+    inset:0 0 auto 0;
+    height:2px;
+    background:linear-gradient(90deg,#BC9E78,#DED3E9);
+    opacity:.8;
+    pointer-events:none;
+  }
+
+  /* Clearer reading rhythm in 'From complexity to clarity' cards. */
+  .finance-home .learning-card .step-number {
+    color:#8D7358;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1.55px;
+    line-height:1.5;
+  }
+  .finance-home .learning-card .step-symbol {
+    background:linear-gradient(145deg,#F2EADC,#F0E9F5);
+    border:1px solid rgba(198,179,158,.42);
+  }
+  .finance-home .learning-card h3 {
+    font-family:'Manrope','DM Sans',sans-serif;
+    font-size:19px;
+    font-weight:600;
+    line-height:1.4;
+    letter-spacing:-.55px;
+    margin:31px 0 13px;
+    color:#23363C;
+  }
+  .finance-home .learning-card h3::after {
+    content:"";
+    display:block;
+    width:35px;
+    height:1px;
+    margin-top:14px;
+    background:linear-gradient(90deg,#B69A74,#DCD2E8);
+  }
+  .finance-home .learning-card p {
+    font-size:13.5px;
+    line-height:1.83;
+    letter-spacing:.02px;
+    color:#5C696D;
+  }
+  .finance-home .learning-card:hover h3 {
+    color:#1B303A;
+  }
+  .finance-home .expertise-card .topic-tag i {
+    background:linear-gradient(145deg,#F3EADC,#EEE6F2);
+  }
+
+  @media (max-width:640px) {
+    .finance-home .home-hero .display-title {
+      font-size:clamp(43px,10vw,60px);
+      letter-spacing:-.025em;
+    }
+    .finance-home .learning-card h3 { margin-top:26px; }
+  }
+</style>
 </head>
 <body class="finance-home">
   {% include 'navbar.html' %}
