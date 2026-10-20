@@ -5,214 +5,277 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Aishik | Financial Literacy Hub</title>
     
-    <!-- গুগল ফন্টস: মূল লেখার জন্য, এবং সিগনেচারের জন্য Dancing Script -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- Shared font family with Finance with Aishik homepage; signature remains handwritten. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     
     <!-- ফন্ট অসাম (আইকনের জন্য) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        :root {
-            --navy-blue: #0A192F;
-            --gold: #C5A059;
-            --light-cream: #F4F1EA;
-            --text-light: #E0E0E0;
-            /* নতুন রংগুলো */
-            --teal: #2A9D8F;
-            --copper: #D97757;
-            --slate-gray: #15243B;
-        }
+    <style id="premium-about-homepage-theme-v1">
+/* Scoped About Page styling: same visual language as index.html.
+   All existing headings, paragraphs, quote, professional details, list and images are unchanged.
+   Shared navbar.html and bottom_design.html retain their own styles and markup. */
+:root {
+  --navy-blue: #0A192F;
+  --gold: #C5A059;
+  --light-cream: #F4F1EA;
+  --text-light: #E0E0E0;
+  --teal: #AD8E65;
+  --copper: #A27B58;
+  --slate-gray: #15243B;
+}
+body.finance-about {
+  margin:0;
+  padding:0;
+  color:#27383D;
+  background:
+    radial-gradient(ellipse at 92% 52%,rgba(222,211,235,.26),transparent 49%),
+    linear-gradient(148deg,#FAF7F1 0%,#F3EFF7 58%,#F8F5EF 100%);
+  font-family:'DM Sans',Arial,sans-serif;
+  line-height:1.78;
+  -webkit-font-smoothing:antialiased;
+}
+.finance-about :focus-visible { outline:3px solid #AE8A5C; outline-offset:4px; }
+.finance-about .about-hero {
+  position:relative;
+  isolation:isolate;
+  min-height:610px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:115px clamp(24px,7vw,110px) 165px;
+  background-color:#0A192F;
+  background-image:
+    linear-gradient(90deg,rgba(7,18,35,.96) 0%,rgba(10,25,47,.88) 36%,rgba(10,25,47,.57) 65%,rgba(10,25,47,.21) 100%),
+    url("{{ url_for('static', filename='Aishik 3.png') }}");
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center top;
+  border-bottom:3px solid #BF9B67;
+  overflow:hidden;
+}
+.finance-about .about-hero::before {
+  content:"";
+  position:absolute;
+  top:clamp(57px,9vw,100px);
+  left:clamp(24px,7vw,110px);
+  width:42px;
+  height:2px;
+  background:#D7B582;
+  box-shadow: 55px 0 0 rgba(215,181,130,.3);
+  pointer-events:none;
+}
+.finance-about .about-hero h1 {
+  font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;
+  font-size:clamp(54px,6.3vw,86px);
+  font-weight:400;
+  letter-spacing:-.028em;
+  line-height:1.04;
+  color:#FFFDF8;
+  max-width:760px;
+  margin:0 0 22px;
+  text-shadow:0 3px 21px rgba(0,0,0,.16);
+}
+.finance-about .about-hero p {
+  font-family:'DM Sans',sans-serif;
+  color:#E7E9E9;
+  font-size:clamp(15px,1.4vw,17px);
+  font-weight:400;
+  max-width:620px;
+  margin:0;
+  line-height:1.9;
+}
+.finance-about .content-section {
+  box-sizing:border-box;
+  position:relative;
+  z-index:2;
+  max-width:1230px;
+  margin:-69px auto 110px;
+  padding:clamp(34px,4.7vw,68px);
+  display:grid;
+  grid-template-columns:minmax(0,1.65fr) minmax(270px,.9fr);
+  align-items:start;
+  gap:clamp(30px,5vw,75px);
+  background:linear-gradient(156deg,#FFFDF9 0%,#FCFAFC 65%,#FBF8F2 100%);
+  border:1px solid #E4DDD2;
+  border-top:3px solid #C4A173;
+  border-radius:23px;
+  box-shadow:0 15px 32px rgba(18,35,40,.07),0 35px 75px rgba(18,35,40,.105);
+}
+.finance-about .text-content { min-width:0; }
+.finance-about .text-content h2 {
+  font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;
+  font-weight:500;
+  font-size:clamp(38px,3.7vw,52px);
+  letter-spacing:-.028em;
+  color:#22343B;
+  line-height:1.14;
+  margin:0 0 27px;
+  padding:0 0 17px;
+  border-bottom:1px solid #DCD1BE;
+}
+.finance-about .text-content h2:not(:first-child) {
+  margin-top:54px;
+}
+.finance-about .text-content p {
+  color:#556368;
+  font-family:'DM Sans',sans-serif;
+  font-size:15.5px;
+  line-height:1.95;
+  text-align:left;
+  margin:0 0 22px;
+}
+.finance-about .highlight-word {
+  color:#92704A;
+  font-weight:700;
+}
+.finance-about .highlight-box {
+  position:relative;
+  padding:33px clamp(24px,3vw,38px);
+  margin:38px 0;
+  border:1px solid #E7DDCA;
+  border-left:3px solid #B99769;
+  border-radius:16px;
+  background:linear-gradient(128deg,#FAF5EA 0%,#F7F1FA 100%);
+  box-shadow:0 5px 16px rgba(30,43,46,.04),0 20px 39px rgba(30,43,46,.085);
+  color:#35454A;
+  font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;
+  font-size:clamp(21px,2.1vw,27px);
+  line-height:1.44;
+  font-style:italic;
+}
+.finance-about .highlight-box .fa-quote-left {
+  opacity:.8 !important;
+  color:#A6875D !important;
+}
+.finance-about .signature {
+  font-family:'Dancing Script',cursive;
+  font-size:38px;
+  color:#9F7C58;
+  margin:25px 0 45px;
+}
+.finance-about .sidebar {
+  box-sizing:border-box;
+  position:sticky;
+  top:100px;
+  min-width:0;
+  padding:35px clamp(24px,3vw,37px);
+  border-radius:20px;
+  border:1px solid #DED5C8;
+  border-top:3px solid #B99B74;
+  background:linear-gradient(155deg,#FFFEFC 0%,#F8F5F9 100%);
+  box-shadow:0 3px 8px rgba(20,32,38,.04),0 17px 40px rgba(20,32,38,.105);
+  height:fit-content;
+  color:#2A3B40;
+}
+.finance-about .sidebar h3 {
+  font-family:'Cormorant Garamond','Playfair Display',Georgia,serif;
+  font-size:clamp(31px,2.6vw,38px);
+  font-weight:500;
+  line-height:1.15;
+  letter-spacing:-.02em;
+  color:#243740;
+  margin:0 0 13px;
+  padding:0 0 20px;
+  border-bottom:1px solid #E4DDD2;
+}
+.finance-about .sidebar ul { list-style:none; margin:0; padding:0; }
+.finance-about .sidebar li {
+  display:flex;
+  align-items:center;
+  padding:15px 0;
+  gap:15px;
+  border-bottom:1px solid #E9E4DE;
+  color:#46565A;
+  font-family:'DM Sans',sans-serif;
+  font-size:13px;
+  line-height:1.5;
+  font-weight:600;
+  transition:color .35s ease, transform .35s ease;
+}
+.finance-about .sidebar li:last-child { border-bottom:0; padding-bottom:0; }
+.finance-about .sidebar li i {
+  flex:0 0 26px;
+  width:26px;
+  margin:0;
+  text-align:center;
+  color:#9F7C58;
+  font-size:18px;
+  transition:color .3s;
+}
+.finance-about .sidebar li:hover { color:#9F7C58; transform:translateX(5px); }
+.finance-about .sidebar li:hover i { color:#B48E5F; }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Lato', sans-serif;
-            background-color: var(--navy-blue);
-            color: var(--text-light);
-            line-height: 1.6;
-        }
+/* Same slow cinematic entrance rhythm as the index-page learning cards.
+   Content is never hidden unless IntersectionObserver is actually supported. */
+@media(prefers-reduced-motion:no-preference) {
+  .finance-about.about-motion-ready .about-reveal {
+    opacity:0;
+    transform:perspective(1100px) translate3d(0,55px,0) rotateX(3deg) scale(.985);
+    transform-origin:50% 80%;
+    transition:opacity 1.75s ease,transform 2s cubic-bezier(.22,.62,.29,1);
+  }
+  .finance-about.about-motion-ready .about-reveal.is-visible {
+    opacity:1;
+    transform:perspective(1100px) translate3d(0,0,0) rotateX(0deg) scale(1);
+  }
+  .finance-about.about-motion-ready .sidebar.about-reveal {
+    transform:perspective(1000px) translate3d(35px,26px,0) rotateY(-4deg) scale(.98);
+  }
+  .finance-about.about-motion-ready .sidebar.about-reveal.is-visible {
+    transform:perspective(1000px) translate3d(0,0,0) rotateY(0) scale(1);
+  }
+  .finance-about.about-motion-ready .sidebar li.about-reveal {
+    transform:translate3d(0,19px,0);
+    transition-duration:1.25s,1.7s;
+  }
+  .finance-about.about-motion-ready .sidebar li.about-reveal.is-visible {
+    transform:translate3d(0,0,0);
+  }
+}
 
-       
-/* হিরো ব্যানার (ছবি সম্পূর্ণ বুক পর্যন্ত দেখানোর ফিক্স) */
-        .about-hero {
-            position: relative;
-            background-color: var(--navy-blue); 
-            
-            /* আগের মতোই বাঁ-দিকের গ্রেডিয়েন্ট রাখা হলো */
-            background-image: 
-                linear-gradient(to right, rgba(10, 25, 47, 1) 30%, rgba(10, 25, 47, 0.7) 60%, rgba(255, 255, 255, 0) 95%), 
-                url("{{ url_for('static', filename='Aishik 3.png') }}");
-                
-            background-size: cover; 
-            /* ম্যাজিক ট্রিক: পজিশন center right করা হলো যাতে মাথা বা বুক কোনোটিই না কাটে */
-            background-position: center right; 
-            background-repeat: no-repeat; 
-            
-            /* সেকশনটিকে লম্বা করার জন্য ওপর ও নিচের প্যাডিং 120px থেকে বাড়িয়ে 180px করা হলো */
-            padding: 180px 50px 180px 8%; 
-            
-            text-align: left; 
-            border-bottom: 1px solid var(--teal); 
-        }
-        
-        .about-hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px; /* ফন্ট সাইজ একটু বড় করা হলো */
-            color: var(--gold);
-            margin: 0 0 20px 0;
-            max-width: 700px; /* লেখা যেন ডানদিকে ছবির ওপর না যায় */
-            line-height: 1.2;
-        }
-
-        .about-hero p {
-            font-size: 18px;
-            max-width: 650px; /* প্যারাগ্রাফের চওড়া কমানো হলো */
-            margin: 0; /* '0 auto' সরানো হলো যাতে লেখাগুলো মাঝখানে না থাকে */
-            color: #b0b0b0;
-            line-height: 1.6;
-        }
-
-        /* কন্টেন্ট সেকশন */
-        .content-section {
-            display: flex;
-            justify-content: space-between;
-            padding: 80px 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 60px;
-        }
-
-        .text-content {
-            flex: 2;
-        }
-
-        .text-content h2 {
-            font-family: 'Playfair Display', serif;
-            color: var(--gold);
-            font-size: 32px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-            padding-bottom: 10px;
-        }
-
-        .text-content p {
-            margin-bottom: 20px;
-            font-size: 16px;
-            color: #cfcfcf;
-            text-align: justify;
-            line-height: 1.8;
-        }
-
-        /* টেক্সট হাইলাইট করার স্টাইল */
-        .highlight-word {
-            color: var(--teal);
-            font-weight: bold;
-        }
-
-        /* কোটেশন বক্সের নতুন ডিজাইন */
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(42, 157, 143, 0.08), rgba(197, 160, 89, 0.05));
-            border-left: 4px solid var(--teal);
-            padding: 25px 30px;
-            margin: 35px 0;
-            font-style: italic;
-            border-radius: 0 8px 8px 0;
-            position: relative;
-            font-size: 17px;
-            color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        /* সিগনেচার স্টাইল */
-        .signature {
-            font-family: 'Dancing Script', cursive;
-            font-size: 36px;
-            color: var(--copper);
-            margin-top: 30px;
-            margin-bottom: 50px;
-        }
-
-       /* মডার্ন সাইডবার (Light Premium Update) */
-        .sidebar {
-            flex: 1;
-            /* ডার্ক স্লেটের বদলে ওয়ার্ম ক্রিম/সাদা গ্রেডিয়েন্ট দেওয়া হলো */
-            background: linear-gradient(135deg, #ffffff 0%, #FDFBF7 100%); 
-            color: #2c3e50; /* লেখা ডার্ক গ্রে করা হলো যাতে লাইট ব্যাকগ্রাউন্ডে ফুটে ওঠে */
-            padding: 40px 30px;
-            border-radius: 8px;
-            height: fit-content;
-            /* লাইট বক্সের জন্য শ্যাডো হালকা করা হলো এবং চারদিকে বর্ডার দেওয়া হলো */
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            border-top: 4px solid var(--gold); /* ওপরে প্রিমিয়াম গোল্ডেন বর্ডার */
-        }
-
-        .sidebar h3 {
-            font-family: 'Playfair Display', serif;
-            margin-top: 0;
-            font-size: 24px;
-            border-bottom: 1px solid rgba(10, 25, 47, 0.1); /* নিচের দাগটি হালকা ডার্ক করা হলো */
-            padding-bottom: 15px;
-            color: var(--navy-blue); /* টাইটেল নেভি ব্লু করা হলো */
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .sidebar li {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(10, 25, 47, 0.05); /* লিস্টের মাঝের দাগগুলো হালকা করা হলো */
-            font-weight: bold;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            color: #2c3e50;
-        }
-
-        /* আইকনের স্টাইল */
-        .sidebar li i {
-            color: var(--teal);
-            margin-right: 15px;
-            font-size: 18px;
-            width: 20px;
-            text-align: center;
-            transition: color 0.3s ease;
-        }
-
-        /* হোভার করলে রং বদলাবে এবং একটু ডানদিকে সরবে */
-        .sidebar li:hover {
-            color: var(--gold); 
-            transform: translateX(5px);
-        }
-
-        .sidebar li:hover i {
-            color: var(--gold); /* হোভার করলে আইকনও গোল্ড হবে */
-        }
-
-        .sidebar li:last-child {
-            border-bottom: none;
-        }
-        @media (max-width: 992px) {
-            .navbar { padding: 15px 20px; }
-            .nav-links {
-                display: none; flex-direction: column; position: absolute;
-                top: 100%; left: 0; width: 100%; background-color: var(--navy-blue);
-                border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding: 20px 0;
-            }
-            .nav-links.active { display: flex; }
-            .menu-toggle { display: block; }
-            .dropdown-content { position: relative; box-shadow: none; border: none; background-color: rgba(255,255,255,0.05); padding-left: 15px; }
-            .content-section { flex-direction: column; padding: 40px 20px; }
-            .about-hero { padding: 60px 20px; }
-            .about-hero h1 { font-size: 36px; }
-        }
-    </style>
+@media(max-width:1250px) {
+  .finance-about .content-section { margin-left:20px; margin-right:20px; }
+}
+@media(max-width:920px) {
+  .finance-about .content-section {
+    grid-template-columns:1fr;
+    margin-top:-50px;
+    gap:25px;
+  }
+  .finance-about .sidebar { position:relative; top:auto; }
+}
+@media(max-width:760px) {
+  .finance-about .about-hero {
+    min-height:510px;
+    padding:93px 24px 123px;
+    background-image:
+      linear-gradient(90deg,rgba(7,18,35,.95) 0%,rgba(10,25,47,.85) 55%,rgba(10,25,47,.54) 100%),
+      url("{{ url_for('static', filename='Aishik 3.png') }}");
+    background-position:64% top;
+  }
+  .finance-about .about-hero::before { left:24px; top:62px; }
+  .finance-about .about-hero h1 { font-size:clamp(46px,10.7vw,64px); }
+  .finance-about .about-hero p { font-size:15px; }
+  .finance-about .content-section {
+    margin:-39px 15px 75px;
+    padding:27px 24px 32px;
+    border-radius:18px;
+  }
+  .finance-about .text-content h2 { font-size:clamp(35px,9vw,46px); }
+  .finance-about .sidebar { padding:27px 24px; }
+  .finance-about .highlight-box { padding:24px 22px; }
+  .finance-about.about-motion-ready .sidebar.about-reveal { transform:translate3d(0,35px,0); }
+}
+@media(prefers-reduced-motion:reduce) {
+  html {scroll-behavior:auto;}
+  .finance-about .about-reveal { opacity:1 !important;transform:none !important;transition:none !important; }
+}
+</style>
 </head>
-<body>
+<body class="finance-about">
 
     <!-- নেভিগেশন বার -->
     {% include 'navbar.html' %}
@@ -270,5 +333,25 @@
     <!-- পেজের অন্যান্য সমস্ত কোড... -->
 
     {% include 'bottom_design.html' %}
+<script id="premium-about-scroll-reveal-v1">
+(() => {
+  'use strict';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  const items = document.querySelectorAll(
+    '.about-hero h1, .about-hero p, .text-content h2, .text-content p, .highlight-box, .signature, .sidebar, .sidebar li'
+  );
+  items.forEach(element => element.classList.add('about-reveal'));
+  document.body.classList.add('about-motion-ready');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.08, rootMargin:'0px 0px -28px 0px'});
+  items.forEach(element => observer.observe(element));
+})();
+</script>
 </body>
 </html>
