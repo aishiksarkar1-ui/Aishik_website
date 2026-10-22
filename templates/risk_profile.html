@@ -81,7 +81,67 @@
             .dropdown-content { position: relative; box-shadow: none; border: none; background-color: rgba(255,255,255,0.05); padding-left: 15px; }
         }
     </style>
-</head>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"><style id="risk-presentation">body {background:#f8f6f1;color:#263947;font-family:'DM Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+.profiling-hero {padding:83px 24px 128px;border-bottom:3px solid #bf9b67;isolation:isolate;overflow:hidden;}
+.profiling-hero::after {content:"";position:absolute;z-index:-1;right:-70px;top:-175px;width:430px;height:430px;border:1px solid #e6c99f26;border-radius:50%;box-shadow:0 0 0 80px #e6c99f09,0 0 0 160px #e6c99f05;pointer-events:none;}
+.profiling-hero h1 {font:500 clamp(46px,5.6vw,76px)/1.08 'Cormorant Garamond',Georgia,serif;letter-spacing:-.025em;color:var(--gold);margin-bottom:22px;text-wrap:balance;}
+.profiling-hero p {font-size:15px;line-height:1.9;color:#d5dde2;max-width:610px;}
+.quiz-section {background:radial-gradient(ellipse at 92% 16%,#e7ddec66,transparent 50%),linear-gradient(135deg,#fbf8f3,#f4f0f6 60%,#f8f4ec);padding:0 24px 96px;}
+.quiz-container {box-sizing:border-box;max-width:920px;padding:39px clamp(24px,4.5vw,62px) 42px;margin-top:-60px;border:1px solid #e4d9c8;border-top:3px solid #c6a16f;border-radius:6px 6px 24px 24px;background:linear-gradient(145deg,#fffefb,#fbf9fc);box-shadow:0 22px 65px #0a192f12;}
+.part-indicator {font-size:10px;letter-spacing:2px;color:#927046;margin-bottom:27px;}
+.progress-header {font-size:10px;letter-spacing:1px;color:#67747e;gap:14px;}
+.progress-bar-bg {height:5px;background:#ede8e1;margin-bottom:34px;}
+.progress-bar-fill {background:linear-gradient(90deg,#b49362,#d7c5e5);}
+.question-text {font:600 clamp(28px,3.1vw,37px)/1.22 'Cormorant Garamond',Georgia,serif;letter-spacing:-.4px;color:#193142;margin-bottom:27px;}
+.options-grid {gap:11px;margin-bottom:32px;}
+.option-btn {font:400 14px/1.7 'DM Sans',Arial,sans-serif;border:1px solid #e3ddd4;background:#fffefc;padding:16px 19px;border-radius:12px;color:#52616b;box-shadow:0 3px 10px #25333d03;}
+.option-btn i {color:#b4a38c;font-size:19px;}
+.option-btn:hover {background:#f8f3ec;border-color:#c3a67e;transform:translateX(3px);box-shadow:0 7px 20px #a3855d12;}
+.option-btn.selected {background:linear-gradient(120deg,#f4eadb,#f0e9f5);border-color:#b49362;color:#193142;box-shadow:0 6px 18px #a3855d16;}
+.option-btn.selected i,.option-btn:hover i {color:#967347;}
+.quiz-footer {border-color:#e7e0d5;padding-top:23px;gap:12px;}
+.nav-btn {font:700 11px/1.5 'DM Sans',Arial,sans-serif;letter-spacing:.5px;border:1px solid #c9bda9;color:#233948;border-radius:50px;padding:13px 22px;min-height:45px;}
+.nav-btn:hover:not(:disabled) {background:#203747;border-color:#203747;box-shadow:0 8px 18px #0a192f13;}
+.next-btn {background:#203747;color:#fffaf2;border-color:#203747;}
+.next-btn:hover:not(:disabled) {background:#324e60;box-shadow:0 9px 22px #0a192f20;}
+.next-btn:disabled {background:#ece8e1;color:#8c9294;border-color:#e1dbd1;}
+.quiz-container button:focus-visible,.quiz-container input:focus-visible {outline:3px solid #b49362;outline-offset:4px;}
+.score-circle {box-sizing:border-box;background:radial-gradient(circle,#fffdf9,#f2e9dc);border:5px solid #c6a16f;outline:1px solid #dcc9ae;outline-offset:7px;box-shadow:0 16px 34px #a3855d16;margin-top:18px;}
+.score-circle h2 {font:600 57px/1 'Cormorant Garamond',Georgia,serif;}
+.score-circle span {color:#927046;font-size:10px;letter-spacing:1.6px;}
+.profile-title {font:600 clamp(33px,4vw,47px)/1.12 'Cormorant Garamond',Georgia,serif;letter-spacing:-.6px;}
+.profile-desc {color:#637078;font-size:14px;line-height:1.9;}
+.lead-form-container {background:linear-gradient(135deg,#faf5ec,#f6f1f8);padding:28px;border:1px solid #e1d2bc;border-radius:17px;box-shadow:none;}
+.lead-form-container h3 {font-family:'Cormorant Garamond',Georgia,serif !important;font-size:32px !important;}
+.form-group label {font-size:12px;color:#344b59;}
+.form-group input {font:14px 'DM Sans',Arial,sans-serif;border:1px solid #d9cfc0;border-radius:10px;background:#fffefa;color:#253947;min-height:47px;}
+.form-group input:focus {border-color:#b49362;box-shadow:0 0 0 3px #b4936215;}
+@media(max-width:1180px) {
+ body .navbar {padding:15px 20px;}
+ body .nav-links {display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background-color:#0A192F;padding:20px 0;}
+ body .nav-links.active {display:flex;}
+ body .menu-toggle {display:block;}
+ body .dropdown-content {position:relative;box-shadow:none;border:none;padding-left:20px;}
+}
+@media(max-width:600px) {
+ .profiling-hero {padding:61px 23px 104px;}
+ .profiling-hero h1 {font-size:47px;}
+ .profiling-hero p {font-size:13px;}
+ .quiz-section {padding:0 16px 64px;}
+ .quiz-container {padding:28px 21px 30px;margin-top:-48px;border-radius:5px 5px 19px 19px;}
+ .part-indicator {font-size:9px;letter-spacing:1.3px;margin-bottom:23px;}
+ .progress-header {font-size:9px;letter-spacing:0;}
+ .question-text {font-size:29px;}
+ .option-btn {padding:14px;font-size:12px;}
+ .option-btn i {margin-right:11px;}
+ .quiz-footer .nav-btn {padding:12px 16px;font-size:10px;}
+ .action-buttons {flex-direction:column;}
+ .action-buttons .nav-btn {width:100%;}
+ .lead-form-container {padding:22px 17px;}
+ #resultContainer>a .nav-btn,#resultContainer a .nav-btn {font-size:12px !important;letter-spacing:0 !important;padding:16px !important;}
+}
+@media(prefers-reduced-motion:reduce) { .quiz-container * {animation:none !important;transition:none !important;} }
+</style></head>
 <body>
 
     <!-- সম্পূর্ণ স্টিকি নেভিগেশন বার -->
@@ -188,7 +248,7 @@
             const q = questions[currentQuestion];
             document.getElementById("partTitle").innerText = q.part;
             document.getElementById("questionCount").innerText = `Question ${currentQuestion + 1} of 20`;
-            const percent = ((currentQuestion + 1) / 20) * 100;
+            const percent = Math.round(((currentQuestion + 1) / 20) * 100);
             document.getElementById("progressPercent").innerText = `${percent}% Completed`;
             document.getElementById("progressBar").style.width = `${percent}%`;
             document.getElementById("questionText").innerText = q.text;
@@ -491,3 +551,4 @@
 
 </body>
 </html>
+
