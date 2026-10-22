@@ -109,7 +109,123 @@
             .total-invested-container .amount { font-size: 36px; }
         }
     </style>
-</head>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"><style id="sip-presentation">body {background:#f8f6f1;color:#253947;font-family:'DM Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+.planning-hero {padding:79px 24px 113px;border-bottom:3px solid #bf9b67;isolation:isolate;overflow:hidden;}
+.planning-hero::after {content:"";position:absolute;z-index:-1;right:-90px;top:-215px;width:480px;height:480px;border:1px solid #e6c99f26;border-radius:50%;box-shadow:0 0 0 80px #e6c99f09,0 0 0 160px #e6c99f05;pointer-events:none;}
+.planning-hero h1 {font:500 clamp(45px,5.5vw,74px)/1.12 'Cormorant Garamond',Georgia,serif;color:#c5a059;letter-spacing:-.025em;margin-bottom:20px;}
+.planning-hero p {font-size:14px;line-height:1.9;color:#d1dbe0;max-width:670px;}
+.calc-section {padding:0 28px 96px;background:radial-gradient(ellipse at 95% 10%,#e7ddec66,transparent 50%),linear-gradient(135deg,#fbf8f3,#f4f0f6 60%,#f8f4ec);}
+.calc-container {box-sizing:border-box;max-width:1180px;padding:42px clamp(24px,4vw,55px) 38px;margin-top:-48px;background:linear-gradient(145deg,#fffefb,#fbf9fc);border:1px solid #e4d9c8;border-top:3px solid #c6a16f;border-radius:6px 6px 24px 24px;box-shadow:0 22px 65px #0a192f12;}
+.input-row {gap:30px;margin-bottom:28px;}
+.input-group {min-width:0;}
+.input-group label {font-size:10px;letter-spacing:1.3px;color:#7d674a;margin-bottom:12px;}
+.flex-input,.time-box {border:1px solid #ddd3c4;border-radius:12px;background:#fffefc;box-shadow:none;}
+.flex-input:focus-within,.time-box:focus-within {outline:2px solid #c6a16f;outline-offset:3px;}
+.flex-input input {width:0;min-width:0;font:600 23px 'DM Sans',Arial,sans-serif;background:transparent;padding:15px;color:#193142;}
+.flex-input select {max-width:48%;font:600 12px 'DM Sans',Arial,sans-serif;background:#f4efe6;border-color:#ddd3c4;padding:13px 10px;}
+.flex-input select:hover {background:#ebe2d4;}
+.time-box {min-width:0;}
+.time-box input {min-width:0;font:600 22px 'DM Sans',Arial,sans-serif;background:transparent;padding:15px 6px;}
+.time-box span {font:600 11px/1.5 'DM Sans',Arial,sans-serif;padding:18px 11px;background:#f4efe6;border-color:#ddd3c4;}
+.fund-title {font:500 36px/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:-.5px;margin-top:37px;border-bottom:1px solid #e2d5c0;padding-bottom:16px;}
+.fund-grid {grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:30px;}
+.fund-card {display:flex;align-items:center;justify-content:center;gap:6px;min-height:73px;box-sizing:border-box;padding:15px 12px;font:600 12px/1.55 'DM Sans',Arial,sans-serif;border:1px solid #e3dace;opacity:1;box-shadow:none;border-radius:12px;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;}
+.fund-card:hover {transform:translateY(-4px);border-color:#baa0cf;box-shadow:0 10px 22px #9276ab18;}
+.fund-card.active {border-color:#c6a16f;transform:none;font-size:12px;box-shadow:0 9px 22px #0a192f16;}
+.fund-card.active::after {top:5px;right:8px;font-size:10px;color:white;text-shadow:0 1px 3px #0008;}
+#custom_rate_box {background:linear-gradient(125deg,#f7efdf,#f1eaf7);border-left:3px solid #b49362;box-shadow:none;border-radius:12px;}
+#custom_rate_box input {font-family:'DM Sans',Arial,sans-serif;border-color:#d8c7af;}
+.warning-text {font-size:12px;line-height:1.8;background:#f8eee6;color:#964a36;border-left-color:#b77553;box-shadow:none;}
+.total-invested-container {margin-bottom:37px;padding:29px;background:linear-gradient(120deg,#10263b,#203b49);border:1px solid #c6a16f77;border-radius:17px;box-shadow:0 14px 28px #0a192f10;}
+.total-invested-container::before {width:260px;height:260px;top:-170px;right:-20px;background:transparent;border:1px solid #e6c99f;filter:none;box-shadow:0 0 0 45px #e6c99f33,0 0 0 90px #e6c99f16;}
+.total-invested-container h3 {font:700 10px 'DM Sans',Arial,sans-serif;letter-spacing:2px;color:#dfc198;}
+.total-invested-container .amount {font:500 clamp(38px,4vw,54px)/1.3 'Cormorant Garamond',Georgia,serif;color:#fffaf2;text-shadow:none;overflow-wrap:anywhere;}
+.result-title {font:500 clamp(34px,3.7vw,48px)/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:-.6px;border-bottom:1px solid #e5d9c7;margin-bottom:26px;padding-bottom:20px;}
+.output-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;}
+.out-card {min-width:0;padding:28px 14px;border:1px solid #dfd7cc;border-radius:17px;box-shadow:0 10px 24px #0a192f09;}
+.card-high {background:linear-gradient(145deg,#28614f,#173f38);border-color:#4d897066;}
+.card-mean {background:linear-gradient(145deg,#786026,#4e421f);transform:none;border-color:#c5a059;box-shadow:0 13px 30px #0a192f1a;}
+.card-low {background:linear-gradient(145deg,#51424d,#352d3d);}
+.out-card::before {height:3px;background:#b5a28a;}
+.card-mean::before {background:#dfbd8b;}
+.out-card h4 {font:600 11px 'DM Sans',Arial,sans-serif;letter-spacing:1px;text-shadow:none;color:#f1e7d8;}
+.out-card .amount,.card-mean .amount {font:500 clamp(28px,2.7vw,39px)/1.3 'Cormorant Garamond',Georgia,serif;text-shadow:none;overflow-wrap:anywhere;}
+.out-card .prob {font:500 10px/1.5 'DM Sans',Arial,sans-serif;background:#ffffff0d;border:1px solid #ffffff23;padding:7px 11px;color:#e7dfd4;}
+.out-card .profit-val {font:500 10px/1.6 'DM Sans',Arial,sans-serif;letter-spacing:0;background:#ffffff09;border:1px solid #ffffff17;box-shadow:none;padding:6px 9px;}
+.out-card .rate {font:500 11px/1.6 'DM Sans',Arial,sans-serif;background:#ffffff09;padding:6px 10px;border-radius:6px;}
+.out-card:hover {transform:translateY(-5px);box-shadow:0 18px 30px #0a192f18;}
+.disclaimer {background:#f4efe7;border:1px solid #e3d9ca;color:#76736c;font-size:11px;line-height:1.9;text-align:left;padding:19px 23px;border-radius:12px;margin-top:30px;}
+@media(max-width:1180px) {
+ body .navbar {padding:15px 20px;}
+ body .nav-links {display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background-color:#0A192F;padding:20px 0;}
+ body .nav-links.active {display:flex;}
+ body .menu-toggle {display:block;}
+ body .dropdown-content {position:relative;box-shadow:none;border:none;padding-left:20px;}
+}
+@media(max-width:900px) {.fund-grid {grid-template-columns:repeat(3,minmax(0,1fr));}.input-row {flex-direction:column;align-items:stretch;}.input-group {width:100%;}}
+@media(max-width:650px) {
+ .planning-hero {padding:58px 24px 91px;}.planning-hero h1 {font-size:47px;}.planning-hero p {font-size:13px;}
+ .calc-section {padding:0 16px 64px;}.calc-container {padding:28px 20px;margin-top:-40px;}
+ .fund-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}.fund-card {min-height:69px;font-size:11px;}
+ .output-grid {grid-template-columns:minmax(0,1fr);gap:15px;}.out-card {padding:28px 22px;}.out-card .amount,.card-mean .amount {font-size:40px;}
+ .total-invested-container {padding:25px 15px;}.fund-title {font-size:32px;}.result-title {font-size:37px;}
+ .out-card .profit-val {font-size:12px;}.disclaimer {padding:17px;font-size:10px;}
+}
+@media(prefers-reduced-motion:reduce) {.calc-container * {transition:none !important;}}
+
+.sip-explainer-shell {padding:0 28px 90px;background:linear-gradient(135deg,#fbf8f3,#f4f0f6 60%,#f8f4ec);}
+.sip-explainer {box-sizing:border-box;max-width:1180px;margin:auto;padding:45px clamp(24px,4vw,55px);background:linear-gradient(130deg,#12283b,#203947);color:#d7dfe2;border:1px solid #c6a16f66;border-radius:22px;box-shadow:0 18px 40px #0a192f10;}
+.sip-explain-kicker {font-size:10px;letter-spacing:2px;color:#dfbd8b;font-weight:700;}
+.sip-explainer h2 {font:500 clamp(35px,4vw,51px)/1.1 'Cormorant Garamond',Georgia,serif;color:#fffaf2;margin:17px 0;letter-spacing:-.7px;}
+.sip-explain-intro {font-size:14px;line-height:1.9;max-width:820px;color:#c0cdd2;}
+.sip-explain-context {display:inline-block;padding:11px 16px;border:1px solid #d5ba9138;border-radius:10px;color:#ecd3ac;font-size:12px;line-height:1.8;margin:15px 0 28px;overflow-wrap:anywhere;}
+.sip-explain-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;}
+.sip-explainer [hidden] {display:none !important;}
+.sip-explain-item {background:#ffffff06;border:1px solid #ffffff19;border-radius:14px;padding:23px;min-width:0;}
+.sip-explain-item>span {font-size:9px;font-weight:700;letter-spacing:1.4px;color:#d9bd93;}
+.sip-explain-item h3,.sip-risk-tradeoff h3 {font:500 28px/1.15 'Cormorant Garamond',Georgia,serif;color:#fff8ed;margin:15px 0 12px;}
+.sip-explain-item p,.sip-explain-custom,.sip-risk-tradeoff p {font-size:12px;line-height:1.95;color:#c6d0d5;margin:0;overflow-wrap:anywhere;}
+.sip-explain-custom {padding:24px;border:1px solid #d5ba9138;border-radius:14px;background:#ffffff06;}
+.sip-risk-tradeoff {margin-top:31px;padding-top:17px;border-top:1px solid #d5ba9126;}
+.sip-tradeoff-grid {display:grid;grid-template-columns:1fr 1fr;gap:23px;margin-top:20px;}
+.sip-tradeoff-grid p {padding-left:17px;border-left:2px solid #c6a16f88;}
+.sip-tradeoff-grid strong {display:block;color:#e7cda5;font-size:12px;margin-bottom:5px;}
+.sip-explain-footnote {font-size:10px;color:#aebdc5;line-height:1.95;margin:27px 0 0;border-top:1px solid #ffffff15;padding-top:21px;}
+@media(max-width:800px) {.sip-explain-grid {grid-template-columns:1fr;}.sip-tradeoff-grid {grid-template-columns:1fr;}}
+@media(max-width:600px) {.sip-explainer-shell {padding:0 16px 65px;}.sip-explainer {padding:30px 23px;}.sip-explain-item {padding:21px;}}
+
+.sip-explain-source {max-width:1180px;margin:16px auto 0;font-size:10px;}.sip-explain-source a {color:#826b4e;text-decoration:none;}
+
+/* Make the explanation unmistakably connected to the live calculator. */
+.sip-explain-kicker {font-size:11px;letter-spacing:1.7px;}
+.sip-explain-context {display:block;padding:22px 25px;font-size:18px;font-weight:600;line-height:1.9;background:#ffffff08;border-left:3px solid #d9bb8c;margin:24px 0 30px;}
+.sip-explain-item p,.sip-explain-custom,.sip-risk-tradeoff p {font-size:14px;line-height:2;}
+.sip-live-amount {display:inline-block;font:600 clamp(25px,2.5vw,33px)/1.4 'Cormorant Garamond',Georgia,serif;color:#f1d3a5;letter-spacing:.1px;vertical-align:baseline;}
+.sip-live-rate {font-weight:700;font-size:17px;color:#f1d3a5;}
+.sip-explain-context .sip-live-amount {font-size:32px;}
+@media(max-width:600px) {.sip-explain-context {padding:17px;font-size:16px;}.sip-explain-item p,.sip-explain-custom,.sip-risk-tradeoff p {font-size:13px;}.sip-live-amount {font-size:29px;}}
+
+.sip-explain-context {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:0;overflow:hidden;}
+.sip-summary-cell {min-width:0;padding:19px 25px;display:flex;flex-direction:column;gap:7px;}
+.sip-summary-cell:nth-child(-n+2) {border-bottom:1px solid #d5ba9126;}
+.sip-summary-cell:nth-child(odd) {border-right:1px solid #d5ba9126;}
+.sip-summary-cell>span {font:500 10px/1.5 'DM Sans',Arial,sans-serif;letter-spacing:1px;text-transform:uppercase;color:#c3cdd1;}
+.sip-summary-cell>strong {font:600 26px/1.3 'Cormorant Garamond',Georgia,serif;color:#f1d3a5;overflow-wrap:anywhere;}
+@media(max-width:600px) {.sip-explain-context {padding:0;}.sip-summary-cell {padding:17px 14px;}.sip-summary-cell>strong {font-size:23px;}.sip-summary-cell>span {font-size:9px;letter-spacing:.4px;}}
+
+/* Larger profit/loss figures, with colors based on the actual outcome. */
+.out-card .profit-val {font:700 clamp(16px,1.6vw,20px)/1.6 'DM Sans',Arial,sans-serif;padding:9px 12px;letter-spacing:0;}
+.out-card .profit-val.sip-profit {color:#a2efb7 !important;background:rgba(4,24,17,.38);border-color:rgba(162,239,183,.25);}
+.out-card .profit-val.sip-loss {color:#ffb3b3 !important;background:rgba(40,7,15,.4);border-color:rgba(255,179,179,.3);}
+@media(max-width:600px) {.out-card .profit-val {font-size:19px;}}
+
+.sip-category-story {padding:25px 27px;margin-top:23px;background:linear-gradient(120deg,#ffffff08,#d5ba9108);border:1px solid #d5ba9129;border-left:3px solid #b99a6b;border-radius:13px;}
+.sip-category-story h4 {font:500 27px/1.25 'Cormorant Garamond',Georgia,serif;color:#edcf9f;margin:0 0 15px;}
+.sip-category-story p {font-size:14px;line-height:2.05;color:#d0d9dd;}
+@media(max-width:600px) {.sip-category-story {padding:21px 18px;}.sip-category-story h4 {font-size:25px;}.sip-category-story p {font-size:13px;}}
+
+.sip-investor-action {margin-top:22px;padding-top:21px;border-top:1px solid #d5ba9129;}.sip-investor-action h4 {font-size:24px;color:#f0d7b3;}
+</style></head>
 <body>
 
     {% include 'navbar.html' %}
@@ -186,7 +302,7 @@
                 
                 <!-- Highest Scenario (Moved to Left) -->
                 <div class="out-card card-high" id="card_highest">
-                    <h4>Probable Highest</h4>
+                    <h4>Bull Market Condition</h4>
                     <div class="prob" id="prob_high">Probability: 20%</div>
                     <div class="amount" id="res_high">₹ 0</div>
                     <div class="profit-val" id="profit_high">+ ₹ 0 (Profit)</div>
@@ -196,7 +312,7 @@
 
                 <!-- Mean Scenario (Center) -->
                 <div class="out-card card-mean">
-                    <h4>Average Expected</h4>
+                    <h4>Normal Market Condition</h4>
                     <div class="prob">Most Likely Scenario</div>
                     <div class="amount" id="res_mean">₹ 0</div>
                     <div class="profit-val" id="profit_mean">+ ₹ 0 (Profit)</div>
@@ -206,7 +322,7 @@
 
                 <!-- Lowest Scenario (Moved to Right) -->
                 <div class="out-card card-low" id="card_lowest">
-                    <h4>Probable Lowest</h4>
+                    <h4>Bear Market Condition</h4>
                     <div class="prob" id="prob_low">Probability: 35%</div>
                     <div class="amount" id="res_low">₹ 0</div>
                     <div class="profit-val" id="profit_low">- ₹ 0 (Loss)</div>
@@ -393,6 +509,153 @@
     </script>
     <!-- পেজের অন্যান্য সমস্ত কোড... -->
 
-    {% include 'bottom_design.html' %}
+    <section class="sip-explainer-shell" aria-labelledby="sip-explain-title">
+ <div class="sip-explainer">
+  <div class="sip-explain-kicker">YOUR SIP CALCULATOR · RESULT GUIDE</div>
+  <h2 id="sip-explain-title">Your Calculator Results Explained</h2>
+  <p class="sip-explain-intro" id="sip-explain-intro">This section explains the calculator cards above and updates whenever you change your inputs. Markets do not deliver the same return every year. These scenarios show how different assumed returns could change your investment outcome.*</p>
+  <div class="sip-explain-context" id="sip-explain-context"></div>
+  <div class="sip-explain-grid" id="sip-explain-grid">
+   <article class="sip-explain-item"><span>01 / UPSIDE</span><h3>Bull Market Condition</h3><p id="sip-explain-high"></p></article>
+   <article class="sip-explain-item"><span>02 / CENTRAL ESTIMATE</span><h3>Normal Market Condition</h3><p id="sip-explain-mean"></p></article>
+   <article class="sip-explain-item"><span>03 / DOWNSIDE</span><h3>Bear Market Condition</h3><p id="sip-explain-low"></p></article>
+  </div>
+  <p class="sip-explain-custom" id="sip-explain-custom" hidden></p>
+  <div class="sip-risk-tradeoff">
+   <h3>Explore the opportunity. Build your plan.</h3>
+   <p id="sip-explain-risk"></p><div class="sip-category-story"><h4 id="sip-category-title"></h4><p id="sip-category-story"></p><div class="sip-investor-action"><h4>What this means for you</h4><p id="sip-investor-action"></p></div></div>
+   <div class="sip-tradeoff-grid"><p><strong>The opportunity</strong><span id="sip-risk-opportunity"></span></p><p><strong>What to plan for</strong><span id="sip-risk-tradeoff"></span></p></div>
+  </div>
+  <p class="sip-explain-footnote"><strong>* Disclaimer:</strong> Projections and scenario probabilities are illustrations based on the calculator’s data and assumptions, not guarantees of future returns or capital protection. Past performance and backtesting do not assure future outcomes. Scenario percentages need not add up to 100%; “Most Likely Scenario” is a model label. An undisplayed probability does not mean zero risk, and the bear scenario is not a worst-case limit—actual losses can be larger. Custom Rate illustrates your chosen return and does not assess an investment’s risk. Higher risk does not ensure higher returns; debt and hybrid funds can also lose value. Consider your time horizon and ability to absorb losses when interpreting these results.</p>
+ </div>
+</section>
+<script>(function () {
+ function updateExplanation() {
+  var el = function (id) { return document.getElementById(id); };
+  var read = function (id) { return el(id).textContent.trim(); };
+  ['profit_high','profit_mean','profit_low'].forEach(function (id) {
+   var node = el(id);
+   node.className = 'profit-val ' + (node.textContent.includes('(Loss)') ? 'sip-loss' : 'sip-profit');
+  });
+  var active = document.querySelector('.fund-card.active');
+  var fund = active ? active.textContent.trim() : 'Selected fund';
+  var custom = el('custom_rate_box').style.display === 'block';
+  var years = Number(el('time_years').value || 0);
+  var months = Number(el('time_months').value || 0);
+  var valid = years + months / 12 > 0;
+  var frequency = el('invest_freq');
+  var frequencyLabel = frequency.options[frequency.selectedIndex].text;
+  el('sip-explain-context').textContent = fund + ' · ' + years + ' years, ' + months + ' months · ' + frequencyLabel + ' · Invested: ' + (valid ? read('res_invested') : 'Enter a duration above zero');
+  el('sip-explain-grid').hidden = custom || !valid;
+  el('sip-explain-custom').hidden = !custom && valid;
+  if (!valid) {
+   el('sip-explain-custom').textContent = 'Enter a duration above zero to interpret the projections. Existing card values may still show the previous calculation.';
+  } else if (custom) {
+   el('sip-explain-custom').textContent = 'Custom Rate uses your own ' + read('rate_mean') + ' annual return assumption. The current projected value is ' + read('res_mean') + ' (' + read('profit_mean') + '). Only one scenario is shown, so no upside/downside probabilities are assigned. *';
+  } else {
+   var outcome = function (profitId) {
+    var value = read(profitId);
+    return value.includes('(Loss)') ? 'a total loss of ' + value.replace(/^-\s*/, '').replace(' (Loss)', '') : 'a total profit of ' + value.replace(/^\+\s*/, '').replace(' (Profit)', '');
+   };
+   var highProbability = read('prob_high').replace('Probability: ', '');
+   el('sip-explain-high').textContent = 'When markets perform well, this model assumes a ' + read('rate_high') + ' annual return, with a ' + highProbability + ' upside probability. In this scenario, your investment could become ' + read('res_high') + ', giving you ' + outcome('profit_high') + '.*';
+   el('sip-explain-mean').textContent = 'Under normal market conditions, this model assumes a ' + read('rate_mean') + ' annual return. Your investment could become ' + read('res_mean') + ', giving you ' + outcome('profit_mean') + '. *';
+   var lowProbability = el('prob_low').style.display === 'none' ? 'The model does not display a probability for this scenario.' : 'The model assigns this scenario a ' + read('prob_low').replace('Probability: ', '') + ' probability.';
+   el('sip-explain-low').textContent = 'When markets perform poorly, this model assumes a ' + read('rate_low') + ' annual return. Your investment could become ' + read('res_low') + ', giving you ' + outcome('profit_low') + '. ' + lowProbability + ' *';
+  }
+  var categoryGuides = {
+   'Small Cap': [
+    'Small Cap offers participation in the growth of smaller companies through a professionally managed equity portfolio.',
+    'Smaller businesses may have substantial room to expand. Successful growth can create a strong long-term upside.*',
+    'Smaller companies can be harder to sell during stress and more vulnerable to business shocks. Falls may be steep and recovery can take time.'
+   ],
+   'Mid Cap': [
+    'Mid Cap gives you access to expanding medium-sized businesses and their next stage of growth.',
+    'Growing businesses may develop into larger companies, offering participation in that expansion.*',
+    'Earnings disappointments or market downturns can cause large price swings. These businesses may be less resilient than established large companies.'
+   ],
+   'Multi Cap': [
+    'Multi Cap brings growth opportunities from large, mid-sized and small companies into one equity portfolio.',
+    'A mix of company sizes provides access to different growth opportunities within one equity portfolio.*',
+    'Exposure to smaller companies adds volatility. Diversifying across company sizes does not prevent losses when the broader equity market falls.'
+   ],
+   'Large Cap': [
+    'Large Cap lets you participate in established businesses through a managed equity portfolio.',
+    'Established businesses can provide participation in long-term economic growth, generally with better share liquidity than smaller companies.*',
+    'Large companies can still decline significantly. Their mature businesses may offer less rapid expansion than successful smaller companies.'
+   ],
+   'Aggressive Hybrid': [
+    'Aggressive Hybrid combines a substantial equity allocation with debt investments.',
+    'Equity offers growth potential while the debt allocation may help cushion some fluctuations compared with an all-equity portfolio.*',
+    'Equity downturns can still drive substantial losses. The debt portion also carries interest-rate and credit risks.'
+   ],
+   'Balanced Advantage': [
+    'Balanced Advantage changes its equity and debt exposure according to the fund’s strategy or valuation model.',
+    'Flexible allocation may help manage equity exposure across changing market conditions without requiring you to make each allocation decision.*',
+    'Allocation decisions can lag market moves, and a cautious allocation may miss part of a rally. Results depend on the strategy and execution.'
+   ],
+   'Equity Savings': [
+    'Equity Savings typically combines unhedged equity, hedged equity or arbitrage positions, and debt.',
+    'The mix aims to offer some equity growth participation with more moderated fluctuations than a predominantly equity portfolio.*',
+    'Limited unhedged equity can reduce upside in strong rallies. Arbitrage spreads, credit events and interest-rate changes can also affect returns.'
+   ],
+   'Conservative Hybrid': [
+    'Conservative Hybrid primarily holds debt with a smaller equity allocation.',
+    'A predominantly debt portfolio can offer a more measured growth path, with a smaller equity allocation adding some upside potential.*',
+    'Equity exposure still adds market volatility, while debt is exposed to interest-rate and credit risks. Lower equity exposure can limit long-term growth.'
+   ],
+   'Debt Fund': [
+    'Debt Fund offers professionally managed fixed-income exposure, with different strategies for different financial goals.',
+    'Different debt strategies can provide income-oriented exposure and generally less direct equity-market volatility.*',
+    'Rising interest rates can reduce bond prices. Issuer defaults and liquidity stress can cause losses, and returns may fall short of inflation.'
+   ],
+   'Custom': [
+    'Custom Rate is an illustration using your chosen return, rather than a specific fund category.',
+    'You can compare different return assumptions to see how they affect the same contribution and duration.*',
+    'The chosen rate does not describe volatility, credit quality or liquidity. Assess those risks using the actual investment you intend to hold.'
+   ]
+  };
+  var guide = categoryGuides[custom ? 'Custom' : fund] || categoryGuides.Custom;
+  el('sip-explain-risk').textContent = guide[0];
+  el('sip-risk-opportunity').textContent = guide[1];
+  el('sip-risk-tradeoff').textContent = guide[2];
+  var categoryStories = {"Small Cap": "Small Cap funds give you access to smaller listed companies with room to grow into bigger businesses. Some operate in emerging markets or specialised niches that are not yet widely followed. The fund manager researches their business potential, management, financial strength and valuation, then builds and reviews a portfolio on your behalf. When those companies expand successfully, you participate in their progress through the fund. Their earnings and share prices can also fluctuate more during economic changes. The opportunity is to take part in business growth with a plan that leaves room for those ups and downs.*", "Mid Cap": "Mid Cap funds connect you with medium-sized businesses that are building on an established base and reaching for their next stage of growth. A fund manager looks for companies expanding their products, customers or market share, while assessing financial strength and price. You participate through a professionally managed portfolio rather than selecting individual stocks. Successful expansion can create attractive long-term opportunities, although earnings and valuations can move considerably along the way.*", "Multi Cap": "Multi Cap funds bring large, medium-sized and smaller businesses together in one equity portfolio. This lets you participate in several stages of business growth: established companies alongside expanding businesses and emerging opportunities. The fund manager selects and reviews holdings within each segment. That breadth gives you a range of growth drivers, while the mid- and small-company allocations can add larger fluctuations. It is a way to spread equity opportunities across company sizes, with an allocation suited to your goals.*", "Large Cap": "Large Cap funds offer participation in established listed businesses with developed products, customer networks and operating histories. The fund manager assesses company quality, earnings prospects and valuation to build the portfolio. You can share in the progress of these businesses through a managed fund, with generally more actively traded shares than smaller companies. They still experience market cycles and company-specific challenges, so their role is growth-oriented equity exposure rather than a fixed-return investment.*", "Aggressive Hybrid": "Aggressive Hybrid funds combine an equity-led growth engine with a supporting debt allocation. The fund manager selects shares for growth potential and fixed-income holdings to complement them, while reviewing the mix over time. This gives you exposure to two asset types in one managed portfolio. Equity remains a major influence on performance, and the debt portion has its own interest-rate and credit risks. Understanding that combination helps you choose the mix with confidence.*", "Balanced Advantage": "Balanced Advantage funds offer a professionally managed approach to adjusting equity and debt exposure as conditions change. Depending on the scheme, the manager uses valuations, market signals and hedging to guide that mix. You gain access to an allocation process without needing to make every market-timing decision yourself. Different strategies can behave differently, and adjustments may miss part of a rally or encounter further declines. The key is finding a process that fits your goals and expectations.*", "Equity Savings": "Equity Savings funds combine a measured equity-growth component with hedged equity or arbitrage positions and debt. The manager coordinates these components so you can participate in some equity opportunities with less direct equity sensitivity than an equity-heavy portfolio. That mix can provide a more measured investment experience, while also limiting participation in a strong rally. Arbitrage spreads, interest rates and issuer quality still affect the outcome.*", "Conservative Hybrid": "Conservative Hybrid funds put a debt-led foundation together with a smaller equity-growth component. The manager builds the fixed-income portfolio and uses shares to add another source of potential growth. This can appeal to investors looking for a more measured mix than an equity-heavy strategy. The balance still experiences bond-price changes, credit risks and equity movements. Matching the scheme to your goal helps you make use of both components thoughtfully.*", "Debt Fund": "Debt funds let you participate in fixed-income markets through a professionally managed portfolio of instruments such as government securities, corporate bonds or money-market holdings. The manager evaluates issuers, maturity and interest-rate exposure. Different strategies provide different ways to align fixed-income exposure with financial goals. Returns reflect interest income and changes in instrument prices, so credit quality, liquidity and interest-rate sensitivity remain important. The category offers choice, and the right scheme depends on the role you want it to play.*", "Custom": "Custom Rate gives you a flexible planning space: choose a return assumption and explore what your contribution and duration could build together. Comparing several rates helps you see how time, regular contributions and returns influence the result. It is a useful starting point for a goal conversation, rather than a fund selection. The actual investment’s strategy, costs and risks need to be assessed separately.*"};
+  var selectedCategory = custom ? 'Custom' : fund;
+  el('sip-category-title').textContent = selectedCategory + ' — Where your money goes & how it works';
+  el('sip-category-story').textContent = categoryStories[selectedCategory] || categoryStories.Custom;
+  var investorActions = {"Small Cap": "Start with a meaningful long-term goal and a contribution you can comfortably maintain. Let the fund manager handle stock research while you focus on an appropriate allocation, regular reviews and keeping near-term needs separate. If the scheme still fits your plan and contributions remain affordable, a short-term dip alone need not drive your decision. Review the allocation with your adviser when your goal, cash needs or the scheme’s risk changes.*", "Mid Cap": "Give your plan room to benefit from business growth, with contributions that fit your cash flow. Review the scheme’s approach and Riskometer, keep near-term needs separate, and assess progress against your goal rather than daily market moves. Revisit the allocation as your circumstances or goal date change.*", "Multi Cap": "Think of the fund as one part of your overall equity plan. Check how its company-size mix complements your existing holdings, choose an affordable contribution, and review overlap and allocation with your adviser. A clear role in your portfolio makes the mix easier to manage over time.*", "Large Cap": "Link the investment to a growth goal and a realistic time horizon. Compare the scheme’s approach, costs and Riskometer, then choose a contribution that suits your finances. Review its place alongside your other holdings and adjust the plan when your goal or cash needs change.*", "Aggressive Hybrid": "Use the equity/debt mix as the starting point for your goal conversation. Check the scheme’s allocation and Riskometer, decide on a comfortable contribution, and review whether the mix continues to fit your time horizon. Keep emergency needs separate so the investment can follow its intended role.*", "Balanced Advantage": "Choose a strategy whose allocation process you understand and feel comfortable following. Let the manager make the portfolio adjustments while you review suitability, costs and progress toward your goal. Revisit the plan when your needs change rather than expecting the strategy to capture every market move.*", "Equity Savings": "Begin with the role you want this fund to play in your plan. Compare its unhedged equity exposure, debt quality, Riskometer and withdrawal terms with your time horizon. A contribution that fits your cash flow and periodic reviews can help keep the investment aligned with that role.*", "Conservative Hybrid": "Match the scheme’s debt-led mix and smaller equity allocation to your goal. Review the Riskometer, debt approach and withdrawal terms, then set a comfortable contribution. As the goal approaches, discuss whether the allocation still matches your spending timeline.*", "Debt Fund": "Start with when you expect to use the money, then compare schemes by maturity profile, credit quality, Riskometer and withdrawal terms. Your adviser can help match a specific strategy to that timeline. Review suitability and costs alongside returns to build a clearer fixed-income plan.*", "Custom": "Try a range of return assumptions and compare how changing your contribution or duration affects the goal. Use the results to discuss a practical plan, then assess the actual investment’s strategy, Riskometer, costs and withdrawal terms. Keep contributions aligned with your cash flow.*"};
+  el('sip-investor-action').textContent = investorActions[selectedCategory] || investorActions.Custom;
+  el('sip-explain-intro').textContent = 'Market returns are never fixed every year. Using this model’s return assumptions, these scenarios illustrate how ' + (custom ? 'your selected investment' : fund + ' funds') + ' could behave and how much outcomes may vary. Use them to understand potential outcomes under different return rates.*';
+  // Highlight live values after building copy; escape all text before markup.
+  ['sip-explain-context','sip-explain-high','sip-explain-mean','sip-explain-low','sip-explain-custom'].forEach(function (id) {
+   var node = el(id);
+   var safe = node.textContent.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+   node.innerHTML = safe.replace(/₹\s*[\d,]+(?:\.\d+)?/g, '<strong class="sip-live-amount">$&</strong>').replace(/-?\d+(?:\.\d+)?%/g, '<strong class="sip-live-rate">$&</strong>');
+  });
+  var escapeText = function(value) { return String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
+  var amount = Number(el('invest_amount').value || 0).toLocaleString('en-IN');
+  var summary = [
+   ['Category', fund],
+   ['Duration', years + ' y ' + months + ' m'],
+   [frequencyLabel.replace(/ly$/, 'ly') + ' contribution', '₹ ' + amount],
+   ['Total investment', valid ? read('res_invested') : 'Enter a duration above zero']
+  ];
+  el('sip-explain-context').innerHTML = summary.map(function(item) {
+   return '<div class="sip-summary-cell"><span>' + escapeText(item[0]) + '</span><strong>' + escapeText(item[1]) + '</strong></div>';
+  }).join('');
+ }
+ window.addEventListener('load', function () {
+  updateExplanation();
+  var observer = new MutationObserver(updateExplanation);
+  document.querySelectorAll('.output-grid,.total-invested-container').forEach(function (node) {
+   observer.observe(node, {subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['style']});
+  });
+  document.querySelector('.calc-container').addEventListener('input', updateExplanation);
+  document.querySelector('.calc-container').addEventListener('change', updateExplanation);
+  document.querySelector('.fund-grid').addEventListener('click', updateExplanation);
+ });
+})();
+</script>{% include 'bottom_design.html' %}
 </body>
 </html>
+
