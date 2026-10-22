@@ -134,15 +134,19 @@
       inset:0;
       z-index:1;
       pointer-events:none;
-      background:linear-gradient(90deg,
-        #f8f5ef 0%,
-        #f8f5ef 17%,
-        rgba(248,245,239,.98) 28%,
-        rgba(248,245,239,.90) 37%,
-        rgba(248,245,239,.73) 46%,
-        rgba(248,245,239,.36) 59%,
-        rgba(248,245,239,.06) 76%,
-        rgba(248,245,239,0) 90%);
+      /* Transparent at the far left to reveal the updated photo's coins and safe;
+         cream builds up quickly before the headline, then clears over the portrait. */
+       background:linear-gradient(90deg,
+         rgba(233,225,214,0) 0%,
+         rgba(233,225,214,.46) 3%,
+         rgba(233,225,214,.78) 6%,
+         rgba(233,225,214,.96) 11%,
+         rgba(238,231,221,.92) 14%,
+         rgba(243,238,231,.84) 28%,
+         rgba(246,242,236,.68) 40%,
+         rgba(248,245,240,.42) 54%,
+         rgba(248,245,240,.16) 67%,
+         rgba(248,245,240,0) 80%);
     }
     .hero-immersive .hero-layout {
       position:relative;
@@ -182,13 +186,13 @@
     }
     @media (min-width:1600px) {
       .hero-immersive .hero-tint {
-        background:linear-gradient(90deg,#f8f5ef 0%,#f8f5ef 23%,rgba(248,245,239,.98) 35%,rgba(248,245,239,.77) 49%,rgba(248,245,239,.10) 70%,transparent 86%);
+        background:linear-gradient(90deg,rgba(233,225,214,0) 0%,rgba(233,225,214,.46) 3%,rgba(233,225,214,.78) 6%,rgba(233,225,214,.96) 11%,rgba(238,231,221,.92) 18%,rgba(243,238,231,.84) 35%,rgba(246,242,236,.58) 49%,rgba(248,245,240,.10) 70%,transparent 86%);
       }
     }
     @media (max-width:1050px) and (min-width:761px) {
       .hero-immersive .hero-title {font-size:clamp(68px,7.65vw,83px);max-width:600px}
       .hero-immersive .hero-copy {max-width:625px}
-      .hero-immersive .hero-tint {background:linear-gradient(90deg,#f8f5ef 0%,rgba(248,245,239,.98) 27%,rgba(248,245,239,.85) 44%,rgba(248,245,239,.32) 66%,transparent 94%)}
+      .hero-immersive .hero-tint {background:linear-gradient(90deg,rgba(233,225,214,0) 0%,rgba(233,225,214,.55) 4%,rgba(233,225,214,.94) 11%,rgba(238,231,221,.90) 27%,rgba(243,238,231,.78) 44%,rgba(248,245,240,.32) 66%,transparent 94%)}
       .hero-immersive .hero-layout {min-height:660px}
     }
     @media (max-width:760px) {
