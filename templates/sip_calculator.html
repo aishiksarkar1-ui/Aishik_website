@@ -225,6 +225,70 @@
 @media(max-width:600px) {.sip-category-story {padding:21px 18px;}.sip-category-story h4 {font-size:25px;}.sip-category-story p {font-size:13px;}}
 
 .sip-investor-action {margin-top:22px;padding-top:21px;border-top:1px solid #d5ba9129;}.sip-investor-action h4 {font-size:24px;color:#f0d7b3;}
+
+/* Educator note and calculator introduction match the approved risk page. */
+.planning-hero {padding-bottom:128px;}
+.sip-note-section {position:relative;isolation:isolate;box-sizing:border-box;padding:0 28px;overflow-x:clip;background:linear-gradient(to bottom,#0a192f 0,#0a192f calc(50% - 15px),#faf7f2 calc(50% - 15px),#faf7f2 100%);}
+.sip-note-section::before {content:"";position:absolute;z-index:-1;pointer-events:none;inset:0 0 calc(50% + 15px);background:radial-gradient(circle at 94% 0,transparent 0 140px,#e2d5be0a 141px 210px,#e2d5be07 211px 280px,#e2d5be04 281px 350px,transparent 351px);}
+.sip-note-box {position:relative;box-sizing:border-box;width:min(100%,1100px);display:flex;align-items:center;gap:36px;margin:0 auto -30px 0;padding:36px 43px;background:#f4f1ea;border:1px solid #d5c1a1;border-radius:12px;box-shadow:0 15px 35px #0003;transform:translateY(-30px);animation:sip-note-in 3s cubic-bezier(.22,.61,.36,1) both;}
+.sip-note-portrait {position:relative;top:-40px;flex-shrink:0;margin-top:-200px;}
+.sip-note-portrait img {display:block;width:160px;height:160px;object-fit:cover;border-radius:50%;border:6px solid #c5a059;box-sizing:content-box;box-shadow:0 10px 25px #0003;}
+.sip-note-copy {min-width:0;}
+.sip-note-copy h2 {font:600 34px/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:-.025em;color:#0a192f;margin:0 0 13px;}
+.sip-note-copy p {font:italic 500 22px/1.65 'Cormorant Garamond',Georgia,serif;color:#344652;margin:0 0 16px;}
+.sip-note-author {font:700 11px/1.6 'DM Sans',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;color:#94733e;}
+.calc-section {padding-top:50px;background:linear-gradient(to bottom,#faf7f2,rgba(250,247,242,0) 220px),radial-gradient(ellipse at 95% 10%,#e7ddec66,transparent 50%),linear-gradient(135deg,#fbf8f3,#f4f0f6 60%,#f8f4ec);}
+.calc-container {margin-top:0;}
+.sip-calculator-intro {text-align:center;padding:0 0 29px;margin-bottom:32px;border-bottom:1px solid #e7ddce;}
+.sip-calculator-kicker {display:inline-flex;align-items:center;gap:12px;color:#947348;font:700 9px/1.6 'DM Sans',Arial,sans-serif;letter-spacing:2px;}
+.sip-calculator-kicker::before,.sip-calculator-kicker::after {content:"";width:24px;height:1px;background:#c8af88;}
+.sip-calculator-heading {font:500 clamp(36px,4.4vw,51px)/1.08 'Cormorant Garamond',Georgia,serif;letter-spacing:-1px;color:#193142;margin:17px 0 13px;text-wrap:balance;}
+.sip-calculator-intro>p {margin:0 auto;color:#788084;font:400 13px/1.8 'DM Sans',Arial,sans-serif;max-width:520px;}
+.sip-calculator-details {display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:9px 24px;margin-top:24px;}
+.sip-calculator-details span {display:inline-flex;align-items:center;gap:8px;color:#77664e;font:500 10px/1.6 'DM Sans',Arial,sans-serif;}
+.sip-calculator-details span::before {content:"";height:4px;width:4px;border-radius:50%;background:#b59a73;}
+@keyframes sip-note-in {from {opacity:0;transform:translate(70px,-30px);}to {opacity:1;transform:translate(0,-30px);}}
+@media(max-width:992px) {.sip-note-box {flex-direction:column;align-items:center;text-align:center;gap:20px;padding:30px 20px;}.sip-note-portrait {margin-top:-80px;}}
+@media(max-width:700px) {.planning-hero {padding-bottom:115px;}.sip-note-section {padding-inline:18px;}.sip-note-copy h2 {font-size:32px;}.sip-note-copy p {font-size:20px;}.calc-section {padding-top:35px;}}
+@media(max-width:600px) {.sip-calculator-heading {font-size:37px;}.sip-calculator-kicker {font-size:8px;letter-spacing:1.2px;gap:8px;}.sip-calculator-kicker::before,.sip-calculator-kicker::after {width:15px;}.sip-calculator-intro>p {font-size:12px;}.sip-calculator-details {gap:8px 14px;}.sip-calculator-details span {font-size:9px;}}
+@media(prefers-reduced-motion:reduce) {.sip-note-box {animation:none;}}
+
+/* One consolidated disclaimer immediately below calculator results. */
+#sip-disclaimer {font-size:12px;line-height:1.9;color:#646561;}
+#sip-disclaimer>strong {display:block;color:#806744;font-size:11px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px;}
+#sip-disclaimer p {margin:0 0 12px;}
+#sip-disclaimer p:last-child {margin-bottom:0;}
+
+/* Varied editorial surfaces for the calculator explanation. */
+.sip-explainer {background:radial-gradient(ellipse at 100% 0,#334c6744,transparent 45%),linear-gradient(135deg,#12283b,#203947);}
+.sip-explain-context {background:linear-gradient(120deg,#fbf4e7,#eee8f4);border:1px solid #dcc9aa;border-left:3px solid #c6a16f;box-shadow:0 12px 25px #0000000a;}
+.sip-summary-cell:nth-child(-n+2) {border-bottom-color:#c6b39155;}
+.sip-summary-cell:nth-child(odd) {border-right-color:#c6b39155;}
+.sip-summary-cell>span {color:#7b6c58;}
+.sip-summary-cell>strong {color:#253b4a;}
+.sip-explain-item {position:relative;border-top:3px solid;box-shadow:0 12px 25px #0000000d;}
+.sip-explain-item:nth-child(1) {background:linear-gradient(145deg,#eaf3e9,#dcece5);border-color:#6a9b80;}
+.sip-explain-item:nth-child(2) {background:linear-gradient(145deg,#fff4d8,#eee1c4);border-color:#c1a05c;}
+.sip-explain-item:nth-child(3) {background:linear-gradient(145deg,#f5e9ec,#e9e0ed);border-color:#b28a9d;}
+.sip-explain-item>span {color:#766148;}
+.sip-explain-item:nth-child(1)>span {color:#426d56;}
+.sip-explain-item:nth-child(3)>span {color:#8b5f73;}
+.sip-explain-item h3 {color:#203847;}
+.sip-explain-item p {color:#52616b;}
+.sip-explain-item .sip-live-amount,.sip-explain-item .sip-live-rate {color:#7c5d26;}
+.sip-explain-item:nth-child(1) .sip-live-amount,.sip-explain-item:nth-child(1) .sip-live-rate {color:#256448;}
+.sip-explain-item:nth-child(3) .sip-live-amount,.sip-explain-item:nth-child(3) .sip-live-rate {color:#865067;}
+.sip-explain-custom {background:linear-gradient(130deg,#eee7f4,#f7f0e4);color:#405364;border-color:#cdbbd9;}
+.sip-explain-custom .sip-live-amount,.sip-explain-custom .sip-live-rate {color:#795e95;}
+.sip-category-story {background:linear-gradient(125deg,#fffaf0,#f1edf7);border:1px solid #e1d3bb;border-left:3px solid #c1a173;box-shadow:0 10px 25px #00000009;}
+.sip-category-story h4 {color:#314653;}
+.sip-category-story p {color:#596772;}
+.sip-investor-action {border-top-color:#cbbdce;}
+.sip-investor-action h4 {color:#87663f;}
+.sip-tradeoff-grid p {padding:22px 23px;border:1px solid #d5ba9128;border-radius:12px;background:linear-gradient(135deg,#2d4b464d,#25483b80);border-top:2px solid #87b293;}
+.sip-tradeoff-grid p:nth-child(2) {background:linear-gradient(135deg,#51434d66,#39374b88);border-top-color:#b49abf;}
+.sip-tradeoff-grid p:first-child strong {color:#b8dfbc;}
+.sip-tradeoff-grid p:nth-child(2) strong {color:#d9c3e5;}
 </style></head>
 <body>
 
@@ -235,8 +299,25 @@
         <p>Go beyond flat returns. Discover the realistic Highest, Lowest, and Average probabilities of your investments based on market history and chosen duration.</p>
     </div>
 
-    <div class="calc-section">
-        <div class="calc-container">
+    <section class="sip-note-section" aria-labelledby="sip-note-title">
+ <div class="sip-note-box">
+  <div class="sip-note-portrait"><img src="{{ url_for('static', filename='Aishik Sarkar.png') }}" alt="Aishik Sarkar" width="160" height="160"></div>
+  <div class="sip-note-copy">
+   <h2 id="sip-note-title">A Note Before We Begin</h2>
+   <p>“This SIP calculator lets you explore different mutual fund categories before building your investment plan. The category colours offer a simple guide: shades towards red indicate higher relative risk, while shades towards green indicate lower relative risk within this calculator. Choose a category, enter your contribution and duration, and see how the projected results change.</p>
+   <p>Compare the same category across Bull Market, Normal Market and Bear Market conditions to explore possible returns when markets perform well, follow a more typical path, or face a downturn. The comparison and explanations below help you consider both growth opportunities and market fluctuations, and identify a category that fits your goals, time horizon and comfort with risk. These are illustrative scenarios, not assured outcomes.”</p>
+   <div class="sip-note-author">— Aishik Sarkar</div>
+  </div>
+ </div>
+</section>
+<div class="calc-section">
+        <div class="calc-container"><header class="sip-calculator-intro">
+ <span class="sip-calculator-kicker">TURN YOUR GOALS INTO A PLAN</span>
+ <h2 class="sip-calculator-heading">Plan Your SIP Journey</h2>
+ <p>Explore your contribution, choose a fund category, and see the possibilities ahead.</p>
+ <div class="sip-calculator-details"><span>Your contribution</span><span>Your time horizon</span><span>Three market scenarios</span></div>
+</header>
+
             
             <div class="input-row">
                 <div class="input-group">
@@ -332,8 +413,10 @@
 
             </div>
 
-            <div class="disclaimer">
-                *Disclaimer: Mutual Fund investments are subject to market risks, read all scheme related documents carefully. The above matrix is based on historical rolling returns and standard deviations. It does not guarantee future performance.
+            <div class="disclaimer" id="sip-disclaimer" role="note" aria-label="Calculator disclaimer">
+                <strong>* Disclaimer</strong>
+                <p>The estimated annual return rates, projected amounts and scenario probabilities shown here are assumptions informed by past performance and are provided only to illustrate possible outcomes. They are not predictions, promises or assured returns. The model does not state that any displayed rate, probability or investment value will occur. Past performance and backtesting do not guarantee or assure future returns.</p>
+                <p>Actual results may differ materially. The Bull, Normal and Bear scenarios do not cover every possible outcome; the Bear scenario is not a worst-case limit, and losses may be greater. Scenario percentages need not add up to 100%, “Most Likely Scenario” is a model label, and an undisplayed probability does not mean zero risk. Custom Rate uses your chosen assumption and does not assess an investment’s risk. Higher risk does not guarantee higher returns or capital protection. Mutual fund investments are subject to market risks; read all scheme-related documents carefully and consider your goals, time horizon and ability to absorb losses before investing.</p>
             </div>
 
         </div>
@@ -526,8 +609,7 @@
    <p id="sip-explain-risk"></p><div class="sip-category-story"><h4 id="sip-category-title"></h4><p id="sip-category-story"></p><div class="sip-investor-action"><h4>What this means for you</h4><p id="sip-investor-action"></p></div></div>
    <div class="sip-tradeoff-grid"><p><strong>The opportunity</strong><span id="sip-risk-opportunity"></span></p><p><strong>What to plan for</strong><span id="sip-risk-tradeoff"></span></p></div>
   </div>
-  <p class="sip-explain-footnote"><strong>* Disclaimer:</strong> Projections and scenario probabilities are illustrations based on the calculator’s data and assumptions, not guarantees of future returns or capital protection. Past performance and backtesting do not assure future outcomes. Scenario percentages need not add up to 100%; “Most Likely Scenario” is a model label. An undisplayed probability does not mean zero risk, and the bear scenario is not a worst-case limit—actual losses can be larger. Custom Rate illustrates your chosen return and does not assess an investment’s risk. Higher risk does not ensure higher returns; debt and hybrid funds can also lose value. Consider your time horizon and ability to absorb losses when interpreting these results.</p>
- </div>
+</div>
 </section>
 <script>(function () {
  function updateExplanation() {
@@ -551,81 +633,30 @@
   if (!valid) {
    el('sip-explain-custom').textContent = 'Enter a duration above zero to interpret the projections. Existing card values may still show the previous calculation.';
   } else if (custom) {
-   el('sip-explain-custom').textContent = 'Custom Rate uses your own ' + read('rate_mean') + ' annual return assumption. The current projected value is ' + read('res_mean') + ' (' + read('profit_mean') + '). Only one scenario is shown, so no upside/downside probabilities are assigned. *';
+   el('sip-explain-custom').textContent = 'You have entered a return rate of ' + read('rate_mean') + ' per year. At this rate, your investment could be worth ' + read('res_mean') + '. The calculated profit or loss is ' + read('profit_mean') + '. Custom Rate shows one projection and does not assign scenario probabilities.*';
   } else {
    var outcome = function (profitId) {
     var value = read(profitId);
     return value.includes('(Loss)') ? 'a total loss of ' + value.replace(/^-\s*/, '').replace(' (Loss)', '') : 'a total profit of ' + value.replace(/^\+\s*/, '').replace(' (Profit)', '');
    };
    var highProbability = read('prob_high').replace('Probability: ', '');
-   el('sip-explain-high').textContent = 'When markets perform well, this model assumes a ' + read('rate_high') + ' annual return, with a ' + highProbability + ' upside probability. In this scenario, your investment could become ' + read('res_high') + ', giving you ' + outcome('profit_high') + '.*';
-   el('sip-explain-mean').textContent = 'Under normal market conditions, this model assumes a ' + read('rate_mean') + ' annual return. Your investment could become ' + read('res_mean') + ', giving you ' + outcome('profit_mean') + '. *';
-   var lowProbability = el('prob_low').style.display === 'none' ? 'The model does not display a probability for this scenario.' : 'The model assigns this scenario a ' + read('prob_low').replace('Probability: ', '') + ' probability.';
-   el('sip-explain-low').textContent = 'When markets perform poorly, this model assumes a ' + read('rate_low') + ' annual return. Your investment could become ' + read('res_low') + ', giving you ' + outcome('profit_low') + '. ' + lowProbability + ' *';
+   el('sip-explain-high').textContent = 'When markets perform well, this example uses a return rate of ' + read('rate_high') + ' per year. The calculator assigns this scenario a probability of ' + highProbability + '. Your investment could grow to ' + read('res_high') + ', giving you ' + outcome('profit_high') + '.*';
+   el('sip-explain-mean').textContent = 'Under normal market conditions, this example uses a return rate of ' + read('rate_mean') + ' per year. Your investment could be worth ' + read('res_mean') + ', giving you ' + outcome('profit_mean') + '. *';
+   var lowProbability = el('prob_low').style.display === 'none' ? 'The model does not display a probability for this scenario.' : 'The calculator assigns this scenario a probability of ' + read('prob_low').replace('Probability: ', '') + '.';
+   el('sip-explain-low').textContent = 'When markets perform poorly, this example uses a return rate of ' + read('rate_low') + ' per year. Your investment could be worth ' + read('res_low') + ', giving you ' + outcome('profit_low') + '. ' + lowProbability + ' *';
   }
-  var categoryGuides = {
-   'Small Cap': [
-    'Small Cap offers participation in the growth of smaller companies through a professionally managed equity portfolio.',
-    'Smaller businesses may have substantial room to expand. Successful growth can create a strong long-term upside.*',
-    'Smaller companies can be harder to sell during stress and more vulnerable to business shocks. Falls may be steep and recovery can take time.'
-   ],
-   'Mid Cap': [
-    'Mid Cap gives you access to expanding medium-sized businesses and their next stage of growth.',
-    'Growing businesses may develop into larger companies, offering participation in that expansion.*',
-    'Earnings disappointments or market downturns can cause large price swings. These businesses may be less resilient than established large companies.'
-   ],
-   'Multi Cap': [
-    'Multi Cap brings growth opportunities from large, mid-sized and small companies into one equity portfolio.',
-    'A mix of company sizes provides access to different growth opportunities within one equity portfolio.*',
-    'Exposure to smaller companies adds volatility. Diversifying across company sizes does not prevent losses when the broader equity market falls.'
-   ],
-   'Large Cap': [
-    'Large Cap lets you participate in established businesses through a managed equity portfolio.',
-    'Established businesses can provide participation in long-term economic growth, generally with better share liquidity than smaller companies.*',
-    'Large companies can still decline significantly. Their mature businesses may offer less rapid expansion than successful smaller companies.'
-   ],
-   'Aggressive Hybrid': [
-    'Aggressive Hybrid combines a substantial equity allocation with debt investments.',
-    'Equity offers growth potential while the debt allocation may help cushion some fluctuations compared with an all-equity portfolio.*',
-    'Equity downturns can still drive substantial losses. The debt portion also carries interest-rate and credit risks.'
-   ],
-   'Balanced Advantage': [
-    'Balanced Advantage changes its equity and debt exposure according to the fund’s strategy or valuation model.',
-    'Flexible allocation may help manage equity exposure across changing market conditions without requiring you to make each allocation decision.*',
-    'Allocation decisions can lag market moves, and a cautious allocation may miss part of a rally. Results depend on the strategy and execution.'
-   ],
-   'Equity Savings': [
-    'Equity Savings typically combines unhedged equity, hedged equity or arbitrage positions, and debt.',
-    'The mix aims to offer some equity growth participation with more moderated fluctuations than a predominantly equity portfolio.*',
-    'Limited unhedged equity can reduce upside in strong rallies. Arbitrage spreads, credit events and interest-rate changes can also affect returns.'
-   ],
-   'Conservative Hybrid': [
-    'Conservative Hybrid primarily holds debt with a smaller equity allocation.',
-    'A predominantly debt portfolio can offer a more measured growth path, with a smaller equity allocation adding some upside potential.*',
-    'Equity exposure still adds market volatility, while debt is exposed to interest-rate and credit risks. Lower equity exposure can limit long-term growth.'
-   ],
-   'Debt Fund': [
-    'Debt Fund offers professionally managed fixed-income exposure, with different strategies for different financial goals.',
-    'Different debt strategies can provide income-oriented exposure and generally less direct equity-market volatility.*',
-    'Rising interest rates can reduce bond prices. Issuer defaults and liquidity stress can cause losses, and returns may fall short of inflation.'
-   ],
-   'Custom': [
-    'Custom Rate is an illustration using your chosen return, rather than a specific fund category.',
-    'You can compare different return assumptions to see how they affect the same contribution and duration.*',
-    'The chosen rate does not describe volatility, credit quality or liquidity. Assess those risks using the actual investment you intend to hold.'
-   ]
-  };
+  var categoryGuides = {"Small Cap": ["Small Cap funds invest mainly in smaller listed companies that have room to grow.", "These companies can grow their sales and profits as they reach more customers. If they do well, the fund can benefit from that growth.*", "Their earnings can change quickly when the economy slows down. Their share prices may also fall sharply, so you need to be comfortable with larger fluctuations."], "Mid Cap": ["Mid Cap funds invest mainly in medium-sized companies that are still expanding.", "These businesses may grow by entering new markets or selling more products. Their progress can create good opportunities for the fund.*", "Expansion takes money and does not always go as planned. Share prices can move sharply if business results disappoint."], "Multi Cap": ["Multi Cap funds invest in large, medium-sized and small companies.", "You can take part in different types of business growth through one fund. This reduces your dependence on a single company-size group.*", "The smaller companies can add more price fluctuations. All three groups can also fall together when the wider market declines."], "Large Cap": ["Large Cap funds invest mainly in large, established listed companies.", "You can participate in the growth of businesses with established products and customer networks. These shares are usually easier to trade than smaller-company shares.*", "Even large companies can face weaker sales or new competition. Their share prices can fall, and their growth may be slower than that of successful smaller companies."], "Aggressive Hybrid": ["Aggressive Hybrid funds invest mainly in shares and also hold debt investments.", "Shares provide growth potential, while the debt portion may soften some of the fluctuations. The manager handles both parts within one fund.*", "The equity portion can still cause significant fluctuations. The debt portion also faces changes in interest rates and the risk that an issuer may not repay."], "Balanced Advantage": ["Balanced Advantage funds adjust their equity and debt exposure according to the scheme’s strategy.", "The manager can change the mix as market conditions change. You do not have to make each allocation decision yourself.*", "The strategy may miss part of a strong rally or increase equity exposure before a further fall. Different funds can therefore produce different results."], "Equity Savings": ["Equity Savings funds combine equity investments, hedged equity or arbitrage positions, and debt.", "The mix offers some equity growth potential with less direct exposure to share-price movements than an equity-heavy fund.*", "The smaller unhedged equity portion may limit gains during strong rallies. Returns can also be affected by trading costs, interest rates and issuer repayments."], "Conservative Hybrid": ["Conservative Hybrid funds invest mainly in debt and hold a smaller portion in shares.", "The debt portion provides the main investment base. The smaller equity portion adds an opportunity for growth.*", "Bond prices can change, and issuers may face repayment difficulties. The equity portion can also cause the fund’s value to fluctuate."], "Debt Fund": ["Debt funds invest in instruments such as government securities, corporate bonds and money-market instruments.", "Different debt strategies can help you plan for different time horizons. A fund manager selects and reviews the investments on your behalf.*", "Bond prices can fall when interest rates rise. Repayment problems and difficulty selling holdings can also affect the fund’s value."], "Custom": ["Custom Rate lets you explore a return rate that you enter yourself.", "You can compare different assumptions and see how your contribution and duration affect the projected amount.*", "Entering a rate does not tell you how risky an investment is. A higher rate produces a higher projection without making that return easier to earn."]};
   var guide = categoryGuides[custom ? 'Custom' : fund] || categoryGuides.Custom;
   el('sip-explain-risk').textContent = guide[0];
   el('sip-risk-opportunity').textContent = guide[1];
   el('sip-risk-tradeoff').textContent = guide[2];
-  var categoryStories = {"Small Cap": "Small Cap funds give you access to smaller listed companies with room to grow into bigger businesses. Some operate in emerging markets or specialised niches that are not yet widely followed. The fund manager researches their business potential, management, financial strength and valuation, then builds and reviews a portfolio on your behalf. When those companies expand successfully, you participate in their progress through the fund. Their earnings and share prices can also fluctuate more during economic changes. The opportunity is to take part in business growth with a plan that leaves room for those ups and downs.*", "Mid Cap": "Mid Cap funds connect you with medium-sized businesses that are building on an established base and reaching for their next stage of growth. A fund manager looks for companies expanding their products, customers or market share, while assessing financial strength and price. You participate through a professionally managed portfolio rather than selecting individual stocks. Successful expansion can create attractive long-term opportunities, although earnings and valuations can move considerably along the way.*", "Multi Cap": "Multi Cap funds bring large, medium-sized and smaller businesses together in one equity portfolio. This lets you participate in several stages of business growth: established companies alongside expanding businesses and emerging opportunities. The fund manager selects and reviews holdings within each segment. That breadth gives you a range of growth drivers, while the mid- and small-company allocations can add larger fluctuations. It is a way to spread equity opportunities across company sizes, with an allocation suited to your goals.*", "Large Cap": "Large Cap funds offer participation in established listed businesses with developed products, customer networks and operating histories. The fund manager assesses company quality, earnings prospects and valuation to build the portfolio. You can share in the progress of these businesses through a managed fund, with generally more actively traded shares than smaller companies. They still experience market cycles and company-specific challenges, so their role is growth-oriented equity exposure rather than a fixed-return investment.*", "Aggressive Hybrid": "Aggressive Hybrid funds combine an equity-led growth engine with a supporting debt allocation. The fund manager selects shares for growth potential and fixed-income holdings to complement them, while reviewing the mix over time. This gives you exposure to two asset types in one managed portfolio. Equity remains a major influence on performance, and the debt portion has its own interest-rate and credit risks. Understanding that combination helps you choose the mix with confidence.*", "Balanced Advantage": "Balanced Advantage funds offer a professionally managed approach to adjusting equity and debt exposure as conditions change. Depending on the scheme, the manager uses valuations, market signals and hedging to guide that mix. You gain access to an allocation process without needing to make every market-timing decision yourself. Different strategies can behave differently, and adjustments may miss part of a rally or encounter further declines. The key is finding a process that fits your goals and expectations.*", "Equity Savings": "Equity Savings funds combine a measured equity-growth component with hedged equity or arbitrage positions and debt. The manager coordinates these components so you can participate in some equity opportunities with less direct equity sensitivity than an equity-heavy portfolio. That mix can provide a more measured investment experience, while also limiting participation in a strong rally. Arbitrage spreads, interest rates and issuer quality still affect the outcome.*", "Conservative Hybrid": "Conservative Hybrid funds put a debt-led foundation together with a smaller equity-growth component. The manager builds the fixed-income portfolio and uses shares to add another source of potential growth. This can appeal to investors looking for a more measured mix than an equity-heavy strategy. The balance still experiences bond-price changes, credit risks and equity movements. Matching the scheme to your goal helps you make use of both components thoughtfully.*", "Debt Fund": "Debt funds let you participate in fixed-income markets through a professionally managed portfolio of instruments such as government securities, corporate bonds or money-market holdings. The manager evaluates issuers, maturity and interest-rate exposure. Different strategies provide different ways to align fixed-income exposure with financial goals. Returns reflect interest income and changes in instrument prices, so credit quality, liquidity and interest-rate sensitivity remain important. The category offers choice, and the right scheme depends on the role you want it to play.*", "Custom": "Custom Rate gives you a flexible planning space: choose a return assumption and explore what your contribution and duration could build together. Comparing several rates helps you see how time, regular contributions and returns influence the result. It is a useful starting point for a goal conversation, rather than a fund selection. The actual investment’s strategy, costs and risks need to be assessed separately.*"};
+  var categoryStories = {"Small Cap": "A Small Cap fund invests your money in a group of smaller companies. The fund manager studies their businesses, checks their finances, and decides which shares to buy or sell. Some of these companies may grow into much larger businesses over time. Others may face difficulties. The manager reviews the holdings and makes changes when needed. You invest in the fund, so you do not have to choose each stock yourself.*", "Mid Cap": "Mid Cap companies have usually built an established business, but many still have space to expand. The fund manager looks for companies with a sound business and promising growth prospects. The manager also checks whether the share price is reasonable. If the companies grow successfully, your fund may benefit. Their results can still change with demand, costs and the economy.*", "Multi Cap": "A Multi Cap fund brings companies of different sizes into one portfolio. Larger companies offer established businesses, while smaller companies may offer more room to grow. The fund manager chooses and reviews the investments in each group. This gives you a wider mix of equity investments, although it does not remove market risk.*", "Large Cap": "A Large Cap fund invests in established businesses across different industries. The fund manager checks their earnings, business strength and share prices before investing. The aim is to benefit from their growth over time. These companies may have stronger resources than smaller businesses, but they still go through market cycles.*", "Aggressive Hybrid": "This fund combines shares with instruments such as bonds. The manager selects both types of investments and reviews their balance over time. Shares aim to provide growth, while debt adds another source of returns. The combination may fluctuate less than an all-equity portfolio, but its value can still fall.*", "Balanced Advantage": "The manager uses the fund’s strategy to decide how much equity and debt exposure to hold. Some funds also use hedging to reduce part of their exposure to share-price movements. This process aims to manage the mix across market conditions. It does not mean the manager can predict every market turn.*", "Equity Savings": "Part of the fund invests in shares for growth. Another part may use offsetting trades to earn price differences while limiting direct market exposure. Debt investments form the remaining part of the mix. The manager handles these components together. This can create a more measured investment experience, though the fund can still lose value.*", "Conservative Hybrid": "The fund manager builds a portfolio that holds more debt than equity. The debt portion may earn interest income, while shares add growth potential. This mix generally has less equity exposure than an aggressive hybrid fund. Its results still depend on both bond and share markets.*", "Debt Fund": "A Debt Fund earns returns from interest income and changes in the prices of its investments. The manager checks who is borrowing the money, when it is due to be repaid, and how interest-rate changes could affect the portfolio. Debt funds follow different strategies, so two debt funds can have very different risks and results.*", "Custom": "Custom Rate is a planning tool, not a fund category. You enter a yearly return rate, and the calculator uses it with your contribution schedule and duration. Try different rates to see how the result changes. You will still need to assess the actual fund separately before investing.*"};
   var selectedCategory = custom ? 'Custom' : fund;
-  el('sip-category-title').textContent = selectedCategory + ' — Where your money goes & how it works';
+  el('sip-category-title').textContent = selectedCategory + ': Where your money goes and how the fund works';
   el('sip-category-story').textContent = categoryStories[selectedCategory] || categoryStories.Custom;
-  var investorActions = {"Small Cap": "Start with a meaningful long-term goal and a contribution you can comfortably maintain. Let the fund manager handle stock research while you focus on an appropriate allocation, regular reviews and keeping near-term needs separate. If the scheme still fits your plan and contributions remain affordable, a short-term dip alone need not drive your decision. Review the allocation with your adviser when your goal, cash needs or the scheme’s risk changes.*", "Mid Cap": "Give your plan room to benefit from business growth, with contributions that fit your cash flow. Review the scheme’s approach and Riskometer, keep near-term needs separate, and assess progress against your goal rather than daily market moves. Revisit the allocation as your circumstances or goal date change.*", "Multi Cap": "Think of the fund as one part of your overall equity plan. Check how its company-size mix complements your existing holdings, choose an affordable contribution, and review overlap and allocation with your adviser. A clear role in your portfolio makes the mix easier to manage over time.*", "Large Cap": "Link the investment to a growth goal and a realistic time horizon. Compare the scheme’s approach, costs and Riskometer, then choose a contribution that suits your finances. Review its place alongside your other holdings and adjust the plan when your goal or cash needs change.*", "Aggressive Hybrid": "Use the equity/debt mix as the starting point for your goal conversation. Check the scheme’s allocation and Riskometer, decide on a comfortable contribution, and review whether the mix continues to fit your time horizon. Keep emergency needs separate so the investment can follow its intended role.*", "Balanced Advantage": "Choose a strategy whose allocation process you understand and feel comfortable following. Let the manager make the portfolio adjustments while you review suitability, costs and progress toward your goal. Revisit the plan when your needs change rather than expecting the strategy to capture every market move.*", "Equity Savings": "Begin with the role you want this fund to play in your plan. Compare its unhedged equity exposure, debt quality, Riskometer and withdrawal terms with your time horizon. A contribution that fits your cash flow and periodic reviews can help keep the investment aligned with that role.*", "Conservative Hybrid": "Match the scheme’s debt-led mix and smaller equity allocation to your goal. Review the Riskometer, debt approach and withdrawal terms, then set a comfortable contribution. As the goal approaches, discuss whether the allocation still matches your spending timeline.*", "Debt Fund": "Start with when you expect to use the money, then compare schemes by maturity profile, credit quality, Riskometer and withdrawal terms. Your adviser can help match a specific strategy to that timeline. Review suitability and costs alongside returns to build a clearer fixed-income plan.*", "Custom": "Try a range of return assumptions and compare how changing your contribution or duration affects the goal. Use the results to discuss a practical plan, then assess the actual investment’s strategy, Riskometer, costs and withdrawal terms. Keep contributions aligned with your cash flow.*"};
+  var investorActions = {"Small Cap": "Choose an amount that fits your budget and a goal that gives you time to stay invested. Keep money for emergencies and upcoming expenses separate. Review the fund with your adviser when your needs change. A short-term market fall is a reason to review your plan calmly, rather than make a rushed decision.*", "Mid Cap": "Link this investment to a goal that allows time for market changes. Select a contribution you can maintain comfortably. Review whether the fund still fits your goal, especially as the date when you need the money gets closer.*", "Multi Cap": "Check how this fund fits with the investments you already have. Your adviser can help you avoid unnecessary overlap and choose a suitable allocation. Review the overall mix when your goals or financial situation change.*", "Large Cap": "Choose this fund as part of a growth plan that allows for market fluctuations. Compare its approach, costs and risk level with your needs. Review how it fits with your other equity investments instead of choosing it only for its recent returns.*", "Aggressive Hybrid": "Check whether the balance between equity and debt suits your goal. Choose a contribution that fits your cash flow. Review the allocation as your goal approaches, rather than assuming the debt portion makes the fund suitable for every need.*", "Balanced Advantage": "Understand how the particular fund changes its allocation before investing. Check whether its approach and risk level fit your goal. Review it based on that role, rather than expecting it to rise with every rally and avoid every decline.*", "Equity Savings": "Check how much equity exposure the scheme actually takes and what kind of debt it holds. Match its risk level and withdrawal terms to when you need the money. Ask your adviser whether this mix suits the role you want it to play.*", "Conservative Hybrid": "Check whether this debt-led mix fits your goal and the time you have available. Review the scheme’s risk level and withdrawal terms. As the goal date approaches, discuss whether the allocation still suits your spending plans.*", "Debt Fund": "Start with when you expect to need the money. Compare suitable schemes by their risk level, maturity profile, costs and withdrawal terms. Your adviser can help you choose a strategy that fits that timeline, rather than simply choosing the fund with the highest recent return.*", "Custom": "Compare a few reasonable return assumptions instead of relying on one number. Choose a contribution you can afford. Then discuss which actual investment fits your goal, time horizon and risk comfort.*"};
   el('sip-investor-action').textContent = investorActions[selectedCategory] || investorActions.Custom;
-  el('sip-explain-intro').textContent = 'Market returns are never fixed every year. Using this model’s return assumptions, these scenarios illustrate how ' + (custom ? 'your selected investment' : fund + ' funds') + ' could behave and how much outcomes may vary. Use them to understand potential outcomes under different return rates.*';
+  el('sip-explain-intro').textContent = 'Market returns change from year to year. The examples below use different return rates to show how ' + (custom ? 'your selected investment' : fund + ' funds') + ' could perform. Compare the three scenarios to understand how the same contribution and duration can lead to different results.*';
   // Highlight live values after building copy; escape all text before markup.
   ['sip-explain-context','sip-explain-high','sip-explain-mean','sip-explain-low','sip-explain-custom'].forEach(function (id) {
    var node = el(id);
@@ -636,7 +667,7 @@
   var amount = Number(el('invest_amount').value || 0).toLocaleString('en-IN');
   var summary = [
    ['Category', fund],
-   ['Duration', years + ' y ' + months + ' m'],
+   ['Duration', years + (years === 1 ? ' Year ' : ' Years ') + months + (months === 1 ? ' Month' : ' Months')],
    [frequencyLabel.replace(/ly$/, 'ly') + ' contribution', '₹ ' + amount],
    ['Total investment', valid ? read('res_invested') : 'Enter a duration above zero']
   ];
