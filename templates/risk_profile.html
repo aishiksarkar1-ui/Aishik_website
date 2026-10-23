@@ -141,6 +141,108 @@
  #resultContainer>a .nav-btn,#resultContainer a .nav-btn {font-size:12px !important;letter-spacing:0 !important;padding:16px !important;}
 }
 @media(prefers-reduced-motion:reduce) { .quiz-container * {animation:none !important;transition:none !important;} }
+
+/* Educator note shared in spirit with the approved Learn presentation. */
+.risk-note-section {position:relative;isolation:isolate;box-sizing:border-box;padding:0 28px 38px;background:#0a192f;overflow-x:clip;}
+.risk-note-section::before {content:"";position:absolute;z-index:-1;pointer-events:none;inset:0;background:radial-gradient(circle at 94% 0,transparent 0 140px,#e2d5be0a 141px 210px,#e2d5be07 211px 280px,#e2d5be04 281px 350px,transparent 351px);}
+.risk-note-box {position:relative;box-sizing:border-box;width:min(100%,1100px);display:flex;align-items:center;gap:36px;margin:0 auto -30px;padding:36px 43px;background:#f4f1ea;border:1px solid #d5c1a1;border-radius:12px;box-shadow:0 15px 35px #0003;transform:translateY(-30px);animation:risk-note-in 3s cubic-bezier(.22,.61,.36,1) both;}
+.risk-note-portrait {flex-shrink:0;margin-top:-90px;}
+.risk-note-portrait img {display:block;width:148px;height:148px;object-fit:cover;border-radius:50%;border:6px solid #c5a059;box-sizing:border-box;box-shadow:0 10px 25px #0003;}
+.risk-note-copy {min-width:0;}
+.risk-note-copy h2 {font:600 34px/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:-.025em;color:#0a192f;margin:0 0 13px;}
+.risk-note-copy p {font:italic 500 22px/1.65 'Cormorant Garamond',Georgia,serif;color:#344652;margin:0 0 16px;}
+.risk-note-author {font:700 11px/1.6 'DM Sans',Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;color:#94733e;}
+.quiz-section {padding-top:47px;}
+.quiz-container {margin-top:0;}
+@keyframes risk-note-in {from {opacity:0;transform:translate(70px,-30px);}to {opacity:1;transform:translate(0,-30px);}}
+@media(max-width:700px) {
+ .profiling-hero {padding-bottom:115px;}
+ .risk-note-section {padding:0 18px 28px;}
+ .risk-note-box {flex-direction:column;gap:20px;padding:30px 25px;align-items:center;text-align:center;}
+ .risk-note-portrait {margin-top:-72px;}
+ .risk-note-portrait img {width:118px;height:118px;}
+ .risk-note-copy h2 {font-size:32px;}
+ .risk-note-copy p {font-size:20px;}
+ .quiz-section {padding-top:32px;}
+}
+@media(prefers-reduced-motion:reduce) {.risk-note-box {animation:none;}}
+
+/* Left-align the educator note to match Learn. */
+.risk-note-box {margin-left:0;margin-right:auto;}
+
+/* Match Learn's portrait size and overlap on desktop and smaller screens. */
+.risk-note-portrait {margin-top:-200px;}
+.risk-note-portrait img {box-sizing:content-box;width:160px;height:160px;}
+@media(max-width:992px) {
+ .risk-note-box {flex-direction:column;align-items:center;text-align:center;gap:20px;padding:30px 20px;}
+ .risk-note-portrait {margin-top:-80px;}
+ .risk-note-portrait img {width:160px;height:160px;}
+}
+
+.risk-note-portrait {position:relative;top:-40px;}
+
+/* End the navy band within the note so its lower edge overlaps the cream area. */
+.risk-note-section {
+ padding-bottom:0;
+ background:linear-gradient(to bottom,#0a192f 0,#0a192f calc(100% - 75px),#faf7f2 calc(100% - 75px),#faf7f2 100%);
+}
+.risk-note-section::before {bottom:75px;}
+@media(max-width:700px) {
+ .risk-note-section {padding-bottom:0;}
+}
+
+/* Navy ends halfway down the visible note; preserve its 30px upward overlap. */
+.risk-note-section {
+ background:linear-gradient(to bottom,#0a192f 0,#0a192f calc(50% - 15px),#faf7f2 calc(50% - 15px),#faf7f2 100%);
+}
+.risk-note-section::before {bottom:calc(50% + 15px);}
+
+/* Blend the cream below the note into the quiz gradient without a color seam. */
+.quiz-section {
+ background:
+  linear-gradient(to bottom,#faf7f2 0,rgba(250,247,242,0) 220px),
+  radial-gradient(ellipse at 92% 16%,#e7ddec66,transparent 50%),
+  linear-gradient(135deg,#fbf8f3,#f4f0f6 60%,#f8f4ec);
+}
+
+.risk-questionnaire-wrap {width:100%;max-width:920px;min-width:0;}
+.risk-questionnaire-heading {font:500 clamp(34px,4vw,48px)/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:-.5px;text-align:center;color:#193142;margin:0 0 30px;text-wrap:balance;}
+@media(max-width:600px) {.risk-questionnaire-heading {font-size:35px;margin-bottom:25px;}}
+
+/* One editorial frame connects the introduction and live questionnaire. */
+.quiz-section {padding-top:50px;}
+.risk-questionnaire-wrap {
+ position:relative;border:1px solid #e2d6c3;border-top:3px solid #c6a16f;
+ border-radius:20px;background:#fffdf9;box-shadow:0 23px 65px #0a192f0d;
+}
+.risk-questionnaire-intro {
+ position:relative;padding:38px 36px 29px;text-align:center;
+ background:radial-gradient(ellipse at 90% 0%,#e9dfed55,transparent 65%),linear-gradient(125deg,#fcf8ef,#faf7f4);
+ border-radius:17px 17px 0 0;border-bottom:1px solid #e7ddce;
+}
+.risk-questionnaire-kicker {
+ display:inline-flex;align-items:center;gap:12px;color:#947348;
+ font:700 9px/1.6 'DM Sans',Arial,sans-serif;letter-spacing:2px;
+}
+.risk-questionnaire-kicker::before,.risk-questionnaire-kicker::after {content:"";width:24px;height:1px;background:#c8af88;}
+.risk-questionnaire-heading {font-size:clamp(36px,4.4vw,51px);line-height:1.08;margin:17px 0 13px;letter-spacing:-1px;}
+.risk-questionnaire-lead {margin:0 auto;color:#788084;font:400 13px/1.8 'DM Sans',Arial,sans-serif;max-width:470px;}
+.risk-questionnaire-details {display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:9px 24px;margin-top:24px;}
+.risk-questionnaire-details span {display:inline-flex;align-items:center;gap:8px;color:#77664e;font:500 10px/1.6 'DM Sans',Arial,sans-serif;}
+.risk-questionnaire-details span::before {content:"";height:4px;width:4px;border-radius:50%;background:#b59a73;}
+.risk-questionnaire-wrap .quiz-container {border:0;border-radius:0 0 19px 19px;box-shadow:none;padding-top:30px;}
+.risk-questionnaire-wrap .part-indicator {margin-bottom:22px;letter-spacing:1.7px;}
+@media(max-width:600px) {
+ .quiz-section {padding-top:35px;}
+ .risk-questionnaire-intro {padding:29px 20px 24px;}
+ .risk-questionnaire-kicker {font-size:8px;letter-spacing:1.2px;gap:8px;}
+ .risk-questionnaire-kicker::before,.risk-questionnaire-kicker::after {width:15px;}
+ .risk-questionnaire-heading {font-size:37px;margin-top:16px;margin-bottom:13px;}
+ .risk-questionnaire-lead {font-size:12px;}
+ .risk-questionnaire-details {column-gap:14px;row-gap:8px;margin-top:20px;}
+ .risk-questionnaire-details span {font-size:9px;}
+ .risk-questionnaire-wrap .quiz-container {padding-top:26px;}
+}
 </style></head>
 <body>
 
@@ -153,8 +255,31 @@
     </div>
 
     <!-- কুইজ সেকশন -->
-    <div class="quiz-section">
-        <div class="quiz-container">
+        <section class="risk-note-section" aria-labelledby="risk-note-title">
+        <div class="risk-note-box">
+            <div class="risk-note-portrait">
+                <img src="{{ url_for('static', filename='Aishik Sarkar.png') }}" alt="Aishik Sarkar" width="148" height="148">
+            </div>
+            <div class="risk-note-copy">
+                <h2 id="risk-note-title">A Note Before We Begin</h2>
+                <p>“A confident investment journey begins with understanding yourself. Take a moment to reflect on how you feel about market movements, your financial responsibilities, and the goals you are working towards. Answer each question honestly, based on your situation today. Your responses will help you explore the balance between growth and comfort that feels right for you.”</p>
+                <div class="risk-note-author">— Aishik Sarkar</div>
+            </div>
+        </div>
+    </section>
+
+<div class="quiz-section">
+        <div class="risk-questionnaire-wrap"><header class="risk-questionnaire-intro">
+    <span class="risk-questionnaire-kicker">UNDERSTAND YOUR INVESTMENT STYLE</span>
+    <h2 class="risk-questionnaire-heading">Risk Profiling Questionnaire</h2>
+    <p class="risk-questionnaire-lead">A little reflection today. A clearer investment journey ahead.</p>
+    <div class="risk-questionnaire-details" aria-label="Assessment overview">
+        <span>20 questions</span>
+        <span>3 areas of your financial life</span>
+        <span>Your personal risk profile</span>
+    </div>
+</header>
+<div class="quiz-container">
             
             <div id="quizBlock">
                 <div class="part-indicator" id="partTitle">Part 1: Psychological & Behavioral</div>
@@ -214,6 +339,7 @@
         </div>
     </div>
 
+    </div>
     <!-- JavaScript লজিক -->
     <script>
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
