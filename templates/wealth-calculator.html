@@ -1,17 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wealth Calculator - FinXHorizon</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700&family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wealth Calculator - FinXHorizon</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700&amp;family=Montserrat:wght@500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;family=Lora:ital,wght@1,400;1,500&amp;display=swap" rel="stylesheet"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
         :root {
             /* Core Theme Colors */
             --navy-blue: #0A192F;
@@ -291,119 +289,329 @@
             .author-name::before { display: none; }
         }
     </style>
-</head>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;display=swap" rel="stylesheet"/><style id="wealth-presentation">body {background:#faf7f2;background-attachment:scroll;color:#253947;font-family:'DM Sans',Arial,sans-serif;}
+.gradient-fade-overlay {display:none;}
+.wealth-hero {padding:78px 24px 135px;position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(120deg,#071223,#152c43);border-bottom:3px solid #bf9b67;}
+.wealth-hero::before {content:"";position:absolute;z-index:-1;right:-100px;top:-210px;width:480px;height:480px;border:1px solid #e6c99f26;border-radius:50%;box-shadow:0 0 0 80px #e6c99f09,0 0 0 160px #e6c99f05;}
+.title-sec {margin:0;}
+.title-sec h1 {font:500 clamp(50px,6vw,80px)/1.08 'Cormorant Garamond',Georgia,serif;letter-spacing:-1.5px;text-shadow:none;color:#fffaf2;}
+.title-sec h1 span {color:#dfbd8b;font-style:normal;}
+.title-sec p {font:400 14px/1.9 'DM Sans',Arial,sans-serif;color:#d2dbe1;text-shadow:none;max-width:660px;}
+.wealth-note-section {padding:0 28px;position:relative;isolation:isolate;background:linear-gradient(to bottom,#0a192f 0,#0a192f calc(50% - 15px),#faf7f2 calc(50% - 15px));}
+.wealth-note-section::before {content:"";position:absolute;z-index:-1;inset:0 0 calc(50% + 15px);background:radial-gradient(circle at 94% 0,transparent 0 140px,#e2d5be0a 141px 210px,#e2d5be07 211px 280px,transparent 281px);pointer-events:none;}
+.author-card-wrapper {box-sizing:border-box;max-width:1100px;width:100%;margin:0 auto -30px 0;transform:translateY(-30px);animation:wealth-note-in 3s cubic-bezier(.22,.61,.36,1) both;}
+.author-card-bg {box-sizing:border-box;background:#f4f1ea;padding:38px 44px 35px 235px;border:1px solid #d5c1a1;box-shadow:0 15px 35px #0003;border-radius:12px;}
+.author-image {box-sizing:content-box;left:40px;top:-75px;width:160px;height:160px;border:6px solid #c5a059;box-shadow:0 10px 25px #0003;}
+.author-image-quote {display:none;}
+.author-content h3 {font:600 34px/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:-.6px;margin-bottom:15px;}
+.author-message {font:italic 500 22px/1.6 'Cormorant Garamond',Georgia,serif;margin-top:0;}
+.author-content ul {font:400 12px/1.9 'DM Sans',Arial,sans-serif;margin-bottom:20px;}
+.author-name {font:700 10px/1.7 'DM Sans',Arial,sans-serif;letter-spacing:2px;color:#94733e;}
+.main-content {background:linear-gradient(to bottom,#faf7f2 0,transparent 950px),radial-gradient(ellipse at 95% 30%,#e7ddec66,transparent 50%),linear-gradient(135deg,#fbf8f3,#f4f0f6 60%,#f8f4ec);}
+.calc-container {box-sizing:border-box;max-width:1120px;margin:50px auto 85px;padding:0 28px;}
+.glass-panel,.result-panel {box-sizing:border-box;min-width:0;background:linear-gradient(145deg,#fffefb,#fbf9fc);padding:40px clamp(24px,4vw,48px);border:1px solid #e2d6c3;border-top:3px solid #c6a16f;border-radius:20px;box-shadow:0 23px 65px #0a192f0d;margin-bottom:30px;}
+.section-title {font:500 clamp(36px,4vw,49px)/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:-.7px;text-align:center;border-bottom:1px solid #e7ddce;padding-bottom:25px;margin-bottom:31px;}
+.wealth-kicker {display:block;text-align:center;color:#947348;font:700 9px/1.6 'DM Sans',Arial,sans-serif;letter-spacing:2px;margin-bottom:15px;}
+.settings-grid {gap:24px;}
+.input-group {min-width:0;}
+.input-group label {font:700 11px/1.7 'DM Sans',Arial,sans-serif;letter-spacing:.3px;color:#77664e;}
+.input-group input {box-sizing:border-box;min-width:0;width:100%;font:600 19px 'DM Sans',Arial,sans-serif;padding:15px;border:1px solid #ddd3c4;border-radius:11px;box-shadow:none;background:#fffefc;}
+.cf-header {gap:15px;flex-wrap:wrap;}
+.cf-header h3 {font:500 32px/1.2 'Cormorant Garamond',Georgia,serif;letter-spacing:-.4px;}
+.add-btn {font:700 11px 'DM Sans',Arial,sans-serif;letter-spacing:.3px;padding:13px 19px;background:#f5eddf;border-color:#c6a16f;color:#685334;}
+.add-btn:hover {color:#233948;background:#ead7b9;}
+.cf-row {grid-template-columns:1.2fr 1.25fr 1.45fr 38px;gap:12px;background:linear-gradient(125deg,#faf5ed,#f4eff8);border:1px solid #e4d9c8;border-left:3px solid #c6a16f;padding:17px;border-radius:13px;}
+.cf-row.withdraw-row {background:linear-gradient(125deg,#faf0ec,#f7eef5);border-left-color:#bc7f84;}
+.cf-row input,.cf-row select {box-sizing:border-box;min-width:0;width:100%;font:500 13px 'DM Sans',Arial,sans-serif;padding:13px 10px;background:#fffefc;border-color:#ded3c4;}
+.remove-btn {width:38px;height:40px;padding:8px;color:#9a7e7e;}
+.calc-btn-container {margin:33px 0 0;}
+.calc-btn {font:700 12px/1.5 'DM Sans',Arial,sans-serif;letter-spacing:.6px;padding:18px 30px;color:#173047;background:linear-gradient(130deg,#e6c99f,#d4b183);box-shadow:0 10px 25px #a3855d20;}
+.calc-btn:hover {background:#213b4e;color:#fffaf2;transform:translateY(-3px);box-shadow:0 15px 28px #0a192f15;}
+.glass-panel :focus-visible {outline:3px solid #c6a16f;outline-offset:3px;}
+.result-panel {border-bottom:1px solid #e2d6c3;}
+.result-panel h2 {font:500 43px/1.15 'Cormorant Garamond',Georgia,serif !important;}
+.result-grid {gap:15px;}
+.res-box {min-width:0;background:linear-gradient(135deg,#f9f1e4,#f1eaf6);border:1px solid #e3d6c3;padding:23px 16px;}
+.res-box:nth-child(2) {background:linear-gradient(135deg,#f8efeb,#f2e9ed);}
+.res-box:nth-child(3) {background:linear-gradient(135deg,#eef4e9,#e5eee8);}
+.res-box span {font:700 9px/1.8 'DM Sans',Arial,sans-serif;letter-spacing:.7px;color:#77664e;}
+.res-box strong {font:600 clamp(25px,3vw,37px)/1.4 'Cormorant Garamond',Georgia,serif;overflow-wrap:anywhere;}
+.final-val-box {padding:31px 22px;background:linear-gradient(120deg,#10263b,#203b49);border-color:#c6a16f77;box-shadow:0 14px 28px #0a192f10;}
+.final-val-box span {font:700 10px/1.8 'DM Sans',Arial,sans-serif;letter-spacing:1.8px;color:#dfc198;}
+.final-val-box strong {font:500 clamp(40px,5vw,66px)/1.3 'Cormorant Garamond',Georgia,serif;color:#fffaf2;overflow-wrap:anywhere;}
+.negative-warning {color:#ffc2bd;font-size:12px;line-height:1.8;}
+.wealth-disclaimer {padding:21px 25px;border:1px solid #e3d9ca;border-radius:12px;background:#f4efe7;color:#696b68;font:400 11px/1.9 'DM Sans',Arial,sans-serif;}
+.wealth-disclaimer strong {color:#806744;}
+@keyframes wealth-note-in {from {opacity:0;transform:translate(70px,-30px);}to {opacity:1;transform:translate(0,-30px);}}
+@media(max-width:1180px) {body .navbar {padding:15px 20px;}body .nav-links {display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0a192f;padding:20px 0;}body .nav-links.active {display:flex;}body .menu-toggle {display:block;}body .dropdown-content {position:relative;box-shadow:none;border:none;padding-left:20px;}}
+@media(max-width:850px) {.cf-row {grid-template-columns:1fr 1fr;}.cf-row .remove-btn {justify-self:end;}.settings-grid {grid-template-columns:1fr;}.author-card-bg {padding:105px 30px 30px;}.author-image {left:50%;top:-90px;transform:translateX(-50%);}.author-card-wrapper {text-align:center;}.author-name {justify-content:center;}}
+@media(max-width:600px) {.wealth-hero {padding:58px 24px 135px;}.title-sec h1 {font-size:54px;}.title-sec p {font-size:13px;}.wealth-note-section {padding-inline:18px;}.author-card-bg {padding:100px 24px 28px;}.author-message {font-size:20px;}.author-content h3 {font-size:32px;}.calc-container {padding:0 16px;margin:35px auto 65px;}.glass-panel,.result-panel {padding:28px 21px;}.cf-row {grid-template-columns:1fr;}.result-grid {grid-template-columns:1fr;}.calc-btn {width:100%;font-size:11px;padding:17px;}.section-title {font-size:37px;}.wealth-kicker {font-size:8px;}.wealth-disclaimer {padding:19px;}}
+@media(prefers-reduced-motion:reduce) {.author-card-wrapper,.cf-row {animation:none;}.main-content * {transition:none !important;}}
+
+.recurring-section {margin-top:32px;padding-top:29px;border-top:1px solid #e7ddce;}
+.plan-actions {display:flex;gap:10px;flex-wrap:wrap;}
+.add-sip {background:#e8f0e5;border-color:#9bb39b;color:#356146;}
+.add-swp {background:#f4e9e9;border-color:#c49a9b;color:#8b565c;}
+.recurring-intro {color:#75808a;font-size:12px;line-height:1.9;margin:0 0 21px;}
+.recurring-plan {background:linear-gradient(135deg,#f1f5ed,#faf7f1);padding:22px;border:1px solid #d6e0cf;border-left:3px solid #86a689;border-radius:14px;margin-bottom:16px;}
+.recurring-plan.plan-swp {background:linear-gradient(135deg,#faf0ec,#f5eef6);border-color:#e6d1d6;border-left-color:#bc8e99;}
+.plan-heading {display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:18px;}
+.plan-heading h4 {font:600 23px/1.2 'Cormorant Garamond',Georgia,serif;margin:0;color:#253c49;}
+.remove-plan {border:0;background:transparent;cursor:pointer;color:#94636b;font:600 11px 'DM Sans',Arial,sans-serif;}
+.plan-fields {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px;}
+.plan-fields label {display:flex;flex-direction:column;gap:8px;font:600 11px/1.5 'DM Sans',Arial,sans-serif;color:#6e6d63;min-width:0;}
+.plan-fields input,.plan-fields select {min-width:0;width:100%;box-sizing:border-box;padding:13px;background:#fffefb;border:1px solid #ddd3c4;border-radius:9px;color:#253c49;font:500 14px 'DM Sans',Arial,sans-serif;}
+.plan-help {font-size:10px;line-height:1.8;color:#7c8284;margin:16px 0 0;}
+@media(max-width:600px) {.plan-fields {grid-template-columns:1fr;}.recurring-plan {padding:20px 16px;}.plan-heading h4 {font-size:22px;}}
+
+/* Clear numerals for the final portfolio value. */
+.final-val-box strong {font-family:'DM Sans',Arial,sans-serif;font-weight:600;font-size:clamp(34px,4.5vw,58px);font-variant-numeric:tabular-nums;letter-spacing:-.5px;}
+
+.settings-grid {align-items:start;}
+.target-duration {margin-top:17px;padding:17px;background:linear-gradient(125deg,#f8f0e3,#f1ebf6);border:1px solid #e4d8c5;border-radius:12px;}
+.duration-label {display:block;color:#7e6c51;font:600 11px/1.6 'DM Sans',Arial,sans-serif;margin-bottom:12px;}
+.duration-fields {display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.duration-fields label {display:flex;flex-direction:column;gap:7px;margin:0;font-size:10px;}
+.duration-fields input {font-size:18px;padding:12px;}
+.duration-hint {font:400 10px/1.8 'DM Sans',Arial,sans-serif;color:#7a7b77;margin:12px 0 0;}
+
+.wealth-chart-section {text-align:left;margin-top:34px;padding:30px;background:linear-gradient(130deg,#faf4e8,#f2edf7);border:1px solid #e4d7c1;border-radius:17px;}
+.wealth-chart-kicker {font:700 9px/1.6 'DM Sans',Arial,sans-serif;color:#927348;letter-spacing:1.8px;}
+.wealth-chart-section h3 {font:500 34px/1.15 'Cormorant Garamond',Georgia,serif;color:#253c49;letter-spacing:-.5px;margin:12px 0;}
+.wealth-chart-intro {font:400 12px/1.9 'DM Sans',Arial,sans-serif;color:#74808a;margin:0 0 24px;max-width:690px;}
+.wealth-chart-scale {display:flex;justify-content:space-between;gap:10px;font:500 9px/1.5 'DM Sans',Arial,sans-serif;color:#8a8377;margin-bottom:21px;}
+.wealth-chart-scale span:nth-child(2) {text-align:center;}
+.wealth-chart-row {margin:0 0 23px;}
+.wealth-chart-label {display:flex;justify-content:space-between;align-items:baseline;gap:15px;margin-bottom:9px;}
+.wealth-chart-label>span {font:500 12px/1.6 'DM Sans',Arial,sans-serif;color:#596c77;}
+.wealth-chart-label strong {font:600 18px/1.5 'DM Sans',Arial,sans-serif;color:#253c49;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;}
+.wealth-chart-track {position:relative;height:22px;background:#ded8ce77;border-radius:5px;}
+.wealth-chart-zero {position:absolute;height:30px;top:-4px;width:1px;background:#8d8e8c;z-index:2;}
+.wealth-chart-bar {position:absolute;top:0;bottom:0;border-radius:4px;transition:left .5s ease,width .5s ease;}
+.bar-invested {background:linear-gradient(90deg,#b69765,#d7bb91);}
+.bar-withdrawn {background:linear-gradient(90deg,#a287ad,#c7afd0);}
+.bar-gained {background:linear-gradient(90deg,#5b8e74,#98bba1);}
+.bar-final {background:linear-gradient(90deg,#18384d,#4d7289);}
+.bar-loss {background:linear-gradient(90deg,#b06b72,#d49b9e);}
+.wealth-chart-equation {font:500 12px/1.9 'DM Sans',Arial,sans-serif;color:#5b6b74;border-top:1px solid #d9cdb9;padding-top:18px;margin:8px 0 0;}
+@media(max-width:600px) {.wealth-chart-section {padding:24px 18px;}.wealth-chart-section h3 {font-size:30px;}.wealth-chart-label>span {font-size:11px;}.wealth-chart-label strong {font-size:16px;}.wealth-chart-scale {font-size:8px;}}
+
+.bar-no-withdrawals {background:linear-gradient(90deg,#3d7d83,#86b6b1);}
+
+.cashflow-error {margin-top:24px;padding:19px 22px;border:1px solid #d9a7a8;border-left:4px solid #b76f77;border-radius:12px;background:#fbefec;color:#8b4149;font:500 13px/1.9 'DM Sans',Arial,sans-serif;}
+.cashflow-error[hidden] {display:none;}
+
+.yearly-cashflow-section {text-align:left;margin-top:27px;padding:30px;background:linear-gradient(135deg,#faf8f2,#edf2ef);border:1px solid #d8e0d6;border-radius:17px;}
+.yearly-cashflow-section h3 {font:500 34px/1.15 'Cormorant Garamond',Georgia,serif;color:#253c49;margin:12px 0;letter-spacing:-.5px;}
+.yearly-chart-legend {display:flex;gap:16px 23px;flex-wrap:wrap;margin:22px 0 13px;}
+.yearly-chart-legend span {display:inline-flex;align-items:center;gap:8px;font:500 10px/1.6 'DM Sans',Arial,sans-serif;color:#66777f;}
+.yearly-chart-legend span::before {content:"";width:12px;height:10px;border-radius:2px;background:#6c9a7b;}
+.yearly-chart-legend .legend-withdrawal::before {background:#bf8794;}
+.yearly-chart-legend .legend-balance::before {background:#b58c4f;height:3px;}
+.yearly-chart-scroll,.yearly-table-scroll {width:100%;overflow-x:auto;overscroll-behavior-x:contain;}
+.yearly-chart-scroll svg {display:block;max-width:none;font-family:'DM Sans',Arial,sans-serif;}
+.yearly-chart-help {font:400 10px/1.9 'DM Sans',Arial,sans-serif;color:#7c8381;margin:13px 0 20px;}
+.yearly-cashflow-table {border-top:1px solid #d9dccc;padding-top:17px;}
+.yearly-cashflow-table summary {cursor:pointer;font:600 12px/1.8 'DM Sans',Arial,sans-serif;color:#6c7757;}
+.yearly-table-scroll {margin-top:17px;}
+.yearly-table-scroll table {width:100%;min-width:750px;border-collapse:collapse;font:400 11px/1.6 'DM Sans',Arial,sans-serif;}
+.yearly-table-scroll caption {text-align:left;color:#718078;padding-bottom:13px;font-size:10px;}
+.yearly-table-scroll th,.yearly-table-scroll td {padding:13px 11px;border-bottom:1px solid #d9dfd4;text-align:right;white-space:nowrap;color:#4e646e;}
+.yearly-table-scroll thead th {font-size:9px;color:#8c7655;background:#f1ecdf;}
+.yearly-table-scroll th:first-child {text-align:left;}
+.yearly-table-scroll small {display:block;font-size:9px;font-weight:400;color:#88918b;}
+@media(max-width:600px) {.yearly-cashflow-section {padding:24px 18px;}.yearly-cashflow-section h3 {font-size:30px;}.yearly-chart-legend {gap:11px;}.yearly-chart-legend span {font-size:9px;}}
+
+.yearly-chart-legend .legend-net::before {height:3px;background:#997749;}
+.yearly-chart-legend .legend-profit::before {height:3px;background:#56886b;}
+.yearly-chart-legend .legend-market::before {height:3px;background:#345f89;}
+
+/* Keep the entire timeline visible without horizontal chart scrolling. */
+.yearly-chart-scroll {overflow:visible;}
+.yearly-chart-scroll svg {width:100%;max-width:100%;height:auto;}
+
+.yearly-cashflow-table summary {padding:15px 21px;min-height:48px;box-sizing:border-box;border:1px solid #c5ad87;border-radius:11px;background:linear-gradient(125deg,#f3e7d3,#ece6f3);color:#394e58;font-size:15px;font-weight:600;line-height:1.6;}
+</style></head>
 <body>
 
     {% include 'navbar.html' %}
 
     <div class="main-content">
-        <!-- 💥 Gradient Overlay for Fade-out effect 💥 -->
-        <div class="gradient-fade-overlay"></div>
-        
-        <div class="calc-container">
-            <!-- Title -->
-            <div class="title-sec">
-                <h1>Wealth <span>Calculator</span></h1>
-                <p>Track your past deposits, plan future withdrawals, and calculate your exact portfolio value at any specific date using daily compounding.</p>
-            </div>
-
-            <!-- Premium Asymmetrical Author Instruction Section -->
-            <div class="author-card-wrapper">
-                <img src="{{ url_for('static', filename='Aishik 3.png') }}" alt="Aishik Sarkar" class="author-image">
-                <div class="author-image-quote"></div> 
-                
-                <div class="author-card-bg">
-                    <div class="author-content">
-                        <h3>A Note Before We Begin</h3>
-                        <div class="author-message">
+<!-- 💥 Gradient Overlay for Fade-out effect 💥 -->
+<div class="gradient-fade-overlay"></div>
+<section class="wealth-hero"><div class="title-sec">
+<h1>Wealth <span>Calculator</span></h1>
+<p>Track your past deposits, plan future withdrawals, and calculate your exact portfolio value at any specific date using daily compounding.</p>
+</div></section><section class="wealth-note-section"><div class="author-card-wrapper">
+<img alt="Aishik Sarkar" class="author-image" src="{{ url_for('static', filename='Aishik Sarkar.png') }}"/>
+<div class="author-image-quote"></div>
+<div class="author-card-bg">
+<div class="author-content">
+<h3>A Note Before We Begin</h3>
+<div class="author-message">
                             "To build lasting wealth, you must understand your cash flows. Use this tool to see exactly how your money works for you over time. Here is a quick guide on how to use it:"
                         </div>
-                        <ul>
-                            <li><strong>Set Target:</strong> Choose your expected return rate and the future date you want to calculate your wealth for.</li>
-                            <li><strong>Deposits (+):</strong> Add the dates and amounts of any past or future investments.</li>
-                            <li><strong>Withdrawals (-):</strong> Add any planned cash withdrawals. The tool will auto-calculate the loss of compounding.</li>
-                        </ul>
-                        <div class="author-name">ঐশীক Sarkar</div>
-                    </div>
-                </div>
-            </div>
+<ul>
+<li><strong>Set Target:</strong> Choose your expected return rate and the future date you want to calculate your wealth for.</li>
+<li><strong>Deposits (+):</strong> Add the dates and amounts of any past or future investments.</li>
+<li><strong>Withdrawals (-):</strong> Enter the date and amount of any one-time withdrawal. The calculator reduces your projected balance from that date.</li>
+<li><strong>Add SIP:</strong> Set up regular investments by entering an amount, frequency and start date. You can also choose an end date. Each instalment is added on its scheduled date and earns the assumed return until the target date.</li>
+<li><strong>Add SWP:</strong> Set up regular withdrawals in the same way. Each withdrawal reduces the balance from its scheduled date, so the remaining money continues to earn the assumed return.</li>
+<li><strong>See the combined result:</strong> Your one-time entries, SIPs and SWPs are included together in Value at Target Date. Leave a plan’s end date blank to continue until the target date. These are planning entries; the calculator does not place investments or make withdrawals.</li>
+</ul>
+<div class="author-name">Aishik Sarkar</div>
+</div>
+</div>
+</div></section><div class="calc-container">
+<!-- Title -->
 
-            <!-- Light Glass Panel on Dark Background -->
-            <div class="glass-panel">
-                <h2 class="section-title">Configure Your Strategy</h2>
-                <!-- Global Settings -->
-                <div class="settings-grid">
-                    <div class="input-group">
-                        <label>Expected Annual Return (%)</label>
-                        <input type="number" id="returnRate" placeholder="e.g. 12" value="12" step="0.1">
-                    </div>
-                    <div class="input-group">
-                        <label>Target Date (Future/Retirement)</label>
-                        <input type="date" id="targetDate">
-                    </div>
-                </div>
+<!-- Premium Asymmetrical Author Instruction Section -->
 
-                <!-- Cash Flow Section -->
-                <div class="cf-header" style="margin-top: 40px;">
-                    <h3>Cash Flow Entries</h3>
-                    <button class="add-btn" onclick="addEntry()"><i class="fas fa-plus"></i> Add Entry</button>
-                </div>
-                
-                <div id="cashflow-container">
-                    <!-- Initial Row -->
-                    <div class="cf-row">
-                        <select class="cf-type" onchange="updateRowColor(this)">
-                            <option value="deposit">Deposit (+)</option>
-                            <option value="withdraw">Withdrawal (-)</option>
-                        </select>
-                        <input type="number" class="cf-amount" placeholder="Amount (₹)" min="0">
-                        <input type="date" class="cf-date">
-                        <button class="remove-btn" onclick="this.parentElement.remove()" title="Remove"><i class="fas fa-times"></i></button>
-                    </div>
-                </div>
-
-                <div class="calc-btn-container">
-                    <button class="calc-btn" onclick="calculateReturn()">Calculate Future Value</button>
-                </div>
-            </div>
-
-            <!-- Result Section - Light Box -->
-            <div class="result-panel" id="resultPanel">
-                <h2 style="font-family: 'Playfair Display', serif; color: var(--navy-blue); font-size: 2.2rem; margin-top: 0; margin-bottom: 30px;">Portfolio Summary</h2>
-                
-                <div class="result-grid">
-                    <div class="res-box">
-                        <span>Total Invested</span>
-                        <strong id="resInvested">₹0</strong>
-                    </div>
-                    <div class="res-box">
-                        <span>Total Withdrawn</span>
-                        <strong id="resWithdrawn">₹0</strong>
-                    </div>
-                    <div class="res-box">
-                        <span>Wealth Gained (Interest)</span>
-                        <strong id="resGained">₹0</strong>
-                    </div>
-                </div>
-
-                <div class="final-val-box">
-                    <span>Value at Target Date</span>
-                    <strong id="resFinalValue">₹0</strong>
-                    <div class="negative-warning" id="negWarning">Warning: Your withdrawals exceed your portfolio growth!</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Include Bottom Design -->
+<!-- Light Glass Panel on Dark Background -->
+<div class="glass-panel">
+<span class="wealth-kicker">YOUR MONEY. YOUR TIMELINE. YOUR PLAN.</span><h2 class="section-title">Configure Your Strategy</h2>
+<!-- Global Settings -->
+<div class="settings-grid">
+<div class="input-group">
+<label>Expected Annual Return (%)</label>
+<input id="returnRate" placeholder="e.g. 12" step="0.1" type="number" value="12"/>
+</div>
+<div class="input-group">
+<label>Target Date (Future/Retirement)</label>
+<input id="targetDate" oninput="syncDurationFromTarget()" type="date"/>
+<div class="target-duration">
+<span class="duration-label">Or choose how long from today</span>
+<div class="duration-fields">
+<label for="targetYears">Years<input id="targetYears" max="100" min="0" oninput="syncTargetFromDuration()" step="1" type="number" value="10"/></label>
+<label for="targetMonths">Months<input id="targetMonths" max="11" min="0" oninput="syncTargetFromDuration()" step="1" type="number" value="0"/></label>
+</div>
+<p aria-live="polite" class="duration-hint" id="durationHint">Duration is measured from today. Change either the date or the duration.</p>
+</div>
+</div>
+</div>
+<!-- Cash Flow Section -->
+<div class="cf-header" style="margin-top: 40px;">
+<h3>Cash Flow Entries</h3>
+<button class="add-btn" onclick="addEntry()"><i class="fas fa-plus"></i> Add Entry</button>
+</div>
+<div id="cashflow-container">
+<!-- Initial Row -->
+<div class="cf-row">
+<select class="cf-type" onchange="updateRowColor(this)">
+<option value="deposit">Deposit (+)</option>
+<option value="withdraw">Withdrawal (-)</option>
+</select>
+<input class="cf-amount" min="0" placeholder="Amount (₹)" type="number"/>
+<input class="cf-date" type="date"/>
+<button class="remove-btn" onclick="this.parentElement.remove();calculateReturn(true)" title="Remove"><i class="fas fa-times"></i></button>
+</div>
+</div>
+<div class="recurring-section">
+<div class="cf-header"><h3>Plan Your SIP &amp; SWP</h3><div class="plan-actions"><button class="add-btn add-sip" onclick="addRecurringPlan('sip')" type="button">+ Add SIP</button><button class="add-btn add-swp" onclick="addRecurringPlan('swp')" type="button">+ Add SWP</button></div></div>
+<p class="recurring-intro">Add regular investments or withdrawals. Each instalment is calculated from its own date and included in your portfolio value. Plans stop at the earlier of their end date and the target date.</p>
+<div id="recurring-plans"></div>
+</div>
+<div class="cashflow-error" hidden="" id="cashflowError" role="alert"></div>
+<div class="calc-btn-container">
+<button class="calc-btn" onclick="calculateReturn()">Calculate Future Value</button>
+</div>
+</div>
+<!-- Result Section - Light Box -->
+<div class="result-panel" id="resultPanel">
+<h2 style="font-family: 'Playfair Display', serif; color: var(--navy-blue); font-size: 2.2rem; margin-top: 0; margin-bottom: 30px;">Portfolio Summary</h2>
+<div class="result-grid">
+<div class="res-box">
+<span>Total Invested</span>
+<strong id="resInvested">₹0</strong>
+</div>
+<div class="res-box">
+<span>Total Withdrawn</span>
+<strong id="resWithdrawn">₹0</strong>
+</div>
+<div class="res-box">
+<span>Wealth Gained (Interest)</span>
+<strong id="resGained">₹0</strong>
+</div>
+</div>
+<div class="final-val-box">
+<span>Value at Target Date</span>
+<strong id="resFinalValue">₹0</strong>
+<div class="negative-warning" id="negWarning">Warning: Your withdrawals exceed your portfolio growth!</div>
+</div>
+<section aria-labelledby="wealthChartTitle" class="wealth-chart-section">
+<span class="wealth-chart-kicker">YOUR WEALTH AT A GLANCE</span>
+<h3 id="wealthChartTitle">See How Your Money Adds Up</h3>
+<p class="wealth-chart-intro">Compare your contributions, withdrawals, investment gain and projected final value. The extra bar shows the value at the same target date if you made the same deposits and SIPs but took no withdrawals or SWPs. All five bars use the same rupee scale. Negative amounts extend to the left of zero.</p>
+<div aria-live="polite" class="wealth-chart" id="wealthChart"></div>
+<p class="wealth-chart-equation" id="wealthChartEquation"></p>
+</section>
+<section aria-labelledby="yearlyCashflowTitle" class="yearly-cashflow-section">
+<span class="wealth-chart-kicker">YOUR JOURNEY, YEAR BY YEAR</span>
+<h3 id="yearlyCashflowTitle">Cash Flow &amp; Portfolio Growth</h3>
+<p class="wealth-chart-intro">Follow three lines: your net cash flow, total investment profit and portfolio value. Net cash flow is the total amount deposited minus the total amount withdrawn so far. Each point shows the balance at the end of that calendar year; the last point stops on your target date. The first and last years may be partial years.</p>
+<div class="yearly-chart-legend"><span class="legend-net">Net Cash Flow</span><span class="legend-profit">Total Profit</span><span class="legend-market">Portfolio Value</span></div>
+<div aria-label="Yearly chart showing the complete timeline." class="yearly-chart-scroll" id="yearlyCashflowGraph" role="region" tabindex="0"></div>
+<p class="yearly-chart-help">All three lines use the same rupee scale. Deposits and SIPs increase net cash flow; withdrawals and SWPs reduce it. Total Profit = Portfolio Value − Net Cash Flow. These are year-end snapshots; movements within a year are summarised in its totals. Net cash flow can be negative if withdrawals exceed contributions, even while the portfolio remains funded. Hover over a point for its amount or open the table below. The complete timeline fits within this chart; year labels are spaced out for longer plans.</p>
+<details class="yearly-cashflow-table"><summary>View the yearly breakdown</summary><div class="yearly-table-scroll"><table><caption>Yearly cash flow and portfolio balances</caption><thead><tr><th scope="col">Year / period end</th><th scope="col">Deposits / SIP this year</th><th scope="col">Withdrawals / SWP this year</th><th scope="col">Net Cash Flow to date</th><th scope="col">Total Profit to date</th><th scope="col">Portfolio Value</th></tr></thead><tbody id="yearlyCashflowRows"></tbody></table></div></details>
+</section>
+</div>
+<p class="wealth-disclaimer">* Disclaimer: This calculator is an illustration. It assumes a constant annual rate compounded daily using 365 days per year. Each deposit adds to the projected balance, and each withdrawal reduces it from its date. Actual investment returns vary and are not guaranteed. The calculation does not include taxes, fees or inflation. Each withdrawal or SWP is checked against the available balance on its date. A plan is rejected if funds are insufficient; later contributions cannot cover an earlier shortfall. Deposits and SIPs on the same date are credited before withdrawals.</p></div>
+</div>
+<!-- Include Bottom Design -->
     {% include 'bottom_design.html' %}
 
     <script>
+function planningToday() {
+    const now = new Date();
+    return new Date(now.getFullYear(),now.getMonth(),now.getDate());
+}
+function calendarTarget(base, months) {
+    const first = new Date(base.getFullYear(),base.getMonth()+months,1);
+    const last = new Date(first.getFullYear(),first.getMonth()+1,0).getDate();
+    return new Date(first.getFullYear(),first.getMonth(),Math.min(base.getDate(),last));
+}
+function dateInputText(date) {
+    return String(date.getFullYear()).padStart(4,'0')+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');
+}
+function syncTargetFromDuration() {
+    const yearsInput=document.getElementById('targetYears');
+    const monthsInput=document.getElementById('targetMonths');
+    const years=Number(yearsInput.value || 0), months=Number(monthsInput.value || 0);
+    const hint=document.getElementById('durationHint');
+    if ((yearsInput.value==='' && monthsInput.value==='') || !Number.isInteger(years) || !Number.isInteger(months) || years<0 || years>100 || months<0 || months>11) {
+        document.getElementById('targetDate').value='';
+        hint.textContent='Enter 0–100 years and 0–11 months to set your target date.';
+        return;
+    }
+    document.getElementById('targetDate').value=dateInputText(calendarTarget(planningToday(),years*12+months));
+    hint.textContent='Duration is measured from today. The target date updates automatically.';
+}
+function syncDurationFromTarget() {
+    const text=document.getElementById('targetDate').value;
+    const years=document.getElementById('targetYears'),months=document.getElementById('targetMonths');
+    const hint=document.getElementById('durationHint');
+    const parts=text.split('-').map(Number);
+    const target=new Date(parts[0],parts[1]-1,parts[2]);
+    const today=planningToday();
+    if (!text || !Number.isFinite(target.getTime()) || target<today) {
+        years.value='';months.value='';
+        hint.textContent=text?'This date is before today. Select a future date to show a duration.':'Choose a target date or enter a duration below.';
+        return;
+    }
+    let count=(target.getFullYear()-today.getFullYear())*12+target.getMonth()-today.getMonth();
+    if (calendarTarget(today,count)>target) count--;
+    const anchor=calendarTarget(today,count);
+    const days=Math.round((Date.UTC(target.getFullYear(),target.getMonth(),target.getDate())-Date.UTC(anchor.getFullYear(),anchor.getMonth(),anchor.getDate()))/86400000);
+    years.value=String(Math.floor(count/12));months.value=String(count%12);
+    hint.textContent=days ? 'From today: '+years.value+' years, '+months.value+' months and '+days+' additional '+(days===1?'day':'days')+'. Your exact selected date is preserved.' : 'Duration is measured from today. Change either the date or the duration.';
+}
+
         // Set default target date to 10 years from today
         window.onload = function() {
-            let today = new Date();
-            let target = new Date(today.setFullYear(today.getFullYear() + 10));
-            document.getElementById('targetDate').valueAsDate = target;
+            document.getElementById('targetDate').value = dateInputText(calendarTarget(planningToday(),120));
+            syncDurationFromTarget();
+            document.querySelector('.glass-panel').addEventListener('input', () => calculateReturn(true));
+            document.querySelector('.glass-panel').addEventListener('change', () => calculateReturn(true));
         };
 
         function addEntry() {
@@ -417,7 +625,7 @@
                 </select>
                 <input type="number" class="cf-amount" placeholder="Amount (₹)" min="0">
                 <input type="date" class="cf-date">
-                <button class="remove-btn" onclick="this.parentElement.remove()" title="Remove"><i class="fas fa-times"></i></button>
+                <button class="remove-btn" onclick="this.parentElement.remove();calculateReturn(true)" title="Remove"><i class="fas fa-times"></i></button>
             `;
             container.appendChild(row);
         }
@@ -437,5 +645,221 @@
             maximumFractionDigits: 0
         });
 
-        function calculateReturn() {
-            const rateInput =
+        let recurringPlanId = 0;
+function addRecurringPlan(kind) {
+    const id = ++recurringPlanId;
+    const isSWP = kind === 'swp';
+    const today = new Date();
+    const start = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+    const row = document.createElement('div');
+    row.className = 'recurring-plan ' + (isSWP ? 'plan-swp' : 'plan-sip');
+    row.dataset.kind = kind;
+    row.innerHTML = `
+        <div class="plan-heading"><h4>${isSWP ? 'SWP · Regular withdrawals' : 'SIP · Regular investments'}</h4>
+        <button type="button" class="remove-plan" aria-label="Remove ${isSWP ? 'SWP' : 'SIP'} plan" onclick="this.closest('.recurring-plan').remove();calculateReturn(true)">Remove ×</button></div>
+        <div class="plan-fields">
+         <label for="plan-amount-${id}">Amount per instalment (₹)<input id="plan-amount-${id}" class="plan-amount" type="number" min="1" step="500" value="5000"></label>
+         <label for="plan-frequency-${id}">Frequency<select id="plan-frequency-${id}" class="plan-frequency"><option value="1">Monthly</option><option value="3">Quarterly</option><option value="6">Semi-Annually</option><option value="12">Yearly</option></select></label>
+         <label for="plan-start-${id}">Start date<input id="plan-start-${id}" class="plan-start" type="date" value="${start}"></label>
+         <label for="plan-end-${id}">End date (optional)<input id="plan-end-${id}" class="plan-end" type="date"></label>
+        </div>
+        <p class="plan-help">The first ${isSWP ? 'withdrawal' : 'investment'} is on the start date. Leave the end date blank to continue until the target date. Dates on the 29th–31st move to the last available day in shorter months.</p>`;
+    document.getElementById('recurring-plans').appendChild(row);
+    calculateReturn(true);
+}
+
+// Keep calendar dates anchored to the original day, including leap years.
+function expandRecurringPlan(amount, startText, endText, interval, targetDay) {
+    const dayOf = text => Date.parse(text + 'T00:00:00Z') / 86400000;
+    const startDay = dayOf(startText);
+    const endDay = endText ? dayOf(endText) : targetDay;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(startText) || !Number.isFinite(startDay) || !Number.isFinite(endDay) || !(amount > 0) || !Number.isFinite(amount) || ![1,3,6,12].includes(interval)) throw new Error('Please complete each SIP/SWP plan with a positive amount and valid dates.');
+    if (endDay < startDay) throw new Error('A SIP/SWP end date cannot be earlier than its start date.');
+    if (startDay > targetDay) throw new Error('A SIP/SWP start date must be on or before the target date.');
+    const stop = Math.min(endDay, targetDay);
+    const base = new Date(startDay * 86400000);
+    const dates = [];
+    for (let index=0; index<12000; index++) {
+        const first = new Date(Date.UTC(base.getUTCFullYear(), base.getUTCMonth()+index*interval, 1));
+        const lastDay = new Date(Date.UTC(first.getUTCFullYear(),first.getUTCMonth()+1,0)).getUTCDate();
+        const day = Date.UTC(first.getUTCFullYear(),first.getUTCMonth(),Math.min(base.getUTCDate(),lastDay))/86400000;
+        if(day > stop) return dates;
+        dates.push(day);
+    }
+    throw new Error('This plan creates too many instalments. Please shorten its duration.');
+}
+
+function buildYearlyCashflow(entries, targetDay, dailyFactor) {
+    const firstYear = new Date(entries[0].day*86400000).getUTCFullYear();
+    const finalYear = new Date(targetDay*86400000).getUTCFullYear();
+    let cursor=0, balance=0, netCashflow=0, previousDay=entries[0].day;
+    const years=[];
+    for(let year=firstYear;year<=finalYear;year++) {
+        const endDay=Math.min(Date.parse(String(year).padStart(4,'0')+'-12-31T00:00:00Z')/86400000,targetDay);
+        const opening=balance;
+        let deposits=0,withdrawals=0,withdrawalCount=0;
+        while(cursor<entries.length && entries[cursor].day<=endDay) {
+            const entry=entries[cursor++];
+            balance*=Math.pow(dailyFactor,entry.day-previousDay);
+            previousDay=entry.day;
+            if(entry.type==='withdraw') {balance=Math.max(0,balance-entry.amount);withdrawals+=entry.amount;withdrawalCount++;}
+            else {balance+=entry.amount;deposits+=entry.amount;}
+        }
+        balance*=Math.pow(dailyFactor,endDay-previousDay);
+        previousDay=endDay;
+        netCashflow += deposits-withdrawals;
+        years.push({netCashflow,totalProfit:balance-netCashflow,year,opening,deposits,withdrawals,withdrawalCount,gain:balance-opening-deposits+withdrawals,closing:balance,endDay});
+    }
+    return years;
+}
+
+function renderYearlyCashflow(years) {
+    const width=900,height=380;
+    const left=85,right=30,top=30,bottom=55;
+    const plotW=width-left-right,plotH=height-top-bottom;
+    const series=[
+        {key:'netCashflow',label:'Net Cash Flow',color:'#997749'},
+        {key:'totalProfit',label:'Total Profit',color:'#56886b'},
+        {key:'closing',label:'Portfolio Value',color:'#345f89'}
+    ];
+    const values=years.flatMap(item=>series.map(line=>item[line.key]));
+    const min=Math.min(0,...values)*1.12,max=Math.max(1,...values)*1.12;
+    const y=value=>top+(max-value)/(max-min)*plotH;
+    const x=i=>left+(years.length===1?plotW/2:i*plotW/(years.length-1));
+    const compact=value=>{
+        const sign=value<0?'-':'';value=Math.abs(value);
+        return sign+'₹'+(value>=10000000?(value/10000000).toFixed(1)+'Cr':value>=100000?(value/100000).toFixed(1)+'L':value>=1000?(value/1000).toFixed(0)+'k':Math.round(value));
+    };
+    let svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="yearlySvgTitle yearlySvgDesc"><title id="yearlySvgTitle">Net cash flow, total profit and portfolio value by year</title><desc id="yearlySvgDesc">Three separate lines share the same rupee scale. Net cash flow is cumulative deposits less withdrawals. Total profit equals portfolio value minus net cash flow. Points show year-end figures, with the last point on the target date. Exact values are in the table below.</desc>`;
+    for(let tick=0;tick<=4;tick++) {
+        const amount=min+(max-min)*tick/4,pos=y(amount);
+        svg+=`<line x1="${left}" y1="${pos}" x2="${width-right}" y2="${pos}" stroke="#ded8cb" stroke-dasharray="3 5"/><text x="${left-12}" y="${pos+4}" text-anchor="end" fill="#7d817e" font-size="11">${compact(amount)}</text>`;
+    }
+    svg+=`<line x1="${left}" y1="${y(0)}" x2="${width-right}" y2="${y(0)}" stroke="#aaa79e"/>`;
+    series.forEach((line,index)=>{
+        const dash=index===0?'stroke-dasharray="8 5"':index===1?'stroke-dasharray="3 4"':'';
+        svg+=`<polyline class="yearly-value-line" points="${years.map((item,i)=>x(i)+','+y(item[line.key])).join(' ')}" fill="none" stroke="${line.color}" stroke-width="${index===2?3:2.5}" ${dash}/>`;
+        years.forEach((item,i)=>{
+            const date=new Date(item.endDay*86400000).toLocaleDateString('en-GB',{timeZone:'UTC'});
+            svg+=`<circle cx="${x(i)}" cy="${y(item[line.key])}" r="${index===2?4:3}" fill="${line.color}" stroke="#fffaf2" stroke-width="1"><title>${date} · ${line.label}: ${formatter.format(item[line.key])}</title></circle>`;
+        });
+    });
+    years.forEach((item,i)=>{
+        if(years.length<=8||i%Math.ceil((years.length-1)/7)===0||i===years.length-1)svg+=`<text x="${x(i)}" y="${height-22}" text-anchor="middle" fill="#63727c" font-size="11">${item.year}</text>`;
+    });
+    document.getElementById('yearlyCashflowGraph').innerHTML=svg+'</svg>';
+    document.getElementById('yearlyCashflowRows').innerHTML=years.map(item=>{
+        const date=new Date(item.endDay*86400000).toLocaleDateString('en-GB',{timeZone:'UTC'});
+        return `<tr><th scope="row">${item.year}<small>As of ${date}</small></th><td>${formatter.format(item.deposits)}</td><td>${formatter.format(item.withdrawals)}</td><td>${formatter.format(item.netCashflow)}</td><td>${formatter.format(item.totalProfit)}</td><td><strong>${formatter.format(item.closing)}</strong></td></tr>`;
+    }).join('');
+}
+
+function updateWealthChart(invested, withdrawn, gained, finalValue, withoutWithdrawals = finalValue) {
+    const items = [
+        {label:'Total Invested',value:invested,color:'invested'},
+        {label:'Total Withdrawn',value:withdrawn,color:'withdrawn'},
+        {label:'Wealth Gained (Interest)',value:gained,color:gained<0?'loss':'gained'},
+        {label:'Value at Target Date',value:finalValue,color:finalValue<0?'loss':'final'},
+        {label:'Value Without Withdrawals',value:withoutWithdrawals,color:'no-withdrawals'}
+    ];
+    const min = Math.min(0,...items.map(item=>item.value));
+    const max = Math.max(0,...items.map(item=>item.value));
+    const range = max-min || 1;
+    const zero = (0-min)/range*100;
+    const rows = items.map(item=>{
+        const point = (item.value-min)/range*100;
+        return `<div class="wealth-chart-row"><div class="wealth-chart-label"><span>${item.label}</span><strong>${formatter.format(item.value)}</strong></div><div class="wealth-chart-track" aria-hidden="true"><span class="wealth-chart-zero" style="left:${zero}%"></span><span class="wealth-chart-bar bar-${item.color}" style="left:${Math.min(zero,point)}%;width:${Math.abs(point-zero)}%"></span></div></div>`;
+    }).join('');
+    document.getElementById('wealthChart').innerHTML = `<div class="wealth-chart-scale"><span>${formatter.format(min)}</span><span>Same scale for all five bars</span><span>${formatter.format(max)}</span></div>`+rows;
+    document.getElementById('wealthChartEquation').textContent = 'Final value = '+formatter.format(invested)+' invested − '+formatter.format(withdrawn)+' withdrawn '+(gained<0?'− '+formatter.format(Math.abs(gained))+' investment loss':'+ '+formatter.format(gained)+' investment gain')+' = '+formatter.format(finalValue)+'.';
+}
+
+        function calculateReturn(auto = false) {
+            const errorBox = document.getElementById('cashflowError');
+            errorBox.hidden = true;
+            errorBox.textContent = '';
+            const reportError = message => {
+                document.getElementById('resultPanel').style.display = 'none';
+                errorBox.textContent = message;
+                errorBox.hidden = false;
+                if (!auto) alert(message);
+            };
+            const rateInput = document.getElementById('returnRate').value;
+            const targetInput = document.getElementById('targetDate').value;
+            const rate = Number(rateInput);
+            const parseDay = value => {
+                if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return NaN;
+                return Date.parse(value + 'T00:00:00Z') / 86400000;
+            };
+            const targetDay = parseDay(targetInput);
+            if (rateInput.trim() === '' || !Number.isFinite(rate) || 1 + rate / 36500 <= 0 || !Number.isFinite(targetDay)) {
+                reportError('Please enter a valid annual return and target date.'); return;
+            }
+            const entries = [];
+            for (const row of document.querySelectorAll('.cf-row')) {
+                const amountText = row.querySelector('.cf-amount').value;
+                const dateText = row.querySelector('.cf-date').value;
+                if (amountText === '' && dateText === '') continue;
+                const amount = Number(amountText);
+                const day = parseDay(dateText);
+                if (amountText.trim() === '' || !Number.isFinite(amount) || amount < 0 || !Number.isFinite(day)) {
+                    reportError('Please enter a valid amount and date for every cash flow entry.'); return;
+                }
+                if (day > targetDay) { reportError('Cash flow dates must be on or before the target date.'); return; }
+                entries.push({amount, day, type:row.querySelector('.cf-type').value});
+            }
+            try {
+                for (const plan of document.querySelectorAll('.recurring-plan')) {
+                    const amount = Number(plan.querySelector('.plan-amount').value);
+                    const interval = Number(plan.querySelector('.plan-frequency').value);
+                    const dates = expandRecurringPlan(amount, plan.querySelector('.plan-start').value, plan.querySelector('.plan-end').value, interval, targetDay);
+                    for (const day of dates) entries.push({amount,day,type:plan.dataset.kind === 'swp' ? 'withdraw' : 'deposit'});
+                }
+            } catch (error) { reportError(error.message); return; }
+            if (!entries.length) { reportError('Please add at least one cash flow entry.'); return; }
+            // Same-day deposits are credited before withdrawals; future deposits
+            // never fund earlier withdrawals.
+            entries.sort((a,b) => a.day - b.day || (a.type === 'withdraw' ? 1 : 0) - (b.type === 'withdraw' ? 1 : 0));
+            let invested = 0, withdrawn = 0, value = 0, withoutWithdrawals = 0;
+            const dailyFactor = 1 + rate / 36500;
+            let lastDay = entries[0].day;
+            const preciseMoney = new Intl.NumberFormat('en-IN', {style:'currency',currency:'INR',maximumFractionDigits:2});
+            for (const entry of entries) {
+                const growth = Math.pow(dailyFactor, entry.day - lastDay);
+                value *= growth;
+                withoutWithdrawals *= growth;
+                lastDay = entry.day;
+                if (!Number.isFinite(value) || !Number.isFinite(withoutWithdrawals)) {
+                    reportError('These inputs produce a value that is too large. Please reduce the rate, amount or duration.'); return;
+                }
+                if (entry.type === 'withdraw') {
+                    if (entry.amount > value + 0.0000001) {
+                        const date = new Date(entry.day * 86400000).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
+                        reportError('Insufficient available funds on ' + date + '. Available balance (including returns): ' + preciseMoney.format(value) + '. Requested withdrawal/SWP: ' + preciseMoney.format(entry.amount) + '. Shortfall: ' + preciseMoney.format(entry.amount - value) + '. Please reduce the withdrawal, move it to a later date, or add funds on or before this date. Future SIPs and deposits cannot fund this withdrawal.');
+                        return;
+                    }
+                    value = Math.max(0, value - entry.amount);
+                    withdrawn += entry.amount;
+                } else {
+                    value += entry.amount;
+                    withoutWithdrawals += entry.amount;
+                    invested += entry.amount;
+                }
+            }
+            const remainingGrowth = Math.pow(dailyFactor, targetDay - lastDay);
+            value *= remainingGrowth;
+            withoutWithdrawals *= remainingGrowth;
+            if (!Number.isFinite(value) || !Number.isFinite(withoutWithdrawals)) { reportError('These inputs produce a value that is too large. Please reduce the rate, amount or duration.'); return; }
+            document.getElementById('resInvested').textContent = formatter.format(invested);
+            document.getElementById('resWithdrawn').textContent = formatter.format(withdrawn);
+            document.getElementById('resGained').textContent = formatter.format(value - invested + withdrawn);
+            document.getElementById('resFinalValue').textContent = formatter.format(value);
+            updateWealthChart(invested, withdrawn, value - invested + withdrawn, value, withoutWithdrawals);
+            renderYearlyCashflow(buildYearlyCashflow(entries, targetDay, dailyFactor));
+            document.getElementById('negWarning').style.display = 'none';
+            document.getElementById('resultPanel').style.display = 'block';
+            if (!auto) document.getElementById('resultPanel').scrollIntoView({behavior:'smooth',block:'start'});
+        }
+    </script>
+</body>
+</html>
