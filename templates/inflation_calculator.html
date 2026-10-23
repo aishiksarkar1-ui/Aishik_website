@@ -1,14 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inflation Impact Calculator | Finance With Aishik</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inflation Impact Calculator | Finance With Aishik</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
         :root { --navy-blue: #0A192F; --gold: #C5A059; --light-cream: #FDFBF7; --text-light: #E0E0E0; --teal: #2A9D8F; }
         body { margin: 0; padding: 0; font-family: 'Lato', sans-serif; background-color: var(--navy-blue); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
 
@@ -58,68 +57,93 @@
             .future-value { font-size: 42px; }
         }
     </style>
-</head>
-<body>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;display=swap" rel="stylesheet"/><style id="inflation-presentation">body {background:#faf7f2;background-attachment:scroll;color:#253947;font-family:'DM Sans',Arial,sans-serif;}
+.pension-hero {padding:78px 24px 135px;position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(120deg,#071223,#152c43);border-bottom:3px solid #bf9b67;}
+.pension-hero::before {content:"";position:absolute;z-index:-1;right:-100px;top:-210px;width:480px;height:480px;border:1px solid #e6c99f26;border-radius:50%;box-shadow:0 0 0 80px #e6c99f09,0 0 0 160px #e6c99f05;}
+.title-sec {margin:0;}
+.title-sec h1 {font:500 clamp(47px,5.8vw,77px)/1.08 'Cormorant Garamond',Georgia,serif;letter-spacing:-1.5px;color:#fffaf2;text-shadow:none;}
+.title-sec h1 span {color:#dfbd8b;font-style:normal;}
+.title-sec p {font:400 14px/1.9 'DM Sans',Arial,sans-serif;color:#d2dbe1;max-width:690px;text-shadow:none;}
+.main-content {background:linear-gradient(to bottom,#faf7f2,transparent 1100px),radial-gradient(ellipse at 95% 30%,#e7ddec66,transparent 50%),linear-gradient(135deg,#fbf8f3,#f4f0f6 60%,#f8f4ec);}
+.pension-note-section {padding:0 28px;position:relative;isolation:isolate;overflow-x:clip;background:linear-gradient(to bottom,#0a192f 0,#0a192f calc(50% - 15px),#faf7f2 calc(50% - 15px));}
+.pension-note-section::before {content:"";position:absolute;z-index:-1;inset:0 0 calc(50% + 15px);background:radial-gradient(circle at 94% 0,transparent 0 140px,#e2d5be0a 141px 210px,#e2d5be07 211px 280px,transparent 281px);pointer-events:none;}
+.pension-note-box {position:relative;box-sizing:border-box;max-width:1100px;display:flex;align-items:center;gap:36px;margin:0 auto -30px 0;padding:36px 43px;background:#f4f1ea;border:1px solid #d5c1a1;border-radius:12px;box-shadow:0 15px 35px #0003;transform:translateY(-30px);animation:pension-note-in 3s cubic-bezier(.22,.61,.36,1) both;}
+.pension-note-portrait {position:relative;top:-40px;flex-shrink:0;margin-top:-200px;}
+.pension-note-portrait img {display:block;width:160px;height:160px;object-fit:cover;border:6px solid #c5a059;border-radius:50%;box-shadow:0 10px 25px #0003;}
+.pension-note-copy {min-width:0;}
+.pension-note-copy h2 {font:600 34px/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:-.6px;color:#0a192f;margin:0 0 13px;}
+.pension-note-copy p {font:italic 500 22px/1.65 'Cormorant Garamond',Georgia,serif;color:#344652;margin:0 0 16px;}
+.pension-note-author {font:700 11px/1.6 'DM Sans',Arial,sans-serif;color:#94733e;letter-spacing:2px;text-transform:uppercase;}
 
-    <!-- ব্যাকগ্রাউন্ড গ্লোয়িং ইফেক্ট -->
-    <div class="bg-orb-1"></div>
-    <div class="bg-orb-2"></div>
+.bg-orb-1,.bg-orb-2{display:none}.page-header{padding:80px 24px 130px;margin:0;background:linear-gradient(120deg,#071223,#152c43);overflow:hidden;isolation:isolate;z-index:0}.page-header::before{content:'';position:absolute;right:-100px;top:-230px;width:530px;height:530px;border:1px solid #e6c99f26;border-radius:50%;box-shadow:0 0 0 80px #e6c99f09,0 0 0 160px #e6c99f05;z-index:-1}.page-header h1{font:500 clamp(46px,6vw,76px)/1.1 'Cormorant Garamond',Georgia,serif;letter-spacing:-1.5px;color:#e4c599;text-shadow:none;margin:0 0 20px}.page-header p{font:400 14px/1.9 'DM Sans',Arial,sans-serif;color:#ccd6df;max-width:650px}.calc-wrapper{padding:52px 22px 80px;background:linear-gradient(#faf7f2,transparent 650px),radial-gradient(ellipse at 100% 65%,#e9e0ee88,transparent 60%),#faf7f2}.glass-card{box-sizing:border-box;max-width:950px;padding:42px;background:linear-gradient(135deg,#fffefa,#f9f6fc);border:1px solid #dfd3c1;border-top:3px solid #c6a16f;box-shadow:0 18px 55px #142b4010;backdrop-filter:none;z-index:1}.inflation-intro{text-align:center;margin-bottom:35px}.inflation-intro small{color:#977643;letter-spacing:2px;font-size:10px;font-weight:700}.inflation-intro h2{font:500 clamp(33px,4vw,47px)/1.15 'Cormorant Garamond',Georgia,serif;color:#203b4b;margin:13px 0}.inflation-intro p{color:#7a8186;font-size:13px;margin:0}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.input-box{min-width:0}.input-box label{font:700 11px/1.8 'DM Sans',Arial,sans-serif;color:#806c50;letter-spacing:.7px}.sleek-input{background:#fffefc;border-color:#ddd2c1;box-shadow:0 4px 12px #152d4004}.sleek-input input{min-width:0;font:600 23px 'DM Sans',Arial,sans-serif;color:#203b4b;padding:17px 0;font-variant-numeric:tabular-nums}.sleek-input i,.sleek-input span{color:#9c835b}.sleek-input:focus-within,.center-box .sleek-input:focus-within{background:#fffdf8;border-color:#bd955c;box-shadow:0 0 0 3px #c5a05924}.center-box{padding:25px 22px;margin-bottom:30px;border:1px solid #e3d4ba;border-radius:15px;background:linear-gradient(120deg,#faf0df,#f0eaf5)}.center-box label{color:#806c50!important}.center-box .sleek-input{border-color:#d4bc97;background:#fffdfa}.result-box{background:linear-gradient(125deg,#10263b,#203b49);padding:38px 25px;border:1px solid #c6a16f88;box-shadow:0 15px 30px #142b4015,inset 0 1px #ffffff12}.result-box h3{font:600 11px/1.8 'DM Sans',Arial,sans-serif;color:#d7bd98;letter-spacing:2px}.future-value{font:600 clamp(34px,5.8vw,60px)/1.4 'DM Sans',Arial,sans-serif;color:#fff7e8;background:none;-webkit-text-fill-color:initial;text-shadow:none;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.erosion-text{font:400 13px/1.9 'DM Sans',Arial,sans-serif;background:#e9cba615;border-color:#dbc29e44;color:#e8d3b5;border-radius:10px;padding:12px 20px}.erosion-text strong{color:#f5dbad;font-size:17px}.inflation-disclaimer{font:400 11px/1.9 'DM Sans',Arial,sans-serif;color:#7b7d79;background:#f3eee5;padding:19px 22px;border:1px solid #e3d9ca;border-radius:11px;margin:25px 0 0}
+@keyframes pension-note-in{from{opacity:0;transform:translate(70px,-30px)}to{opacity:1;transform:translate(0,-30px)}}
+@media(max-width:992px){.pension-note-box{flex-direction:column;text-align:center;gap:20px;padding:30px 24px}.pension-note-portrait{margin-top:-80px}}
+@media(max-width:650px){.page-header{padding:55px 20px 130px}.pension-note-section{padding-inline:18px}.pension-note-copy p{font-size:20px}.pension-note-copy h2{font-size:32px}.calc-wrapper{padding:35px 16px 60px}.glass-card{padding:28px 20px}.grid-2{grid-template-columns:1fr;gap:22px}.center-box{padding:22px 15px}.erosion-text{padding:12px;font-size:12px}.result-box{padding:30px 17px}}
+@media(prefers-reduced-motion:reduce){.pension-note-box{animation:none}}
+</style></head>
+<body>
+<!-- ব্যাকগ্রাউন্ড গ্লোয়িং ইফেক্ট -->
+<div class="bg-orb-1"></div>
+<div class="bg-orb-2"></div>
 
     {% include 'navbar.html' %}
 
     <div class="page-header">
-        <h1>The Silent Wealth Killer</h1>
-        <p>Inflation silently reduces your purchasing power. Calculate exactly how much a goal will cost in the future compared to today.</p>
-    </div>
-
-    <div class="calc-wrapper">
-        <div class="glass-card">
-            
-            <!-- Box 1 & 2: Present Value and Duration -->
-            <div class="grid-2">
-                <div class="input-box">
-                    <label>Current Cost of Goal</label>
-                    <div class="sleek-input">
-                        <i class="fa-solid fa-wallet"></i>
-                        <input type="number" id="inf_pv" value="1000000" min="0" step="50000" oninput="calculateInflation()">
-                        <span>₹</span>
-                    </div>
+<h1>The Silent Wealth Killer</h1>
+<p>Inflation silently reduces your purchasing power. Calculate exactly how much a goal will cost in the future compared to today.</p>
+</div><section aria-labelledby="pension-note-title" class="pension-note-section">
+<div class="pension-note-box">
+<div class="pension-note-portrait"><img alt="Aishik Sarkar" height="160" src="{{ url_for('static', filename='Aishik Sarkar.png') }}" width="160"/></div>
+<div class="pension-note-copy">
+<h2 id="pension-note-title">A Note Before We Begin</h2>
+<p>“A goal that costs a certain amount today may cost more when you are ready to pay for it. Enter its current cost, the number of years until you need the money, and an expected annual inflation rate.</p>
+<p>This calculator shows the estimated future cost and the extra amount you may need to plan for. Change the inputs to compare different timelines and inflation assumptions, and use the estimate to give your goal a clearer financial target.”</p>
+<div class="pension-note-author">— Aishik Sarkar</div>
+</div>
+</div>
+</section>
+<div class="calc-wrapper">
+<div class="glass-card"><header class="inflation-intro"><small>PUT YOUR FUTURE GOALS IN PERSPECTIVE</small><h2>Inflation Impact Calculator</h2><p>See how the cost of your goal could change over time.</p></header>
+<!-- Box 1 & 2: Present Value and Duration -->
+<div class="grid-2">
+<div class="input-box">
+<label for="inf_pv">Current Cost of Goal</label>
+<div class="sleek-input">
+<i class="fa-solid fa-wallet"></i>
+<input id="inf_pv" min="0" oninput="calculateInflation()" step="50000" type="number" value="1000000"/>
+<span>₹</span>
+</div>
+</div>
+<div class="input-box">
+<label for="inf_years">Time to Goal</label>
+<div class="sleek-input">
+<i class="fa-solid fa-hourglass-half"></i>
+<input id="inf_years" max="50" min="1" oninput="calculateInflation()" type="number" value="10"/>
+<span>Yrs</span>
+</div>
+</div>
+</div>
+<!-- Box 3: Inflation Rate (Centered Below) -->
+<div class="center-box">
+<div class="input-box" style="text-align: center; width: 100%;">
+<label for="inf_rate" style="color: var(--teal);"><i class="fa-solid fa-fire-flame-curved" style="margin-right: 5px;"></i> Expected Inflation Rate</label>
+<div class="sleek-input" style="margin: 0 auto;">
+<input id="inf_rate" max="20" min="0" oninput="calculateInflation()" step="0.1" style="text-align: center;" type="number" value="6.0"/>
+<span>%</span>
+</div>
+</div>
+</div>
+<!-- Result Box: Goal Future Value -->
+<div aria-live="polite" class="result-box">
+<h3>Estimated Future Cost</h3>
+<div class="future-value" id="res_fv">₹ 0</div>
+<div class="erosion-text" id="res_diff">
+<i class="fa-solid fa-arrow-trend-up"></i> You will need ₹0 extra just to beat inflation!
                 </div>
-                
-                <div class="input-box">
-                    <label>Time to Goal</label>
-                    <div class="sleek-input">
-                        <i class="fa-solid fa-hourglass-half"></i>
-                        <input type="number" id="inf_years" value="10" min="1" max="50" oninput="calculateInflation()">
-                        <span>Yrs</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Box 3: Inflation Rate (Centered Below) -->
-            <div class="center-box">
-                <div class="input-box" style="text-align: center; width: 100%;">
-                    <label style="color: var(--teal);"><i class="fa-solid fa-fire-flame-curved" style="margin-right: 5px;"></i> Expected Inflation Rate</label>
-                    <div class="sleek-input" style="margin: 0 auto;">
-                        <input type="number" id="inf_rate" value="6.0" min="0" max="20" step="0.1" oninput="calculateInflation()" style="text-align: center;">
-                        <span>%</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Result Box: Goal Future Value -->
-            <div class="result-box">
-                <h3>Estimated Future Cost</h3>
-                <div class="future-value" id="res_fv">₹ 0</div>
-                <div class="erosion-text" id="res_diff">
-                    <i class="fa-solid fa-arrow-trend-up"></i> You will need ₹0 extra just to beat inflation!
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <script>
+</div>
+<p class="inflation-disclaimer">* Disclaimer: This illustration assumes that prices rise at the same inflation rate each year. Actual inflation and the cost of your specific goal may differ. The result is an estimate for planning, not a guaranteed future cost or an investment return.</p></div>
+</div>
+<script>
         function calculateInflation() {
             let pv = parseFloat(document.getElementById("inf_pv").value || 0);
             let years = parseFloat(document.getElementById("inf_years").value || 0);
@@ -143,7 +167,7 @@
         // Initialize on page load
         window.onload = function() { calculateInflation(); };
     </script>
-    <!-- পেজের অন্যান্য সমস্ত কোড... -->
+<!-- পেজের অন্যান্য সমস্ত কোড... -->
 
     {% include 'bottom_design.html' %}
 </body>
