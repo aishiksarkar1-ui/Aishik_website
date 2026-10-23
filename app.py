@@ -146,6 +146,19 @@ def sutapa_portfolio():
     return render_template('client-portfolios/sutapa-portfolio.html')
 
 # লাইভ টিকার API (উভয় ডেটা একসাথে পাঠাবে)
+
+@app.route('/api/market-news')
+def market_news_api():
+    from market_news import get_news, FEEDS
+    feed = request.args.get('rss_url', '')
+    if feed not in FEEDS:
+        return jsonify({'status': 'error', 'message': 'Unsupported news feed'}), 400
+    try:
+        return jsonify(get_news(feed))
+    except Exception:
+        app.logger.warning('Market news feed temporarily unavailable', exc_info=True)
+        return jsonify({'status': 'error', 'message': 'News is temporarily unavailable. Please try again shortly.'}), 503
+
 @app.route('/api/live-ticker')
 def live_ticker_api():
     try:
@@ -174,3 +187,4 @@ def submit_form():
 
 if __name__ == '__main__':
     app.run(debug=True)
+

@@ -413,7 +413,7 @@
 
         // --- 2. Helper function to load Sidebar RSS Feeds ---
         function loadSidebarRssFeed(rssUrl, containerId) {
-            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+            const apiUrl = `/api/market-news?rss_url=${encodeURIComponent(rssUrl)}`;
             
             fetch(apiUrl)
                 .then(response => response.json())
@@ -463,7 +463,7 @@
 
         // --- 3. Helper function to load Bottom Grid RSS Feeds ---
         function loadGridRssFeed(rssUrl, containerId) {
-            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+            const apiUrl = `/api/market-news?rss_url=${encodeURIComponent(rssUrl)}`;
             
             fetch(apiUrl)
                 .then(response => response.json())
@@ -545,3 +545,4 @@
 
 </body>
 </html>
+
