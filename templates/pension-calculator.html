@@ -1,17 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pension & Retirement Calculator - FinXHorizon</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700&family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pension &amp; Retirement Calculator - FinXHorizon</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700&amp;family=Montserrat:wght@500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
         :root {
             /* Core Theme Colors */
             --navy-blue: #0A192F;
@@ -174,148 +172,371 @@
             .section-card { padding: 25px; }
         }
     </style>
-</head>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;display=swap" rel="stylesheet"/><style id="pension-presentation">body {background:#faf7f2;background-attachment:scroll;color:#253947;font-family:'DM Sans',Arial,sans-serif;}
+.pension-hero {padding:78px 24px 135px;position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(120deg,#071223,#152c43);border-bottom:3px solid #bf9b67;}
+.pension-hero::before {content:"";position:absolute;z-index:-1;right:-100px;top:-210px;width:480px;height:480px;border:1px solid #e6c99f26;border-radius:50%;box-shadow:0 0 0 80px #e6c99f09,0 0 0 160px #e6c99f05;}
+.title-sec {margin:0;}
+.title-sec h1 {font:500 clamp(47px,5.8vw,77px)/1.08 'Cormorant Garamond',Georgia,serif;letter-spacing:-1.5px;color:#fffaf2;text-shadow:none;}
+.title-sec h1 span {color:#dfbd8b;font-style:normal;}
+.title-sec p {font:400 14px/1.9 'DM Sans',Arial,sans-serif;color:#d2dbe1;max-width:690px;text-shadow:none;}
+.main-content {background:linear-gradient(to bottom,#faf7f2,transparent 1100px),radial-gradient(ellipse at 95% 30%,#e7ddec66,transparent 50%),linear-gradient(135deg,#fbf8f3,#f4f0f6 60%,#f8f4ec);}
+.pension-note-section {padding:0 28px;position:relative;isolation:isolate;overflow-x:clip;background:linear-gradient(to bottom,#0a192f 0,#0a192f calc(50% - 15px),#faf7f2 calc(50% - 15px));}
+.pension-note-section::before {content:"";position:absolute;z-index:-1;inset:0 0 calc(50% + 15px);background:radial-gradient(circle at 94% 0,transparent 0 140px,#e2d5be0a 141px 210px,#e2d5be07 211px 280px,transparent 281px);pointer-events:none;}
+.pension-note-box {position:relative;box-sizing:border-box;max-width:1100px;display:flex;align-items:center;gap:36px;margin:0 auto -30px 0;padding:36px 43px;background:#f4f1ea;border:1px solid #d5c1a1;border-radius:12px;box-shadow:0 15px 35px #0003;transform:translateY(-30px);animation:pension-note-in 3s cubic-bezier(.22,.61,.36,1) both;}
+.pension-note-portrait {position:relative;top:-40px;flex-shrink:0;margin-top:-200px;}
+.pension-note-portrait img {display:block;width:160px;height:160px;object-fit:cover;border:6px solid #c5a059;border-radius:50%;box-shadow:0 10px 25px #0003;}
+.pension-note-copy {min-width:0;}
+.pension-note-copy h2 {font:600 34px/1.15 'Cormorant Garamond',Georgia,serif;letter-spacing:-.6px;color:#0a192f;margin:0 0 13px;}
+.pension-note-copy p {font:italic 500 22px/1.65 'Cormorant Garamond',Georgia,serif;color:#344652;margin:0 0 16px;}
+.pension-note-author {font:700 11px/1.6 'DM Sans',Arial,sans-serif;color:#94733e;letter-spacing:2px;text-transform:uppercase;}
+.calc-container {box-sizing:border-box;max-width:1140px;margin:50px auto 85px;padding:0 28px;}
+.pension-intro {text-align:center;margin:0 0 31px;}
+.pension-kicker {display:inline-flex;align-items:center;gap:12px;color:#947348;font:700 9px/1.6 'DM Sans',Arial,sans-serif;letter-spacing:2px;}
+.pension-kicker::before,.pension-kicker::after {content:"";width:24px;height:1px;background:#c8af88;}
+.pension-intro h2 {font:500 clamp(36px,4.4vw,51px)/1.1 'Cormorant Garamond',Georgia,serif;color:#193142;letter-spacing:-1px;margin:17px 0 13px;}
+.pension-intro p {font:400 13px/1.9 'DM Sans',Arial,sans-serif;color:#788084;margin:0;}
+.section-card,.result-panel {box-sizing:border-box;min-width:0;padding:37px clamp(24px,4vw,45px);border:1px solid #e2d6c3;border-radius:19px;box-shadow:0 15px 40px #0a192f09;margin-bottom:23px;}
+.card-timeline {background:linear-gradient(135deg,#fffdf9,#f1eff7);border-top:3px solid #9cabc2;}
+.card-accumulation {background:linear-gradient(135deg,#fffdf8,#f9f1e4);border-top:3px solid #c6a16f;}
+.card-distribution {background:linear-gradient(135deg,#fffefb,#edf3e9);border-top:3px solid #8ba88d;}
+.section-title {font:500 clamp(29px,3.2vw,39px)/1.17 'Cormorant Garamond',Georgia,serif;letter-spacing:-.6px;color:#193142;border-bottom:1px solid #e3d9ca;padding-bottom:20px;margin-bottom:26px;}
+.settings-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start;}
+.input-group {min-width:0;}
+.input-group label {font:700 11px/1.7 'DM Sans',Arial,sans-serif;color:#77664e;letter-spacing:.3px;}
+.input-group input {box-sizing:border-box;width:100%;min-width:0;font:600 20px 'DM Sans',Arial,sans-serif;padding:15px;border:1px solid #ddd3c4;border-radius:11px;background:#fffefc;box-shadow:none;}
+.disclaimer {font:400 10px/1.8 'DM Sans',Arial,sans-serif;color:#858580;}
+.dynamic-section {padding:23px;background:#ffffff6b;border:1px solid #e0d3be;border-radius:13px;}
+.dynamic-section h4 {font:600 13px/1.7 'DM Sans',Arial,sans-serif;gap:15px;flex-wrap:wrap;}
+.add-btn {font:700 10px/1.6 'DM Sans',Arial,sans-serif;padding:11px 16px;border-color:#c6a16f;background:#f4e8d4;}
+.add-btn:hover {background:#ead7b9;color:#253947;}
+.dyn-row {grid-template-columns:minmax(0,1fr) minmax(0,1fr) 36px;gap:12px;}
+.dyn-row input {font:500 13px 'DM Sans',Arial,sans-serif;min-width:0;padding:13px 11px;border-color:#ded3c4;border-radius:9px;}
+.remove-btn {padding:8px;}
+.calc-btn {font:700 12px/1.6 'DM Sans',Arial,sans-serif;letter-spacing:.7px;padding:18px 32px;background:linear-gradient(125deg,#e6c99f,#d4b183);box-shadow:0 10px 25px #a3855d20;}
+.calc-btn:hover {background:#213b4e;color:#fffaf2;transform:translateY(-3px);box-shadow:0 15px 28px #0a192f15;}
+.main-content :focus-visible {outline:3px solid #c6a16f;outline-offset:3px;}
+.result-panel {background:linear-gradient(145deg,#fffefb,#fbf9fc);border-bottom:1px solid #e2d6c3;}
+.res-highlight {background:linear-gradient(120deg,#10263b,#203b49);border-color:#c6a16f77;padding:32px 24px;box-shadow:0 14px 28px #0a192f10;}
+.res-highlight>span {font:700 10px/1.8 'DM Sans',Arial,sans-serif;letter-spacing:1.7px;color:#dfc198;}
+.res-highlight strong {font:600 clamp(33px,4.5vw,55px)/1.4 'DM Sans',Arial,sans-serif;color:#fffaf2;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;}
+.res-highlight p {font:400 12px/1.9 'DM Sans',Arial,sans-serif;color:#c5d3d8;}
+.res-highlight p span {display:inline;font:inherit;color:#e8cda3;letter-spacing:0;text-transform:none;margin:0;}
+.result-grid {gap:16px;grid-template-columns:repeat(2,minmax(0,1fr));}
+.res-box {min-width:0;background:linear-gradient(135deg,#f9f1e4,#f1eaf6);border-color:#e3d6c3;padding:25px 18px;}
+.res-box:nth-child(2) {background:linear-gradient(135deg,#f5ebeb,#eee7f3);}
+.res-box span {font:700 9px/1.8 'DM Sans',Arial,sans-serif;letter-spacing:.5px;color:#77664e;}
+.res-box strong {font:600 clamp(24px,3vw,33px)/1.5 'DM Sans',Arial,sans-serif;overflow-wrap:anywhere;}
+.projection-box {background:#f3f5ed;border:1px solid #dce1d4;box-shadow:none;}
+.projection-box h4 {font:500 29px/1.2 'Cormorant Garamond',Georgia,serif;background:#faf7f0;border-color:#e4daca;padding:21px;}
+.proj-table {table-layout:fixed;}
+.proj-table th {font:700 9px/1.7 'DM Sans',Arial,sans-serif;letter-spacing:.5px;padding:14px;}
+.proj-table td {font:500 13px/1.7 'DM Sans',Arial,sans-serif;padding:15px 14px;overflow-wrap:anywhere;}
+.table-note {font:400 11px/1.9 'DM Sans',Arial,sans-serif;color:#77827a;background:#fafbf7;padding:19px;}
+.verdict-box {font:500 13px/1.95 'DM Sans',Arial,sans-serif;padding:23px;}
+.verdict-success {background:#edf5ea;color:#477150;border-color:#acc4aa;}
+.verdict-danger {background:#faefeb;color:#995d58;border-color:#d8aaa3;}
+.pension-disclaimer {font:400 11px/1.9 'DM Sans',Arial,sans-serif;color:#74766e;background:#f4efe7;padding:21px 24px;border:1px solid #e3d9ca;border-radius:12px;}
+@keyframes pension-note-in {from {opacity:0;transform:translate(70px,-30px);}to {opacity:1;transform:translate(0,-30px);}}
+@media(max-width:1180px) {body .navbar {padding:15px 20px;}body .nav-links {display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:#0a192f;padding:20px 0;}body .nav-links.active {display:flex;}body .menu-toggle {display:block;}body .dropdown-content {position:relative;box-shadow:none;border:none;padding-left:20px;}}
+@media(max-width:992px) {.pension-note-box {flex-direction:column;text-align:center;gap:20px;padding:30px 24px;}.pension-note-portrait {margin-top:-80px;}}
+@media(max-width:650px) {.pension-hero {padding:58px 24px 130px;}.title-sec h1 {font-size:49px;}.title-sec p {font-size:13px;}.pension-note-section {padding-inline:18px;}.pension-note-copy p {font-size:20px;}.pension-note-copy h2 {font-size:32px;}.calc-container {padding:0 16px;margin:35px auto 65px;}.settings-grid,.result-grid {grid-template-columns:1fr;}.section-card,.result-panel {padding:28px 21px;}.dynamic-section {padding:20px 15px;}.dyn-row {grid-template-columns:minmax(0,1fr);}.remove-btn {justify-self:end;}.calc-btn {width:100%;padding:18px 25px;font-size:11px;}.proj-table th {font-size:8px;padding:11px 7px;}.proj-table td {font-size:11px;padding:13px 7px;}.projection-box h4 {font-size:26px;}.pension-kicker {font-size:8px;letter-spacing:1.3px;}}
+@media(prefers-reduced-motion:reduce) {.pension-note-box,.dyn-row {animation:none;}.main-content * {transition:none !important;}}
+
+.pension-ending-balance {padding:25px;margin:0 0 27px;border:1px solid #d7c6aa;border-radius:14px;background:linear-gradient(125deg,#faf0df,#f0eaf6);}
+.pension-ending-balance>span {display:block;font:600 11px/1.8 'DM Sans',Arial,sans-serif;color:#806744;text-transform:uppercase;letter-spacing:.8px;}
+.pension-ending-balance>strong {display:block;font:600 clamp(30px,4vw,45px)/1.5 'DM Sans',Arial,sans-serif;color:#243d50;overflow-wrap:anywhere;}
+.pension-ending-balance p {font:400 12px/1.9 'DM Sans',Arial,sans-serif;color:#77818a;margin:10px 0 0;}
+
+.pension-cashflow {text-align:left;margin-bottom:28px;padding:29px;background:linear-gradient(130deg,#faf4e8,#edf2ee);border:1px solid #dce0d2;border-radius:16px;}
+.pension-flow-kicker {font:700 9px/1.6 'DM Sans',Arial,sans-serif;color:#927348;letter-spacing:1.8px;}
+.pension-cashflow h3 {font:500 34px/1.15 'Cormorant Garamond',Georgia,serif;color:#253c49;margin:12px 0;}
+.pension-flow-intro {font:400 12px/1.9 'DM Sans',Arial,sans-serif;color:#74808a;margin:0 0 20px;}
+.pension-flow-legend {display:flex;flex-wrap:wrap;gap:12px 21px;margin-bottom:14px;}
+.pension-flow-legend span {display:inline-flex;align-items:center;gap:8px;font:500 10px/1.6 'DM Sans',Arial,sans-serif;color:#66777f;}
+.pension-flow-legend span::before {content:"";width:14px;height:3px;background:#997749;}
+.pension-flow-legend .flow-withdraw::before {background:#b67689;}
+.pension-flow-legend .flow-value::before {background:#345f89;}
+#pensionYearlyChart svg {width:100%;height:auto;display:block;font-family:'DM Sans',Arial,sans-serif;}
+.pension-flow-help {font:400 10px/1.9 'DM Sans',Arial,sans-serif;color:#7c8381;margin:13px 0 20px;}
+.pension-yearly-details summary {cursor:pointer;box-sizing:border-box;padding:15px 21px;border:1px solid #c5ad87;border-radius:11px;background:linear-gradient(125deg,#f3e7d3,#ece6f3);color:#394e58;font:600 15px/1.6 'DM Sans',Arial,sans-serif;}
+.pension-yearly-scroll {overflow-x:auto;margin-top:18px;}
+.pension-yearly-scroll table {border-collapse:collapse;width:100%;min-width:800px;font:400 11px/1.7 'DM Sans',Arial,sans-serif;}
+.pension-yearly-scroll caption {text-align:left;font-size:10px;color:#7c8381;margin-bottom:12px;}
+.pension-yearly-scroll th,.pension-yearly-scroll td {text-align:right;white-space:nowrap;padding:13px 11px;border-bottom:1px solid #d9dfd4;color:#4e646e;}
+.pension-yearly-scroll thead th {font-size:9px;background:#f1ecdf;color:#8c7655;}
+.pension-yearly-scroll th:first-child {text-align:left;}
+.pension-yearly-scroll small {display:block;font-weight:400;font-size:9px;color:#88918b;}
+@media(max-width:600px) {.pension-cashflow {padding:23px 17px;}.pension-cashflow h3 {font-size:30px;}.pension-flow-legend {gap:9px;}.pension-flow-legend span {font-size:9px;}}
+
+.pension-goal-planner {background:linear-gradient(130deg,#132b3e,#213d49);border-color:#c6a16f66;color:#d4dfe3;}
+.pension-goal-kicker {font:700 9px/1.8 'DM Sans',Arial,sans-serif;letter-spacing:1.8px;color:#daba8a;}
+.pension-goal-planner .section-title {color:#fff8ed;border-bottom-color:#d5ba9129;margin:15px 0 20px;}
+.goal-planner-intro {font:400 13px/1.9 'DM Sans',Arial,sans-serif;color:#c2d0d5;margin:0 0 23px;}
+.goal-corpus-target {padding:22px 24px;margin-bottom:23px;border:1px solid #d5ba9140;background:#ffffff07;border-radius:13px;}
+.goal-corpus-target>span {font:600 10px/1.7 'DM Sans',Arial,sans-serif;letter-spacing:.6px;color:#d8c3a0;}
+.goal-corpus-target strong {display:block;font:600 clamp(26px,3.8vw,40px)/1.5 'DM Sans',Arial,sans-serif;color:#f0d3aa;overflow-wrap:anywhere;}
+.goal-corpus-target p {font:400 11px/1.8 'DM Sans',Arial,sans-serif;color:#bacad0;margin:5px 0 0;}
+.goal-mix-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+.goal-mix-card {padding:25px;min-width:0;border-radius:14px;background:linear-gradient(130deg,#f4f4e9,#e8f0e7);}
+.goal-mix-card:nth-child(2) {background:linear-gradient(130deg,#fbf0dc,#eee6f4);}
+.goal-mix-card h3 {font:600 33px/1.15 'Cormorant Garamond',Georgia,serif;color:#25434b;margin:0 0 17px;}
+.goal-mix-card label {display:block;font:600 11px/1.8 'DM Sans',Arial,sans-serif;color:#6c6d5e;margin-bottom:8px;}
+.goal-mix-card input {box-sizing:border-box;width:100%;min-width:0;padding:15px;font:600 23px 'DM Sans',Arial,sans-serif;color:#243b49;border:1px solid #d1c2a9;border-radius:10px;background:#fffdf9;}
+.goal-mix-card p {font:400 11px/1.9 'DM Sans',Arial,sans-serif;color:#727b72;margin:13px 0 0;}
+.goal-live-status {font:500 13px/1.9 'DM Sans',Arial,sans-serif;color:#ecd3ab;margin:23px 0 13px;}
+.goal-mix-note {font:400 10px/1.9 'DM Sans',Arial,sans-serif;color:#adbec6;margin:0;}
+.goal-owned-row label {font:500 10px/1.7 'DM Sans',Arial,sans-serif;color:#897654;}
+.goal-owned-row input {margin-top:7px;background:#f6f2e9;}
+.goal-owned-label {font:400 9px/1.7 'DM Sans',Arial,sans-serif;color:#8c8b7e;max-width:105px;}
+@media(max-width:600px) {.goal-mix-grid {grid-template-columns:1fr;}.goal-mix-card {padding:22px 19px;}.goal-corpus-target {padding:20px;}}
+
+.pension-flow-legend .flow-deposit::before {background:#2563b8;}
+.pension-flow-legend .flow-withdraw::before {background:#be3c70;}
+.pension-flow-legend .flow-value::before {background:#25826b;}
+
+.accumulation-phase-label {color:#20563e;font-weight:700;}
+
+.distribution-phase-label {color:#85473b;font-weight:700;}
+
+.accumulation-phase-label,.distribution-phase-label {display:table;margin-top:9px;padding:9px 13px;border-radius:9px;font:700 12px/1.6 'DM Sans',Arial,sans-serif;letter-spacing:0;box-shadow:0 3px 8px #0a192f05;}
+.accumulation-phase-label {color:#20563e;background:linear-gradient(130deg,#e8f2e7,#dcebe0);border:1px solid #a9c5ac;}
+.distribution-phase-label {color:#85473b;background:linear-gradient(130deg,#f5e9df,#efddd8);border:1px solid #d2ada0;}
+
+/* Luminous phase badges; labels remain non-interactive. */
+.accumulation-phase-label,.distribution-phase-label {
+ position:relative;isolation:isolate;overflow:hidden;display:table;
+ padding:11px 18px;margin-top:11px;border-radius:12px;
+ font:700 13px/1.6 'DM Sans',Arial,sans-serif;letter-spacing:.1px;
+ transition:transform .35s ease,box-shadow .35s ease;
+}
+.accumulation-phase-label {
+ color:#effff2;background:linear-gradient(125deg,#163e2e,#2d7050 57%,#1a4836);
+ border:1px solid #80bb86;
+ box-shadow:0 5px 15px #245b3826,0 0 18px #6bb77840,inset 0 1px 0 #d1f9d34d,inset 0 -1px 0 #0c25194d;
+ text-shadow:0 1px 5px #102d2580;
+}
+.distribution-phase-label {
+ color:#fff3e6;background:linear-gradient(125deg,#66372f,#a06245 57%,#723c32);
+ border:1px solid #d3a381;
+ box-shadow:0 5px 15px #85473b26,0 0 18px #c68f6540,inset 0 1px 0 #ffe2c54d,inset 0 -1px 0 #41211b4d;
+ text-shadow:0 1px 5px #49291e80;
+}
+.accumulation-phase-label::before,.distribution-phase-label::before {
+ content:"";position:absolute;pointer-events:none;inset:0;
+ background:linear-gradient(115deg,transparent 25%,#ffffff20 47%,transparent 65%);
+ transform:translateX(-115%);transition:transform .85s ease;
+}
+.accumulation-phase-label:hover,.distribution-phase-label:hover {transform:translateY(-2px);}
+.accumulation-phase-label:hover {box-shadow:0 8px 20px #245b3838,0 0 25px #6bb77866,inset 0 1px 0 #d1f9d359;}
+.distribution-phase-label:hover {box-shadow:0 8px 20px #85473b38,0 0 25px #c68f6566,inset 0 1px 0 #ffe2c559;}
+.accumulation-phase-label:hover::before,.distribution-phase-label:hover::before {transform:translateX(115%);}
+@media(prefers-reduced-motion:reduce) {.accumulation-phase-label,.distribution-phase-label,.accumulation-phase-label::before,.distribution-phase-label::before {transition:none;transform:none;}}
+
+/* Raised cards highlight the two return assumptions. */
+.card-timeline .input-group:has(#accReturn),.card-timeline .input-group:has(#distReturn) {
+ position:relative;box-sizing:border-box;padding:23px;border-radius:17px;
+ border:1px solid;border-top:2px solid;transform:translateY(-2px);
+ transition:transform .35s ease,box-shadow .35s ease;
+}
+.card-timeline .input-group:has(#accReturn) {
+ background:linear-gradient(145deg,#fcfff9,#eaf2e6 65%,#e0ecdf);
+ border-color:#bad0b6;border-top-color:#fffef9;
+ box-shadow:0 5px 0 #c7d8c2,0 12px 24px #31563917,inset 0 1px 0 #ffffff;
+}
+.card-timeline .input-group:has(#distReturn) {
+ background:linear-gradient(145deg,#fffaf5,#f3e8dd 65%,#ecdcd3);
+ border-color:#d9bfb0;border-top-color:#fffefb;
+ box-shadow:0 5px 0 #ddc5b7,0 12px 24px #85473b17,inset 0 1px 0 #ffffff;
+}
+.card-timeline .input-group:has(#accReturn):hover,.card-timeline .input-group:has(#distReturn):hover {transform:translateY(-5px);}
+.card-timeline .input-group:has(#accReturn):hover {box-shadow:0 6px 0 #c7d8c2,0 17px 30px #31563923,inset 0 1px 0 #fff;}
+.card-timeline .input-group:has(#distReturn):hover {box-shadow:0 6px 0 #ddc5b7,0 17px 30px #85473b23,inset 0 1px 0 #fff;}
+.card-timeline .input-group:has(#accReturn) .disclaimer,.card-timeline .input-group:has(#distReturn) .disclaimer {font-size:11px;line-height:1.9;color:#6e746b;margin-top:12px;}
+.card-timeline #accReturn,.card-timeline #distReturn {background:#fffefbd9;box-shadow:inset 0 2px 4px #0a192f06;font-size:23px;}
+@media(max-width:600px) {.card-timeline .input-group:has(#accReturn),.card-timeline .input-group:has(#distReturn) {padding:20px;}}
+@media(prefers-reduced-motion:reduce) {.card-timeline .input-group:has(#accReturn),.card-timeline .input-group:has(#distReturn) {transition:none;transform:none;}}
+
+.goal-mix-card #goalSipOnly,.goal-mix-card #goalLumpsumOnly {
+ margin-top:18px;padding:14px 16px;border-radius:10px;
+ font:600 15px/1.85 'DM Sans',Arial,sans-serif;
+ box-shadow:0 4px 12px #0a192f07;
+}
+.goal-mix-card #goalSipOnly {color:#215a40;background:#d9ead5;border:1px solid #9fbe9c;border-left:4px solid #4f8960;}
+.goal-mix-card #goalLumpsumOnly {color:#79502e;background:#efdfbf;border:1px solid #cbb17d;border-left:4px solid #ac854b;}
+@media(max-width:600px) {.goal-mix-card #goalSipOnly,.goal-mix-card #goalLumpsumOnly {font-size:14px;}}
+
+.pension-flex-intro {padding:33px 35px;margin:8px 0 25px;border:1px solid #ddcba9;border-top:3px solid #c6a16f;border-radius:17px;background:linear-gradient(130deg,#faf1df,#eee8f5);}
+.pension-flex-intro h2 {font:500 38px/1.15 'Cormorant Garamond',Georgia,serif;color:#233d4b;letter-spacing:-.6px;margin:16px 0;}
+.pension-flex-intro>p {font:400 13px/1.95 'DM Sans',Arial,sans-serif;color:#68747b;margin:12px 0;}
+.flex-example {margin:20px 0;padding:20px 23px;border-left:3px solid #a88c5c;border-radius:10px;background:#fffdf9a6;}
+.flex-example strong {font:700 10px 'DM Sans',Arial,sans-serif;letter-spacing:1px;text-transform:uppercase;color:#957348;}
+.flex-example p {font:500 13px/1.95 'DM Sans',Arial,sans-serif;color:#4e636e;margin:10px 0 0;}
+.tu-row {grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr) 32px;}
+.tu-row label {font:500 10px/1.8 'DM Sans',Arial,sans-serif;color:#82745e;}
+.tu-row input {margin-top:7px;}
+.pension-legacy-input {margin-top:26px;padding:25px;background:linear-gradient(130deg,#eaf0e7,#f4ede0);border:1px solid #cad8c5;border-radius:14px;}
+.pension-legacy-input h3 {font:600 29px/1.2 'Cormorant Garamond',Georgia,serif;color:#365748;margin:0 0 16px;}
+.pension-legacy-input label {display:block;font:600 11px/1.8 'DM Sans',Arial,sans-serif;color:#6c705e;margin-bottom:9px;}
+.pension-legacy-input input {box-sizing:border-box;width:100%;padding:16px;font:600 23px 'DM Sans',Arial,sans-serif;border:1px solid #c4ccb6;border-radius:10px;background:#fffdf8;color:#284234;}
+.pension-legacy-input p {font:400 11px/1.9 'DM Sans',Arial,sans-serif;color:#788173;margin:14px 0 0;}
+@media(max-width:650px) {.pension-flex-intro {padding:27px 23px;}.pension-flex-intro h2 {font-size:33px;}.tu-row {grid-template-columns:1fr;}.pension-legacy-input {padding:23px 18px;}}
+
+.sip-end-help {font:400 12px/1.9 "DM Sans",Arial,sans-serif;color:#748078;margin:0 0 19px;}
+</style></head>
 <body>
 
     {% include 'navbar.html' %}
 
     <div class="main-content">
-        <div class="calc-container">
-            <!-- 💥 Dark Background with Light/Cream Text 💥 -->
-            <div class="title-sec">
-                <h1>Ultimate <span>Pension</span> Calculator</h1>
-                <p>Plan your retirement flawlessly. Calculate your future corpus using SIPs, Top-ups, and Lumpsums, and simulate your inflation-adjusted monthly pension drawdown.</p>
-            </div>
+<section class="pension-hero"><div class="title-sec">
+<h1>Ultimate <span>Pension</span> Calculator</h1>
+<p>Plan your retirement flawlessly. Calculate your future corpus using SIPs, Top-ups, and Lumpsums, and simulate your inflation-adjusted monthly pension drawdown.</p>
+</div></section><section aria-labelledby="pension-note-title" class="pension-note-section">
+<div class="pension-note-box">
+<div class="pension-note-portrait"><img alt="Aishik Sarkar" height="160" src="{{ url_for('static', filename='Aishik Sarkar.png') }}" width="160"/></div>
+<div class="pension-note-copy">
+<h2 id="pension-note-title">A Note Before We Begin</h2>
+<p>“A comfortable retirement starts with understanding what you want your money to do. Begin with your age, retirement date and the monthly income you would need in today’s money. Then explore how regular SIPs, future top-ups and one-time investments could help you build your retirement fund.</p>
+<p>This calculator also estimates how inflation could change your income needs and how withdrawals may affect your savings after retirement. Try different contributions and return assumptions to compare your options. Use the results as a starting point for a practical retirement plan, rather than a promise of future income.”</p>
+<div class="pension-note-author">— Aishik Sarkar</div>
+</div>
+</div>
+</section><div class="calc-container"><header class="pension-intro"><span class="pension-kicker">PLAN TODAY. LOOK AHEAD WITH CLARITY.</span><h2>Build Your Retirement Plan</h2><p>Set your timeline, explore your contributions, and estimate your retirement income.</p></header>
+<!-- 💥 Dark Background with Light/Cream Text 💥 -->
 
-            <!-- 1. Timeline Section (Soft Blue Shade) -->
-            <div class="section-card card-timeline">
-                <h2 class="section-title">1. Your Timeline & Goal</h2>
-                <div class="settings-grid">
-                    <div class="input-group">
-                        <label>Current Age</label>
-                        <input type="number" id="currentAge" placeholder="e.g. 30" value="30">
-                    </div>
-                    <div class="input-group">
-                        <label>Retirement Age</label>
-                        <input type="number" id="retireAge" placeholder="e.g. 60" value="60">
-                    </div>
-                    <div class="input-group">
-                        <label>Pension Required Until Age</label>
-                        <input type="number" id="endAge" placeholder="e.g. 100" value="100">
-                    </div>
-                    <div class="input-group">
-                        <label>Current Monthly Pension Need (₹)</label>
-                        <input type="number" id="currentPension" placeholder="e.g. 50000" value="50000">
-                        <div class="disclaimer">How much money do you need monthly in <span>today's value?</span></div>
-                    </div>
-                    <div class="input-group">
-                        <label>Expected Inflation Rate (%)</label>
-                        <input type="number" id="inflationRate" placeholder="e.g. 6" value="6" step="0.1">
-                        <div class="disclaimer">In India, inflation sits around <span>6%</span>. While 4% to 8% is a realistic range, 6% is the safest standard to assume.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. Accumulation Section (Soft Cream/Gold Shade) -->
-            <div class="section-card card-accumulation">
-                <h2 class="section-title">2. Accumulation Phase (Wealth Building)</h2>
-                <div class="settings-grid">
-                    <div class="input-group">
-                        <label>Expected Return (%)</label>
-                        <input type="number" id="accReturn" value="12" step="0.1">
-                        <div class="disclaimer">We recommend assuming 10% to 15%. For the safer side, <span>12% is optimal.</span></div>
-                    </div>
-                    <div class="input-group">
-                        <label>Base Monthly SIP (₹)</label>
-                        <input type="number" id="baseSip" placeholder="e.g. 10000" value="10000">
-                        <div class="disclaimer">Starting now until retirement.</div>
-                    </div>
-                </div>
-
-                <div class="dynamic-section">
-                    <h4>Additional Purchases (Lumpsum) <button class="add-btn" onclick="addLumpsum()"><i class="fas fa-plus"></i> Add Lumpsum</button></h4>
-                    <div id="lumpsum-container">
-                        <div class="dyn-row ls-row">
-                            <input type="number" class="ls-amount" placeholder="Amount (₹)">
-                            <input type="number" class="ls-years" placeholder="Invest After X Years (0 for Now)">
-                            <button class="remove-btn" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dynamic-section">
-                    <h4>SIP Top-Ups (Add extra to SIP later) <button class="add-btn" onclick="addTopup()"><i class="fas fa-plus"></i> Add Top-up</button></h4>
-                    <div id="topup-container">
-                        <div class="dyn-row tu-row">
-                            <input type="number" class="tu-amount" placeholder="Extra SIP Amount (₹/mo)">
-                            <input type="number" class="tu-years" placeholder="Starts After X Years">
-                            <button class="remove-btn" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Distribution Section (Soft Mint/Green Shade) -->
-            <div class="section-card card-distribution">
-                <h2 class="section-title">3. Distribution Phase (Retirement)</h2>
-                <div class="settings-grid">
-                    <div class="input-group">
-                        <label>Expected Return Post-Retirement (%)</label>
-                        <input type="number" id="distReturn" value="6" step="0.1">
-                        <div class="disclaimer">We don't recommend >8%. For maximum safety, <span>assume 6%</span> so you never face financial trouble.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="calc-btn-container">
-                <button class="calc-btn" onclick="calculatePension()">Generate Pension Report</button>
-            </div>
-
-            <!-- Result Section -->
-            <div class="result-panel" id="resultPanel">
-                <div class="res-highlight">
-                    <span>Total Corpus Built at Retirement</span>
-                    <strong id="resCorpus">₹0</strong>
-                    <p>This is the engine that will fund your lifestyle from Age <span id="resRetAge">60</span> to <span id="resEndAge">100</span>.</p>
-                </div>
-                
-                <div class="result-grid">
-                    <div class="res-box">
-                        <span>1st Year Monthly Pension at Retirement</span>
-                        <strong id="resFirstPension">₹0</strong>
-                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 5px; font-family: 'Inter', sans-serif;">(Inflation Adjusted)</div>
-                    </div>
-                    <div class="res-box">
-                        <span>Total Money Withdrawn</span>
-                        <strong id="resTotalWithdrawn">₹0</strong>
-                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 5px; font-family: 'Inter', sans-serif;">Over your entire retirement</div>
-                    </div>
-                </div>
-
-                <!-- 💥 5-Year Projection Table (Distinct Shade) 💥 -->
-                <div class="projection-box">
-                    <h4>Your Projected Monthly Pension (First 5 Years)</h4>
-                    <table class="proj-table">
-                        <thead>
-                            <tr>
-                                <th>Year of Retirement</th>
-                                <th>Your Age</th>
-                                <th>Monthly Pension Limit</th>
-                            </tr>
-                        </thead>
-                        <tbody id="projectionTableBody">
-                            <!-- JS will inject rows here -->
-                        </tbody>
-                    </table>
-                    <p class="table-note"><i class="fas fa-info-circle"></i> Like this, your pension will automatically keep increasing every year by <span id="displayInfRate" style="font-weight: bold; color: var(--navy-blue);"></span>% to protect your purchasing power against inflation.</p>
-                </div>
-
-                <div id="verdictBox" class="verdict-box">
-                    <!-- Javascript will inject Success or Danger message here -->
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- 1. Timeline Section (Soft Blue Shade) -->
+<div class="section-card card-timeline">
+<h2 class="section-title">1. Your Timeline &amp; Goal</h2>
+<div class="settings-grid">
+<div class="input-group">
+<label>Current Age</label>
+<input id="currentAge" placeholder="e.g. 30" type="number" value="30"/>
+</div>
+<div class="input-group">
+<label>Retirement Age</label>
+<input id="retireAge" placeholder="e.g. 60" type="number" value="60"/>
+</div>
+<div class="input-group">
+<label>Pension Required Until Age</label>
+<input id="endAge" placeholder="e.g. 100" type="number" value="100"/>
+</div>
+<div class="input-group">
+<label>Current Monthly Pension Need (₹)</label>
+<input id="currentPension" placeholder="e.g. 50000" type="number" value="50000"/>
+<div class="disclaimer">How much money do you need monthly in <span>today's value?</span></div>
+</div>
+<div class="input-group">
+<label>Expected Return Before Retirement (%) <span class="accumulation-phase-label">Accumulation Phase — Wealth Building</span></label>
+<input id="accReturn" step="0.1" type="number" value="12"/>
+<div class="disclaimer">Suggested planning range: 10%–15% per year. Within this range, 12% is the preferred planning rate for this calculator.</div>
+</div><div class="input-group">
+<label>Expected Return After Retirement (%) <span class="distribution-phase-label">Pension Distribution Phase</span></label>
+<input id="distReturn" step="0.1" type="number" value="6"/>
+<div class="disclaimer">For retirement planning, use 6% as a cautious starting assumption. Avoid assuming more than 8% when estimating how long your retirement savings may last.</div>
+</div><div class="input-group">
+<label>Expected Inflation Rate (%)</label>
+<input id="inflationRate" placeholder="e.g. 6" step="0.1" type="number" value="6"/>
+<div class="disclaimer">This is an assumed annual inflation rate. Change it to explore different future income needs.</div>
+</div></div>
+</div><section aria-labelledby="goalPlannerTitle" class="section-card pension-goal-planner">
+<div class="pension-goal-kicker">FIND YOUR CONTRIBUTION MIX</div>
+<h2 class="section-title" id="goalPlannerTitle">Balance Your SIP &amp; Lumpsum</h2>
+<p class="goal-planner-intro">Choose the combination that works for your budget. Increase your monthly SIP to reduce the amount needed today, or add more today to reduce your SIP. The estimate uses the return rates below and your chosen pension-end age.</p>
+<div class="goal-corpus-target"><span>Required savings at retirement</span><strong id="goalRequiredCorpus">—</strong><p id="goalTargetDescription"></p></div>
+<div class="goal-mix-grid">
+<div class="goal-mix-card"><h3>SIP</h3><label for="goalSip">Monthly investment from today (₹)</label><input id="goalSip" min="0" step="500" type="number" value="10000"/><p id="goalSipOnly"></p></div>
+<div class="goal-mix-card"><h3>Lumpsum</h3><label for="goalLumpsum">One-time investment today (₹)</label><input id="goalLumpsum" min="0" step="10000" type="number" value="0"/><p id="goalLumpsumOnly"></p></div>
+</div>
+<p aria-live="polite" class="goal-live-status" id="goalMixStatus"></p>
+<p class="goal-mix-note">Both fields are linked. Your last edited amount stays fixed while the other adjusts. Any additional lumpsums and top-ups below are included. The selected SIP and today’s planner lumpsum are also used in your report. This targets your chosen family legacy at the end, or approximately zero when that target is ₹0. Future SIP phases and lumpsums below are included. Actual results can differ.</p>
+</section>
+<!-- 2. Accumulation Section (Soft Cream/Gold Shade) -->
+<section class="pension-flex-intro"><span class="pension-kicker">YOUR LIFE CHANGES. YOUR PLAN CAN TOO.</span><h2>Build Your Plan Around Your Life</h2><p>You do not need to invest the same amount throughout your working life. Start with what you can afford today, add more when a loan ends, or invest a future maturity amount. Use the controls below to build that timeline.</p><div class="flex-example"><strong>For example</strong><p>Invest ₹5,000 per month now. When a loan ends after 5 years, add another ₹10,000 per month. You can also invest a one-time amount after 7 years. To pause a SIP, end one phase and start another later.</p></div><p>Start and end years are measured from today. SIP phases add to any other SIP running at the same time. Payments start at the beginning of the chosen start year and stop before the end year. Money already invested keeps growing after a SIP stops. The linked planner above adjusts today’s SIP/lumpsum to include these future contributions.</p><p>You can also set an amount to leave for your family at your pension-end age. The planner will then aim to fund both your pension and that legacy, instead of targeting a zero closing balance.*</p></section><div class="section-card card-accumulation">
+<h2 class="section-title">2. Customise Your Investment Timeline</h2>
+<div class="settings-grid">
+<div class="input-group">
+<label>Base Monthly SIP (₹)</label>
+<input id="baseSip" placeholder="e.g. 10000" type="number" value="10000"/>
+<div class="disclaimer">This SIP starts today. Set an end year to stop contributions earlier; leave it blank to continue until retirement.</div>
+</div><div class="input-group"><label for="baseSipEnd">Base SIP ends after (years from today)</label><input id="baseSipEnd" min="1" placeholder="Continue until retirement" step="1" type="number"/><div class="disclaimer">If you leave the end year empty, this SIP will continue until you retire. Set the monthly amount to ₹0 if you only want to use the future SIP phases below.</div></div>
+</div>
+<div class="dynamic-section">
+<h4>Additional Purchases (Lumpsum) <button class="add-btn" onclick="addLumpsum()"><i class="fas fa-plus"></i> Add Lumpsum</button></h4>
+<div id="lumpsum-container">
+<div class="dyn-row ls-row">
+<input class="ls-amount" placeholder="Amount (₹)" type="number"/>
+<input class="ls-years" placeholder="Invest After X Years (0 for Now)" type="number"/>
+<button class="remove-btn" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+</div>
+</div>
+</div>
+<div class="dynamic-section">
+<h4>Scheduled SIP Phases <button class="add-btn" onclick="addTopup()">+ Add SIP Phase</button></h4>
+<p class="sip-end-help">Enter how many years from today you want this SIP to stop. If you leave the end year empty, it will continue until you retire.</p><div id="topup-container">
+<div class="dyn-row tu-row"><label>Monthly amount (₹)<input class="tu-amount" min="0" placeholder="e.g. 10000" type="number"/></label><label>Start after (years)<input class="tu-years" min="0" placeholder="e.g. 5" step="1" type="number"/></label><label>End after (years)<input class="tu-end" min="1" placeholder="Continue until retirement" step="1" type="number"/></label><button aria-label="Remove SIP phase" class="remove-btn" onclick="this.parentElement.remove()" type="button">×</button></div>
+</div>
+</div>
+<div class="pension-legacy-input"><h3>A Legacy for Your Family</h3><label for="legacyGoal">Amount to leave at the end of your pension plan (future ₹)</label><input id="legacyGoal" min="0" step="100000" type="number" value="0"/><p>For example, enter ₹1,00,00,000 to target a ₹1 crore balance at your selected pension-end age. This is the amount in that future year, not its value in today’s money. Leave it at ₹0 to target pension payments with no planned legacy.</p></div></div>
+<!-- 3. Distribution Section (Soft Mint/Green Shade) -->
+<div class="calc-btn-container">
+<button class="calc-btn" onclick="calculatePension()">Generate Pension Report</button>
+</div>
+<!-- Result Section -->
+<div class="result-panel" id="resultPanel">
+<div class="res-highlight">
+<span>Projected Savings When You Retire</span>
+<strong id="resCorpus">₹0</strong>
+<p>This is your estimated starting balance at Age <span id="resRetAge">60</span>. The calculation below checks whether it can support your pension until Age <span id="resEndAge">100</span>.</p>
+</div>
+<div class="result-grid">
+<div class="res-box">
+<span>1st Year Monthly Pension at Retirement</span>
+<strong id="resFirstPension">₹0</strong>
+<div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 5px; font-family: 'Inter', sans-serif;">(Inflation Adjusted)</div>
+</div>
+<div class="res-box">
+<span>Total Money Withdrawn</span>
+<strong id="resTotalWithdrawn">₹0</strong>
+<div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 5px; font-family: 'Inter', sans-serif;">Over your entire retirement</div>
+</div>
+</div>
+<div class="pension-ending-balance">
+<span>Projected Balance at Age <b id="resBalanceAge">100</b></span>
+<strong id="resEndingBalance">₹0</strong>
+<p id="resBalanceExplanation">The amount remaining after the planned pension withdrawals.</p>
+</div>
+<!-- 💥 5-Year Projection Table (Distinct Shade) 💥 -->
+<div class="projection-box">
+<h4>Your Projected Monthly Pension (First 5 Years)</h4>
+<table class="proj-table">
+<thead>
+<tr>
+<th>Year of Retirement</th>
+<th>Your Age</th>
+<th>Monthly Pension Limit</th>
+</tr>
+</thead>
+<tbody id="projectionTableBody">
+<!-- JS will inject rows here -->
+</tbody>
+</table>
+<p class="table-note"><i class="fas fa-info-circle"></i> Like this, your pension will automatically keep increasing every year by <span id="displayInfRate" style="font-weight: bold; color: var(--navy-blue);"></span>% to protect your purchasing power against inflation.</p>
+</div>
+<section aria-labelledby="pensionCashflowTitle" class="pension-cashflow">
+<span class="pension-flow-kicker">YOUR RETIREMENT JOURNEY</span>
+<h3 id="pensionCashflowTitle">Your Cash Flow, Year by Year</h3>
+<p class="pension-flow-intro">Follow your investments before retirement, the pension paid after retirement, and the value remaining in your portfolio. Each point represents one planning year from your current age. The dashed vertical marker shows when retirement begins.</p>
+<div class="pension-flow-legend"><span class="flow-deposit">Investments this year</span><span class="flow-withdraw">Pension paid this year</span><span class="flow-value">Year-end portfolio value</span></div>
+<div id="pensionYearlyChart"></div>
+<p class="pension-flow-help">All three lines use the same rupee scale, and the complete timeline fits within the chart. Hover over a point for its value. If the savings run out, payments stop at the available balance and later years show zero.</p>
+<details class="pension-yearly-details"><summary>View Yearly Cash Flow</summary><div class="pension-yearly-scroll"><table><caption>Investments, pension payments and portfolio balances for each planning year</caption><thead><tr><th scope="col">Year / Age</th><th scope="col">Phase</th><th scope="col">Opening balance</th><th scope="col">Money invested</th><th scope="col">Pension paid</th><th scope="col">Investment gain</th><th scope="col">Closing balance</th></tr></thead><tbody id="pensionYearlyBody"></tbody></table></div></details>
+</section>
+<div class="verdict-box" id="verdictBox">
+<!-- Javascript will inject Success or Danger message here -->
+</div>
+</div>
+<p class="pension-disclaimer">* Disclaimer: This calculator provides an illustration based on the ages, contributions, inflation and return rates you enter. It assumes steady return rates and annual pension increases at the chosen inflation rate. Actual returns, inflation and the period your savings last may differ. Results and success messages are projections, not guarantees. Past performance does not assure future returns. The calculation does not include taxes, fees or unexpected expenses. Review the plan as your needs change.</p></div>
+</div>
 
     {% include 'bottom_design.html' %}
 
@@ -334,11 +555,189 @@
             const container = document.getElementById('topup-container');
             const row = document.createElement('div');
             row.className = 'dyn-row tu-row';
-            row.innerHTML = `<input type="number" class="tu-amount" placeholder="Extra SIP Amount (₹/mo)"><input type="number" class="tu-years" placeholder="Starts After X Years"><button class="remove-btn" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>`;
+            row.innerHTML = `<label>Monthly amount (₹)<input type="number" min="0" class="tu-amount" placeholder="e.g. 10000"></label><label>Start after (years)<input type="number" min="0" step="1" class="tu-years" placeholder="e.g. 5"></label><label>End after (years)<input type="number" min="1" step="1" class="tu-end" placeholder="Continue until retirement"></label><button type="button" class="remove-btn" onclick="this.parentElement.remove()" aria-label="Remove SIP phase">×</button>`;
             container.appendChild(row);
         }
 
-        function calculatePension() {
+function pensionCorpusAt(years, sip, annualRate, lumpsums, topups, baseEnd=Infinity) {
+    const monthlyRate=annualRate/12;
+    const phaseValue=(amount,start,end)=>{
+        const stop=Math.min(years,end);
+        const months=Math.max(0,(stop-start)*12);
+        if(!months)return 0;
+        const activeValue=monthlyRate===0?amount*months:amount*((Math.pow(1+monthlyRate,months)-1)/monthlyRate)*(1+monthlyRate);
+        return activeValue*Math.pow(1+monthlyRate,(years-stop)*12);
+    };
+    let value=phaseValue(sip,0,baseEnd);
+    for(const item of lumpsums)if(item.after<=years)value+=item.amount*Math.pow(1+annualRate,years-item.after);
+    for(const item of topups)value+=phaseValue(item.amount,item.after,item.end===undefined?Infinity:item.end);
+    return value;
+}
+function pensionYearlyRows(currentAge,retireAge,endAge,sip,annualRate,lumpsums,topups,pension,inflation,distRate,baseEnd=Infinity) {
+    const rows=[];const savingYears=retireAge-currentAge;
+    let balance=0;
+    for(let year=1;year<=savingYears;year++) {
+        const opening=balance;
+        let deposits=sip*Math.max(0,Math.min(year,baseEnd)-(year-1))*12;
+        for(const item of lumpsums)if(item.after<=year&&(item.after>year-1||(year===1&&item.after===0)))deposits+=item.amount;
+        for(const item of topups)deposits+=item.amount*Math.max(0,Math.min(year,item.end===undefined?Infinity:item.end)-Math.max(year-1,item.after))*12;
+        balance=pensionCorpusAt(year,sip,annualRate,lumpsums,topups,baseEnd);
+        rows.push({year,fromAge:currentAge+year-1,toAge:currentAge+year,phase:'Saving',opening,deposits,withdrawals:0,gain:balance-opening-deposits,closing:balance});
+    }
+    let monthlyPension=pension,exhausted=false;
+    for(let year=1;year<=endAge-retireAge;year++) {
+        const opening=balance;let withdrawals=0;
+        for(let month=1;month<=12;month++) {
+            if(exhausted)continue;
+            if(monthlyPension>balance+0.0000001) {withdrawals+=Math.max(0,balance);balance=0;exhausted=true;continue;}
+            balance=Math.max(0,balance-monthlyPension);withdrawals+=monthlyPension;
+            balance*=1+distRate/12;
+        }
+        monthlyPension*=1+inflation;
+        rows.push({year:savingYears+year,fromAge:retireAge+year-1,toAge:retireAge+year,phase:'Retirement',opening,deposits:0,withdrawals,gain:balance-opening+withdrawals,closing:balance});
+    }
+    return rows;
+}
+function renderPensionYearly(rows) {
+    const width=900,height=360,left=85,right=24,top=27,bottom=47;
+    const lines=[{key:'deposits',color:'#2563b8',label:'Investments this year'},{key:'withdrawals',color:'#be3c70',label:'Pension paid this year'},{key:'closing',color:'#25826b',label:'Year-end portfolio value'}];
+    const max=Math.max(1,...rows.flatMap(row=>lines.map(line=>row[line.key])))*1.12;
+    const min=Math.min(0,...rows.flatMap(row=>lines.map(line=>row[line.key])))*1.12;
+    const x=i=>left+(rows.length===1?(width-left-right)/2:i*(width-left-right)/(rows.length-1));
+    const y=value=>top+(max-value)/(max-min)*(height-top-bottom);
+    const compact=value=>{const sign=value<0?'-':'';value=Math.abs(value);return sign+'₹'+(value>=10000000?(value/10000000).toFixed(1)+'Cr':value>=100000?(value/100000).toFixed(1)+'L':value>=1000?(value/1000).toFixed(0)+'k':Math.round(value));};
+    let svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="pensionChartSvgTitle pensionChartSvgDesc"><title id="pensionChartSvgTitle">Your pension cash flow year by year</title><desc id="pensionChartSvgDesc">Three lines show investments during each year, pension withdrawals during each year, and the remaining portfolio at each year end. All lines share the same rupee scale. Ages mark the end of each planning year. Exact values are available in the table below.</desc>`;
+    for(let tick=0;tick<=4;tick++) {
+        const amount=min+(max-min)*tick/4,pos=y(amount);
+        svg+=`<line x1="${left}" x2="${width-right}" y1="${pos}" y2="${pos}" stroke="#ddd8ca" stroke-dasharray="3 5"/><text x="${left-11}" y="${pos+4}" text-anchor="end" fill="#7d817e" font-size="11">${compact(amount)}</text>`;
+    }
+    const retirementIndex=rows.findIndex(row=>row.phase==='Retirement');
+    if(retirementIndex>0)svg+=`<line x1="${x(retirementIndex-1)}" x2="${x(retirementIndex-1)}" y1="${top}" y2="${height-bottom}" stroke="#c8b28b" stroke-dasharray="4 5"><title>Retirement begins at age ${rows[retirementIndex].fromAge}</title></line>`;
+    lines.forEach((line,index)=>{
+        svg+=`<polyline class="pension-yearly-line" points="${rows.map((row,i)=>x(i)+','+y(row[line.key])).join(' ')}" fill="none" stroke="${line.color}" stroke-width="${index===2?3:2.5}" ${index===0?'stroke-dasharray="8 5"':index===1?'stroke-dasharray="3 4"':''}/>`;
+        rows.forEach((row,i)=>{svg+=`<circle cx="${x(i)}" cy="${y(row[line.key])}" r="3" fill="${line.color}" stroke="#fffaf2" stroke-width="1"><title>Year ${row.year}, age ${row.fromAge}–${row.toAge}: ${line.label} ${formatter.format(row[line.key])}</title></circle>`;});
+    });
+    rows.forEach((row,i)=>{if(rows.length<=8||i%Math.ceil((rows.length-1)/7)===0||i===rows.length-1)svg+=`<text x="${x(i)}" y="${height-20}" text-anchor="middle" fill="#63727c" font-size="11">Age ${row.toAge}</text>`;});
+    document.getElementById('pensionYearlyChart').innerHTML=svg+'</svg>';
+    document.getElementById('pensionYearlyBody').innerHTML=rows.map(row=>`<tr><th scope="row">Year ${row.year}<small>Age ${row.fromAge}–${row.toAge}</small></th><td>${row.phase}</td><td>${formatter.format(row.opening)}</td><td>${formatter.format(row.deposits)}</td><td>${formatter.format(row.withdrawals)}</td><td>${formatter.format(row.gain)}</td><td><strong>${formatter.format(row.closing)}</strong></td></tr>`).join('');
+}
+
+function readPensionSchedules(years, excludePlanner=false) {
+    const lumpsums=[],topups=[];
+    for(const row of document.querySelectorAll('.ls-row')) {
+        if(excludePlanner && row.hasAttribute('data-goal-combination'))continue;
+        const amountText=row.querySelector('.ls-amount').value;
+        const afterText=row.querySelector('.ls-years').value;
+        if(amountText===''&&afterText==='')continue;
+        const amount=Number(amountText),after=Number(afterText||0);
+        if(amountText===''||!Number.isFinite(amount)||amount<0||!Number.isInteger(after)||after<0||after>years)throw new Error('For each lumpsum, enter a non-negative amount and an investment year between now and retirement.');
+        if(amount>0)lumpsums.push({amount,after});
+    }
+    for(const row of document.querySelectorAll('.tu-row')) {
+        const amountText=row.querySelector('.tu-amount').value;
+        const afterText=row.querySelector('.tu-years').value;
+        const endNode=row.querySelector('.tu-end');
+        const endText=endNode?endNode.value:'';
+        if(amountText===''&&afterText===''&&endText==='')continue;
+        const amount=Number(amountText),after=Number(afterText||0),end=endText===''?years:Number(endText);
+        if(amountText===''||!Number.isFinite(amount)||amount<0||!Number.isInteger(after)||!Number.isInteger(end)||after<0||end<=after||end>years)throw new Error('Each SIP phase needs a non-negative monthly amount and a start/end year within the years before retirement. The end must be later than the start.');
+        if(amount>0)topups.push({amount,after,end});
+    }
+    const endText=document.getElementById('baseSipEnd').value;
+    const baseEnd=endText===''?years:Number(endText);
+    if(!Number.isInteger(baseEnd)||baseEnd<=0||baseEnd>years)throw new Error('The base SIP end year must be between 1 and the number of years until retirement. Leave it blank to continue until retirement.');
+    const legacyText=document.getElementById('legacyGoal').value;
+    const legacy=legacyText===''?0:Number(legacyText);
+    if(!Number.isFinite(legacy)||legacy<0)throw new Error('Enter a non-negative family legacy target.');
+    return {lumpsums,topups,baseEnd,legacy};
+}
+
+function requiredPensionCorpus(firstMonthlyPension,inflation,annualReturn,months,legacy=0) {
+    let required=legacy;
+    const factor=1+annualReturn/12;
+    for(let m=months-1;m>=0;m--)required=required/factor+firstMonthlyPension*Math.pow(1+inflation,Math.floor(m/12));
+    return required;
+}
+function solvePensionMix(required,extraCorpus,sipFactor,lumpFactor,fixedKind,fixedAmount) {
+    const remaining=Math.max(0,required-extraCorpus);
+    const sip=fixedKind==='sip'?fixedAmount:Math.max(0,(remaining-fixedAmount*lumpFactor)/sipFactor);
+    const lump=fixedKind==='lump'?fixedAmount:Math.max(0,(remaining-fixedAmount*sipFactor)/lumpFactor);
+    return {sip,lump,excess:Math.max(0,extraCorpus+sip*sipFactor+lump*lumpFactor-required),remaining};
+}
+if(typeof window!=='undefined' && window.addEventListener)window.addEventListener('load',function(){
+    const el=id=>document.getElementById(id);
+    let fixedKind='sip',updating=false,reportRequested=false;
+    const clean=value=>value.toFixed(10).replace(/\.?0+$/,'')||'0';
+    function updateGoalMix(showReport) {
+        if(updating)return;
+        if(showReport)reportRequested=true;
+        updating=true;
+        try {
+            const number=id=>Number(el(id).value);
+            const incomplete=['currentAge','retireAge','endAge','currentPension','inflationRate','accReturn','distReturn'].some(id=>el(id).value.trim()==='');
+            const age=number('currentAge'),retire=number('retireAge'),end=number('endAge');
+            const inflation=number('inflationRate')/100,acc=number('accReturn')/100,dist=number('distReturn')/100,pension=number('currentPension');
+            const fixedInput=fixedKind==='sip'?el('goalSip'):el('goalLumpsum');
+            const fixedAmount=Number(fixedInput.value);
+            if(incomplete||![age,retire,end,inflation,acc,dist,pension,fixedAmount].every(Number.isFinite)||![age,retire,end].every(Number.isInteger)||retire<=age||end<=retire||end-age>200||pension<0||inflation<=-1||acc<=-1||dist<=-1||fixedInput.value===''||fixedAmount<0) {
+                el('goalMixStatus').textContent='Please complete the ages, pension need, return rates and a non-negative contribution to calculate a combination.';
+                el('goalRequiredCorpus').textContent='—';
+                el('resultPanel').style.display='none';return;
+            }
+            const years=retire-age;
+            const firstPension=pension*Math.pow(1+inflation,years);
+            let schedules;
+            try {schedules=readPensionSchedules(years,true);} catch(error) {el('goalMixStatus').textContent=error.message;el('resultPanel').style.display='none';return;}
+            const {lumpsums:lumps,topups:tops,baseEnd,legacy}=schedules;
+            const required=requiredPensionCorpus(firstPension,inflation,dist,(end-retire)*12,legacy);
+            const extras=pensionCorpusAt(years,0,acc,lumps,tops,baseEnd);
+            const sipFactor=pensionCorpusAt(years,1,acc,[],[],baseEnd);
+            const lumpFactor=Math.pow(1+acc,years);
+            if(![required,extras,sipFactor,lumpFactor].every(Number.isFinite)||sipFactor<=0||lumpFactor<=0) {
+                el('goalMixStatus').textContent='These inputs are outside the calculator’s usable range. Please check the duration and return rates.';el('resultPanel').style.display='none';return;
+            }
+            // Tiny numerical cushion prevents floating-point shortfalls at the final payment.
+            const target=required*(1+1e-12);
+            const mix=solvePensionMix(target,extras,sipFactor,lumpFactor,fixedKind,fixedAmount);
+            if(fixedKind==='sip')el('goalLumpsum').value=mix.lump.toFixed(2);
+            else el('goalSip').value=mix.sip.toFixed(2);
+            el('baseSip').value=clean(mix.sip);
+            let ownRow=document.querySelector('.ls-row[data-goal-combination]');
+            if(!ownRow){
+                ownRow=document.createElement('div');ownRow.className='dyn-row ls-row goal-owned-row';ownRow.setAttribute('data-goal-combination','true');
+                ownRow.innerHTML='<label>Planner lumpsum today (₹)<input class="ls-amount" type="number" readonly aria-label="Planner lumpsum today"></label><label>Invest after (years)<input class="ls-years" type="number" value="0" readonly aria-label="Planner investment starts today"></label><span class="goal-owned-label">Linked to your combination above</span>';
+                el('lumpsum-container').appendChild(ownRow);
+            }
+            ownRow.querySelector('.ls-amount').value=clean(mix.lump);
+            el('goalRequiredCorpus').textContent=formatter.format(required);
+            el('goalTargetDescription').textContent='For pension from age '+retire+' until age '+end+', including annual increases of '+(inflation*100).toFixed(1)+'%, plus a family legacy target of '+formatter.format(legacy)+' at age '+end+'.';
+            el('goalSipOnly').textContent='With no new lumpsum today: about '+formatter.format(Math.max(0,required-extras)/sipFactor)+' per month.';
+            el('goalLumpsumOnly').textContent='With no base SIP: about '+formatter.format(Math.max(0,required-extras)/lumpFactor)+' invested today.';
+            el('goalMixStatus').textContent=mix.excess>0.5?'Your chosen contribution already exceeds the estimated target. The other amount is set to zero; the report will show the projected surplus.':'Linked combination: '+formatter.format(mix.sip)+' monthly SIP + '+formatter.format(mix.lump)+' invested today. The estimated balance at age '+end+' is approximately '+formatter.format(legacy)+'.';
+            if(reportRequested)calculatePension(true);
+        } finally {updating=false;}
+    }
+    el('goalSip').value=el('baseSip').value;
+    el('goalSip').addEventListener('input',()=>{fixedKind='sip';updateGoalMix(true);});
+    el('goalLumpsum').addEventListener('input',()=>{fixedKind='lump';updateGoalMix(true);});
+    document.querySelector('.main-content').addEventListener('input',event=>{
+        if(event.target.id==='goalSip'||event.target.id==='goalLumpsum')return;
+        if(event.target.id==='baseSip'){fixedKind='sip';el('goalSip').value=event.target.value;}
+        updateGoalMix(el('resultPanel').style.display==='block');
+    });
+    const observer=new MutationObserver(()=>updateGoalMix(el('resultPanel').style.display==='block'));
+    observer.observe(el('lumpsum-container'),{childList:true});observer.observe(el('topup-container'),{childList:true});
+    updateGoalMix(false);
+});
+
+        function calculatePension(auto = false) {
+            const reportInputError = message => {
+                document.getElementById('resultPanel').style.display = 'none';
+                if (!auto) alert(message);
+            };
+            const incompleteInputs = ['currentAge','retireAge','endAge','currentPension','inflationRate','accReturn','distReturn','baseSip'].some(id => document.getElementById(id).value.trim() === '');
+            if (incompleteInputs) { reportInputError('Please complete all ages, pension needs, contributions and return rates before generating the report.'); return; }
+
             const currentAge = parseInt(document.getElementById('currentAge').value);
             const retireAge = parseInt(document.getElementById('retireAge').value);
             const endAge = parseInt(document.getElementById('endAge').value);
@@ -348,34 +747,15 @@
             const distReturn = parseFloat(document.getElementById('distReturn').value) / 100;
             const baseSip = parseFloat(document.getElementById('baseSip').value) || 0;
 
-            if (retireAge <= currentAge) { alert("Retirement age must be greater than current age."); return; }
-            if (endAge <= retireAge) { alert("Pension end age must be greater than retirement age."); return; }
+            if (retireAge <= currentAge) { reportInputError("Retirement age must be greater than current age."); return; }
+            if (endAge <= retireAge) { reportInputError("Pension end age must be greater than retirement age."); return; }
 
+            if (![currentAge,retireAge,endAge,currentPension,inflation,accReturn,distReturn,baseSip].every(Number.isFinite) || currentAge<0 || endAge-currentAge>200 || currentPension<0 || baseSip<0 || inflation<=-1 || accReturn<=-1 || distReturn<=-1) { reportInputError('Please enter valid ages, non-negative contributions and pension needs, and rates above -100%. The planning period must be 200 years or less.'); return; }
             const yearsToRetire = retireAge - currentAge;
-            const accMonthlyRate = accReturn / 12;
-            let corpus = 0;
-
-            if (baseSip > 0 && accMonthlyRate > 0) {
-                const months = yearsToRetire * 12;
-                corpus += baseSip * ((Math.pow(1 + accMonthlyRate, months) - 1) / accMonthlyRate) * (1 + accMonthlyRate);
-            }
-
-            document.querySelectorAll('.ls-row').forEach(row => {
-                const amount = parseFloat(row.querySelector('.ls-amount').value);
-                const afterYears = parseFloat(row.querySelector('.ls-years').value) || 0;
-                if (amount > 0 && afterYears <= yearsToRetire) {
-                    corpus += amount * Math.pow(1 + accReturn, (yearsToRetire - afterYears));
-                }
-            });
-
-            document.querySelectorAll('.tu-row').forEach(row => {
-                const amount = parseFloat(row.querySelector('.tu-amount').value);
-                const afterYears = parseFloat(row.querySelector('.tu-years').value) || 0;
-                if (amount > 0 && afterYears < yearsToRetire) {
-                    const monthsActive = (yearsToRetire - afterYears) * 12;
-                    corpus += amount * ((Math.pow(1 + accMonthlyRate, monthsActive) - 1) / accMonthlyRate) * (1 + accMonthlyRate);
-                }
-            });
+            let schedules;
+            try {schedules=readPensionSchedules(yearsToRetire);} catch(error) {reportInputError(error.message);return;}
+            const {lumpsums,topups,baseEnd,legacy}=schedules;
+            const corpus = pensionCorpusAt(yearsToRetire,baseSip,accReturn,lumpsums,topups,baseEnd);
 
             const pensionAtRetire = currentPension * Math.pow(1 + inflation, yearsToRetire);
             
@@ -384,19 +764,22 @@
             const distMonthlyRate = distReturn / 12;
             let totalWithdrawn = 0;
             let runOutAge = 0;
+            let runOutMonth = 0;
             let isSuccessful = true;
 
             const monthsInRetirement = (endAge - retireAge) * 12;
 
             for (let m = 1; m <= monthsInRetirement; m++) {
-                currentCorpus -= currentMonthlyPension;
-                totalWithdrawn += currentMonthlyPension;
-
-                if (currentCorpus <= 0) {
+                if (currentMonthlyPension > currentCorpus + 0.0000001) {
+                    totalWithdrawn += Math.max(0, currentCorpus);
+                    currentCorpus = 0;
                     isSuccessful = false;
-                    runOutAge = retireAge + Math.floor(m / 12);
+                    runOutAge = retireAge + Math.floor((m - 1) / 12);
+                    runOutMonth = (m - 1) % 12;
                     break;
                 }
+                currentCorpus = Math.max(0, currentCorpus - currentMonthlyPension);
+                totalWithdrawn += currentMonthlyPension;
 
                 currentCorpus += currentCorpus * distMonthlyRate;
 
@@ -406,6 +789,11 @@
             }
 
             document.getElementById('resCorpus').innerText = formatter.format(corpus);
+            document.getElementById('resBalanceAge').innerText = endAge;
+            document.getElementById('resEndingBalance').innerText = formatter.format(Math.max(0, currentCorpus));
+            document.getElementById('resBalanceExplanation').innerText = isSuccessful
+                ? 'This is the estimated amount left at the end of your plan, after the pension withdrawals shown.'
+                : 'The savings are projected to run out before this age, so no balance remains at the end of the plan.';
             document.getElementById('resRetAge').innerText = retireAge;
             document.getElementById('resEndAge').innerText = endAge;
             document.getElementById('resFirstPension').innerText = formatter.format(pensionAtRetire);
@@ -428,16 +816,20 @@
             document.getElementById('displayInfRate').innerText = (inflation * 100).toFixed(1);
 
             const verdictBox = document.getElementById('verdictBox');
-            if (isSuccessful) {
+            if (isSuccessful && currentCorpus + 0.5 < legacy) {
+                verdictBox.className = 'verdict-box verdict-danger';
+                verdictBox.textContent = 'The pension payments are covered under these assumptions, but the projected closing balance is below your family legacy target by ' + formatter.format(legacy-currentCorpus) + '. Adjust the contributions or review the legacy target.';
+            } else if (isSuccessful) {
                 verdictBox.className = "verdict-box verdict-success";
-                verdictBox.innerHTML = `<i class="fas fa-check-circle"></i> Congratulations! Your corpus will successfully outlive you. At age ${endAge}, you will still have a massive legacy of <strong>${formatter.format(currentCorpus)}</strong> left behind for your family.`;
+                verdictBox.innerHTML = `<i class="fas fa-check-circle"></i> Under these assumptions, your savings cover the planned pension until age ${endAge}, with an estimated balance of <strong>${formatter.format(currentCorpus)}</strong> remaining. Your family legacy target is <strong>${formatter.format(legacy)}</strong>.`;
             } else {
                 verdictBox.className = "verdict-box verdict-danger";
-                verdictBox.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Warning! Your retirement corpus runs out entirely at <strong>Age ${runOutAge}</strong>. You need to increase your current SIP or add more lumpsum investments to sustain your lifestyle until age ${endAge}.`;
+                verdictBox.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Your savings are projected to run out at around <strong>Age ${runOutAge}${runOutMonth ? " years " + runOutMonth + " months" : ""}</strong>. The balance at age ${endAge} would be <strong>₹0</strong>. Try increasing your SIP or adding a lumpsum, or review your pension amount and retirement timeline to compare a more sustainable plan.`;
             }
 
+            renderPensionYearly(pensionYearlyRows(currentAge,retireAge,endAge,baseSip,accReturn,lumpsums,topups,pensionAtRetire,inflation,distReturn,baseEnd));
             document.getElementById('resultPanel').style.display = 'block';
-            document.getElementById('resultPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (!auto) document.getElementById('resultPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     </script>
 </body>
